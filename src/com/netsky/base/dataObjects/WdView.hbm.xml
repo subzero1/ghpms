@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.WdView"
+        table="WdView"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-WdView.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="file_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="file_name"
+        />
+
+        <property
+            name="ftp_url"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ftp_url"
+        />
+
+        <property
+            name="user_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="user_name"
+        />
+
+        <property
+            name="user_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="user_id"
+        />
+
+        <property
+            name="ftp_date"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="ftp_date"
+        />
+
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="remark"
+        />
+
+        <property
+            name="cyfw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cyfw"
+        />
+
+        <property
+            name="cylb"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cylb"
+        />
+
+        <property
+            name="ml_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="ml_id"
+        />
+
+        <property
+            name="mlmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="mlmc"
+        />
+
+        <property
+            name="contents"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="contents"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-WdView.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

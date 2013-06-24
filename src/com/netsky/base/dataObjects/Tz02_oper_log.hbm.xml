@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Tz02_oper_log"  table="Tz02_oper_log">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tz02_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
+
+  <property
+  name="opuser"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="opuser"
+  />
+
+  <property
+  name="optime"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="optime"
+  />
+
+  <property
+  name="opdesc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="opdesc"
+  />
+
+  <property
+  name="optype"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="optype"
+  />
+
+  <property
+  name="optable"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="optable"
+  />
+
+  <property
+  name="old_data"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="old_data"
+  />
+
+  <property
+  name="new_data"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="new_data"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

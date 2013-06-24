@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Te09_view"
+        table="Te09_view"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Te09_view.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="module_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="doc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="doc_id"
+        />
+
+        <property
+            name="nr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="nr"
+        />
+
+        <property
+            name="fbsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="fbsj"
+        />
+
+        <property
+            name="fbr_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="fbr_id"
+        />
+
+        <property
+            name="fbr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fbr"
+        />
+
+        <property
+            name="up_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="up_id"
+        />
+
+        <property
+            name="tzr_names"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tzr_names"
+        />
+
+        <property
+            name="comments"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="comments"
+        />
+
+        <property
+            name="title"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="title"
+        />
+
+        <property
+            name="module_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="module_name"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Te09_view.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

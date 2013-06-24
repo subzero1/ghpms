@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+
+var uploadUrl=window.location.href;
+
+var aa=uploadUrl.lastIndexOf('=');
+if(aa==-1){
+}else{
+	
+	uploadUrl=uploadUrl.substring(aa+1);
+	var v=uploadUrl.split(",");
+	var url = v[0];
+	var width = v[1];
+	var height = v[2];
+	parent.callback(url,width,height);
+}
+</script>
+</body>
+</html>

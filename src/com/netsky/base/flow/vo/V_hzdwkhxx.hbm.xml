@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.flow.vo.V_hzdwkhxx"  table="V_hzdwkhxx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">xxx_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="wxdw_mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_mc"
+  />
+
+  <property
+  name="wxdw_lb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="wxdw_lb"
+  />
+
+  <property
+  name="khry_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khry_name"
+  />
+
+  <property
+  name="khyy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khyy"
+  />
+
+  <property
+  name="khlb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khlb"
+  />
+
+  <property
+  name="fkje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fkje"
+  />
+  
+  <property
+  name="jlje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlje"
+  />
+
+  <property
+  name="jkfz"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jkfz"
+  />
+
+  <property
+  name="khjg"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khjg"
+  />
+
+  <property
+  name="cjsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjsj"
+  />
+
+  <property
+  name="khdz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khdz"
+  />
+
+  <property
+  name="khsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="khsj"
+  />
+
+  <property
+  name="khwz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="khwz"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

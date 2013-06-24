@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te10_wdml"  table="Te10_wdml">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te10_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="up_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="up_id"
+  />
+
+  <property
+  name="mc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="mc"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="cyfw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cyfw"
+  />
+
+  <property
+  name="cylb"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cylb"
+  />
+
+  <property
+  name="cjr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjr"
+  />
+
+  <property
+  name="cjsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjsj"
+  />
+
+  <property
+  name="cjbm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="cjbm"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

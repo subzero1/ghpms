@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.flow.vo.V_gcxmxx"  table="V_gcxmxx">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">xxx_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="xmbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmbh"
+  />
+
+  <property
+  name="xmmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmmc"
+  />
+
+  <property
+  name="ssdq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ssdq"
+  />
+
+  <property
+  name="sgdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgdw"
+  />
+
+  <property
+  name="sjdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjdw"
+  />
+
+  <property
+  name="jldw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jldw"
+  />
+
+  <property
+  name="lxje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="lxje"
+  />
+
+  <property
+  name="xmgly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmgly"
+  />
+
+  <property
+  name="module_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
+
+  <property
+  name="objectname"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="objectname"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te06_remind_queue"  table="Te06_remind_queue">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te06_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
+
+  <property
+  name="time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="time"
+  />
+
+  <property
+  name="persons"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="persons"
+  />
+
+  <property
+  name="ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ids"
+  />
+
+  <property
+  name="tels"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="tels"
+  />
+
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="times"
+  />
+
+  <property
+  name="uri"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="uri"
+  />
+
+  <property
+  name="status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="status"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

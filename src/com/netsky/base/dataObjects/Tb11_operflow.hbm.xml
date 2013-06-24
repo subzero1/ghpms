@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb11_operflow"
+        table="Tb11_operflow"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb11_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb11_operflow.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="flow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="flow_id"
+        />
+
+        <property
+            name="start_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="start_time"
+        />
+
+        <property
+            name="end_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="end_time"
+        />
+
+        <property
+            name="status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="status"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="description"
+        />
+
+        <property
+            name="display"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="display"
+        />
+
+        <property
+            name="rollback_modules"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="rollback_modules"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb11_operflow.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

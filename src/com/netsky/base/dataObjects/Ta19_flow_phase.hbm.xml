@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta19_flow_phase"  table="Ta19_flow_phase">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta19_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="flow_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="flow_id"
+  />
+
+  <property
+  name="phase_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="phase_id"
+  />
+
+  <property
+  name="isstart"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="isstart"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

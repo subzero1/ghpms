@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Tz03_login_log"  table="Tz03_login_log">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tz03_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
+
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
+
+  <property
+  name="login_ip"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_ip"
+  />
+
+  <property
+  name="login_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="login_date"
+  />
+
+  <property
+  name="logout_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="logout_date"
+  />
+
+  <property
+  name="systeminfo"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="systeminfo"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

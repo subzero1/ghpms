@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta01_dept"  table="Ta01_dept">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta01_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="code"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="code"
+  />
+
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
+  <property
+  name="useflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="useflag"
+  />
+  
+  <property
+  name="showflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="showflag"
+  />
+
+  <property
+  name="area_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="area_name"
+  />
+
+  <property
+  name="up_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="up_id"
+  />
+  <property 
+	name="parent_dept"
+	type="java.lang.Long"
+	update="true"
+	insert="true"
+	column="parent_dept"
+	/>
+
+    </class>
+
+</hibernate-mapping>

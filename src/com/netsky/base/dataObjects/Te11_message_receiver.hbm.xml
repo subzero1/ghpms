@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te11_message_receiver"  table="Te11_message_receiver">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te11_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="msg_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="msg_id"
+  />
+
+  <property
+  name="reader_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="reader_id"
+  />
+
+  <property
+  name="reader_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="reader_name"
+  />
+
+  <property
+  name="read_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="read_flag"
+  />
+
+  <property
+  name="delete_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="delete_flag"
+  />
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.flow.vo.WaitWork"
+        table="wait_work"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-WaitWork.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="flow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="flow_id"
+        />
+
+        <property
+            name="node_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="node_id"
+        />
+
+        <property
+            name="module_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="doc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="doc_id"
+        />
+
+        <property
+            name="opernode_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="opernode_id"
+        />
+
+        <property
+            name="user_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="user_id"
+        />
+
+        <property
+            name="oper_time"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="oper_time"
+        />
+
+        <property
+            name="near_user"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="near_user"
+        />
+
+        <property
+            name="near_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="near_status"
+        />
+
+        <property
+            name="status_num"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="status_num"
+        />
+
+        <property
+            name="doc_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="doc_status"
+        />
+
+        <property
+            name="module_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="module_name"
+        />
+
+        <property
+            name="flowflag"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="flowflag"
+        />
+
+        <property
+            name="flowname"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="flowname"
+        />
+
+        <property
+            name="flow_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="flow_status"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-WaitWork.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

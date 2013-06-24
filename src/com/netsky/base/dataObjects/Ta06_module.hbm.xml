@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta06_module"  table="Ta06_module">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta06_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="project_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="project_table"
+  />
+
+  <property
+  name="form_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_table"
+  />
+
+  <property
+  name="form_url"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_url"
+  />
+
+  <property
+  name="form_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_name"
+  />
+
+  <property
+  name="form_pic"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="form_pic"
+  />
+
+  <property
+  name="slave_module"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slave_module"
+  />
+
+  <property
+  name="aux_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aux_table"
+  />
+
+  <property
+  name="detail_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="detail_table"
+  />
+
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

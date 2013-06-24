@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta31_worklist_cfg"  table="Ta31_worklist_cfg">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta31_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="field_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="field_id"
+  />
+
+  <property
+  name="ord"
+  type="java.lang.Integer"
+  update="true"
+  insert="true"
+  column="ord"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

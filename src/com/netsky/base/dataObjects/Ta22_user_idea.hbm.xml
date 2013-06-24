@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta22_user_idea"  table="Ta22_user_idea">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta22_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="check_result"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="check_result"
+  />
+
+  <property
+  name="check_idea"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="check_idea"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta32_node_user_limit"  table="Ta32_node_user_limit">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta32_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="node_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_id"
+  />
+
+  <property
+  name="node_user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_user_id"
+  />
+
+  <property
+  name="node_user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_user_name"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

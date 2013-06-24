@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.flow.vo.Cswdxx"
+        table="Cswdxx"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Integer"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Cswdxx.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="bdmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bdmc"
+        />
+
+        <property
+            name="bdbh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bdbh"
+        />
+
+        <property
+            name="xmmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmmc"
+        />
+
+        <property
+            name="czr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="czr"
+        />
+
+        <property
+            name="czrdh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="czrdh"
+        />
+
+        <property
+            name="czrbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="czrbm"
+        />
+
+        <property
+            name="jhwcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="jhwcsj"
+        />
+
+        <property
+            name="user_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="user_id"
+        />
+
+        <property
+            name="project_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="doc_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="doc_id"
+        />
+
+        <property
+            name="module_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="node_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="node_id"
+        />
+
+        <property
+            name="opernode_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="opernode_id"
+        />
+        
+        <property
+            name="cqlx"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cqlx"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Cswdxx.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

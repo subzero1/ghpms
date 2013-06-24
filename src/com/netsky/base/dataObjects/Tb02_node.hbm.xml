@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb02_node"
+        table="Tb02_node"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb02_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb02_node.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="flow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="flow_id"
+        />
+
+        <property
+            name="node_type"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="node_type"
+        />
+
+        <property
+            name="oper_days"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="oper_days"
+        />
+
+        <property
+            name="salve_data"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="salve_data"
+        />
+
+        <property
+            name="rollback_nodes"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="rollback_nodes"
+        />
+
+        <property
+            name="disp"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="disp"
+        />
+
+        <property
+            name="canStart"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="canStart"
+        />
+
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="remark"
+        />
+
+        <property
+            name="ext"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ext"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb02_node.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
