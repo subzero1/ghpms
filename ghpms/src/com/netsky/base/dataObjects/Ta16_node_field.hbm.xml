@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta16_node_field"  table="Ta16_node_field">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta16_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="node_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_id"
+  />
+
+  <property
+  name="field_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="field_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

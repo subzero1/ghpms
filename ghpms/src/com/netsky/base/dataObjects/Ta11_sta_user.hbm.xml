@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta11_sta_user"  table="Ta11_sta_user">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta11_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="station_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="station_id"
+  />
+
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb12_opernode"
+        table="Tb12_opernode"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb12_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb12_opernode.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="doc_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="doc_id"
+        />
+
+        <property
+            name="node_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="node_id"
+        />
+
+        <property
+            name="ord"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="ord"
+        />
+
+        <property
+            name="node_status"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="node_status"
+        />
+
+        <property
+            name="start_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="start_time"
+        />
+
+        <property
+            name="end_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="end_time"
+        />
+
+        <property
+            name="modify_node"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="modify_node"
+        />
+
+        <property
+            name="node_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_name"
+        />
+
+        <property
+            name="module_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="node_type"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="node_type"
+        />
+
+        <property
+            name="rollback_nodes"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="rollback_nodes"
+        />
+
+        <property
+            name="node_ext"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_ext"
+        />
+
+        <property
+            name="cflow_root"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cflow_root"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb12_opernode.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

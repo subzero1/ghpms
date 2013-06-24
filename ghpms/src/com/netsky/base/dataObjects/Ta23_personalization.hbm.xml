@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta23_personalization"  table="Ta23_personalization">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta23_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="po_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="po_id"
+  />
+
+  <property
+  name="type"
+  type="java.lang.Integer"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

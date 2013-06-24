@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Application context definition for rms on Hibernate.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	<context:property-placeholder
+		location="/WEB-INF/config/jdbc.properties" />
+
+	<!-- 自动装载 javaBean -->
+	<context:component-scan
+		base-package="com.netsky.base.service.impl,com.rms.service.impl,com.netsky.base.flow.component,com.netsky.base.flow.service.impl,com.rms.thread,com.netsky.base.service,com.rms.webservice" />
+
+
+	<!--
+		Uses Apache Commons DBCP for connection pooling. See Commons DBCP documentation
+		for the required JAR files. Alternatively you can use another connection pool
+		such as C3P0, similarly configured using Spring.
+	-->
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>	
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="maxActive">
+			<value>60</value>
+		</property>
+		<property name="maxIdle">
+			<value>10</value>
+		</property>		
+		<property name="minIdle">
+			<value>5</value>
+		</property>
+	</bean>
+	
+	<!--
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}" />
+		
+		<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+		<value>${jndi.name}</value>
+		</property>
+		</bean>
+	-->
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.generate_statistics">
+					${hibernate.generate_statistics}
+				</prop>
+			</props>
+		</property>
+		<property name="eventListeners">
+			<map>
+				<entry key="merge">
+					<bean
+						class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" />
+				</entry>
+			</map>
+		</property>
+		<property name="lobHandler" ref="defaultLobHandler" />
+		<property name="mappingResources">
+			<list>
+				<value>com/netsky/base/dataObjects/Ta01_dept.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta02_station.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta03_user.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta04_role.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta05_group.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta06_module.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta07_formfield.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta08_reportfield.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta09_menu.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta11_sta_user.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta12_sta_role.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta13_sta_node.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta14_group_user.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta15_group_node.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta16_node_field.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta17_module_info.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta18_phase.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta19_flow_phase.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta20_phase_node.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta21_user_ext.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta22_user_idea.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta23_personalization.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta24_phase_timelimit.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta25_face_module.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta26_remind_cfg.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta27_user_remind.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta28_work_trust.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta29_report_template.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta30_template_list.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta31_worklist_cfg.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta32_node_user_limit.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Ta33_tszf.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb01_flow.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb02_node.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb03_relation.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb04_flowgroup.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb05_affair.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb06_phase.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb11_operflow.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb12_opernode.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb13_operrelation.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb14_even_affair.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb15_docflow.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb16_operphase.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb17_approve.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb18_project_phase.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb19_suspendapply.hbm.xml</value>
+				
+				<value>com/netsky/base/dataObjects/Te01_slave.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te02_jlfk.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te03_online.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te04_message.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te05_task_remind.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te06_remind_queue.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te07_qa.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te09_jlgt.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te09_view.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te10_wdml.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te11_message_receiver.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/WdView.hbm.xml</value>
+				
+				<value>com/netsky/base/dataObjects/Tz01_exception.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz02_oper_log.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz03_login_log.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz04_node_del.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz05_thread_queue.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz06_help.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz07_dataobject_cfg.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tz08_help_map.hbm.xml</value>
+				<value>com/ghpms/dataObjects/base/Tc01_property.hbm.xml</value>
+				
+				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/NeedWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/OffWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/OnWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/ProjectInf.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/RespiteWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/WaitWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/ReplyWork.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/FormOperDatail.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/Vc1_sgpftst.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/Vc2_gcxx_gzltb.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/Vc3_gcxx_jlrj.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/V_gcxmxx.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/V_ta03.hbm.xml</value>
+				<value>com/netsky/base/flow/vo/V_hzdwkhxx.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="updateByHSql">PROPAGATION_REQUIRED</prop>
+				<prop key="removeObject">PROPAGATION_REQUIRED</prop>
+				<prop key="getHiberbateSession">
+					PROPAGATION_REQUIRED
+				</prop>
+				<prop key="getHibernateSession">
+					PROPAGATION_REQUIRED
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>dao</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dao" class="com.netsky.base.baseDao.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- <bean id="defaultLobHandler"
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true" />-->
+		
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true">
+		<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>
+	</bean>
+
+	<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"
+			lazy-init="true"/>
+
+	<context:annotation-config />
+
+	<!-- 事务注解 -->
+	<tx:annotation-driven />
+
+	<!-- JDBC配置部分 -->
+	<bean id="jdbcSupport"
+		class="com.netsky.base.baseDao.JdbcSupportImp">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+</beans>

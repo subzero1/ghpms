@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Ta03_user"
+        table="Ta03_user"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta03_num</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Ta03_user.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="login_id"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="login_id"
+        />
+
+        <property
+            name="passwd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="passwd"
+        />
+
+        <property
+            name="fix_tel"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fix_tel"
+        />
+
+        <property
+            name="mobile_tel"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="mobile_tel"
+        />
+
+        <property
+            name="email"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="email"
+        />
+
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="remark"
+        />
+
+        <property
+            name="dept_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="dept_id"
+        />
+
+        <property
+            name="useflag"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="useflag"
+        />
+
+        <property
+            name="last_pwd_date"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="last_pwd_date"
+        />
+
+        <property
+            name="sex"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sex"
+        />
+
+        <property
+            name="search_level"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="search_level"
+        />
+        
+        <property
+            name="send_htgly"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="send_htgly"
+        />
+
+        <property
+            name="area_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="area_name"
+        />
+
+        <property
+            name="new_flag"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="new_flag"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Ta03_user.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

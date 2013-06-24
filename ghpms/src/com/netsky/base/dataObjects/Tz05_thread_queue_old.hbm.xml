@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tz05_thread_queue_old"
+        table="Tz05_thread_queue"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tz05_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tz05_thread_queue_old.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="oper_date"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="oper_date"
+        />
+
+        <property
+            name="type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="type"
+        />
+
+        <property
+            name="paras"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="paras"
+        />
+
+        <property
+            name="status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="status"
+        />
+
+        <property
+            name="insert_date"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="insert_date"
+        />
+
+        <property
+            name="oper_batchs"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="oper_batchs"
+        />
+
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="remark"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tz05_thread_queue_old.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

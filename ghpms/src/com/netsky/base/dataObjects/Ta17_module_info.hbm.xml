@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta17_module_info"  table="Ta17_module_info">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta17_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
+
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="object_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_name"
+  />
+
+  <property
+  name="object_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_column"
+  />
+
+  <property
+  name="relevance_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="relevance_table"
+  />
+
+  <property
+  name="relevance_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="relevance_column"
+  />
+
+  <property
+  name="show_column"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="show_column"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

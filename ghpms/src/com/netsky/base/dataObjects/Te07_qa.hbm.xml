@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te07_qa"  table="Te07_qa">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te07_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="question"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="question"
+  />
+
+  <property
+  name="answer"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="answer"
+  />
+
+  <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
+
+  <property
+  name="cjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="cjrq"
+  />
+
+  <property
+  name="dj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dj"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

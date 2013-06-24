@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta18_phase"  table="Ta18_phase">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta18_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
+
+  <property
+  name="module_ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="module_ids"
+  />
+
+  <property
+  name="node_names"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_names"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

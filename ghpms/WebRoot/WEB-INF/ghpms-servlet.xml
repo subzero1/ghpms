@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- DispatcherServlet application context for  web tier.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:component-scan base-package="com"  use-default-filters="true">
+		<context:include-filter type="regex" expression="controller" />
+	</context:component-scan>
+
+	
+	<bean name="/flowForm.do"
+		class="com.rms.controller.base.FlowFormController">
+		<property name="moduleTable"
+			value="com.netsky.base.dataObjects.Ta06_module" />
+		<property name="nodeTable"
+			value="com.netsky.base.dataObjects.Tb02_node" />
+		<property name="flowTable"
+			value="com.netsky.base.dataObjects.Tb11_operflow" />
+		<property name="slaveTable"
+			value="com.netsky.base.dataObjects.Te01_slave" />
+		<property name="fieldTable"
+			value="com.netsky.base.dataObjects.Ta07_formfield" />
+		<property name="fieldNodeTable"
+			value="com.netsky.base.dataObjects.Ta16_node_field" />
+		<property name="approveTable"
+			value="com.netsky.base.dataObjects.Tb17_approve" />
+		
+	</bean>
+	
+	<bean name="/ajaxXhEditorUpload.do"
+		class="com.netsky.base.controller.AjaxXhEditorUpload">
+		<property name="fileExt"
+			value="jpg,jpeg,bmp,gif,png" />
+		<property name="maxSize"
+			value="5242880" />
+		<property name="ftpConfigFile"
+			value="/ftpConfig/ftpConfig.xml" />
+		<property name="slaveTableName"
+			value="com.netsky.base.dataObjects.Te01_slave" />
+	</bean>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为1000MB -->
+		<property name="maxUploadSize">
+			<value>1048576000</value>
+		</property>
+	</bean>
+	
+</beans>

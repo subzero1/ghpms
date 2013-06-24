@@ -1,0 +1,134 @@
+html{
+	overflow:hidden;
+}
+body{
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	line-height: 100%;
+	height: 100%;
+	border:0;
+	text-align: left;
+	background-image: url(index-bg.png);
+	background-repeat: repeat-x ;
+	background-position:left middle;	
+}
+form{
+	margin: 0;
+	padding: 0;
+}
+.clear{
+	clear:both;
+	line-height:1px;
+}
+.login_main{
+	width: 1000px;/*登录面板宽度*/
+	margin: 0 auto;
+	text-align: left;
+	position:relative;
+	background: url(login-bg.png) center top no-repeat transparent;
+	height:620px;
+
+}
+.login_top{
+	width: 100%;
+	height: 100px;/*登录面板头部高度*/
+}
+.login_middle{
+	width: 100%;
+	height: 326px;/*登录面板中部高度*/
+}
+.login_middleleft{
+	float: left;
+	width: 520px;/*登录面板中部左侧宽度*/
+	height: 100%;	
+}
+.login_middlecenter{
+	float: left;
+	width: 326px;/*登录面板中部右侧宽度*/
+	height: 100%;	
+	text-align: left;
+}
+.login_bottom{
+	width: 100%;
+	height: 50px;/*登录面板底部高度*/
+}
+.login_title{
+	position:absolute;
+	left:185px;/*标题x坐标*/
+	top:152px;/*标题y坐标*/
+	width:675px;/*标题宽度*/
+	height:89px;/*标题高度*/
+	background-image: url(login-title.png);
+	background-repeat: no-repeat;
+}
+
+.letter_space{
+letter-spacing:1em;
+}
+.login_user{
+	padding:0 0 0 0px;
+	font-weight:bold;
+	color:#333;/*表单文字颜色*/
+	font-size:14px;
+	font-family:微软雅黑;
+}
+.login_pass{
+	padding:15px 0 0 0px;/*密码框距用户名框的垂直距离*/
+	font-weight:bold;
+	font-size:14px;
+	font-family:微软雅黑;
+	color:#333;
+}
+.login_form{
+	padding:140px 57px 0 0;/*表单位置*/
+	text-align:right;
+}
+.login_button .input{
+	width: 154px;/*按钮宽度*/
+	height: 43px;/*按钮高度*/
+	border:0;
+	cursor:pointer;
+	background: url(login-button.png) transparent;			
+}
+.login_user input{
+	border:transparent;/*边框色*/
+	width:182px;/*用户名框宽度*/
+	height:30px;
+	line-height:28px;
+	background: url(login-box.png) transparent;	
+	padding-left:7px;
+}
+.login_pass input{
+	border:transparent;/*边框色*/	
+	width:182px;/*密码框宽度*/
+	height:30px;
+	line-height:28px;
+	background: url(login-box.png) transparent;	
+	padding-left:7px;
+}
+.login_button_left{
+	position:absolute;
+	left:605px;/*提交按钮x坐标*/
+	top:360px;/*提交按钮y坐标*/
+}
+
+.login_button_right{
+	position:absolute;
+	left:552px;/*记住按钮x坐标*/
+	top:328px;/*记住按钮y坐标*/
+	width:150px;
+	color:#fff;
+}
+
+.login_button_right a,.login_button_right a:link,.login_button_right a:hover,.login_button_right a visited{
+	color:#fff;
+	text-decoration:underline; 
+}
+
+.login_copyright{
+	color:#c00;/*版权声明文字颜色*/
+	text-align:center;
+	padding:12px 0 20 0px;/*版权声明位置*/
+	line-height:20px;
+}

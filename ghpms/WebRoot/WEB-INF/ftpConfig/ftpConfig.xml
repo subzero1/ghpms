@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GBK"?>
+<root>
+	<!-- 默认路径 -->
+	<folder>ghpms/default</folder>
+	<!--  -->
+	<address>192.168.0.3</address>
+	<username>pubtools</username>
+	<password>netsky</password>
+	<typeFolder>
+		<type>普通附件</type>
+		<folder>rmsSlaveData/ptfj</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>共享文档</type>
+		<folder>rmsSlaveData/wdgx</folder>
+	</typeFolder>	
+	<typeFolder>
+		<type>其他附件</type>
+		<folder>rmsSlaveData/qtfj</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>用户头像</type>
+		<folder>rmsSlaveData/yhtx</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>目标库</type>
+		<folder>rmsSlaveData/mbk</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>xhEditor上传</type>
+		<folder>rmsSlaveData/xhEditor</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>文档</type>
+		<folder>rmsSlaveData/wd</folder>
+	</typeFolder>
+	<typeFolder>
+		<type>其他附件</type>
+		<folder>rmsSlaveData/kcfk</folder>
+	</typeFolder>
+</root>

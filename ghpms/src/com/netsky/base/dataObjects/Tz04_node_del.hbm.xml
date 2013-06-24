@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Tz04_node_del"  table="Tz04_node_del">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tz04_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
+
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
+
+  <property
+  name="oper_ip"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="oper_ip"
+  />
+
+  <property
+  name="oper_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="oper_date"
+  />
+
+  <property
+  name="gcbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcbh"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
+
+  <property
+  name="action"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="action"
+  />
+
+  <property
+  name="node_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_id"
+  />
+
+  <property
+  name="node_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_name"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

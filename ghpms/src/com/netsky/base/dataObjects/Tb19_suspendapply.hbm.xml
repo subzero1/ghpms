@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb19_suspendapply"
+        table="Tb19_suspendapply"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb19_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb19_suspendapply.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="time"
+        />
+
+        <property
+            name="reason"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="reason"
+        />
+
+        <property
+            name="user_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="user_id"
+        />
+
+        <property
+            name="user_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="user_name"
+        />
+
+        <property
+            name="node_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="node_id"
+        />
+
+        <property
+            name="node_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_name"
+        />
+
+        <property
+            name="project_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="project_status"
+        />
+
+        <property
+            name="checker"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="checker"
+        />
+
+        <property
+            name="check_time"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="check_time"
+        />
+
+        <property
+            name="check_result"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="check_result"
+        />
+
+        <property
+            name="check_idear"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="check_idear"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb19_suspendapply.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

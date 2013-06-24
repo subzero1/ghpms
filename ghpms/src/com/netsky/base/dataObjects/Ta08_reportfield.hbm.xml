@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta08_reportfield"  table="Ta08_reportfield">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta08_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="ord"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ord"
+  />
+
+  <property
+  name="showflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="showflag"
+  />
+
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
+
+  <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="comments"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="comments"
+  />
+
+  <property
+  name="datatype"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="datatype"
+  />
+
+  <property
+  name="object_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="object_name"
+  />
+
+  <property
+  name="searchtype"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="searchtype"
+  />
+
+  <property
+  name="searchflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="searchflag"
+  />
+
+  <property
+  name="reportflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="reportflag"
+  />
+
+  <property
+  name="statisticflag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="statisticflag"
+  />
+
+  <property
+  name="selecturl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="selecturl"
+  />
+
+  <property
+  name="width"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="width"
+  />
+
+  <property
+  name="align"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="align"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

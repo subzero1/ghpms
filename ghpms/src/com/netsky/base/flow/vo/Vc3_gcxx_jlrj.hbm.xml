@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.flow.vo.Vc3_gcxx_jlrj"  table="Vc3_gcxx_jlrj">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">xxx_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="xmbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmbh"
+  />
+
+  <property
+  name="xmmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmmc"
+  />
+
+  <property
+  name="xmgly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xmgly"
+  />
+
+  <property
+  name="sjkgsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjkgsj"
+  />
+
+  <property
+  name="sjjgsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjjgsj"
+  />
+
+  <property
+  name="sgdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgdw"
+  />
+
+  <property
+  name="sjdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjdw"
+  />
+
+  <property
+  name="jldw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jldw"
+  />
+
+  <property
+  name="jlrjtbzq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlrjtbzq"
+  />
+
+  <property
+  name="jlrj_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jlrj_id"
+  />
+
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="create_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="create_date"
+  />
+
+  <property
+  name="zt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zt"
+  />
+
+  <property
+  name="xcms"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xcms"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

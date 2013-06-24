@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb03_relation"
+        table="Tb03_relation"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb03_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb03_relation.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="relation_type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="relation_type"
+        />
+
+        <property
+            name="flow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="flow_id"
+        />
+
+        <property
+            name="source_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="source_id"
+        />
+
+        <property
+            name="dest_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="dest_id"
+        />
+
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="description"
+        />
+
+        <property
+            name="seq"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="seq"
+        />
+
+        <property
+            name="his_node"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="his_node"
+        />
+
+        <property
+            name="paras"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="paras"
+        />
+
+        <property
+            name="pic_url"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="pic_url"
+        />
+
+        <property
+            name="mustRouted"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="mustRouted"
+        />
+
+        <property
+            name="targetScope"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="targetScope"
+        />
+
+        <property
+            name="toPeople"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="toPeople"
+        />
+
+        <property
+            name="jsVerify"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsVerify"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb03_relation.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<serviceGroup>
+	<service name="zbres2RmsForFeedback">
+		<description>
+			获取工程信息webService
+		</description>
+		<parameter name="ServiceClass">
+			com.rms.webservice.server.Zbres2RmsForFeedback
+		</parameter>
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">zbres2RmsForFeedback</parameter>
+		<operation name="feedback">
+			<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+	</service>
+</serviceGroup>

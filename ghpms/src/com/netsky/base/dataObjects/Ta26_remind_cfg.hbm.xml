@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta26_remind_cfg"  table="Ta26_remind_cfg">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta26_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="node_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_name"
+  />
+
+  <property
+  name="module_ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="module_ids"
+  />
+
+  <property
+  name="node_status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="node_status"
+  />
+
+  <property
+  name="pre_days"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="pre_days"
+  />
+
+  <property
+  name="project_status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="project_status"
+  />
+
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

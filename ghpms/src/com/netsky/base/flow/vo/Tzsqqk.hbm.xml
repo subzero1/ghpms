@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.flow.vo.Tzsqqk"
+        table="tzsqqk"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tzsqqk.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="xmmc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmmc"
+        />
+
+        <property
+            name="sqbm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sqbm"
+        />
+
+        <property
+            name="sqbh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sqbh"
+        />
+
+        <property
+            name="jsxz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="jsxz"
+        />
+
+        <property
+            name="sszy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sszy"
+        />
+
+        <property
+            name="bz"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bz"
+        />
+
+        <property
+            name="sjdw"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjdw"
+        />
+
+        <property
+            name="sjsx"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sjsx"
+        />
+
+        <property
+            name="xmgly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="xmgly"
+        />
+
+        <property
+            name="gcgly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="gcgly"
+        />
+
+        <property
+            name="ghgly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ghgly"
+        />
+
+        <property
+            name="sjgly"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjgly"
+        />
+
+        <property
+            name="sjry"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sjry"
+        />
+
+        <property
+            name="xqqcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="xqqcsj"
+        />
+
+        <property
+            name="tzxzsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="tzxzsj"
+        />
+
+        <property
+            name="tzscsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="tzscsj"
+        />
+
+        <property
+            name="tzthsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="tzthsj"
+        />
+
+        <property
+            name="zt"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zt"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tzsqqk.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

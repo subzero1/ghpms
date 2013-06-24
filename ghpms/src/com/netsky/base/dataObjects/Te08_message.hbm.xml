@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te08_message"  table="Te08_message">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te08_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="fsr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fsr"
+  />
+
+  <property
+  name="jsr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsr"
+  />
+
+  <property
+  name="fssj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fssj"
+  />
+
+  <property
+  name="title"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="title"
+  />
+
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
+
+  <property
+  name="state"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="state"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

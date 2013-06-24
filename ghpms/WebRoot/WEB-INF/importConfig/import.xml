@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<configs> 
+  <!-- excel文件导入信息 -->  
+  <config> 
+    <name>batch_update_xm</name>  
+    <fileName>/importConfig/batch_update_xm.xml</fileName>  
+    <user>default</user>
+  </config>  
+</configs>

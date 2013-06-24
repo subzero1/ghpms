@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb04_flowgroup"
+        table="Tb04_flowgroup"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb04_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb04_flowgroup.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="paras"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="paras"
+        />
+
+        <property
+            name="sourceNode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sourceNode"
+        />
+
+        <property
+            name="pflow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="pflow_id"
+        />
+
+        <property
+            name="cflow_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="cflow_id"
+        />
+
+        <property
+            name="seq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="seq"
+        />
+
+        <property
+            name="module_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="module_id"
+        />
+
+        <property
+            name="startNode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="startNode"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb04_flowgroup.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

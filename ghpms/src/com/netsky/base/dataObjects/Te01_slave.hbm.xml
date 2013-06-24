@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te01_slave"  table="Te01_slave">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te01_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="project_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="project_id"
+  />
+
+  <property
+  name="doc_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="doc_id"
+  />
+
+  <property
+  name="slave_type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="slave_type"
+  />
+
+  <property
+  name="file_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="file_name"
+  />
+
+  <property
+  name="ext_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ext_name"
+  />
+
+  <property
+  name="ftp_url"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ftp_url"
+  />
+
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
+
+  <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="ftp_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ftp_date"
+  />
+
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
+
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

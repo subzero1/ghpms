@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Tz06_help"  table="Tz06_help">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tz06_num</param>
+            </generator>
+        </id>
+
+	   <property
+		  name="title"
+		  type="java.lang.String"
+		  update="true"
+		  insert="true"
+		  column="title"
+	  />
+	
+	  <property
+	  name="keys"
+	  type="java.lang.String"
+	  update="true"
+	  insert="true"
+	  column="keys"
+	  />
+	
+	  <property
+	  name="recordor"
+	  type="java.lang.String"
+	  update="true"
+	  insert="true"
+	  column="recordor"
+	  />
+	
+	  <property
+	  name="record_date"
+	  type="java.util.Date"
+	  update="true"
+	  insert="true"
+	  column="record_date"
+	  />
+	
+	  <property
+	  name="content"
+	  type="java.lang.String"
+	  update="true"
+	  insert="true"
+	  column="content"
+	  />
+
+
+    </class>
+
+</hibernate-mapping>

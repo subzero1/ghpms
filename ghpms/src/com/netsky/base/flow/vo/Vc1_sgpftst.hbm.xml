@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.flow.vo.Vc1_sgpftst"
+        table="Vc1_sgpftst"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Vc1_sgpftst.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="gr"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="gr"
+        />
+
+        <property
+            name="zgr"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="zgr"
+        />
+
+        <property
+            name="sjfe"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="sjfe"
+        />
+
+        <property
+            name="zjgcs"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zjgcs"
+        />
+
+        <property
+            name="zhdf"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="zhdf"
+        />
+
+        <property
+            name="jssl"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="jssl"
+        />
+
+        <property
+            name="xmsl"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="xmsl"
+        />
+
+        <property
+            name="pcl"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="pcl"
+        />
+
+        <property
+            name="pcldj"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="pcldj"
+        />
+
+        <property
+            name="mc"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="mc"
+        />
+
+        <property
+            name="zy"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="zy"
+        />
+
+        <property
+            name="dq"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="dq"
+        />
+
+        <property
+            name="fezb_val"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="fezb_val"
+        />
+
+        <property
+            name="zdgcs_val"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="zdgcs_val"
+        />
+
+        <property
+            name="gljye_val"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="gljye_val"
+        />
+
+        <property
+            name="jyed"
+            type="java.lang.Double"
+            update="true"
+            insert="true"
+            column="jyed"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Vc1_sgpftst.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

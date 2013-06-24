@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb18_project_phase"
+        table="Tb18_project_phase"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb18_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb18_project_phase.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="project_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="project_id"
+        />
+
+        <property
+            name="phase_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="phase_id"
+        />
+
+        <property
+            name="phase_name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="phase_name"
+        />
+
+        <property
+            name="jhkssj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="jhkssj"
+        />
+
+        <property
+            name="jhwcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="jhwcsj"
+        />
+
+        <property
+            name="qx"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="qx"
+        />
+
+        <property
+            name="sjkssj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="sjkssj"
+        />
+
+        <property
+            name="sjwcsj"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="sjwcsj"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb18_project_phase.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

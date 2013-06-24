@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 节点宽度 -->
+	<nodeWidth>80</nodeWidth>
+	<!-- 节点高度 -->
+	<nodeHeight>21</nodeHeight>
+	<!-- 单层高度 -->
+	<floorHeight>100</floorHeight>
+	<!-- 单节点所占宽度 -->
+	<singleWidth>90</singleWidth>
+	<!-- 线条颜色 -->
+	<lineColor>#9B9B91</lineColor>
+	<!-- 关系字符样式表 -->
+	<relationClass></relationClass>
+	
+	<!-- 状态对应的颜色，-1为未走节点 -->
+	<statusClass>
+		<status>-1</status>
+		<class>status-non</class>
+	</statusClass>
+	<statusClass>
+		<status>0</status>
+		<class>status-0</class>
+	</statusClass>
+	<statusClass>
+		<status>1</status>
+		<class>status-1</class>
+	</statusClass>
+	<statusClass>
+		<status>2</status>
+		<class>status-2</class>
+	</statusClass>
+	<statusClass>
+		<status>3</status>
+		<class>status-3</class>
+	</statusClass>
+	<statusClass>
+		<status>4</status>
+		<class>status-4</class>
+	</statusClass>
+	<statusClass>
+		<status>5</status>
+		<class>status-5</class>
+	</statusClass>
+	<statusClass>
+		<status>6</status>
+		<class>status-6</class>
+	</statusClass>
+	<statusClass>
+		<status>7</status>
+		<class>status-7</class>
+	</statusClass>
+	<statusClass>
+		<status>8</status>
+		<class>status-8</class>
+	</statusClass>
+</root>

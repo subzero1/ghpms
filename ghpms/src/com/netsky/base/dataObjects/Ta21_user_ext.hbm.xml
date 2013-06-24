@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta21_user_ext"  table="Ta21_user_ext">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta21_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="ui_style"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ui_style"
+  />
+
+  <property
+  name="ui_m1"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m1"
+  />
+
+  <property
+  name="ui_m2"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m2"
+  />
+
+  <property
+  name="ui_m3"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m3"
+  />
+
+  <property
+  name="ui_m4"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m4"
+  />
+
+  <property
+  name="ui_m5"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m5"
+  />
+
+  <property
+  name="ui_m6"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ui_m6"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

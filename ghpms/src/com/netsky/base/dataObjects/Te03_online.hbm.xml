@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te03_online"  table="Te03_online">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te03_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="up_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="up_id"
+  />
+
+  <property
+  name="login_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
+
+  <property
+  name="aq_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aq_name"
+  />
+
+  <property
+  name="title"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="title"
+  />
+
+  <property
+  name="role_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="role_id"
+  />
+
+  <property
+  name="aq_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="aq_date"
+  />
+
+  <property
+  name="aq_ip"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aq_ip"
+  />
+
+  <property
+  name="status"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="status"
+  />
+
+  <property
+  name="ydcs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ydcs"
+  />
+
+  <property
+  name="aq_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="aq_id"
+  />
+
+  <property
+  name="aq_tel"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="aq_tel"
+  />
+
+  <property
+  name="flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="flag"
+  />
+
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

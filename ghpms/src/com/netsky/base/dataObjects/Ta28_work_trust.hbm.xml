@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Ta28_work_trust"  table="Ta28_work_trust">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">ta28_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="from_userid"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="from_userid"
+  />
+
+  <property
+  name="from_username"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="from_username"
+  />
+
+  <property
+  name="to_userid"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="to_userid"
+  />
+
+  <property
+  name="to_username"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="to_username"
+  />
+
+  <property
+  name="start_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="start_time"
+  />
+
+  <property
+  name="end_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="end_time"
+  />
+
+  <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

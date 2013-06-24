@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te04_message"  table="Te04_message">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te04_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="sender_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sender_id"
+  />
+
+  <property
+  name="title"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="title"
+  />
+
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
+
+  <property
+  name="send_date"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="send_date"
+  />
+
+  <property
+  name="read_flag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="read_flag"
+  />
+
+  <property
+  name="reader_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="reader_id"
+  />
+
+  <property
+  name="repeat_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="repeat_flag"
+  />
+
+  <property
+  name="send_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="send_flag"
+  />
+
+  <property
+  name="receive_flag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="receive_flag"
+  />
+
+  <property
+  name="fujian_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fujian_flag"
+  />
+
+  <property
+  name="reader_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="reader_name"
+  />
+
+  <property
+  name="delete_flag"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="delete_flag"
+  />
+  
+     <property
+  name="parent_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="parent_id"
+  />
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.flow.vo.DocOperting"
+        table="docoperting"
+    >
+
+        <id
+            name="user_id"
+            column="user_id"
+            type="java.lang.Long"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-DocOperting.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="need_work"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="need_work"
+        />
+
+        <property
+            name="on_work"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="on_work"
+        />
+
+        <property
+            name="wait_work"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="wait_work"
+        />
+
+        <property
+            name="reply_work"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="reply_work"
+        />
+
+        <property
+            name="off_work"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="off_work"
+        />
+
+        <property
+            name="login_id"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="login_id"
+        />
+
+        <property
+            name="passwd"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="passwd"
+        />
+
+        <property
+            name="area_id"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="area_id"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-DocOperting.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.netsky.base.dataObjects.Tb14_even_affair"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">Tb14_NUM</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Tb14_even_affair.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="even_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="even_id"
+        />
+
+        <property
+            name="affair_id"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="affair_id"
+        />
+
+        <property
+            name="parameters"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="parameters"
+        />
+
+        <property
+            name="seq"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="seq"
+        />
+
+        <property
+            name="node_status"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="node_status"
+        />
+
+        <property
+            name="even_type"
+            type="java.lang.Long"
+            update="true"
+            insert="true"
+            column="even_type"
+        />
+
+        <property
+            name="descr"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="descr"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Tb14_even_affair.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

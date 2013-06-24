@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.netsky.base.dataObjects.Te05_task_remind"  table="Te05_task_remind">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">te05_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="remark"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remark"
+  />
+
+  <property
+  name="content"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="content"
+  />
+
+  <property
+  name="uri"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="uri"
+  />
+
+  <property
+  name="time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="time"
+  />
+
+  <property
+  name="next_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="next_time"
+  />
+
+  <property
+  name="persons"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="persons"
+  />
+
+  <property
+  name="ids"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ids"
+  />
+
+  <property
+  name="tels"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="tels"
+  />
+
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="frequence"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="frequence"
+  />
+
+  <property
+  name="times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="times"
+  />
+
+  <property
+  name="fact_times"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="fact_times"
+  />
+
+  <property
+  name="remind_key"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="remind_key"
+  />
+
+  <property
+  name="ext_params"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ext_params"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
