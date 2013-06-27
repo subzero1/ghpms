@@ -222,6 +222,26 @@ public class Ta06_module implements Serializable{
  public void setSeq(Long seq) {
     this.seq = seq;
   }
+ 
+ private String extflag;
+
+public String getExtflag() {
+	return extflag;
+}
+
+public void setExtflag(String extflag) {
+	this.extflag = extflag;
+}
+ 
+private String extdesc;
+
+public String getExtdesc() {
+	return extdesc;
+}
+
+public void setExtdesc(String extdesc) {
+	this.extdesc = extdesc;
+}
 
 
 }

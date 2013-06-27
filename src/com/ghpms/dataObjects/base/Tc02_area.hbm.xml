@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.base.Tc02_area"  table="Tc02_area">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tc02_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="code"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="code"
+  />
+
+  <property
+  name="name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="name"
+  />
+
+  <property
+  name="inc_names"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="inc_names"
+  />
+
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

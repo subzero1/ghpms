@@ -96,7 +96,8 @@ public class Login {
 				Ta01_dept dept = (Ta01_dept) tmpList.get(0);
 				user.setDept_name(dept.getName());
 			}
-			
+			/**
+			 * 
 			hsql.delete(0, hsql.length());
 			hsql.append("select tf01.mc as wxdw,tf04.zy as zy ");
 			hsql.append("from Ta03_user ta03,Tf04_wxdw_user tf04,Tf01_wxdw tf01 "); 
@@ -115,6 +116,7 @@ public class Login {
 				user.setZys(zy);
 				user.setParent_dept("合作单位");
 			}
+			*/
 		}
 		tmpList.clear();
 

@@ -30,7 +30,7 @@ public class AutoCreateJavaXml{
 	private QueryService queryService;	
 	
 	@SuppressWarnings("deprecation")
-	@RequestMapping("/autoCreateJavaXml.do")
+	@RequestMapping("/auto/autoCreateJavaXml.do")
 	public ModelAndView autoCreateJavaXml(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -41,7 +41,7 @@ public class AutoCreateJavaXml{
 		return null;
 	}
 	
-	@RequestMapping("/batchAutoCreateJavaXml.do")
+	@RequestMapping("/auto/batchAutoCreateJavaXml.do")
 	public ModelAndView batchAutoCreateJavaXml(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		StringBuffer sql = new StringBuffer();

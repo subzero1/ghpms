@@ -328,7 +328,9 @@ public class workList {
 				}
 				user_ids = user.getId() + user_ids;
 			}
-			
+			/*
+			 * 
+			 
 			
 			// 构造hsql
 			String docView = "NeedWork";
@@ -364,7 +366,7 @@ public class workList {
 			}
 
 			modelMap.put("form_title", form_title);
-			
+			*/
 			/**
 			 * 判断当前人工作是否委托出去
 			 */
@@ -373,6 +375,7 @@ public class workList {
 				return new ModelAndView("/WEB-INF/jsp/docListUI.jsp" ,modelMap);
 			}
 			
+			/*
 			// 取列表数据
 			List<Object[]> docList = new LinkedList<Object[]>();
 			
@@ -409,6 +412,7 @@ public class workList {
 
 			modelMap.put("totalCount", docList.size());
 			modelMap.put("numPerPage", numPerPage);
+			*/
 			
 			//新建表单的下拉菜单{}newFormList
 			Map <String,Object> paraMap = new HashMap<String,Object>();

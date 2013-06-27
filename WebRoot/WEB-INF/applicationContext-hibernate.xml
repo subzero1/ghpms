@@ -18,7 +18,7 @@
 
 	<!-- 自动装载 javaBean -->
 	<context:component-scan
-		base-package="com.netsky.base.service.impl,com.rms.service.impl,com.netsky.base.flow.component,com.netsky.base.flow.service.impl,com.rms.thread,com.netsky.base.service,com.rms.webservice" />
+		base-package="com.netsky.base.service.impl,com.ghpms.service.impl,com.netsky.base.flow.component,com.netsky.base.flow.service.impl,com.ghpms.thread,com.netsky.base.service,com.ghpms.webservice" />
 
 
 	<!--
@@ -125,32 +125,16 @@
 				<value>com/netsky/base/dataObjects/Ta31_worklist_cfg.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Ta32_node_user_limit.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Ta33_tszf.hbm.xml</value>
+				
+				
 				<value>com/netsky/base/dataObjects/Tb01_flow.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb02_node.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb03_relation.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb04_flowgroup.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb05_affair.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb06_phase.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb11_operflow.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb12_opernode.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb13_operrelation.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb14_even_affair.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb15_docflow.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb16_operphase.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb17_approve.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb18_project_phase.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tb19_suspendapply.hbm.xml</value>
-				
+ 
 				<value>com/netsky/base/dataObjects/Te01_slave.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te02_jlfk.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te03_online.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te04_message.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te05_task_remind.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te06_remind_queue.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te07_qa.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te03_online.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te09_jlgt.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Te09_view.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te10_wdml.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te11_message_receiver.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/WdView.hbm.xml</value>
@@ -158,30 +142,11 @@
 				<value>com/netsky/base/dataObjects/Tz01_exception.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz02_oper_log.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz03_login_log.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tz04_node_del.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tz05_thread_queue.hbm.xml</value>
-				<value>com/netsky/base/dataObjects/Tz06_help.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz07_dataobject_cfg.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tz08_help_map.hbm.xml</value>
 				<value>com/ghpms/dataObjects/base/Tc01_property.hbm.xml</value>
+				<value>com/ghpms/dataObjects/base/Tc02_area.hbm.xml</value>
 				
-				<value>com/netsky/base/flow/vo/Cswdxx.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/DocOperting.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/HaltWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/NeedWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/OffWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/OnWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/ProjectInf.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/RespiteWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/WaitWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/ReplyWork.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/FormOperDatail.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/Vc1_sgpftst.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/Vc2_gcxx_gzltb.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/Vc3_gcxx_jlrj.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/V_gcxmxx.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/V_ta03.hbm.xml</value>
-				<value>com/netsky/base/flow/vo/V_hzdwkhxx.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

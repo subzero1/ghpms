@@ -116,6 +116,9 @@ public class Main {
 			
 			Map csMap = new HashMap();
 			
+			/**
+			 * 
+			
 			//获取待办文档数
 			sql.delete(0, sql.length());
 			sql.append(" select 'x' from NeedWork where user_id = ?");
@@ -170,7 +173,7 @@ public class Main {
 				csMap.put("bjWds", 0);
 			}
 			tmpList.clear();
-			
+			 */
 			request.setAttribute("csMap", csMap);
 			
 			/*
@@ -301,7 +304,8 @@ public class Main {
 		}
 		tmpList.clear();
 		hsql.delete(0, hsql.length());
-		
+		/**
+		 * 
 		//获取待办文档数
 		hsql.append(" select 'x' from NeedWork where user_id = ?");
 		tmpList = dao.search(hsql.toString(), new Object[]{user.getId()});
@@ -345,6 +349,8 @@ public class Main {
 		} else {
 			csMap.put("hfWds", 0);
 		}
+				 */
+
 		tmpList.clear();
 		hsql.delete(0, hsql.length());		
 		

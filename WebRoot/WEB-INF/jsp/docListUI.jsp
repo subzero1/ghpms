@@ -54,7 +54,7 @@ $(function(){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="i" begin="0" end ="${numPerPage-1}">
+				<c:forEach var="i" begin="0" end ="${numPerPage-1>0?numPerPage-1:0}">
 					<tr>
 						<td>
 							<c:if test="${docList[i][0] != null}">	

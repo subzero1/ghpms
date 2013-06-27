@@ -280,6 +280,9 @@ function getCookie(name)
 									<!--<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>-->
 									<!--<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>-->
 									<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li>
+									<c:if test="${user.login_id=='admin'}">
+										<li><a href="dispath.do?url=sysManage/auxTools.jsp" target="dialog" rel="auxTools" width="510" height="480" title="辅助开发">辅助开发</a></li>
+									</c:if>
 								</ul>
 							</li>
 						</ul>
