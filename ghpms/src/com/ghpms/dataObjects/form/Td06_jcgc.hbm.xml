@@ -18,7 +18,231 @@
             </generator>
         </id>
 
- 
+   <property
+  name="dxhtqdje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="dxhtqdje"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="zmfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="zmfzr"
+  />
+
+  <property
+  name="ghyfkje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghyfkje"
+  />
+
+  <property
+  name="ghyfkrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghyfkrq"
+  />
+
+  <property
+  name="ghsfje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghsfje"
+  />
+
+  <property
+  name="ghjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghjsrq"
+  />
+
+  <property
+  name="skyfje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="skyfje"
+  />
+
+  <property
+  name="skyfrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="skyfrq"
+  />
+
+  <property
+  name="sksfje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sksfje"
+  />
+
+  <property
+  name="skjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="skjsrq"
+  />
+
+  <property
+  name="skyqwgrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="skyqwgrq"
+  />
+
+  <property
+  name="bjrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="bjrq"
+  />
+
+  <property
+  name="jszj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jszj"
+  />
+
+  <property
+  name="ghgcbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghgcbh"
+  />
+
+  <property
+  name="skxybh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skxybh"
+  />
+
+  <property
+  name="gczt"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gczt"
+  />
+
+  <property
+  name="sgdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgdw"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
+
+  <property
+  name="gclx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gclx"
+  />
+
+  <property
+  name="gcdd"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcdd"
+  />
+
+  <property
+  name="rwjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="rwjsrq"
+  />
+
+  <property
+  name="lhsqyj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lhsqyj"
+  />
+
+  <property
+  name="ghfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghfzr"
+  />
+
+  <property
+  name="ghhtje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghhtje"
+  />
+
+  <property
+  name="ghhtqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghhtqdrq"
+  />
+
+  <property
+  name="ghhtfhrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghhtfhrq"
+  />
+
+  <property
+  name="dxhtqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="dxhtqdrq"
+  />
+
+
     </class>
 
 </hibernate-mapping>
