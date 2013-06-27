@@ -70,6 +70,7 @@ public class XMLTableWrite {
 		element.addElement("tableName").setText("T"+tableName.toLowerCase().substring(1));
 		element.addElement("tableNameShow");
 		element.addElement("fatherTables");
+		element.addElement("title").setText("");
 
 		element = element.addElement("columns");
 		element.addComment("当前表字段信息");
