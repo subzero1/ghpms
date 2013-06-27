@@ -15,21 +15,18 @@
  		
  	});
 </script>
-<form id="pagerForm" method="post" action="search/xmxxList.do">
+<form id="pagerForm" method="post" action="form/glsjList.do">
 	<input type="hidden" name="keyword" value="${param.keyword}">
 	<input type="hidden" name="pageNum" value="${param.pageNum}" />
 	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
 	<input type="hidden" name="orderField" value="${param.orderField}" />
 	<input type="hidden" name="orderDirection"
-		value="${param.orderDirection}" />
-	<input type="hidden" name="jssj" value="${param.jssj }"/>
-	<input type="hidden" name="xmzt" value="${param.xmzt }"/>
-	<input type="hidden" name="xmgly" value="${param.xmgly }"/>
+		value="${param.orderDirection}" /> 
 </form>
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/xmxxList.do" method="post"
+		<form action="form/glsjList.do" method="post"
 			onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
 				<table class="searchContent">
@@ -48,7 +45,7 @@
 							<div class="buttonActive">
 								<div class="buttonContent">
 									<button type="button"
-										onClick="javascript:searchOrExcelExport(this,'search/xmxxList.do',navTabSearch);">
+										onClick="javascript:searchOrExcelExport(this,'form/glsjList.do',navTabSearch);">
 										检 索
 									</button>
 								</div>
@@ -107,35 +104,35 @@
 			<thead>
 				<tr>
 					<th style="width: 60px;"></th>
-					<th orderField="xmmc">
-						项目名称
+					<th style="width: 60px;" orderField="jdmc">
+						节点名称
 					</th>
-					<th style="width: 115px;" orderField="xmbh">
-						项目编号
+					<th orderField="skbh">
+						视宽编号
 					</th>
-					<th style="width: 60px;" orderField="ssdq">
-						所属地区
+					<th style="width: 115px;" orderField="ghrwh">
+						歌华任务号
 					</th>
-					<th style="width: 60px;" orderField="xmgly">
-						项目经理
+					<th style="width: 75px;" orderField="qy">
+						区域
 					</th>
-					<th style="width: 200px;" orderField="sgdw">
-						施工单位
+					<th style="width: 60px;" orderField="rwwcqk">
+						任务完成情况
 					</th>
-					<th style="width: 75px;" orderField="sjjgsj">
-						竣工时间
+					<th style="width: 200px;" orderField="ghsxyq">
+						歌华时限要求
 					</th>
-					<th style="width: 75px;" orderField="jssj">
-						决算时间
+					<th style="width: 75px;" orderField="xmfzr">
+						项目负责人
 					</th>
-					<th style="width: 70px;" orderField="xmzt">
-						项目状态
+					<th style="width: 70px;" orderField="rwly">
+						任务来源
 					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:set var="offset" value="0" />
-				<c:forEach var="obj" items="${xmxxList}">
+				<c:forEach var="obj" items="${glsjList}">
 					<c:set var="offset" value="${offset+1}" />
 					<tr target="xm_id" rel="${obj.id}">
 						<td style="text-align: center;">
@@ -153,28 +150,28 @@
 						<td>
 							<a
 								href="openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }"
-								target="navTab" rel="xmxx" title="${obj.xmmc }">${obj.xmmc }</a>
+								target="navTab" rel="glsj" title="${obj.jdmc }">${obj.jdmc }</a>
 						</td>
 						<td>
-							${obj.xmbh }&nbsp;
+							${obj.skbh }&nbsp;
 						</td>
 						<td>
-							${obj.ssdq }
+							${obj.ghrwh}
 						</td>
 						<td>
-							${obj.xmgly }
+							${obj.qy }
 						</td>
 						<td>
-							${obj.sgdw }
+							${obj.rwwcqk }
 						</td>
 						<td>
-							<fmt:formatDate value="${obj.sjjgsj }" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${obj.ghsxyq }" pattern="yyyy-MM-dd" />
 						</td>
 						<td>
-							<fmt:formatDate value="${obj.jssj }" pattern="yyyy-MM-dd"/>
+							${obj.xmfzr }
 						</td>
 						<td>
-							${obj.xmzt }
+							${obj.rwly }
 						</td>
 					</tr>
 				</c:forEach>
