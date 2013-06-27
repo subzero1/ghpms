@@ -107,6 +107,21 @@
   />
 
 
+  <property
+  name="extflag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="extflag"
+  />
+  
+  <property
+  name="extdesc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="extdesc"
+  />
     </class>
 
 </hibernate-mapping>

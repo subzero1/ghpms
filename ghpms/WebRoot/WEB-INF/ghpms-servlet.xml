@@ -15,7 +15,7 @@
 
 	
 	<bean name="/flowForm.do"
-		class="com.rms.controller.base.FlowFormController">
+		class="com.ghpms.controller.base.FlowFormController">
 		<property name="moduleTable"
 			value="com.netsky.base.dataObjects.Ta06_module" />
 		<property name="nodeTable"
