@@ -76,8 +76,8 @@ public class DevelopHelpController{
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("tz07_id", convertUtil.toLong(request.getParameter("tz07_id")));
-		paramMap.put("appPath", "D:\\workspace\\eclipseWorkspace\\szcss");
-		paramMap.put("owner", "CSS_SZ");
+		paramMap.put("appPath", "D:\\workspace\\ghpms");
+		paramMap.put("owner", "PMS_GH");
 		createDoService.createJavaAndXml(paramMap);
 		return null;
 	}
@@ -114,6 +114,7 @@ public class DevelopHelpController{
 				Map<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("tz07_id", tz07.getId());
 				paramMap.put("appPath", eclipse_workspace + file_separator +  contextName);
+				paramMap.put("owner", "PMS_GH");
 				createDoService.createJavaAndXml(paramMap);
 			}
 			response.getWriter().print(	"{\"statusCode\":\"200\", \"message\":\"操作成功\"}");
