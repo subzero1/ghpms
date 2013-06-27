@@ -141,8 +141,8 @@ public class XMLTableWrite {
 			SQLException {
 		Connection conn = null;
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@132.229.154.215:1521:rms";
-		String user = "pss_nj";
+		String url = "jdbc:oracle:thin:@192.168.0.1:1521:pss";
+		String user = "pms_gh";
 		String password = "netsky";
 		conn = DriverManager.getConnection(url, user, password);
 		return conn;
