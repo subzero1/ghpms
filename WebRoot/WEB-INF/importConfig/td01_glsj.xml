@@ -9,6 +9,7 @@
 		<tableName>Td01_glsj</tableName>
 		<tableNameShow />
 		<fatherTables />
+		<title></title>
 		<columns><!--当前表字段信息-->
 			<type>byName</type>
 			<titleRow>0</titleRow>
