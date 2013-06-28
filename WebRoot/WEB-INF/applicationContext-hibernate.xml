@@ -130,6 +130,7 @@
 				<value>com/netsky/base/dataObjects/Tb01_flow.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb02_node.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb04_flowgroup.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Tb15_docflow.hbm.xml</value>
  
  				
 				<value>com/ghpms/dataObjects/form/Td01_glsj.hbm.xml</value>
@@ -142,6 +143,7 @@
  				<value>com/ghpms/dataObjects/form/Td08_qtgc.hbm.xml</value>
  				
 				<value>com/netsky/base/dataObjects/Te01_slave.hbm.xml</value>
+				<value>com/netsky/base/dataObjects/Te02_jlfk.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te04_message.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te03_online.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Te08_message.hbm.xml</value>
