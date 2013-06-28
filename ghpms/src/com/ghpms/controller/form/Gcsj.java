@@ -86,7 +86,7 @@ public class Gcsj {
 		List<Td01_glsj> glsjList = new ArrayList<Td01_glsj>();
 		
 		while (ro.next()) {
-			 Td01_glsj td01  = (Td01_glsj) ro.get("xmxx");
+			 Td01_glsj td01  = (Td01_glsj) ro.get("a");
 
 
 			 glsjList.add(td01);
@@ -112,9 +112,14 @@ public class Gcsj {
 		modelMap.put("totalPages", totalPages);
 		modelMap.put("totalCount", totalCount);
 
-		return new ModelAndView("/WEB-INF/jsp/form/glsjList.jsp", modelMap);
-
-	
+		return new ModelAndView("/WEB-INF/jsp/search/glsjList.jsp", modelMap);
 		
+	}
+	
+	@RequestMapping("/gcsj/openForm.do")
+	public ModelAndView openForm(HttpServletRequest request,HttpServletResponse response){
+		String view="";
+		ModelMap map=new ModelMap();
+		return new ModelAndView(view,map);
 	}
 }
