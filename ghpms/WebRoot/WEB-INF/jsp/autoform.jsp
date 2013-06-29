@@ -57,6 +57,12 @@
 				</c:if>
 		 	</li>
 		 	<li class="line f-right">line</li>
+		 	<c:forEach var="nodeMap" items="${nodeMaps}">
+			    <li>
+					<a class="edit"	href="${nodeMap.editURL}&project_id=${param.project_id}" title="${nodeMap.title}" target="dialog" rel="record"><span>录入</span></a>
+			 	</li>
+			<li class="line">line</li>
+			 </c:forEach>
 		</ul>
 	</div>
 	<!-- 参数传递共享区 -->

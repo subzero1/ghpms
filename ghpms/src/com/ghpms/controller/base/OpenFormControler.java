@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.service.CreateJspFile;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -50,6 +51,9 @@ public class OpenFormControler {
 
 	@Autowired
 	private LoadFormListService loadFormListService;
+	
+	@Autowired
+	CreateJspFile createJspFile;
 
 	/**
 	 * @return the queryService
@@ -388,7 +392,15 @@ public class OpenFormControler {
 			else{
 				paraMap.put("cansave","no");
 			}
-			loadFormListService.load(request, paraMap);
+			loadFormListService.load(request, paraMap);		
+			/**
+			 * 動態得到jspform表單
+			 */
+			createJspFile.AutoCreateJspFile(request, module_id);
+		 	createJspFile.getNode(request, paraMap);
+			
+			
+			
 			
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "装载表单数据", e);

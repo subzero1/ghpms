@@ -1,6 +1,7 @@
 package com.ghpms.controller.form;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.dataObjects.form.Td01_glsj;
+import com.ghpms.service.CreateJspFile;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.convertUtil;
+
 
 @Controller
 public class Gcsj {
@@ -32,6 +35,9 @@ public class Gcsj {
 
 	@Autowired
 	private SaveService saveService;
+	
+	@Autowired
+	private CreateJspFile createJspFile;
 	@RequestMapping("/form/glsjList.do")
 	public ModelAndView glsjList(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		ModelMap modelMap = new ModelMap();
@@ -121,5 +127,17 @@ public class Gcsj {
 		String view="";
 		ModelMap map=new ModelMap();
 		return new ModelAndView(view,map);
+	}
+	
+	@RequestMapping("/gcsj/gcsjEdit.do")
+	public ModelAndView gcsjEdit(HttpServletRequest request,HttpServletResponse response) {
+		String view="/WEB-INF/jsp/form/autoEdit.jsp";
+		String project_id=convertUtil.toString(request.getParameter("project_id"));
+		String node_id=convertUtil.toString(request.getParameter("node_id"));
+		Map paraMap=new HashMap<String, String>();
+		paraMap.put("node_id", node_id);
+		paraMap.put("project_id", project_id);
+		createJspFile.createJspFileToRecord(request, paraMap);
+		return new ModelAndView(view);
 	}
 }
