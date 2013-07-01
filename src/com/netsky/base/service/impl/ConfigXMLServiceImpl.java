@@ -1,4 +1,4 @@
-package com.netsky.base.utils;
+package com.netsky.base.service.impl;
 
 import java.io.File;
 import java.util.Iterator;
@@ -8,6 +8,9 @@ import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.stereotype.Service;
+
+import com.netsky.base.service.ConfigXMLService;
 
 
 /**
@@ -16,7 +19,8 @@ import org.dom4j.io.SAXReader;
  * @class name:com.ghpms.controller.mbk.ConfigXMLImpl
  * @author net Dec 13, 2012
  */
-public class ConfigXMLImpl implements ConfigXML {
+@Service("configXMLService")
+public class ConfigXMLServiceImpl implements ConfigXMLService {
 	private static String CONFIG_FILE = "/importConfig/import.xml";
 
 	@SuppressWarnings("unchecked")
@@ -25,7 +29,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 *　重载方法：getConfigFilePath
 	 * (non-Javadoc)
-	 * @see com.netsky.base.utils.ConfigXML#getConfigFilePath(java.lang.String, java.lang.String)
+	 * @see com.netsky.base.service.ConfigXMLService#getConfigFilePath(java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	public String getConfigFilePath(String config, String webinfpath)
@@ -55,7 +59,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getConfigFilePath (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getConfigFilePath(java.lang.String,
+	 * @see com.netsky.base.service.ConfigXMLService#getConfigFilePath(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
@@ -88,7 +92,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagList (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagList(java.lang.String,
+	 * @see com.netsky.base.service.ConfigXMLService#getTagList(java.lang.String,
 	 *      java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -120,7 +124,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagList (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagList(java.lang.String,
+	 * @see com.netsky.base.service.ConfigXMLService#getTagList(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -152,7 +156,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	/**
 	 * 重载方法：getTagListByConfig (non-Javadoc)
 	 * 
-	 * @see com.netsky.base.utils.ConfigXML#getTagListByConfig(java.lang.String,
+	 * @see com.netsky.base.service.ConfigXMLService#getTagListByConfig(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -186,7 +190,7 @@ public class ConfigXMLImpl implements ConfigXML {
 	 * 根据标签得到列表
 	 *　重载方法：getElementsByName
 	 * (non-Javadoc)
-	 * @see com.netsky.base.utils.ConfigXML#getElementsByName(java.lang.String, java.lang.String)
+	 * @see com.netsky.base.service.ConfigXMLService#getElementsByName(java.lang.String, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
 	public List getElementsByName(String XMLPath, String tagName)

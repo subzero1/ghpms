@@ -7,4 +7,9 @@
     <fileName>/importConfig/batch_update_xm.xml</fileName>  
     <user>default</user>
   </config>  
+  <config> 
+    <name>td01_glsjxx</name>  
+    <fileName>/importConfig/td01_glsjxx.xml</fileName>  
+    <user>default</user>
+  </config> 
 </configs>

@@ -1,5 +1,6 @@
 package com.ghpms.controller.base;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,6 +24,7 @@ import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Te01_slave;
+import com.netsky.base.flow.buttonControl.Button;
 import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.LoadFormListService;
@@ -240,10 +242,27 @@ public class OpenFormControler {
 			/**
 			 * 获得表单按钮
 			 */
-//			List buttonList = flowServiceImpl.listButtons(paraMap);
-//			request.setAttribute("buttons", buttonList);
-//			
-
+			List buttonList = new ArrayList();
+			
+			/**
+			 * 只针对R-MS系统有效，start-------------
+			 */
+				/*
+				 * 添加 “保存”按钮
+				 */
+				List new_btnList = new LinkedList();
+				Button btn = new Button("保 存");
+				btn.comment = "保存当前文档";
+				btn.picUri = "save";
+				btn.url = "javascript:docSave();";
+				new_btnList.add(btn);
+				
+				buttonList = new_btnList;
+				
+				request.setAttribute("buttons", buttonList);
+			/**
+			 * 只针对R-MS系统有效，end-------------
+			 */
 
 
 			/**
