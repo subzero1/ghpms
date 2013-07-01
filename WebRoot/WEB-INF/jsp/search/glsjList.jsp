@@ -76,7 +76,7 @@
 						line
 					</li>
 					<li>
-						<a class="delete" href="form/ajaxXmxxDel.do?id={xm_id}"
+						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&tableName=com.ghpms.dataObjects.form.Td01_glsj"
 							target="ajaxTodo" title="确认删除吗？"><span>删除</span>
 						</a>
 					</li>
@@ -139,7 +139,7 @@
 				<c:set var="offset" value="0" />
 				<c:forEach var="obj" items="${glsjList}">
 					<c:set var="offset" value="${offset+1}" />
-					<tr target="xm_id" rel="${obj.id}">
+					<tr target="project_id" rel="${obj.id}">
 						<td style="text-align: center;">
 							<a class="add"
 								href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${obj.id }', {title:'项目施工进度'});"

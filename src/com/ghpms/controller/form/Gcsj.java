@@ -1,5 +1,7 @@
 package com.ghpms.controller.form;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +28,6 @@ import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.convertUtil;
 
-
 @Controller
 public class Gcsj {
 	/**
@@ -35,22 +38,28 @@ public class Gcsj {
 
 	@Autowired
 	private SaveService saveService;
-	
+
 	@Autowired
 	private CreateJspFile createJspFile;
+
 	@RequestMapping("/form/glsjList.do")
-	public ModelAndView glsjList(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+	public ModelAndView glsjList(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
 		// 分页
 		Integer totalPages = 1;
 		Integer totalCount = 0;
-		Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"), 1);
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"), 20);
-		String orderField = convertUtil.toString(request.getParameter("orderField"), "id");
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "id");
 		if (orderField.equals("")) {
 			orderField = "id";
 		}
-		String orderDirection = convertUtil.toString(request.getParameter("orderDirection"), "desc");
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
 			orderDirection = "desc";
 		}
@@ -59,9 +68,8 @@ public class Gcsj {
 		modelMap.put("orderField", orderField);
 		modelMap.put("orderDirection", orderDirection);
 
-	 
 		Long node_id = -1L;
-		
+
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		String user_name = user.getName();
 		String user_dept = user.getDept_name();
@@ -70,32 +78,32 @@ public class Gcsj {
 		String keyword = convertUtil.toString(request.getParameter("keyword"));
 		StringBuffer hsql = new StringBuffer();
 
-		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+		Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request
+				.getSession().getAttribute("rolesMap");
 		String login_id = convertUtil.toString(user.getLogin_id());
-		
+
 		hsql.append("select a from Td01_glsj a where 1=1 ");
-		
 
 		// 关键字
 		if (!keyword.equals("")) {
 			hsql.append(" and (xmmc like '%" + keyword + "%' or xmbh like '%"
-					+ keyword + "%' or xmgly like '%"+keyword+"%')");
-			
+					+ keyword + "%' or xmgly like '%" + keyword + "%')");
+
 		}
 
 		// order排序
 		hsql.append(" order by " + orderField);
 		hsql.append(" " + orderDirection);
-		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,numPerPage);
+		ResultObject ro = queryService.searchByPage(hsql.toString(), pageNum,
+				numPerPage);
 
 		// 获取结果集
 		List<Td01_glsj> glsjList = new ArrayList<Td01_glsj>();
-		
+
 		while (ro.next()) {
-			 Td01_glsj td01  = (Td01_glsj) ro.get("a");
+			Td01_glsj td01 = (Td01_glsj) ro.get("a");
 
-
-			 glsjList.add(td01);
+			glsjList.add(td01);
 		}
 
 		hsql.delete(0, hsql.length());
@@ -119,26 +127,53 @@ public class Gcsj {
 		modelMap.put("totalCount", totalCount);
 
 		return new ModelAndView("/WEB-INF/jsp/search/glsjList.jsp", modelMap);
-		
+
 	}
-	
+
 	@RequestMapping("/gcsj/openForm.do")
-	public ModelAndView openForm(HttpServletRequest request,HttpServletResponse response){
-		String view="";
-		ModelMap map=new ModelMap();
-		return new ModelAndView(view,map);
+	public ModelAndView openForm(HttpServletRequest request,
+			HttpServletResponse response) {
+		String view = "";
+		ModelMap map = new ModelMap();
+		return new ModelAndView(view, map);
 	}
-	
+
 	@RequestMapping("/gcsj/gcsjEdit.do")
-	public ModelAndView gcsjEdit(HttpServletRequest request,HttpServletResponse response) {
-		String view="/WEB-INF/jsp/form/autoEdit.jsp";
-		String project_id=convertUtil.toString(request.getParameter("project_id"));
-		String node_id=convertUtil.toString(request.getParameter("node_id"));
-		Map paraMap=new HashMap<String, String>();
+	public ModelAndView gcsjEdit(HttpServletRequest request,
+			HttpServletResponse response) {
+		String view = "/WEB-INF/jsp/form/autoEdit.jsp";
+		String project_id = convertUtil.toString(request
+				.getParameter("project_id"));
+		String node_id = convertUtil.toString(request.getParameter("node_id"));
+		Map paraMap = new HashMap<String, String>();
 		paraMap.put("node_id", node_id);
 		paraMap.put("project_id", project_id);
 		createJspFile.createJspFileToRecord(request, paraMap);
 		return new ModelAndView(view);
 	}
-	 
+
+	@RequestMapping("/gcsj/ajaxGcsjDel.do")
+	public void ajaxGcsjDel(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		Long id = convertUtil.toLong(request.getParameter("id"));
+		String tableName = convertUtil.toString(request
+				.getParameter("tableName"));
+		PrintWriter out =response.getWriter();
+		response.setContentType("text/html;charset=gb2312");
+		Class c = null;
+		// 获取用户对象
+		try {
+			
+			c = Class.forName(tableName);
+			saveService.removeObject(c, id);
+
+			out
+					.print("{\"statusCode\":\"200\", \"message\":\"操作成功\", \"callbackType\":\"\",\"navTabId\":\"mbkList\"}");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			out.print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+		}
+	}
+
 }
