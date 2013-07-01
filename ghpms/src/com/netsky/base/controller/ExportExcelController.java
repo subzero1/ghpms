@@ -96,7 +96,7 @@ public class ExportExcelController {
 	public void toExcelWhithList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("GBK");
 		ResultObject ro = null;
-
+		try{
 		String fileName = convertUtil.toString(request.getAttribute("ExcelName"), "export.xls");
 		Map<String, List> sheetMap = (Map<String, List>) request.getAttribute("sheetMap");
 
@@ -118,6 +118,10 @@ public class ExportExcelController {
 		wwb.close();
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	// http://127.0.0.1:8080/ghpms/exportController.do?excelModelName=gysExcelModel.xls&id=10

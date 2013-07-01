@@ -9,7 +9,7 @@
 		<tableName>Td01_glsj</tableName>
 		<tableNameShow />
 		<fatherTables />
-		<title></title>
+		<title>光缆设计信息</title>
 		<columns><!--当前表字段信息-->
 			<type>byName</type>
 			<titleRow>0</titleRow>

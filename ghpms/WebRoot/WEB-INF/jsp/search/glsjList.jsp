@@ -14,14 +14,20 @@
  		});
  		
  	});
+ 	function tableToExcel(param1){
+ 		var $form=$(".pageHeader form",navTab.getCurrentPanel());
+ 		$form.attr("action","tableToExcel.do?"+param1);
+ 		$form.submit();
+ 		$form.attr("action","form/glsjList.do");
+ 	}
 </script>
 <form id="pagerForm" method="post" action="form/glsjList.do">
-	<input type="hidden" name="keyword" value="${param.keyword}">
-	<input type="hidden" name="pageNum" value="${param.pageNum}" />
-	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
+	<input type="hidden" name="keyword" value="${keyword}">
+	<input type="hidden" name="pageNum" value="${pageNum}" />
+	<input type="hidden" name="numPerPage" value="${numPerPage}" />
+	<input type="hidden" name="orderField" value="${orderField}" />
 	<input type="hidden" name="orderDirection"
-		value="${param.orderDirection}" /> 
+		value="${orderDirection}" /> 
 </form>
 
 <div class="page">
@@ -62,7 +68,7 @@
 				<c:if test="${node_id == '10101'}">
 					<li>
 						<a class="add"
-							href="flowForm.do?module_id=101&node_id=10101&flow_id=101"
+							href="gh/openForm.do?module_id=101&user_id=${user.id }&node_id=${node_id }"
 							target="navTab" rel="xmxx" title="项目信息单"><span>添加</span>
 						</a>
 					</li>
@@ -83,8 +89,7 @@
 					<li class="line">line</li>-->
 					<li>
 						<a class="exportexcel"
-							href="dispath.do?url=form/xlsImport.jsp?config=batch_update_xm"
-							target="dialog" width="400" height="200"><span>导入</span>
+							href="javascript:tableToExcel('config=td01_glsjxx');" ><span>导出</span>
 						</a>
 					</li>
 					<li class="line">
@@ -149,7 +154,7 @@
 						</td>
 						<td>
 							<a
-								href="gh/openForm.do?project_id=${obj.id }&module_id=101&doc_id=${obj.id }&user_id=${user.id }&limit=${limit }&node_id=${node_id }"
+								href="gh/openForm.do?project_id=${obj.id }&module_id=101&user_id=${user.id }&node_id=${node_id }"
 								target="navTab" rel="glsj" title="${obj.jdmc }">${obj.jdmc }</a>
 						</td>
 						<td>

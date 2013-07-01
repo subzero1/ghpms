@@ -1,4 +1,4 @@
-package com.netsky.base.utils;
+package com.netsky.base.service;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @class name:com.ghpms.controller.mbk.ConfigXML
  * @author net Dec 12, 2012
  */
-public interface ConfigXML {
+public interface ConfigXMLService {
 	public String getConfigFilePath(String config, String webinfpath)
 			throws Exception;
 
