@@ -239,30 +239,6 @@ public class OpenFormControler {
 				}
 			}
 
-			/**
-			 * 获得表单按钮
-			 */
-			List buttonList = new ArrayList();
-			
-			/**
-			 * 只针对R-MS系统有效，start-------------
-			 */
-				/*
-				 * 添加 “保存”按钮
-				 */
-				List new_btnList = new LinkedList();
-				Button btn = new Button("保 存");
-				btn.comment = "保存当前文档";
-				btn.picUri = "save";
-				btn.url = "javascript:docSave();";
-				new_btnList.add(btn);
-				
-				buttonList = new_btnList;
-				
-				request.setAttribute("buttons", buttonList);
-			/**
-			 * 只针对R-MS系统有效，end-------------
-			 */
 
 
 			/**
