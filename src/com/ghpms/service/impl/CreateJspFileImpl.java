@@ -20,7 +20,6 @@ import com.ghpms.service.CreateJspFile;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
-import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
@@ -53,6 +52,9 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
 		hsql.append(" \n ");
 		hsql
+				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+		hsql.append(" \n ");
+		hsql
 				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
 		for (int i = 1; i < fields.size(); i++) {
@@ -60,12 +62,23 @@ public class CreateJspFileImpl implements CreateJspFile {
 			hsql.append(" <p> \n");
 			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
 
-			hsql.append("<input type=\"text\"  value=\"");
+			hsql.append("<input type=\"text\" ");
+			hsql.append(" value=\"");
+			// 如果是日期
+			if (formfield.getDatatype().equals("DATE")) {
+				hsql.append("<fmt:formatDate value=\"");
+			}
 			hsql.append("${");
 			hsql.append(formfield.getObject_name().substring(
 					formfield.getObject_name().lastIndexOf(".") + 1,
 					formfield.getObject_name().length()).toLowerCase());
-			hsql.append("." + formfield.getName() + "}\"");
+			hsql.append("." + formfield.getName() + "}\" ");
+
+			// 如果是日期
+			if (formfield.getDatatype().equals("DATE")) {
+				hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+			}
+
 			hsql.append("style=\"width:256px;\" readonly/>");
 			hsql.append("\n </p> \n");
 			if (i % 2 == 0) {
@@ -93,7 +106,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.get("module_id"), "-1");
 		Long module_id = convertUtil.toLong(t_module_id);
 		Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
-		hsql.append("select distinct(d.id),d.name,d.flow_id,d.node_type,d.remark ");
+		hsql
+				.append("select distinct(d.id),d.name,d.flow_id,d.node_type,d.remark ");
 		hsql
 				.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e ");
 		hsql
@@ -123,12 +137,20 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 		String node_id = StringFormatUtil.format((String) paraMap
 				.get("node_id"), "-1");
+		String tableName = "";
+		String packTableName = "";
+
 		hsql
 				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
 		hsql.append(" and b.id=");
 		hsql.append(node_id);
 		List fields = queryService.searchList(hsql.toString());
 
+		if (fields.size() > 0) {
+			tableName = ((Ta07_formfield) fields.get(0)).getObject_name();
+			packTableName = tableName.substring(tableName.lastIndexOf(".") + 1,
+					tableName.length());
+		}
 		filePath = request.getSession().getServletContext().getRealPath(
 				"/WEB-INF");
 		filePath += "\\jsp\\form\\" + node_id + ".jsp";
@@ -140,23 +162,52 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql
 				.append("<jsp:include page=\"basicEdit.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
+		hsql
+				.append("<input type=\"hidden\" name=\"tableInfomation\" value=\"noFatherTable:"
+						+ tableName + "\" /> \n");
+		hsql.append("<input type=\"hidden\" name=\"" + packTableName
+				+ ".ID\" value=\"${param.project_id}\">");
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
 			hsql.append(" <p> \n");
 			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
 
-			hsql.append("<input type=\"text\"  value=\"");
+			hsql.append("<input type=\"text\" ");
+
+			hsql.append(" name=\"");
+			hsql.append(packTableName);
+			hsql.append(".");
+			hsql.append(formfield.getName().toUpperCase());
+			hsql.append("\" ");
+
+			hsql.append("value=\"");
 			hsql.append("${");
 			hsql.append(formfield.getObject_name().substring(
 					formfield.getObject_name().lastIndexOf(".") + 1,
 					formfield.getObject_name().length()).toLowerCase());
-			hsql.append("." + formfield.getName() + "}\"");
+			hsql.append("." + formfield.getName() + "}\" ");
+
+			// 判断类型
+			if (formfield.getDatatype().equals("DATE")) {
+				hsql
+						.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
+			}
+
 			hsql.append("style=\"width:256px;\" />");
 			hsql.append("\n </p> \n");
 			if (i % 2 == 0) {
 				hsql.append("<div style=\"height:0px;\"></div> \n");
 			}
+
 		}
+		hsql.append("<div class=\"formBar\"> \n");
+		hsql.append(" <ul> \n");
+		hsql
+				.append("<li><div class=\"buttonActive\"><div class=\"buttonContent\"><button type=\"submit\">保 存</button></div></div></li>");
+		hsql.append("<li>");
+		hsql
+				.append("<div class=\"button\"><div class=\"buttonContent\"><button type=\"Button\" class=\"close\">取 消</button></div></div>");
+		hsql.append("</li> \n </ul> \n </div>");
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
 			Writer out = new OutputStreamWriter(fos, "utf-8");

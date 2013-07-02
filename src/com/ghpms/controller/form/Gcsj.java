@@ -159,7 +159,7 @@ public class Gcsj {
 		String tableName = convertUtil.toString(request
 				.getParameter("tableName"));
 		PrintWriter out =response.getWriter();
-		response.setContentType("text/html;charset=gb2312");
+		response.setCharacterEncoding(request.getCharacterEncoding());
 		Class c = null;
 		// 获取用户对象
 		try {
@@ -168,7 +168,7 @@ public class Gcsj {
 			saveService.removeObject(c, id);
 
 			out
-					.print("{\"statusCode\":\"200\", \"message\":\"操作成功\", \"callbackType\":\"\",\"navTabId\":\"mbkList\"}");
+					.print("{\"statusCode\":\"200\", \"message\":\"操作成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 
 		} catch (Exception e) {
 			e.printStackTrace();

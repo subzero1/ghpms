@@ -28,19 +28,18 @@
 		
 		<!-- 表单主体 -->
 		<div id="mainBody" class="pageFormContent" layouth="80">
-			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		    <input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="<c:out value="${fn:substring(module.form_table,32,fn:length(module.form_table))}"/>.PROJECT_ID"  value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="module_id" id="module_id" value="${param.module_id}"/>
 		    <input type="hidden" name="node_id" id="node_id" value="${param.node_id}"/>
 		    <input type="hidden" name="user_id" id="user_id" value="${user.id}"/>
 		    <input type="hidden" name="user_name" id="user_name" value="${user.name}"/>
-		    <input type="hidden" name="opernode_id" id="opernode_id" value="<c:out value="${param.opernode_id}" default="-1"/>"/>
 
 			<input type="hidden" name="_navTabId" value="" keep="true"/>
 			<input type="hidden" name="_message" value="数据保存" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
-			<input type="hidden" name="_forwardUrl" value="flowForm.do" keep="true"/>
+			<input type="hidden" name="_forwardUrl" value="" keep="true"/>
 			
 			<jsp:include page="${param.node_id}.jsp" flush="true"></jsp:include>
 			
