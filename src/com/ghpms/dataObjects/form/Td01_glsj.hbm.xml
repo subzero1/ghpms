@@ -236,7 +236,7 @@
 
   <property
   name="qksmsbrq"
-  type="java.lang.String"
+  type="java.util.Date"
   update="true"
   insert="true"
   column="qksmsbrq"

@@ -24,6 +24,7 @@ import com.ghpms.service.CreateJspFile;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
+import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.convertUtil;
@@ -138,20 +139,49 @@ public class Gcsj {
 		return new ModelAndView(view, map);
 	}
 
+	/**
+	 * 生成jsp錄入文件
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 * @throws ClassNotFoundException 
+	 */
 	@RequestMapping("/gcsj/gcsjEdit.do")
 	public ModelAndView gcsjEdit(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ClassNotFoundException {
 		String view = "/WEB-INF/jsp/form/autoEdit.jsp";
-		String project_id = convertUtil.toString(request
+		ModelMap map=new ModelMap();
+		StringBuffer hsql=new StringBuffer();
+		String tableClassName="";
+		String tableName="";
+		Class c=null;
+		Object obj=null;
+		Long project_id = convertUtil.toLong(request
 				.getParameter("project_id"));
 		String node_id = convertUtil.toString(request.getParameter("node_id"));
 		Map paraMap = new HashMap<String, String>();
+		
+		Ta06_module module=(Ta06_module) queryService.searchById(Ta06_module.class, convertUtil.toLong(node_id.substring(0, 3))); 
+		if (module!=null) {
+			tableClassName=module.getProject_table();
+			tableName=tableClassName.substring(tableClassName.lastIndexOf(".")+1, tableClassName.length());
+			c=Class.forName(tableClassName);
+			obj=queryService.searchById(c, project_id);
+		}
+		
 		paraMap.put("node_id", node_id);
 		paraMap.put("project_id", project_id);
+		map.put(tableName.toLowerCase(), obj);
 		createJspFile.createJspFileToRecord(request, paraMap);
-		return new ModelAndView(view);
+		return new ModelAndView(view,map);
 	}
 
+	/**
+	 * 刪除操作
+	 * @param request
+	 * @param response
+	 * @throws IOException void
+	 */
 	@RequestMapping("/gcsj/ajaxGcsjDel.do")
 	public void ajaxGcsjDel(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {

@@ -1,21 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%> 
  <jsp:include page="basicEdit.jsp"  flush="true"></jsp:include> 
- <input type="hidden" name="tableInfomation" value="noFatherTable:com.ghpms.dataObjects.form.Td01_glsj" /><input type="hidden" name="Td01_glsj.ID" value="${param.project_id}"> <p> 
-<label> 视宽时限要求:</label> 
-<input type="text"  name="Td01_glsj.SKSXYQ" value="${td01_glsj.sksxyq}" style="width:256px;" />
+ <input type="hidden" name="tableInfomation" value="noFatherTable:com.ghpms.dataObjects.form.Td01_glsj" /> 
+<input type="hidden" name="Td01_glsj.ID" value="${param.project_id}"> <p> 
+<label> 勘察任务书接受日期:</label> 
+<input type="text"  name="Td01_glsj.KCRWSJSRQ" value="<fmt:formatDate value="${td01_glsj.kcrwsjsrq}"  pattern="yyyy-MM-dd "/>" class="date" format="yyyy-MM-dd " yearstart="-50" yearend="50"style="width:256px;" />
  </p> 
  <p> 
-<label> 报图日期:</label> 
-<input type="text"  name="Td01_glsj.BTRQ" value="${td01_glsj.btrq}" style="width:256px;" />
+<label> 管道(揽长):</label> 
+<input type="text"  name="Td01_glsj.GD_LC" value="${td01_glsj.gd_lc}" style="width:256px;" />
  </p> 
 <div style="height:0px;"></div> 
  <p> 
-<label> 项目负责人:</label> 
-<input type="text"  name="Td01_glsj.XMFZR" value="${td01_glsj.xmfzr}" style="width:256px;" />
+<label> 管道(路由):</label> 
+<input type="text"  name="Td01_glsj.GD_LY" value="${td01_glsj.gd_ly}" style="width:256px;" />
  </p> 
  <p> 
-<label> 拆除(揽长):</label> 
-<input type="text"  name="Td01_glsj.CC_LC" value="${td01_glsj.cc_lc}" style="width:256px;" />
+<label> 道路长:</label> 
+<input type="text"  name="Td01_glsj.DLC" value="${td01_glsj.dlc}" style="width:256px;" />
  </p> 
 <div style="height:0px;"></div> 
  <p> 
@@ -23,17 +24,26 @@
 <input type="text"  name="Td01_glsj.GDXQC" value="${td01_glsj.gdxqc}" style="width:256px;" />
  </p> 
  <p> 
-<label> 备注:</label> 
-<input type="text"  name="Td01_glsj.BZ" value="${td01_glsj.bz}" style="width:256px;" />
+<label> 电子版:</label> 
+<input type="text"  name="Td01_glsj.DZB" value="${td01_glsj.dzb}" style="width:256px;" />
  </p> 
 <div style="height:0px;"></div> 
  <p> 
-<label> 提交歌华日期:</label> 
-<input type="text"  name="Td01_glsj.TJGHRQ" value="${td01_glsj.tjghrq}" style="width:256px;" />
+<label> 工程编号:</label> 
+<input type="text"  name="Td01_glsj.GCBH" value="${td01_glsj.gcbh}" style="width:256px;" />
  </p> 
  <p> 
-<label> 视频协议编号:</label> 
-<input type="text"  name="Td01_glsj.SPXYBH" value="${td01_glsj.spxybh}" style="width:256px;" />
+<label> 情况说明上报日期:</label> 
+<input type="text"  name="Td01_glsj.QKSMSBRQ" value="<fmt:formatDate value="${td01_glsj.qksmsbrq}"  pattern="yyyy-MM-dd "/>" class="date" format="yyyy-MM-dd " yearstart="-50" yearend="50"style="width:256px;" />
+ </p> 
+<div style="height:0px;"></div> 
+ <p> 
+<label> 汇款日期:</label> 
+<input type="text"  name="Td01_glsj.HKRQ" value="<fmt:formatDate value="${td01_glsj.hkrq}"  pattern="yyyy-MM-dd "/>" class="date" format="yyyy-MM-dd " yearstart="-50" yearend="50"style="width:256px;" />
+ </p> 
+ <p> 
+<label> 杆公里:</label> 
+<input type="text"  name="Td01_glsj.GGL" value="${td01_glsj.ggl}" style="width:256px;" />
  </p> 
 <div style="height:0px;"></div> 
 <div class="formBar"> 

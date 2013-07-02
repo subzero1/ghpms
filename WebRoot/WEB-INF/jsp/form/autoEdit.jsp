@@ -23,12 +23,21 @@
  #mainBody{position:absolute;width:100%;right:0px;}
 }
 </style>
+<script type="text/javascript">
+ function recordCallBack(json){
+	DWZ.ajaxDone(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		setTimeout(function(){$.pdialog.closeCurrent();}, 100);
+		docReload();
+	}
+}
+</script>
 <div class="page">
 	<div id="autoform_body" class="pageContent" layoutH="0">
 		
 		<!-- 表单主体 -->
 		<div id="mainBody" class="pageFormContent" layouth="80">
-			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, recordCallBack);">
 		    <input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="<c:out value="${fn:substring(module.form_table,32,fn:length(module.form_table))}"/>.PROJECT_ID"  value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="module_id" id="module_id" value="${param.module_id}"/>
@@ -38,7 +47,7 @@
 
 			<input type="hidden" name="_navTabId" value="" keep="true"/>
 			<input type="hidden" name="_message" value="数据保存" keep="true"/>
-			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
+			<input type="hidden" name="_callbackType" value="closeCurrent" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="" keep="true"/>
 			
 			<jsp:include page="${param.node_id}.jsp" flush="true"></jsp:include>

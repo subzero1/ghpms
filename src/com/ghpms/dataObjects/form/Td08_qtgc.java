@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-06-27
+ * @author cmp_auto 2013-07-02
  * @hibernate.class table="Td08_qtgc"
  */
 
@@ -13,7 +13,7 @@ public class Td08_qtgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2628277676403390L;
+	private static final long serialVersionUID = 297187874527791168L;
 
 	/**
 	 * 标识
