@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-06-27
+ * @author cmp_auto 2013-07-02
  * @hibernate.class table="Td04_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td04_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 731229338309727872L;
+	private static final long serialVersionUID = 399663692732996736L;
 
 	/**
 	 * 标识
@@ -544,17 +544,17 @@ public class Td04_dlgc implements Serializable{
  * 从第二端起
 
  */
- private String cdedq;
+ private Long cdedq;
 
  /**
  * @hibernate.property column="cdedq"
  * @return Returns the cdedq.
  */
- public String getCdedq() {
+ public Long getCdedq() {
     return cdedq;
  }
 
- public void setCdedq(String cdedq) {
+ public void setCdedq(Long cdedq) {
     this.cdedq = cdedq;
   }
 

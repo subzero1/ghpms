@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-06-27
+ * @author cmp_auto 2013-07-02
  * @hibernate.class table="Td06_jcgc"
  */
 
@@ -13,7 +13,7 @@ public class Td06_jcgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 420864512486251328L;
+	private static final long serialVersionUID = 77495258035304656L;
 
 	/**
 	 * 标识

@@ -123,7 +123,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		for (Object object : recordButtons) {
 			Object[] node = (Object[]) object;
 			Map nodeMap = new HashMap();
-			nodeMap.put("editURL", "gcsj/gcsjEdit.do?node_id=" + node[0]);
+			nodeMap.put("editURL", "gcsj/gcsjEdit.do?node_id=" + node[0]
+					+ "&module_id=" + module_id);
 			nodeMap.put("node_id", node[0]);
 			nodeMap.put("title", node[1]);
 			nodeMaps.add(nodeMap);
@@ -160,6 +161,9 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
 		hsql.append(" \n ");
 		hsql
+				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+		hsql.append(" \n ");
+		hsql
 				.append("<jsp:include page=\"basicEdit.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
 		hsql
@@ -181,11 +185,22 @@ public class CreateJspFileImpl implements CreateJspFile {
 			hsql.append("\" ");
 
 			hsql.append("value=\"");
+
+			// 如果是日期
+			if (formfield.getDatatype().equals("DATE")) {
+				hsql.append("<fmt:formatDate value=\"");
+			}
+
 			hsql.append("${");
 			hsql.append(formfield.getObject_name().substring(
 					formfield.getObject_name().lastIndexOf(".") + 1,
 					formfield.getObject_name().length()).toLowerCase());
 			hsql.append("." + formfield.getName() + "}\" ");
+
+			// 如果是日期
+			if (formfield.getDatatype().equals("DATE")) {
+				hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+			}
 
 			// 判断类型
 			if (formfield.getDatatype().equals("DATE")) {
