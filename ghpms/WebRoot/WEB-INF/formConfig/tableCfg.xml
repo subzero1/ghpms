@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tables>
+	<table name="Td01_glsj"
+		class="com.ghpms.dataObjects.form.Td01_glsj">
+		<property name="" type="select">
+			<list>
+				<value></value>
+				<value></value>
+				<value></value>
+				<value></value>
+				<value></value>
+				<value></value>
+				<value></value>
+			</list>
+		</property>
+	</table>
+	<table name="Td01_glsj"
+		class="com.ghpms.dataObjects.form.Td02_dlsj">
+		<property name="qy" type="select">
+			<formTable class="com.ghpms.dataObjects.form.Td02_dlsj">
+				<property>
+					<list>
+						<value></value>
+						<value></value>
+					</list>
+				</property>
+				<set name="qy">
+					<key column="personId" not-null="true" />
+					<one-to-many
+						class="com.ghpms.dataObjects.form.Td02_dlsj" />
+				</set>
+			</formTable>
+			<formTable class="com.ghpms.dataObjects.form.Td02_dlsj">
+				<list>
+						<value></value>
+						<value></value>
+					</list>
+				<set name="qy">
+					<key column="personId" not-null="true" />
+					<one-to-many
+						class="com.ghpms.dataObjects.form.Td02_dlsj" />
+				</set>
+			</formTable>
+
+		</property>
+	</table>
+
+</tables>

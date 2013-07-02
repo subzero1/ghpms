@@ -13,7 +13,7 @@ public class Td05_zbgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 340157506285835520L;
+	private static final long serialVersionUID = 685261992095932672L;
 
 	/**
 	 * 标识
@@ -40,18 +40,18 @@ public class Td05_zbgc implements Serializable{
  * 歌华工程编号
 
  */
- private String ghgcrq;
+ private String ghgcbh;
 
  /**
- * @hibernate.property column="ghgcrq"
- * @return Returns the ghgcrq.
+ * @hibernate.property column="ghgcbh"
+ * @return Returns the ghgcbh.
  */
- public String getGhgcrq() {
-    return ghgcrq;
+ public String getGhgcbh() {
+    return ghgcbh;
  }
 
- public void setGhgcrq(String ghgcrq) {
-    this.ghgcrq = ghgcrq;
+ public void setGhgcbh(String ghgcbh) {
+    this.ghgcbh = ghgcbh;
   }
 
  /**
