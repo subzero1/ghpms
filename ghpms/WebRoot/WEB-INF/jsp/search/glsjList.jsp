@@ -68,7 +68,7 @@
 				<c:if test="${node_id == '10101'}">
 					<li>
 						<a class="add"
-							href="gh/openForm.do?module_id=101&user_id=${user.id }&node_id=${node_id }"
+							href="gh/openForm.do?module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }"
 							target="navTab" rel="xmxx" title="项目信息单"><span>添加</span>
 						</a>
 					</li>
@@ -154,7 +154,7 @@
 						</td>
 						<td>
 							<a
-								href="gh/openForm.do?project_id=${obj.id }&module_id=101&user_id=${user.id }&node_id=${node_id }"
+								href="gh/openForm.do?project_id=${obj.id }&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }"
 								target="navTab" rel="glsj" title="${obj.jdmc }">${obj.jdmc }</a>
 						</td>
 						<td>
