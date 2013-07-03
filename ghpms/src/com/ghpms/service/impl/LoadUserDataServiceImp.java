@@ -102,53 +102,6 @@ public class LoadUserDataServiceImp implements LoadUserDataService {
 		dataMap.put("nodesMap", nodesMap);		
 		
 		/**
-		 * 加载委托用户
-		 */
-		hsql.delete(0, hsql.length());
-		hsql.append("select ta03 from Ta28_work_trust ta28,Ta03_user ta03");
-		hsql.append(" where ta28.from_userid = ta03.id");
-		hsql.append(" and ta28.end_time is null");
-		hsql.append(" and ta28.to_userid = " );
-		hsql.append(user.getId());
-		List<Ta03_user> trustUserList = (List<Ta03_user>)queryService.searchList(hsql.toString());
-		if(trustUserList.size()>0){
-			Map<String,Ta03_user> trustUserMap = new HashMap<String,Ta03_user>();
-			for(Ta03_user tmpUser:trustUserList){
-				trustUserMap.put(String.valueOf(tmpUser.getId()), tmpUser);
-			}
-			dataMap.put("trustUserMap", trustUserMap);
-		}
-		
-		/**
-		 * 文档列表，列定义
-		 * 列结构：ta07_formfield
-		 */
-		List docColsList=null;
-		hsql.delete(0, hsql.length());
-		hsql.append("select ta07 from Ta07_formfield ta07,Ta31_worklist_cfg ta31 ");
-		hsql.append(" where ta31.field_id = ta07.id");
-		hsql.append(" and ta31.user_id = " + user.getId());
-		hsql.append(" order by ta31.ord");
-		docColsList = queryService.searchList(hsql.toString());
-		if (docColsList == null || docColsList.size() == 0) {
-			docColsList = queryService
-					.searchList("from Ta07_formfield ta07 where module_id = 100 and ta07.show_flag = 1 order by ord");
-		}
-		
-		int docTabWitdh = 0;
-		for(Object o:docColsList){
-			Ta07_formfield ta07 = (Ta07_formfield)o;
-			if(ta07.getObject_name().equals("com.netsky.base.flow.vo.DocStruct")){
-				ta07.setObject_name("doc");
-			} else {
-				ta07.setObject_name("gcxx");
-			}
-			docTabWitdh += ta07.getWidth();
-		} 
-				
-		dataMap.put("docColsList", docColsList);
-		dataMap.put("docTabWitdh", docTabWitdh);
-		/**
 		 * 加载用户模板
 		 */
 		return dataMap;
