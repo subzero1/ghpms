@@ -78,7 +78,7 @@ function searchListExport(param1){
 					<li>
 						<a class="add"
 							href="gh/openForm.do?module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }"
-							target="navTab" rel="xmxx" title="项目信息单"><span>添加</span>
+							target="navTab" rel="gcsj" title=""><span>添加</span>
 						</a>
 					</li>
 					<li class="line">
@@ -108,7 +108,7 @@ function searchListExport(param1){
 					<th style="width:20px;"></th>
 					<th style="width:20px;"></th>
 					<!-- 初始化标题名称 -->
-					<c:forEach var="col" items="${docColList}">
+					<c:forEach var="col" items="${docColsList}">
 						<th   style="width:${col.width}px;" orderField="${col.object_name}.${col.name}">${col.comments}</th>
 					</c:forEach>
 				</tr>
@@ -119,7 +119,9 @@ function searchListExport(param1){
 						<td>
 						</td>
 						<td>
-							<a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');" title="表单[${doc[cols].project_id}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
+						<c:if test="${doc[cols] != null }">
+							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].id}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
+						</c:if>
 						</td>
 						
 						<c:forEach var="j" begin="0" end ="${cols-1>0?cols-1:0}">
