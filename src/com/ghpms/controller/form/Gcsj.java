@@ -212,7 +212,7 @@ public class Gcsj {
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
 				.get("docColsList");
-		//取表单数据
+		// 取表单数据
 		List<List> docList = new LinkedList<List>();
 		DecimalFormat df = new DecimalFormat("#0.00");
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
@@ -238,11 +238,25 @@ public class Gcsj {
 			docList.add(row);
 		}
 		// 获取总条数和总页数
-		if (rs.next()) {
-			totalPages = rs.getTotalPages();
-			totalCount = rs.getTotalRows();
+		totalPages = rs.getTotalPages();
+		totalCount = rs.getTotalRows();
+		// 导EXCEL
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			Map<String, List> sheetMap = new HashMap<String, List>();
+			List sheetList = new LinkedList();
+			List titleList = new LinkedList();
+			for (Ta07_formfield ta07 : docColsList) {
+				titleList.add(ta07.getComments().trim());
+			}
+			sheetList.add(titleList);
+			sheetList.add(docList);
+			sheetMap.put("form_title", sheetList);
+			request.setAttribute("ExcelName", module.getName() + ".xls");
+			request.setAttribute("sheetMap", sheetMap);
+			return new ModelAndView("/export/toExcelWhithList.do");
 		}
-		modelMap.put("cols",docColsList.size());
+
+		modelMap.put("cols", docColsList.size());
 		modelMap.put("docs", docList);
 		modelMap.put("docColList", docColsList);
 		modelMap.put("node_id", node_id);
@@ -257,7 +271,7 @@ public class Gcsj {
 		return new ModelAndView("/WEB-INF/jsp/search/gcsjList.jsp", modelMap);
 
 	}
- 
+
 	/**
 	 * 生成jsp錄入文件
 	 * 

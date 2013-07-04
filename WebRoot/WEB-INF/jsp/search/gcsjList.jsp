@@ -11,14 +11,20 @@ $(function(){
 		}
 	});
 });
+function searchListExport(param1){
+	var $form=$("#pagerForm",navTab.getCurrentPanel());
+	$form.attr("action","form/gcsjList.do?"+param1);
+ 	$form.submit();
+ 	$form.attr("action","form/gcsjList.do");
+}
 </script>
 <form id="pagerForm" method="post" action="form/gcsjList.do">
 	<input type="hidden" name="module_id" value="${param.module_id}">
-	<input type="hidden" name="keyWord" value="${param.keyWord}" />
-	<input type="hidden" name="pageNum" value="${param.pageNum}" />
-	<input type="hidden" name="numPerPage" value="${param.numPerPage}" />
-	<input type="hidden" name="orderField" value="${param.orderField}" />
-	<input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+	<input type="hidden" name="keyWord" value="${keyWord}" />
+	<input type="hidden" name="pageNum" value="${pageNum}" />
+	<input type="hidden" name="numPerPage" value="${numPerPage}" />
+	<input type="hidden" name="orderField" value="${orderField}" />
+	<input type="hidden" name="orderDirection" value="${orderDirection}" />
 </form>
 
 <div class="page">
@@ -88,7 +94,7 @@ $(function(){
 					</li>
 					<li>
 						<a class="exportexcel"
-							href="javascript:tableToExcel('config=td01_glsjxx');" ><span>导出</span>
+							href="javascript:searchListExport('toExcel=yes');" ><span>导出</span>
 						</a>
 					</li>
 					<li class="line">
