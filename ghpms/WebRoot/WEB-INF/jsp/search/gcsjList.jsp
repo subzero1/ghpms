@@ -113,8 +113,10 @@ function searchListExport(param1){
 					</c:forEach>
 				</tr>
 			</thead>
-			<tbody>				
+			<tbody>	
+				<c:set var="offset" value="0"/>			
 				<c:forEach var="doc" items="${docs}">
+				<c:set var="offset" value="${offset+1}"/>
 					<tr target="project_id" rel="${doc[cols].id}">
 						<td>
 						</td>
@@ -134,7 +136,17 @@ function searchListExport(param1){
 						</c:forEach>
 					</tr>
 				</c:forEach>
-				
+				<c:if test="${offset<numPerPage}">
+				<c:forEach begin="${offset}" end="${numPerPage-1}">
+					<tr>
+						<td></td>
+						<td></td>
+					<c:forEach var="j" begin="0" end ="${cols-1>0?cols-1:0}">
+						<td></td>
+					</c:forEach>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div class="panelBar">
