@@ -243,17 +243,6 @@ function getCookie(name)
 				<div class="accordion" fillSpace="sidebar">
 					<div class="accordionContent">
 						<ul class="tree treeFolder expand">
-							<li>
-								<a href="#">我的文档</a>
-								<ul>
-									<li><a href="workList.do?workState=1" target="navTab" rel="workList">待办文档(${csMap.dbWds})</a></li>
-									<li><a href="workList.do?workState=2" target="navTab" rel="workList">在办文档(${csMap.zbWds})</a></li>
-									<li><a href="workList.do?workState=3" target="navTab" rel="workList">待复文档(${csMap.dfWds})</a></li>
-									<li><a href="workList.do?workState=4" target="navTab" rel="workList">回复文档(${csMap.hfWds})</a></li>
-									<li><a href="workList.do?workState=5" target="navTab" rel="workList">办结文档(${csMap.bjWds})</a></li>
-								</ul>
-							</li>
-							
 							<c:forEach var="menu" items="${menuList}">
 								<li> 
 									<a href="#">${menu.name}</a>
