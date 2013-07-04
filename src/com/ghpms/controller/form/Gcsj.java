@@ -147,10 +147,10 @@ public class Gcsj {
 					row.add(obj);
 				}
 			}
-			//导EXCEL不需求后面对象
-			if(!"yes".equals(request.getParameter("toExcel"))){
+			// 导EXCEL不需求后面对象
+			if (!"yes".equals(request.getParameter("toExcel"))) {
 				row.add(a);
-			}	
+			}
 			docList.add(row);
 		}
 		// 获取总条数和总页数
@@ -240,15 +240,17 @@ public class Gcsj {
 	public void ajaxGcsjDel(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		Long id = convertUtil.toLong(request.getParameter("id"));
-		String tableName = convertUtil.toString(request
-				.getParameter("tableName"));
+		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
+
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
 		PrintWriter out = response.getWriter();
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		Class c = null;
 		// 获取用户对象
 		try {
 
-			c = Class.forName(tableName);
+			c = Class.forName(module.getProject_table());
 			saveService.removeObject(c, id);
 
 			out
