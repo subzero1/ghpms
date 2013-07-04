@@ -94,7 +94,7 @@ public class Gcsj {
 		String orderDirection = convertUtil.toString(request
 				.getParameter("orderDirection"), "desc");
 		if (orderDirection.equals("")) {
-			orderDirection = "desc";
+			orderDirection = "asc";
 		}
 
 		Long node_id = -1L;
@@ -147,6 +147,10 @@ public class Gcsj {
 					row.add(obj);
 				}
 			}
+			//导EXCEL不需求后面对象
+			if(!"yes".equals(request.getParameter("toExcel"))){
+				row.add(a);
+			}	
 			docList.add(row);
 		}
 		// 获取总条数和总页数
@@ -170,7 +174,7 @@ public class Gcsj {
 
 		modelMap.put("cols", docColsList.size());
 		modelMap.put("docs", docList);
-		modelMap.put("docColList", docColsList);
+		modelMap.put("docColsList", docColsList);
 		modelMap.put("node_id", node_id);
 		modelMap.put("module_id", module_id);
 		modelMap.put("totalPages", totalPages);
