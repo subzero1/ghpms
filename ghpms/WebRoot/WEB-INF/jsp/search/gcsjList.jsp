@@ -85,7 +85,7 @@ function searchListExport(param1){
 						line
 					</li>
 					<li>
-						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&moudle_id=${param.module_id }"
+						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&module_id=${param.module_id }"
 							target="ajaxTodo" title="确认删除吗？"><span>删除</span>
 						</a>
 					</li>
@@ -115,7 +115,7 @@ function searchListExport(param1){
 			</thead>
 			<tbody>				
 				<c:forEach var="doc" items="${docs}">
-					<tr>
+					<tr target="project_id" rel="${doc[cols].id}">
 						<td>
 						</td>
 						<td>
