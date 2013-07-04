@@ -99,7 +99,7 @@ public class GcsjListConfig {
 			 * 获取配置信息
 			 */
 			String config_hsql = "select ta07 from Ta31_worklist_cfg ta31,Ta07_formfield ta07 where ta31.user_id="
-					+ user_id + " and ta31.field_id=ta07.id ";
+					+ user_id + " and ta31.field_id=ta07.id and ta31.module_id="+module_id;
 			configList = queryService.searchList(config_hsql
 					+ "order by ta31.ord");
 
@@ -158,7 +158,7 @@ public class GcsjListConfig {
 			response
 					.getWriter()
 					.print(
-							"{\"statusCode\":\"200\", \"message\":\"设置成功!本次操作在下次登录前不会生效\", \"navTabId\":\"\",\"forwardUrl\":\""
+							"{\"statusCode\":\"200\", \"message\":\"设置成功!本次操作在下次操作前不会生效\", \"navTabId\":\"\",\"forwardUrl\":\""
 									+ forwardUrl + "\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
