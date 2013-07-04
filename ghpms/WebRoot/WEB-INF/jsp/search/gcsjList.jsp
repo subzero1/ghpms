@@ -85,7 +85,7 @@ function searchListExport(param1){
 						line
 					</li>
 					<li>
-						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&tableName=com.ghpms.dataObjects.form.Td01_glsj"
+						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&moudle_id=${param.module_id }"
 							target="ajaxTodo" title="确认删除吗？"><span>删除</span>
 						</a>
 					</li>
