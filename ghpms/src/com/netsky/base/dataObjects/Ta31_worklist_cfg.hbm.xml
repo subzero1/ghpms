@@ -42,6 +42,14 @@
   column="ord"
   />
 
+  <property
+  name="module_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="module_id"
+  />
+
 
     </class>
 

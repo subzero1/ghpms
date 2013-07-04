@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2012-06-04
+ * @author cmp_auto 2013-07-02
  * @hibernate.class table="Ta31_worklist_cfg"
  */
 
@@ -13,7 +13,7 @@ public class Ta31_worklist_cfg implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 887527504497236992L;
+	private static final long serialVersionUID = 12174494637103628L;
 
 	/**
 	 * 标识
@@ -22,7 +22,7 @@ public class Ta31_worklist_cfg implements Serializable{
 	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="ta31_num"
+	 * @hibernate.generator-param name="sequence" value="tf31_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {
@@ -83,8 +83,25 @@ public class Ta31_worklist_cfg implements Serializable{
     return ord;
  }
 
- public void setOrd(Integer ord) {
-    this.ord = ord;
+ public void setOrd(Integer i) {
+    this.ord = i;
+  }
+
+ /**
+ * Ta06_module.module_id
+ */
+ private Long module_id;
+
+ /**
+ * @hibernate.property column="module_id"
+ * @return Returns the module_id.
+ */
+ public Long getModule_id() {
+    return module_id;
+ }
+
+ public void setModule_id(Long module_id) {
+    this.module_id = module_id;
   }
 
 
