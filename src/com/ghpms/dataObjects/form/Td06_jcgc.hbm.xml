@@ -19,6 +19,14 @@
         </id>
 
    <property
+  name="skbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skbh"
+  />
+
+  <property
   name="dxhtqdje"
   type="java.lang.Long"
   update="true"
@@ -131,11 +139,11 @@
   />
 
   <property
-  name="ghgcbh"
+  name="ghbh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="ghgcbh"
+  column="ghbh"
   />
 
   <property

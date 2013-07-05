@@ -19,11 +19,19 @@
         </id>
 
    <property
-  name="ghgcbh"
+  name="gcmc"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="ghgcbh"
+  column="gcmc"
+  />
+
+  <property
+  name="ghbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghbh"
   />
 
   <property

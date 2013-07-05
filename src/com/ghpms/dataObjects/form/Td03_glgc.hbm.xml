@@ -19,243 +19,27 @@
         </id>
 
    <property
-  name="sjrj"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="sjrj"
-  />
-
-  <property
-  name="sjsj"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="sjsj"
-  />
-
-  <property
-  name="sjzt"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="sjzt"
-  />
-
-  <property
-  name="kh24"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="kh24"
-  />
-
-  <property
-  name="kh28"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="kh28"
-  />
-
-  <property
-  name="lx_xy"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="lx_xy"
-  />
-
-  <property
-  name="rjpfl"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="rjpfl"
-  />
-
-  <property
-  name="byrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="byrq"
-  />
-
-  <property
-  name="ysbgfhrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ysbgfhrq"
-  />
-
-  <property
-  name="ghclpc"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="ghclpc"
-  />
-
-  <property
-  name="ghjsrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ghjsrq"
-  />
-
-  <property
-  name="ghjsje"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="ghjsje"
-  />
-
-  <property
-  name="skjsrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="skjsrq"
-  />
-
-  <property
-  name="skjsje"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="skjsje"
-  />
-
-  <property
-  name="skclpc_cdrq"
+  name="skbh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="skclpc_cdrq"
+  column="skbh"
   />
 
   <property
-  name="fl"
+  name="gcmc"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="fl"
+  column="gcmc"
   />
 
   <property
-  name="ybyrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ybyrq"
-  />
-
-  <property
-  name="yfhysbgrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="yfhysbgrq"
-  />
-
-  <property
-  name="hgwbsk"
+  name="ghbh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="hgwbsk"
-  />
-
-  <property
-  name="sjbh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="sjbh"
-  />
-
-  <property
-  name="ghwfkdw"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="ghwfkdw"
-  />
-
-  <property
-  name="ghwfkje"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="ghwfkje"
-  />
-
-  <property
-  name="ghwfkrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ghwfkrq"
-  />
-
-  <property
-  name="ghwfkdwxyh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="ghwfkdwxyh"
-  />
-
-  <property
-  name="scbxmfzr"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="scbxmfzr"
-  />
-
-  <property
-  name="ghwxyqdrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ghwxyqdrq"
-  />
-
-  <property
-  name="kh104"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="kh104"
-  />
-
-  <property
-  name="ghwxyfhrq"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="ghwxyfhrq"
-  />
-
-  <property
-  name="jjbgclx"
-  type="java.util.Date"
-  update="true"
-  insert="true"
-  column="jjbgclx"
-  />
-
-  <property
-  name="ghgcbh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="ghgcbh"
+  column="ghbh"
   />
 
   <property
@@ -728,6 +512,238 @@
   update="true"
   insert="true"
   column="sjzg"
+  />
+
+  <property
+  name="sjrj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjrj"
+  />
+
+  <property
+  name="sjsj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjsj"
+  />
+
+  <property
+  name="sjzt"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sjzt"
+  />
+
+  <property
+  name="kh24"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kh24"
+  />
+
+  <property
+  name="kh28"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kh28"
+  />
+
+  <property
+  name="lx_xy"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="lx_xy"
+  />
+
+  <property
+  name="rjpfl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="rjpfl"
+  />
+
+  <property
+  name="byrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="byrq"
+  />
+
+  <property
+  name="ysbgfhrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ysbgfhrq"
+  />
+
+  <property
+  name="ghclpc"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghclpc"
+  />
+
+  <property
+  name="ghjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghjsrq"
+  />
+
+  <property
+  name="ghjsje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghjsje"
+  />
+
+  <property
+  name="skjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="skjsrq"
+  />
+
+  <property
+  name="skjsje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="skjsje"
+  />
+
+  <property
+  name="skclpc_cdrq"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skclpc_cdrq"
+  />
+
+  <property
+  name="fl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="fl"
+  />
+
+  <property
+  name="ybyrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ybyrq"
+  />
+
+  <property
+  name="yfhysbgrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="yfhysbgrq"
+  />
+
+  <property
+  name="hgwbsk"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="hgwbsk"
+  />
+
+  <property
+  name="sjbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjbh"
+  />
+
+  <property
+  name="ghwfkdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghwfkdw"
+  />
+
+  <property
+  name="ghwfkje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="ghwfkje"
+  />
+
+  <property
+  name="ghwfkrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghwfkrq"
+  />
+
+  <property
+  name="ghwfkdwxyh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghwfkdwxyh"
+  />
+
+  <property
+  name="scbxmfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="scbxmfzr"
+  />
+
+  <property
+  name="ghwxyqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghwxyqdrq"
+  />
+
+  <property
+  name="kh104"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kh104"
+  />
+
+  <property
+  name="ghwxyfhrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghwxyfhrq"
+  />
+
+  <property
+  name="jjbgclx"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jjbgclx"
   />
 
 
