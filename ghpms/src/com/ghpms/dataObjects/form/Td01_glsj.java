@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-02
+ * @author cmp_auto 2013-07-05
  * @hibernate.class table="Td01_glsj"
  */
 
@@ -13,7 +13,7 @@ public class Td01_glsj implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 804359158745920384L;
+	private static final long serialVersionUID = 538075790433337984L;
 
 	/**
 	 * 标识
@@ -56,18 +56,18 @@ public class Td01_glsj implements Serializable{
  /**
  * 歌华任务号
  */
- private String ghrwh;
+ private String ghbh;
 
  /**
- * @hibernate.property column="ghrwh"
- * @return Returns the ghrwh.
+ * @hibernate.property column="ghbh"
+ * @return Returns the ghbh.
  */
- public String getGhrwh() {
-    return ghrwh;
+ public String getGhbh() {
+    return ghbh;
  }
 
- public void setGhrwh(String ghrwh) {
-    this.ghrwh = ghrwh;
+ public void setGhbh(String ghbh) {
+    this.ghbh = ghbh;
   }
 
  /**
@@ -680,6 +680,23 @@ public class Td01_glsj implements Serializable{
 
  public void setRwly_2(String rwly_2) {
     this.rwly_2 = rwly_2;
+  }
+
+ /**
+ * 工程名称
+ */
+ private String gcmc;
+
+ /**
+ * @hibernate.property column="gcmc"
+ * @return Returns the gcmc.
+ */
+ public String getGcmc() {
+    return gcmc;
+ }
+
+ public void setGcmc(String gcmc) {
+    this.gcmc = gcmc;
   }
 
 

@@ -19,6 +19,22 @@
         </id>
 
    <property
+  name="ghbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghbh"
+  />
+
+  <property
+  name="skbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skbh"
+  />
+
+  <property
   name="skxybh"
   type="java.lang.String"
   update="true"

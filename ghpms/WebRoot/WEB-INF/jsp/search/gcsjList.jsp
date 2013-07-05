@@ -122,14 +122,14 @@ function searchListExport(param1){
 						</td>
 						<td>
 						<c:if test="${doc[cols] != null }">
-							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].id}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
+							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].gcmc}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
 						</c:if>
 						</td>
 						
 						<c:forEach var="j" begin="0" end ="${cols-1>0?cols-1:0}">
 							<c:choose>
-								<c:when test="${'名称' == docColsList[j].comments}">
-									<td style="text-align:${docColsList[j].align};"><a href="javascript:openFlowForm('{project_id:${doc[cols].project_id},doc_id:${doc[cols].doc_id},module_id:${doc[cols].module_id},opernode_id:${doc[cols].opernode_id},node_id:${doc[cols].node_id},user_id:${doc[cols].user_id}}');">${doc[j]}</a></td>
+								<c:when test="${'gcmc' == docColsList[j].name}">
+									<td style="text-align:${docColsList[j].align};"><a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].gcmc}]">${doc[j]}</a></td>
 								</c:when>
 								<c:otherwise><td style="text-align:${docColsList[j].align};">${doc[j]}</td></c:otherwise>
 							</c:choose>

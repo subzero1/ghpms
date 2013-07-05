@@ -27,11 +27,11 @@
   />
 
   <property
-  name="ghrwh"
+  name="ghbh"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="ghrwh"
+  column="ghbh"
   />
 
   <property
@@ -320,6 +320,14 @@
   update="true"
   insert="true"
   column="rwly_2"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
   />
 
 

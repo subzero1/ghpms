@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-02
+ * @author cmp_auto 2013-07-05
  * @hibernate.class table="Td05_zbgc"
  */
 
@@ -13,7 +13,7 @@ public class Td05_zbgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 685261992095932672L;
+	private static final long serialVersionUID = 507535780492474368L;
 
 	/**
 	 * 标识
@@ -37,21 +37,38 @@ public class Td05_zbgc implements Serializable{
 	}
 
 	 /**
+ * 视宽编号
+ */
+ private String skbh;
+
+ /**
+ * @hibernate.property column="skbh"
+ * @return Returns the skbh.
+ */
+ public String getSkbh() {
+    return skbh;
+ }
+
+ public void setSkbh(String skbh) {
+    this.skbh = skbh;
+  }
+
+ /**
  * 歌华工程编号
 
  */
- private String ghgcbh;
+ private String ghbh;
 
  /**
- * @hibernate.property column="ghgcbh"
- * @return Returns the ghgcbh.
+ * @hibernate.property column="ghbh"
+ * @return Returns the ghbh.
  */
- public String getGhgcbh() {
-    return ghgcbh;
+ public String getGhbh() {
+    return ghbh;
  }
 
- public void setGhgcbh(String ghgcbh) {
-    this.ghgcbh = ghgcbh;
+ public void setGhbh(String ghbh) {
+    this.ghbh = ghbh;
   }
 
  /**
