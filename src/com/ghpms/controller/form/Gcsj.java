@@ -260,6 +260,7 @@ public class Gcsj {
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
 		PrintWriter out = response.getWriter();
+		System.out.println("編碼:"+request.getCharacterEncoding());
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		Class c = null;
 		// 获取用户对象
@@ -269,11 +270,11 @@ public class Gcsj {
 			saveService.removeObject(c, id);
 
 			out
-					.print("{\"statusCode\":\"200\", \"message\":\"操作成功\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+					.print("{\"statusCode\":\"200\", \"message\":\"operation succeed!\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			out.print("{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
+			out.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
 		}
 	}
 
