@@ -20,7 +20,7 @@ function searchListExport(param1){
 </script>
 <form id="pagerForm" method="post" action="form/gcsjList.do">
 	<input type="hidden" name="module_id" value="${param.module_id}">
-	<input type="hidden" name="keyWord" value="${keyWord}" />
+	<input type="hidden" name="keyWord" value="${keyword}" />
 	<input type="hidden" name="pageNum" value="${pageNum}" />
 	<input type="hidden" name="numPerPage" value="${numPerPage}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
@@ -37,7 +37,8 @@ function searchListExport(param1){
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyWord" value="${param.keyWord}" type="text" size="25" /></td>
+						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+						<input type="hidden" name="module_id" value="${param.module_id}"></td>
 						<td>
 							<c:if test="${param.workState == 5}">
 							年度

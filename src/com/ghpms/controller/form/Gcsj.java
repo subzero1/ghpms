@@ -114,6 +114,20 @@ public class Gcsj {
 			hsql.append("select a from ");
 			hsql.append(module.getProject_table());
 			hsql.append(" a where 1=1 ");
+			
+			if (!keyword.equals("")) {
+				hsql.append(" and (a.ghbh like'%");
+				hsql.append(keyword);
+				hsql.append("%' ");
+				hsql.append(" or a.skbh like'%");
+				hsql.append(keyword);
+				hsql.append("%' ");
+				hsql.append(" or a.gcmc like'%");
+				hsql.append(keyword);
+				hsql.append("%') ");
+			}
+			
+			
 			hsql.append(" order by " + orderField);
 			hsql.append(" " + orderDirection);
 			rs = queryService
@@ -172,6 +186,7 @@ public class Gcsj {
 			return new ModelAndView("/export/toExcelWhithList.do");
 		}
 
+		modelMap.put("keyword", keyword);
 		modelMap.put("cols", docColsList.size());
 		modelMap.put("docs", docList);
 		modelMap.put("docColsList", docColsList);
