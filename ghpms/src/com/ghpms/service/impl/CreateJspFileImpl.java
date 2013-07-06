@@ -290,7 +290,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append("</script>");hsql.append(" \n ");
 		hsql.append("<div class=\"pageFormContent\" style=\"overflow: auto; \"> ");
 		hsql.append("<fieldset>");hsql.append(" \n ");
-		hsql.append("<legend style=\"margin:0 0 0 20px;padding:5px;border:dotted 2px #ccc;width:160px;text-align:center;font-size:14px;font-weight:bold;\">光缆工程</legend>");hsql.append(" \n ");
+		hsql.append("<legend style=\"margin:0 0 0 20px;padding:5px;border:dotted 2px #ccc;width:160px;text-align:center;font-size:14px;font-weight:bold;\">"+module.getName()+"</legend>");hsql.append(" \n ");
 		
 		StringBuffer hsql1=new StringBuffer();
 		StringBuffer hsql2=new StringBuffer();
