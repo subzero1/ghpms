@@ -101,6 +101,14 @@ function searchListExport(param1){
 					<li class="line">
 						line
 					</li>
+					<li>
+						<a class="exportexcel"
+							href="dispath.do?url=form/basicImport.jsp?config=td01_glsjxx" target="dialog" width="400" height="200"><span>导入</span>
+						</a>
+					</li>
+					<li class="line">
+						line
+					</li>
 			</ul>
 		</div>
 		<table class="table" layouth="138">
