@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ghpms.dataObjects.form.Tf01_field_property;
 import com.ghpms.service.CreateJspFile;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
@@ -163,6 +164,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql
 				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
 		hsql.append(" \n ");
+		hsql.append("<%@ taglib uri=\"NetSkyTagLibs\" prefix=\"netsky\"%>");
+		hsql.append(" \n ");
 		hsql
 				.append("<jsp:include page=\"basicEdit.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
@@ -175,40 +178,68 @@ public class CreateJspFileImpl implements CreateJspFile {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
 			hsql.append(" <p> \n");
 			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
-
-			hsql.append("<input type=\"text\" ");
-
-			hsql.append(" name=\"");
-			hsql.append(packTableName);
-			hsql.append(".");
-			hsql.append(formfield.getName().toUpperCase());
-			hsql.append("\" ");
-
-			hsql.append("value=\"");
-
-			// 如果是日期
-			if (formfield.getDatatype().equals("DATE")) {
-				hsql.append("<fmt:formatDate value=\"");
+			// 下拉框的情況
+			if (formfield.getData_type() != null
+					&& formfield.getData_type() == 1) {
+				StringBuffer hql = new StringBuffer();
+				hql.append("select a from Tf01_field_property a where 1=1 ");
+				hql.append(" and a.field_id=");
+				hql.append(formfield.getId());
+				List fps =  queryService
+						.searchList(hql.toString());
+				Tf01_field_property fp=null;
+				if (fps!=null&&fps.size()>0) {
+					fp=(Tf01_field_property) fps.get(0);
+				}
+				//得到下拉框的值
+				List objs=null;
+				if (fp != null) {
+					objs = queryService.searchList(fp.getP_sql());
+					request.setAttribute("objs", objs);
+				}  
+				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+				hsql.append(" objectForOption=\"objs\" style=\"width:256px;\"");
+				hsql.append(" valueForOption=\"\" showForOption=\"\" ");
+				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+				hsql.append(" htmlClass=\"td-select\"/>");
+			} else {
+				// 非下拉框
+				hsql.append("<input type=\"text\" ");
+				hsql.append(" name=\"");
+				hsql.append(packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+				hsql.append("value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append("<fmt:formatDate value=\"");
+				}
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+				// 判断类型
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql
+							.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
+				}
+				hsql.append("style=\"width:256px;\" />");
 			}
 
-			hsql.append("${");
-			hsql.append(formfield.getObject_name().substring(
-					formfield.getObject_name().lastIndexOf(".") + 1,
-					formfield.getObject_name().length()).toLowerCase());
-			hsql.append("." + formfield.getName() + "}\" ");
-
-			// 如果是日期
-			if (formfield.getDatatype().equals("DATE")) {
-				hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
-			}
-
-			// 判断类型
-			if (formfield.getDatatype().equals("DATE")) {
-				hsql
-						.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
-			}
-
-			hsql.append("style=\"width:256px;\" />");
 			hsql.append("\n </p> \n");
 			if (i % 2 == 0) {
 				hsql.append("<div style=\"height:0px;\"></div> \n");
@@ -266,40 +297,58 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" \n ");
 		/**
 		 * 
-		
-		hsql.append("<style>");hsql.append(" \n ");
-		hsql.append(".tabsPage .tabsPageContent{overflow:auto;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent dl{margin: 1em 2em;padding: 0;height:21px;position:relative;top:0px;width:100%;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent dt{padding:0 5px;white-space:nowrap;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent dd input{width:100%;}");hsql.append(" \n ");
-		hsql.append("dl dt,dl dd{line-height: 21px; margin:0; padding:0;float:left;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column1,.pageFormContent .column2{float:left;display:inline;clear:none;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column1 {margin-left: 0em; width:35%;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column1 dt{width:70px;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column1 dd{width:50%;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column2 {margin-left: 1em; width:60%;}");hsql.append(" \n ");
-		hsql.append(".pageFormContent .column2 dt{width:165px;}");hsql.append(" \n ");
-		hsql.append(".column2 dt{width:37%;}");hsql.append(" \n ");
-		hsql.append("</style>");hsql.append(" \n ");
+		 * 
+		 * hsql.append("<style>");hsql.append(" \n "); hsql.append(".tabsPage
+		 * .tabsPageContent{overflow:auto;}");hsql.append(" \n ");
+		 * hsql.append(".pageFormContent dl{margin: 1em 2em;padding:
+		 * 0;height:21px;position:relative;top:0px;width:100%;}");hsql.append("
+		 * \n "); hsql.append(".pageFormContent dt{padding:0
+		 * 5px;white-space:nowrap;}");hsql.append(" \n ");
+		 * hsql.append(".pageFormContent dd input{width:100%;}");hsql.append("
+		 * \n "); hsql.append("dl dt,dl dd{line-height: 21px; margin:0;
+		 * padding:0;float:left;}");hsql.append(" \n ");
+		 * hsql.append(".pageFormContent .column1,.pageFormContent
+		 * .column2{float:left;display:inline;clear:none;}");hsql.append(" \n
+		 * "); hsql.append(".pageFormContent .column1 {margin-left: 0em;
+		 * width:35%;}");hsql.append(" \n "); hsql.append(".pageFormContent
+		 * .column1 dt{width:70px;}");hsql.append(" \n ");
+		 * hsql.append(".pageFormContent .column1 dd{width:50%;}");hsql.append("
+		 * \n "); hsql.append(".pageFormContent .column2 {margin-left: 1em;
+		 * width:60%;}");hsql.append(" \n "); hsql.append(".pageFormContent
+		 * .column2 dt{width:165px;}");hsql.append(" \n ");
+		 * hsql.append(".column2 dt{width:37%;}");hsql.append(" \n ");
+		 * hsql.append("</style>");hsql.append(" \n ");
 		 */
-		
-		hsql.append("<script type=\"text/javascript\" > ");hsql.append(" \n ");
-		hsql.append(" $(\".column1\").each(function(){ ");hsql.append(" \n ");
-		hsql.append("       $(this).append(\"123456\"); ");hsql.append(" \n ");
-		hsql.append("}); ");hsql.append(" \n ");
-		hsql.append("</script>");hsql.append(" \n ");
-		hsql.append("<div class=\"pageFormContent\" style=\"overflow: auto; \"> ");
-		hsql.append("<fieldset>");hsql.append(" \n ");
-		hsql.append("<legend style=\"margin:0 0 0 20px;padding:5px;border:dotted 2px #ccc;width:160px;text-align:center;font-size:14px;font-weight:bold;\">"+module.getName()+"</legend>");hsql.append(" \n ");
-		
-		StringBuffer hsql1=new StringBuffer();
-		StringBuffer hsql2=new StringBuffer();
-		hsql1.append("<div class=\"column1\">");hsql.append(" \n ");
-		hsql2.append("<div class=\"column2\">");hsql.append(" \n ");
+
+		hsql.append("<script type=\"text/javascript\" > ");
+		hsql.append(" \n ");
+		hsql.append(" $(\".column1\").each(function(){ ");
+		hsql.append(" \n ");
+		hsql.append("       $(this).append(\"123456\"); ");
+		hsql.append(" \n ");
+		hsql.append("}); ");
+		hsql.append(" \n ");
+		hsql.append("</script>");
+		hsql.append(" \n ");
+		hsql
+				.append("<div class=\"pageFormContent\" style=\"overflow: auto; \"> ");
+		hsql.append("<fieldset>");
+		hsql.append(" \n ");
+		hsql
+				.append("<legend style=\"margin:0 0 0 20px;padding:5px;border:dotted 2px #ccc;width:160px;text-align:center;font-size:14px;font-weight:bold;\">"
+						+ module.getName() + "</legend>");
+		hsql.append(" \n ");
+
+		StringBuffer hsql1 = new StringBuffer();
+		StringBuffer hsql2 = new StringBuffer();
+		hsql1.append("<div class=\"column1\">");
+		hsql.append(" \n ");
+		hsql2.append("<div class=\"column2\">");
+		hsql.append(" \n ");
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			
-			if (formfield.getPosition()==0) {
+
+			if (formfield.getPosition() == 0) {
 				hsql1.append(" <dl> \n");
 				hsql1.append("<dt> " + formfield.getComments() + ":</dt> \n");
 				hsql1.append("<dd> \n");
@@ -322,8 +371,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql1.append("readonly/>");
 				hsql1.append("</dd>");
 				hsql1.append("\n </dl> \n");
-				
-			}else {
+
+			} else {
 				hsql2.append(" <dl> \n");
 				hsql2.append("<dt> " + formfield.getComments() + ":</dt> \n");
 				hsql2.append("<dd> \n");
@@ -346,11 +395,11 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql2.append("readonly/>");
 				hsql2.append("</dd>");
 				hsql2.append("\n </dl> \n");
-				
+
 			}
-			
+
 		}
-		
+
 		hsql1.append("</div>");
 		hsql2.append("</div>");
 		hsql.append(hsql1);
@@ -368,6 +417,5 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
-	
 	}
 }
