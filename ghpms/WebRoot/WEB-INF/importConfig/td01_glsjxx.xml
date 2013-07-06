@@ -14,12 +14,6 @@
 			<type>byName</type>
 			<titleRow>0</titleRow>
 			<column>
-				<columnName>ID</columnName>
-				<index />
-				<name>标识</name>
-				<colName>标识</colName>
-			</column>
-			<column>
 				<columnName>SKBH</columnName>
 				<index />
 				<name>视宽编号</name>
