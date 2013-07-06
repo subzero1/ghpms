@@ -118,8 +118,8 @@ public class GcsjListConfig {
 
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(
-					"com.rms.controller.personalization.WorkListConfig",
-					"获取工作列表字段配置错误", e);
+					"com.rms.controller.personalization.GcsjListCfg",
+					"获取列表字段配置错误", e);
 		}
 		request.setAttribute("configList", configList);
 
