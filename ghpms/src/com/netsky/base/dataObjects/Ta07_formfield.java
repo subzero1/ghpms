@@ -290,6 +290,24 @@ public class Ta07_formfield implements Serializable{
  public void setIsdetail(Long isdetail) {
     this.isdetail = isdetail;
   }
+ 
+ /**
+  * 0:左,1:右
+  */
+  private Long position;
+
+  /**
+  * @hibernate.property column="position"
+  * @return Returns the position.
+  */
+  public Long getPosition() {
+     return position;
+  }
+
+  public void setPosition(Long position) {
+     this.position = position;
+   }
+
 
 
 }

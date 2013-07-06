@@ -137,6 +137,13 @@
   insert="true"
   column="isdetail"
   />
+ <property
+  name="position"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="position"
+  />
 
 
     </class>
