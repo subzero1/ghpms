@@ -391,7 +391,12 @@ public class OpenFormControler {
 			/**
 			 * 動態得到jspform表單
 			 */
-			createJspFile.AutoCreateJspFile(request, module_id);
+			if (module_id==103) {
+				createJspFile.AutoCreateJspFileByTwo(request, module_id);
+			}else {
+				createJspFile.AutoCreateJspFile(request, module_id);
+			}
+			
 		 	createJspFile.getNode(request, paraMap);
 			
 			

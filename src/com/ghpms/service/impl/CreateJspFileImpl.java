@@ -238,4 +238,136 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
+	public void AutoCreateJspFileByTwo(HttpServletRequest request,
+			Long module_id) {
+		StringBuffer hsql = new StringBuffer();
+		String filePath = "";
+
+		hsql.append("select a from Ta07_formfield a where 1=1 ");
+		hsql.append(" and a.module_id=");
+		hsql.append(module_id);
+		List fields = queryService.searchList(hsql.toString());
+
+		filePath = request.getSession().getServletContext().getRealPath(
+				"/WEB-INF");
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
+		filePath += "\\jsp\\" + module.getForm_url();
+
+		hsql.delete(0, hsql.length());
+		hsql
+				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
+		hsql.append(" \n ");
+		/**
+		 * 
+		
+		hsql.append("<style>");hsql.append(" \n ");
+		hsql.append(".tabsPage .tabsPageContent{overflow:auto;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent dl{margin: 1em 2em;padding: 0;height:21px;position:relative;top:0px;width:100%;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent dt{padding:0 5px;white-space:nowrap;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent dd input{width:100%;}");hsql.append(" \n ");
+		hsql.append("dl dt,dl dd{line-height: 21px; margin:0; padding:0;float:left;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column1,.pageFormContent .column2{float:left;display:inline;clear:none;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column1 {margin-left: 0em; width:35%;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column1 dt{width:70px;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column1 dd{width:50%;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column2 {margin-left: 1em; width:60%;}");hsql.append(" \n ");
+		hsql.append(".pageFormContent .column2 dt{width:165px;}");hsql.append(" \n ");
+		hsql.append(".column2 dt{width:37%;}");hsql.append(" \n ");
+		hsql.append("</style>");hsql.append(" \n ");
+		 */
+		
+		hsql.append("<script type=\"text/javascript\" > ");hsql.append(" \n ");
+		hsql.append(" $(\".column1\").each(function(){ ");hsql.append(" \n ");
+		hsql.append("       $(this).append(\"123456\"); ");hsql.append(" \n ");
+		hsql.append("}); ");hsql.append(" \n ");
+		hsql.append("</script>");hsql.append(" \n ");
+		hsql.append("<div class=\"pageFormContent\" style=\"overflow: auto; \"> ");
+		hsql.append("<fieldset>");hsql.append(" \n ");
+		hsql.append("<legend style=\"margin:0 0 0 20px;padding:5px;border:dotted 2px #ccc;width:160px;text-align:center;font-size:14px;font-weight:bold;\">光缆工程</legend>");hsql.append(" \n ");
+		
+		StringBuffer hsql1=new StringBuffer();
+		StringBuffer hsql2=new StringBuffer();
+		hsql1.append("<div class=\"column1\">");hsql.append(" \n ");
+		hsql2.append("<div class=\"column2\">");hsql.append(" \n ");
+		for (int i = 1; i < fields.size(); i++) {
+			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+			
+			if (formfield.getPosition()==0) {
+				hsql1.append(" <dl> \n");
+				hsql1.append("<dt> " + formfield.getComments() + ":</dt> \n");
+				hsql1.append("<dd> \n");
+				hsql1.append("<input type=\"text\" ");
+				hsql1.append(" value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql1.append("<fmt:formatDate value=\"");
+				}
+				hsql1.append("${");
+				hsql1.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql1.append("." + formfield.getName() + "}\" ");
+
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql1.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+				hsql1.append("readonly/>");
+				hsql1.append("</dd>");
+				hsql1.append("\n </dl> \n");
+				
+			}else {
+				hsql2.append(" <dl> \n");
+				hsql2.append("<dt> " + formfield.getComments() + ":</dt> \n");
+				hsql2.append("<dd> \n");
+				hsql2.append("<input type=\"text\" ");
+				hsql2.append(" value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql2.append("<fmt:formatDate value=\"");
+				}
+				hsql2.append("${");
+				hsql2.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql2.append("." + formfield.getName() + "}\" ");
+
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql2.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+				hsql2.append("readonly/>");
+				hsql2.append("</dd>");
+				hsql2.append("\n </dl> \n");
+				
+			}
+			
+		}
+		
+		hsql1.append("</div>");
+		hsql2.append("</div>");
+		hsql.append(hsql1);
+		hsql.append(hsql2);
+		try {
+			FileOutputStream fos = new FileOutputStream(filePath);
+			Writer out = new OutputStreamWriter(fos, "utf-8");
+			out.write(hsql.toString());
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	
+	}
 }
