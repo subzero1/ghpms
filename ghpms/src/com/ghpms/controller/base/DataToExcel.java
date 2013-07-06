@@ -28,12 +28,18 @@ public class DataToExcel {
 
 	@Autowired
 	private ConfigXMLService configXML;
+	
+
+	private static String CONFIG_FILE = "/importConfig/import.xml";
+	
+	private String webInfPatch="";
 
 	/**
 	 * 通用导出Excel
 	 * 
 	 * @param request
 	 * @param response
+	 * config 传递的import配置的参数
 	 * @return
 	 * @throws Exception
 	 *             ModelAndView
@@ -91,5 +97,5 @@ public class DataToExcel {
 		request.setAttribute("sheetMap", sheetMap);
 		return new ModelAndView("/export/toExcelWhithList.do");
 	}
-
+	
 }
