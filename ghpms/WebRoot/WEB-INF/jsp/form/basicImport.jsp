@@ -50,7 +50,7 @@
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
-			<input type="text" name="config" value="${param.config }" />
+			<input type="hidden" name="config" value="${param.config }" />
 			<input type="hidden" name="Td52_aqys.PROJECT_ID" value="${param.project_id }" />
 			<div class="pageFormContent" layoutH="58">
 				<br/>
