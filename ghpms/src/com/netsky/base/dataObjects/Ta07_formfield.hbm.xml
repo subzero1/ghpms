@@ -144,6 +144,13 @@
   insert="true"
   column="position"
   />
+ <property
+  name="data_type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="data_type"
+  />
 
 
     </class>

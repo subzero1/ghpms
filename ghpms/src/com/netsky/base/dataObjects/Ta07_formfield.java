@@ -308,6 +308,17 @@ public class Ta07_formfield implements Serializable{
      this.position = position;
    }
 
+  private Long data_type;
 
+public Long getData_type() {
+	return data_type;
+}
+
+public void setData_type(Long data_type) {
+	this.data_type = data_type;
+}
+  
+
+ 
 
 }

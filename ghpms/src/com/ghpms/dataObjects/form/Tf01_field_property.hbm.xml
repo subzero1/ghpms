@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.form.Tf01_field_property"  table="Tf01_field_property">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf01_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="field_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="field_id"
+  />
+
+  <property
+  name="p_sql"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="p_sql"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
