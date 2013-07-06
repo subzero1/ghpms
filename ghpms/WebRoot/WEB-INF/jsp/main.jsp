@@ -8,7 +8,7 @@
 <!--  
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 -->
-<title>南京电信工程建设目标库管理系统</title>
+<title>歌华有线工程管理系统_HGPMS</title>
 
 <link href="themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
