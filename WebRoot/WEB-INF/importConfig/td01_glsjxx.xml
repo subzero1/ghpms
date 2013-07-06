@@ -9,7 +9,7 @@
 		<tableName>Td01_glsj</tableName>
 		<tableNameShow />
 		<fatherTables />
-		<title>光缆设计信息</title>
+		<title>光缆信息单</title>
 		<columns><!--当前表字段信息-->
 			<type>byName</type>
 			<titleRow>0</titleRow>
@@ -26,7 +26,7 @@
 				<colName>视宽编号</colName>
 			</column>
 			<column>
-				<columnName>GHRWH</columnName>
+				<columnName>GHBH</columnName>
 				<index />
 				<name>歌华任务号</name>
 				<colName>歌华任务号</colName>
@@ -246,6 +246,12 @@
 				<index />
 				<name>任务来源2</name>
 				<colName>任务来源2</colName>
+			</column>
+			<column>
+				<columnName>GCMC</columnName>
+				<index />
+				<name>工程名称</name>
+				<colName>工程名称</colName>
 			</column>
 		</columns>
 	</tableInfo>
