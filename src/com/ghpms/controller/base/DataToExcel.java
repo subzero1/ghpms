@@ -2,6 +2,7 @@ package com.ghpms.controller.base;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -53,7 +54,7 @@ public class DataToExcel {
 
 	/**
 	 * 通用导出Excel
-	 * 
+	 * 需要配置文件
 	 * @param request
 	 * @param response
 	 *            config 传递的import配置的参数
@@ -116,6 +117,13 @@ public class DataToExcel {
 		return new ModelAndView("/export/toExcelWhithList.do");
 	}
 
+	/**
+	 * Excel导入到数据库
+	 * @param HttpRequest
+	 * @param response
+	 * @return
+	 * @throws Exception ModelAndView
+	 */
 	@RequestMapping("/excelToData.do")
 	public ModelAndView excelToData(HttpServletRequest HttpRequest,
 			HttpServletResponse response) throws Exception {
@@ -223,6 +231,34 @@ public class DataToExcel {
 
 		return null;
 	}
+	
+	@RequestMapping("/dataToExcelTemplate.do")
+	public ModelAndView dataToExcelTemplate(HttpServletRequest request,HttpServletResponse response) {
+		
+		// 条件
+		Long module_id = convertUtil.toLong(request.getParameter("moudle_id"));
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
+		// 取标题列
+		Map docMap = gcsjDataService.getFormTitleMap(user, module_id);
+		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
+				.get("docColsList");
+		Map<String, List> sheetMap = new HashMap<String, List>();
+		List sheetList = new LinkedList();
+		List titleList = new LinkedList();
+		for (Ta07_formfield ta07 : docColsList) {
+			titleList.add(ta07.getComments().trim());
+		}
+		sheetList.add(titleList);
+		sheetList.add(new ArrayList());
+		sheetMap.put("form_title", sheetList);
+		request.setAttribute("ExcelName", module.getName() + ".xls");
+		request.setAttribute("sheetMap", sheetMap);
+		return new ModelAndView("/export/toExcelWhithList.do");
+		
+	}
+	
 	/**
 	 * 将excel信息写入给定对象中
 	 * 

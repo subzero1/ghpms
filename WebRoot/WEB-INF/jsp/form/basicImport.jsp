@@ -28,7 +28,8 @@
 			});
 		});
 		$("#tempdownload").click(function(){
-			window.location.href="tableToExcel.do?config=${param.config }"; 
+			var moudle_id=$("#moudle_id",$.pdialog.getCurrent()).val();
+			window.location.href="dataToExcelTemplate.do?moudle_id="+moudle_id; 
 		});
 		
 	});
@@ -50,7 +51,7 @@
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
-			<input type="hidden" name="module_id" value="${param.module_id }" />
+			<input type="hidden" id="moudle_id" name="module_id" value="${param.module_id }" />
 			<input type="hidden" name="config" value="${param.config }" />
 			<input type="hidden" name="Td52_aqys.PROJECT_ID" value="${param.project_id }" />
 			<div class="pageFormContent" layoutH="58">
