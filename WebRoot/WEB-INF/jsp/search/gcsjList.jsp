@@ -102,8 +102,9 @@ function searchListExport(param1){
 						line
 					</li>
 					<li>
+					<!-- dispath.do?url=form/basicImport.jsp?config=td01_glsjxx&packgePath=form -->
 						<a class="exportexcel"
-							href="dispath.do?url=form/basicImport.jsp?config=td01_glsjxx&packgePath=form" target="dialog" width="400" height="200"><span>导入</span>
+							href="excelToData.do?module_id=${param.module_id }" target="dialog" width="400" height="200"><span>导入</span>
 						</a>
 					</li>
 					<li class="line">
