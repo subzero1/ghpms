@@ -53,8 +53,8 @@ public class DataToExcel {
 	private SaveService saveService;
 
 	/**
-	 * 通用导出Excel
-	 * 需要配置文件
+	 * 通用导出Excel 需要配置文件
+	 * 
 	 * @param request
 	 * @param response
 	 *            config 传递的import配置的参数
@@ -119,10 +119,12 @@ public class DataToExcel {
 
 	/**
 	 * Excel导入到数据库
+	 * 
 	 * @param HttpRequest
 	 * @param response
 	 * @return
-	 * @throws Exception ModelAndView
+	 * @throws Exception
+	 *             ModelAndView
 	 */
 	@RequestMapping("/excelToData.do")
 	public ModelAndView excelToData(HttpServletRequest HttpRequest,
@@ -137,7 +139,8 @@ public class DataToExcel {
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
 				.get("docColsList");
-		Ta06_module module=(Ta06_module) queryService.searchById(Ta06_module.class, module_id);
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
 
 		// 取session
 		Session session = null;
@@ -163,7 +166,7 @@ public class DataToExcel {
 				 */
 				boolean rightExcel = false;
 				Cell cell[] = st.getRow(0);
-					Map columnMap =new HashMap();
+				Map columnMap = new HashMap();
 				for (Ta07_formfield ta07_formfield : docColsList) {
 					String name = (String) ta07_formfield.getName();
 					String title = (String) ta07_formfield.getComments();
@@ -171,15 +174,15 @@ public class DataToExcel {
 						if (cell[i].getContents() != null
 								&& cell[i].getContents().equals(title)) {
 							rightExcel = true;
-							Map col =new HashMap();
-							 col.put("$index", new Integer(cell[i].getColumn()));
-							 columnMap.put(name.toUpperCase(), col);
+							Map col = new HashMap();
+							col.put("$index", new Integer(cell[i].getColumn()));
+							columnMap.put(name.toUpperCase(), col);
 						}
 					}
 				}
-				int startRow=0;
+				int startRow = 1;
 				int totalRows = st.getRows();
-				while (startRow < totalRows) {  
+				while (startRow < totalRows) {
 					Object o = Class.forName(module.getProject_table())
 							.newInstance();
 					/**
@@ -202,39 +205,44 @@ public class DataToExcel {
 			tx.rollback();
 			statusCode = "300";
 			message = e.getMessage();
-			if (message != null && message.indexOf("recognize OLE stream") != -1) {
+			if (message != null
+					&& message.indexOf("recognize OLE stream") != -1) {
 				message = "Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再导入";
 			} else {
 				message = "Excel格式非法,请参考导入模板或联系系统管理员";
 			}
 			e.printStackTrace();
-		
+
 			e.printStackTrace();
-		}finally{
+		} finally {
 
 			session.close();
-			
+
 			/**
 			 * 处理返回路径
 			 */
 			Map<String, String> dispathMap = new HashMap<String, String>();
-			if (request.getParameter("perproty") != null && request.getParameter("perproty").length() > 0) {
-				String perprotys[] = request.getParameter("perproty").split("/");
+			if (request.getParameter("perproty") != null
+					&& request.getParameter("perproty").length() > 0) {
+				String perprotys[] = request.getParameter("perproty")
+						.split("/");
 				for (int i = 0; i < perprotys.length; i++) {
-					dispathMap.put(perprotys[i],request.getParameter(perprotys[i]));
+					dispathMap.put(perprotys[i], request
+							.getParameter(perprotys[i]));
 				}
-				printJson(request, response, statusCode, dispathMap,message);
-				
+				printJson(request, response, statusCode, dispathMap, message);
+
 			}
-		
+
 		}
 
 		return null;
 	}
-	
+
 	@RequestMapping("/dataToExcelTemplate.do")
-	public ModelAndView dataToExcelTemplate(HttpServletRequest request,HttpServletResponse response) {
-		
+	public ModelAndView dataToExcelTemplate(HttpServletRequest request,
+			HttpServletResponse response) {
+
 		// 条件
 		Long module_id = convertUtil.toLong(request.getParameter("moudle_id"));
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
@@ -256,9 +264,9 @@ public class DataToExcel {
 		request.setAttribute("ExcelName", module.getName() + ".xls");
 		request.setAttribute("sheetMap", sheetMap);
 		return new ModelAndView("/export/toExcelWhithList.do");
-		
+
 	}
-	
+
 	/**
 	 * 将excel信息写入给定对象中
 	 * 
@@ -272,8 +280,8 @@ public class DataToExcel {
 	 *            当前所在行
 	 * @throws Exception
 	 */
-	public boolean injectFromExcel(Object o, Map<?, ?> columnIndex, Sheet sheet, int row, HttpServletRequest request)
-			throws Exception {
+	public boolean injectFromExcel(Object o, Map<?, ?> columnIndex,
+			Sheet sheet, int row, HttpServletRequest request) throws Exception {
 		boolean set = false;
 		Class<?> clazz = o.getClass();
 		Method method[] = clazz.getDeclaredMethods();
@@ -287,7 +295,8 @@ public class DataToExcel {
 				t_value = cell.getContents();
 			}
 			if (t_value != null && !t_value.equals("")) {
-				o = queryService.searchById(o.getClass(), convertUtil.toLong(t_value));
+				o = queryService.searchById(o.getClass(), convertUtil
+						.toLong(t_value));
 			}
 		}
 
@@ -296,17 +305,20 @@ public class DataToExcel {
 			if (clazz1.length == 1) {
 				if (method[i].getName().indexOf("set") != -1) {
 					String property[] = null;
-					String colName = method[i].getName().replaceFirst("set", "").toUpperCase();
+					String colName = method[i].getName()
+							.replaceFirst("set", "").toUpperCase();
 					Map<?, ?> colMap = (Map<?, ?>) columnIndex.get(colName);
 					if (colMap != null) {
-						int index = ((Integer)colMap.get("$index")).intValue();
+						int index = ((Integer) colMap.get("$index")).intValue();
 						Cell cell = sheet.getCell(index, row);
-						if (cell.getContents() != null && cell.getContents().length() > 0) {
+						if (cell.getContents() != null
+								&& cell.getContents().length() > 0) {
 							property = new String[] { cell.getContents() };
 						}
 					}
 					if (property != null) {
-						if (PropertyInject.invoke(o, method[i], property, "GBK", "GBK"))
+						if (PropertyInject.invoke(o, method[i], property,
+								"GBK", "GBK"))
 							set = true;
 					}
 				}
@@ -315,9 +327,11 @@ public class DataToExcel {
 		request.setAttribute("obj", o);
 		return set;
 	}
-	
-	private void printJson(HttpServletRequest request, HttpServletResponse response, String statusCode,
-			Map<String, String> dispathMap,String originalMessage) throws IOException {
+
+	private void printJson(HttpServletRequest request,
+			HttpServletResponse response, String statusCode,
+			Map<String, String> dispathMap, String originalMessage)
+			throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String message = convertUtil.toString(request.getParameter("_message"));
 		if ("200".equals(statusCode)) {
@@ -325,11 +339,14 @@ public class DataToExcel {
 		} else if ("301".equals(statusCode)) {
 			message = message + "超时失败";
 		} else {
-			message = message + "失败，"+originalMessage;
+			message = message + "失败，" + originalMessage;
 		}
-		String navTabId = convertUtil.toString(request.getParameter("_navTabId"));
-		String forwardUrl = convertUtil.toString(request.getParameter("_forwardUrl"));
-		String callbackType = convertUtil.toString(request.getParameter("_callbackType"));
+		String navTabId = convertUtil.toString(request
+				.getParameter("_navTabId"));
+		String forwardUrl = convertUtil.toString(request
+				.getParameter("_forwardUrl"));
+		String callbackType = convertUtil.toString(request
+				.getParameter("_callbackType"));
 		String backParam = "";
 		if (dispathMap != null) {
 			Iterator<String> it = dispathMap.keySet().iterator();
@@ -345,10 +362,11 @@ public class DataToExcel {
 			}
 		}
 		response.getWriter().print(
-				"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + message + "\", \"navTabId\":\"" + navTabId
-						+ "\", \"forwardUrl\":\"" + forwardUrl + "\", \"callbackType\":\"" + callbackType + "\""
+				"{\"statusCode\":\"" + statusCode + "\", \"message\":\""
+						+ message + "\", \"navTabId\":\"" + navTabId
+						+ "\", \"forwardUrl\":\"" + forwardUrl
+						+ "\", \"callbackType\":\"" + callbackType + "\""
 						+ backParam + "}");
 	}
-
 
 }
