@@ -41,7 +41,7 @@
 
 <div class="page">
 	<div class="pageContent">
-		<form method="post" action="import.do" enctype="multipart/form-data"
+		<form method="post" action="excelToData.do" enctype="multipart/form-data"
 			id="importform"
 			onsubmit="return iframeCallback(this,dialogAjaxDone);">
 			<input type="hidden" name="packgePath"
@@ -50,6 +50,7 @@
 			<input type="hidden" name="_navTabId" value="" />
 			<input type="hidden" name="_forwardUrl" value="" />
 			<input type="hidden" name="perproty" value=" " />
+			<input type="hidden" name="module_id" value="${param.module_id }" />
 			<input type="hidden" name="config" value="${param.config }" />
 			<input type="hidden" name="Td52_aqys.PROJECT_ID" value="${param.project_id }" />
 			<div class="pageFormContent" layoutH="58">
