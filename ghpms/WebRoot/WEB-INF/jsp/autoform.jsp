@@ -80,17 +80,22 @@
 			<input type="hidden" name="_message" value="数据保存" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="flowForm.do" keep="true"/>
-			
 			<jsp:include page="${module.form_url}" flush="true"></jsp:include>
-			
 			</form>
-		</div>		
-	
-		<!-- 表单附件 -->	
-		<div id="attachBody" layoutH="68">
-			<div class="panel">
-				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
-				<div id="slaveDiv" defH="150" style="background-color:#fff;">
+				<div class="divider"></div>
+	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;表单附件列表[${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h3></div><div class="divider" style="height:1px;"></div>
+	<div style="width:780px;">
+		<table class="table" width="100%">
+			<thead>
+				<tr>
+					<th style="width: 30px;"></th>
+					<th style="width: 120px;">附件名称</th>
+					<th ></th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:set var="offset" value="0"/>
+				 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
 					<c:set var="slaves" scope="page" value="0"/>
 					<c:forEach var="obj" items="${formslave}">
 						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
@@ -113,9 +118,10 @@
 						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
 					</c:forEach>
 				</div>
-			</div>
-		</div>
-		<div  style="clear:both"></div>  
+			</tbody>
+		</table>
+	</div>
+		</div>		
 	</div>
 </div>
 

@@ -250,8 +250,6 @@ function getCookie(name)
 									<li><a href="MessageList.do?messageState=1" target="navTab" rel="messageList" title="内部邮件">内部邮件</a></li>
 									<!-- <li><a href="OnLineList.do?wtlx=15" target="navTab" rel="OnLineList" title="在线提问">在线提问</a></li> -->
 									<li><a href="userInfo.do" target="dialog" width="520" height="320" title="用户个人信息设置">个人设置</a></li>
-									<!-- <li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>  -->
-									<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
 									<!--<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>-->
 									<!--<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>-->
 									<!--<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li> -->
