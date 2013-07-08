@@ -202,21 +202,7 @@ function getCookie(name)
 						</a>
 					</li>
 					<li class="navBtn"><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改"><img src="Images/change_key.png"/></a></li>
-				</ul>
-				
-		       <form name="pSearchForm" method="post" action="" >
-		   		  <div id="searchbar">
-		   		  	<select class="search-sel" name="search_id" id="search_id">
-		   		  	 <!-- <option value ="80" >需求</option> -->
-					  <option value ="90" >目标库</option>
-					  <option value="101">项目</option>
-					  <option value="102">工程</option>		   		  	
-		   		  	</select>
-			        <input type="text" name="queryStr" class="search-input" style="border: 0px solid #dfe3e6; background:transparent; margin:1px 0 0 20px;" value="输入工程名称或编号 按Enter键查询" onfocus="javascript:this.select();" onkeydown="javascript:searchList(this,  dialogToNavTabSearch, '${param.navtab }|fields_select');" />
-			        <input type="text" style="display:none"/>
-			      </div>
-		       </form>
-       				
+				</ul> 
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
 					<li theme="green"><div>绿色</div></li>
@@ -264,11 +250,11 @@ function getCookie(name)
 									<li><a href="MessageList.do?messageState=1" target="navTab" rel="messageList" title="内部邮件">内部邮件</a></li>
 									<!-- <li><a href="OnLineList.do?wtlx=15" target="navTab" rel="OnLineList" title="在线提问">在线提问</a></li> -->
 									<li><a href="userInfo.do" target="dialog" width="520" height="320" title="用户个人信息设置">个人设置</a></li>
-									<li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>
+									<!-- <li><a href="commentsList.do" target="dialog" rel="commentsList" width="700" height="450" title="审批意见维护">审批意见维护</a></li>  -->
 									<li><a href="alarm.do" target="dialog" width="480" height="200" title="超时提醒设置">超时提醒设置</a></li>
 									<!--<li><a href="help/helpList.do" target="navTab" rel="helpList" title="在线帮助">在线帮助</a></li>-->
 									<!--<li><a href="jlgt/jlgtList.do" target="navTab" rel="jlgtList">交流沟通列表</a></li>-->
-									<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li>
+									<!--<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li> -->
 									<c:if test="${user.login_id=='admin'}">
 										<li><a href="dispath.do?url=sysManage/auxTools.jsp" target="dialog" rel="auxTools" width="510" height="480" title="辅助开发">辅助开发</a></li>
 									</c:if>
