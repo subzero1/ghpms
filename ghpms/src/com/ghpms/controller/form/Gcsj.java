@@ -110,30 +110,28 @@ public class Gcsj {
 				.getSession().getAttribute("rolesMap");
 		String login_id = convertUtil.toString(user.getLogin_id());
 
-		if (module != null) {
-			hsql.append("select a from ");
-			hsql.append(module.getProject_table());
-			hsql.append(" a where 1=1 ");
-			
-			if (!keyword.equals("")) {
-				hsql.append(" and (a.ghbh like'%");
-				hsql.append(keyword);
-				hsql.append("%' ");
-				hsql.append(" or a.skbh like'%");
-				hsql.append(keyword);
-				hsql.append("%' ");
-				hsql.append(" or a.gcmc like'%");
-				hsql.append(keyword);
-				hsql.append("%') ");
-			}
-			
-			
-			hsql.append(" order by " + orderField);
-			hsql.append(" " + orderDirection);
-			rs = queryService
-					.searchByPage(hsql.toString(), pageNum, numPerPage);
+		hsql.append("select a from ");
+		hsql.append(module.getProject_table());
+		hsql.append(" a where 1=1 ");
+
+		if (!keyword.equals("")) {
+			hsql.append(" and (a.ghbh like'%");
+			hsql.append(keyword);
+			hsql.append("%' ");
+			hsql.append(" or a.skbh like'%");
+			hsql.append(keyword);
+			hsql.append("%' ");
+			hsql.append(" or a.gcmc like'%");
+			hsql.append(keyword);
+			hsql.append("%') ");
 		}
 
+		hsql.append(" order by " + orderField);
+		hsql.append(" " + orderDirection);
+		rs = queryService.searchByPage(hsql.toString(), pageNum, numPerPage);
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			rs = queryService.search(hsql.toString());
+		}
 		// 取标题列
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
@@ -142,34 +140,37 @@ public class Gcsj {
 		List<List> docList = new LinkedList<List>();
 		DecimalFormat df = new DecimalFormat("#0.00");
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-		Object a = null;
-		while (rs.next()) {
-			List row = new LinkedList(); // 行对像，先初始化各列数据
-			a = rs.get("a");
-			// 初始化各列数据
-			for (Ta07_formfield ta07 : docColsList) {
-				Object obj = null;
-				// 取数据
-				obj = PropertyInject.getProperty(a, ta07.getName().trim());
 
-				// 格式化数据
-				if ("NUMBER".equals(ta07.getDatatype()) && obj != null) {
-					row.add(df.format(new BigDecimal(obj.toString())));
-				} else if (obj instanceof Date) {
-					row.add(dateformat.format(obj));
-				} else {
-					row.add(obj);
+		Object a = null;
+		if (rs != null) {
+			while (rs.next()) {
+				List row = new LinkedList(); // 行对像，先初始化各列数据
+				a = rs.get("a");
+				// 初始化各列数据
+				for (Ta07_formfield ta07 : docColsList) {
+					Object obj = null;
+					// 取数据
+					obj = PropertyInject.getProperty(a, ta07.getName().trim());
+
+					// 格式化数据
+					if ("NUMBER".equals(ta07.getDatatype()) && obj != null) {
+						row.add(df.format(new BigDecimal(obj.toString())));
+					} else if (obj instanceof Date) {
+						row.add(dateformat.format(obj));
+					} else {
+						row.add(obj);
+					}
 				}
+				// 导EXCEL不需求后面对象
+				if (!"yes".equals(request.getParameter("toExcel"))) {
+					row.add(a);
+				}
+				docList.add(row);
 			}
-			// 导EXCEL不需求后面对象
-			if (!"yes".equals(request.getParameter("toExcel"))) {
-				row.add(a);
-			}
-			docList.add(row);
+			// 获取总条数和总页数
+			totalPages = rs.getTotalPages();
+			totalCount = rs.getTotalRows();
 		}
-		// 获取总条数和总页数
-		totalPages = rs.getTotalPages();
-		totalCount = rs.getTotalRows();
 		// 导EXCEL
 		if ("yes".equals(request.getParameter("toExcel"))) {
 			Map<String, List> sheetMap = new HashMap<String, List>();
@@ -260,7 +261,7 @@ public class Gcsj {
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
 		PrintWriter out = response.getWriter();
-		System.out.println("編碼:"+request.getCharacterEncoding());
+		System.out.println("編碼:" + request.getCharacterEncoding());
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		Class c = null;
 		// 获取用户对象
@@ -274,7 +275,8 @@ public class Gcsj {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			out.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
+			out
+					.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
 		}
 	}
 
