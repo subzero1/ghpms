@@ -47,15 +47,6 @@
 			 	</li>
 			<li class="line">line</li>
 			 </c:forEach>
-			<c:if test="${not empty param.doc_id && param.module_id != 114}"> 
-				<li><a class="edit"	href="jlgt/jlgtView.do?module_id=${param.module_id }&doc_id=${param.doc_id}"  title="交流反馈" target="navTab"><span>反 馈</span></a></li>
-				<li class="line">line</li>
-			</c:if>
-		 	<li class="f-right">
-		 		<c:if test="${param.module_id != 101 && param.module_id != 102 && param.module_id != 114}">
-					<a class="autonode"	href="showTree.do?project_id=${param.project_id}&doc_id=${param.doc_id}&module_id=${param.module_id}"  title="流程" target="navTab"><span>流程</span></a>
-				</c:if>
-		 	</li>
 		 	<li class="line f-right">line</li>
 		 	<c:forEach var="nodeMap" items="${nodeMaps}">
 			    <li>
@@ -97,20 +88,6 @@
 	
 		<!-- 表单附件 -->	
 		<div id="attachBody" layoutH="68">
-			<c:if test="${param.module_id != 101 && param.module_id != 102}">
-			<div class="panel">
-				<h1>审批信息 [${fn:length(approve)}]</h1>
-				<div  defH="150" style="background-color:#fff;">
-					<c:forEach var="item" items="${approve}">
-						<p class="approveList">
-							<b>${item.user_name }</b> [${item.station}][<fmt:formatDate value="${item.oper_time }" pattern="yyyy-MM-dd HH:mm"/>]&nbsp;&nbsp;
-							<font style="color:#666;" <c:if test="${item.check_result != 4}"> color="blue" </c:if> ><b>[${item.result_str }]</b></font>
-							<font style="color:#666;">${item.check_idea }</font>
-						</p>
-					</c:forEach>
-				</div>
-			</div>
-			</c:if>
 			<div class="panel">
 				<h1>表单附件 [${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h1>
 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
@@ -137,19 +114,6 @@
 					</c:forEach>
 				</div>
 			</div>
-			<!--
-			<div id="jlfkTitle" class="panel">
-				<h1>交流反馈 [${fn:length(jlfk)}]</h1>
-				<div id="jlfkdiv" defH="150" style="background-color:#fff;">
-					<c:forEach var="jlfk" items="${jlfk}">
-						<p class="jlfkList">
-							<b>${jlfk.name}</b> [<fmt:formatDate value="${jlfk.time}" pattern="yyyy-MM-dd HH:mm"/>] <c:if test="${jlfk.slave_id != null}"><a href="download.do?slave_id=${jlfk.slave_id}"><img src="Images/slave.gif" alt="下载附件"/></a></c:if><br/>
-							${jlfk.yj}&nbsp;<c:if test="${jlfk.rw == 'w'}"><a href="javascript:del_send('${jlfk.project_id}','${param.project_id}','${jlfk.slave_id}','${param.module_id }','${param.user_id }','${param.doc_id }');"><img src="Images/icon10.gif" alt="删除"/></a></c:if>
-						</p>
-					</c:forEach>
-				</div>
-			</div>
-			 -->
 		</div>
 		<div  style="clear:both"></div>  
 	</div>
