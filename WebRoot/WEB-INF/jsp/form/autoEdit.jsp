@@ -36,8 +36,8 @@
 	<div id="autoform_body" class="pageContent" layoutH="0">
 		
 		<!-- 表单主体 -->
+		<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, recordCallBack);">
 		<div id="mainBody" class="pageFormContent" layouth="80">
-			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, recordCallBack);">
 		    <input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="<c:out value="${fn:substring(module.form_table,32,fn:length(module.form_table))}"/>.PROJECT_ID"  value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="module_id" id="module_id" value="${param.module_id}"/>
@@ -49,11 +49,16 @@
 			<input type="hidden" name="_message" value="数据保存" keep="true"/>
 			<input type="hidden" name="_callbackType" value="closeCurrent" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="" keep="true"/>
-			
 			<jsp:include page="${param.node_id}.jsp" flush="true"></jsp:include>
-			
-			</form>
 		</div>	 
-		 
+		<div class="formBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
+					<li>
+						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
+					</li>
+				</ul>
+			</div>
+		 </form>
 	</div>
 </div> 

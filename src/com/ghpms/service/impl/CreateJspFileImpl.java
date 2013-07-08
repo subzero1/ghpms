@@ -246,14 +246,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 			}
 
 		}
-		hsql.append("<div class=\"formBar\"> \n");
-		hsql.append(" <ul> \n");
-		hsql
-				.append("<li><div class=\"buttonActive\"><div class=\"buttonContent\"><button type=\"submit\">保 存</button></div></div></li>");
-		hsql.append("<li>");
-		hsql
-				.append("<div class=\"button\"><div class=\"buttonContent\"><button type=\"Button\" class=\"close\">取 消</button></div></div>");
-		hsql.append("</li> \n </ul> \n </div>");
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
 			Writer out = new OutputStreamWriter(fos, "utf-8");
