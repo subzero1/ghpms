@@ -343,57 +343,6 @@ public class OpenFormControler {
 			request.setAttribute("length_uploadslave", v_slave.size());
 
 			/**
-			 * 获得交流反馈信息
-			 */
-			List<Map> jlfkList = new LinkedList<Map>();
-			hsql.delete(0, hsql.length());
-			hsql
-					.append("select te02.project_id,te02.id,ta03.name,ta03.id,te02.yj,te02.time ");
-			hsql.append("from Te02_jlfk te02,Ta03_user ta03 ");
-			hsql.append("where te02.user_id = ta03.id ");
-			hsql.append("and project_id = ");
-			hsql.append(project_id);
-			hsql.append(" and module_id = ");
-			hsql.append(module_id);
-			hsql.append(" and document_id =  ");
-			hsql.append(doc_id);
-			hsql.append(" order by te02.time ");
-			ro = queryService.search(hsql.toString());
-			while (ro.next()) {
-				HashMap<String, Object> jlfk = new HashMap<String, Object>();
-				Long tmp_user_id = (Long) ro.get("ta03.id");
-				jlfk.put("name", ro.get("ta03.name"));
-				jlfk.put("project_id", ro.get("te02.id"));
-				jlfk.put("yj", ro.get("te02.yj"));
-				jlfk.put("time", ro.get("te02.time"));
-				if (user_id.equals(tmp_user_id)) {
-					jlfk.put("rw", "w");
-				} else {
-					jlfk.put("rw", "r");
-				}
-
-				Long te02_project_id = new Long(ro.get("te02.project_id")
-						.toString());
-				Long te02_id = new Long(ro.get("te02.id").toString());
-				QueryBuilder queryBuilder99 = new HibernateQueryBuilder(
-						Te01_slave.class);
-				queryBuilder99.eq("doc_id", te02_id);
-				queryBuilder99.eq("project_id", te02_project_id);
-				queryBuilder99.eq("module_id", new Long(9003));
-				ResultObject ro99 = queryService.search(queryBuilder99);
-				if (ro99.next()) {
-					Te01_slave te01 = (Te01_slave) ro99.get(Te01_slave.class
-							.getName());
-					jlfk.put("slave_id", te01.getId());
-				}
-				jlfkList.add(jlfk);
-			}
-			if (jlfkList != null && jlfkList.size() > 0) {
-				request.setAttribute("jlfk", jlfkList);
-			}
-			request.setAttribute("length_jlfk", jlfkList.size());
-
-			/**
 			 * 获得当前时间信息
 			 */
 			request.setAttribute("now", DateGetUtil.getCurTime());
