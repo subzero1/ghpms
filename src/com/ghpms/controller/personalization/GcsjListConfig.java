@@ -158,7 +158,7 @@ public class GcsjListConfig {
 			response
 					.getWriter()
 					.print(
-							"{\"statusCode\":\"200\", \"message\":\"设置成功!本次操作在下次操作前不会生效\", \"navTabId\":\"\",\"forwardUrl\":\""
+							"{\"statusCode\":\"200\", \"message\":\"设置成功!\", \"navTabId\":\"\",\"forwardUrl\":\""
 									+ forwardUrl + "\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
 			e.printStackTrace();
