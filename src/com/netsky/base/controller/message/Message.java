@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.dataObjects.base.Tc02_area;
 import com.ghpms.service.MessageToPhoneService;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -1275,7 +1276,7 @@ public class Message {
 			modelMap.put("user_dept_list", user_dept_list);
 
 			// 查询地区
-		//	queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
+			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
 			queryBuilder.like("type", "[3]", MatchMode.ANYWHERE);
 			List<?> areaList = queryService.searchList(queryBuilder);
 			modelMap.put("areaList", areaList);
@@ -1285,40 +1286,7 @@ public class Message {
 			queryBuilder.addOrderBy(Order.asc("login_id"));
 			List<?> user_list = queryService.searchList(queryBuilder);
 			modelMap.put("user_list", user_list);
-			
-			//查询合作单位
-			sql.delete(0, sql.length());
-			sql.append("select distinct(a.id),a.mc,a.dwlb"); 
-			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
-			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
-			sql.append(" order by a.dwlb,a.mc ");
-			List hzdwListx=queryService.searchList(sql.toString());
-			modelMap.put("hzdwListx", hzdwListx);
-			
-			//查询合作单位人员
-			sql.delete(0, sql.length());
-			sql.append("select distinct(a.id),a.mc,b.id,b.name,a.dwlb "); 
-			sql.append(" from Tf01_wxdw a,Ta03_user b,Tf04_wxdw_user c ");
-			sql.append(" where a.id=c.wxdw_id and b.id=c.user_id and b.dept_id=4 "); 
-			sql.append(" order by a.dwlb,a.mc,b.name ");
-			List hzdw_user_list=queryService.searchList(sql.toString());
-			modelMap.put("hzdw_user_list", hzdw_user_list);
-			
-			//查询公司类别
-			List dwlbList=queryService.searchList("select distinct(a.dwlb) from Tf01_wxdw a order by a.dwlb ");
-			Set dwlbTreeSet=new TreeSet();
-			for (Object object : dwlbList) {
-				Object object2[] = null;
-				if (object!=null&&!object.toString().equals("")) {
-				 object2 = object.toString().split(",");
-				 for (Object object3 : object2) {
-					 dwlbTreeSet.add(object3);
-				}  
-				}else  {
-					dwlbTreeSet.add("");
-				}
-			} 
-			modelMap.put("dwlbSet", dwlbTreeSet);
+			 
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
 		}
