@@ -68,14 +68,14 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 	public void setDocColsList(HttpServletRequest request) {
 	}
 
-	public List<Ta07_formfield> getExcelTitleList(Ta03_user user, Long moudle_id) {
+	public List<Ta07_formfield> getExcelTitleList(Ta03_user user, Long module_id) {
 		StringBuffer hsql = new StringBuffer();
 		hsql
 				.append("select distinct(a.id),a from Ta07_formfield a , Ta16_node_field b,Tb02_node c,Ta13_sta_node d,Ta02_station e,Ta11_sta_user f,Ta03_user g ");
 		hsql
 				.append(" where a.id=b.field_id and b.node_id=c.id and c.id=d.node_id and d.station_id=e.id and e.id=f.station_id and f.user_id=g.id ");
 		hsql.append(" and a.module_id=");
-		hsql.append(moudle_id);
+		hsql.append(module_id);
 		hsql.append(" and g.id=");
 		hsql.append(user.getId());
 		hsql.append(" order by a.ord");

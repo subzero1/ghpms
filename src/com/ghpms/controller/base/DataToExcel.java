@@ -133,12 +133,9 @@ public class DataToExcel {
 		String statusCode = "200";
 		String message = "";
 		ModelMap modelMap = new ModelMap();
-		Map docMap = null;
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
-		docMap = gcsjDataService.getFormTitleMap(user, module_id);
-		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
-				.get("docColsList");
+		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(user, module_id);
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
 
