@@ -3,6 +3,7 @@ package com.ghpms.controller.base;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jxl.Cell;
+import jxl.CellType;
+import jxl.DateCell;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -35,6 +38,7 @@ import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.service.ConfigXMLService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
 
 @Controller
@@ -306,9 +310,18 @@ public class DataToExcel {
 					if (colMap != null) {
 						int index = ((Integer) colMap.get("$index")).intValue();
 						Cell cell = sheet.getCell(index, row);
+						//转换日期
+						CellType cellType=cell.getType();
+						Date date;
 						if (cell.getContents() != null
 								&& cell.getContents().length() > 0) {
-							property = new String[] { cell.getContents() };
+							if (cellType==CellType.DATE) {
+								date=((DateCell)cell).getDate();
+								property=new String[]{DateFormatUtil.FormatDate(date)};
+							}else {
+								property = new String[] { cell.getContents() };
+							}
+							
 						}
 					}
 					if (property != null) {
