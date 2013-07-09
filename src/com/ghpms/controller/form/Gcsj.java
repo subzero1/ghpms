@@ -178,10 +178,24 @@ public class Gcsj {
 		}
 		// 导EXCEL
 		if ("yes".equals(request.getParameter("toExcel"))) {
+			List <Ta07_formfield>listToExcel=new ArrayList();
 			Map<String, List> sheetMap = new HashMap<String, List>();
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
-			for (Ta07_formfield ta07 : docColsList) {
+			//检测是否有无ID字段
+			List <Ta07_formfield>list=new ArrayList();
+			boolean isId=false;
+			for (Ta07_formfield ta07  : docColsList) {
+				if (!ta07.getName().equals("id")) {
+					isId=true;break;
+				}
+			}
+			if (isId) {
+				list=gcsjDataService.getUpdateProperty(module_id);
+			}
+			listToExcel.addAll(list);
+			listToExcel.addAll(docColsList);
+			for (Ta07_formfield ta07 : listToExcel) {
 				titleList.add(ta07.getComments().trim());
 			}
 			sheetList.add(titleList);
