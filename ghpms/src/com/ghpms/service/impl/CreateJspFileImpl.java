@@ -146,6 +146,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
 		hsql.append(" and b.id=");
 		hsql.append(node_id);
+		hsql.append(" order by  a.ord");
 		List fields = queryService.searchList(hsql.toString());
 
 		if (fields.size() > 0) {
