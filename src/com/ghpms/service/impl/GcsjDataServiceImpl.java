@@ -78,6 +78,7 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		hsql.append(moudle_id);
 		hsql.append(" and g.id=");
 		hsql.append(user.getId());
+		hsql.append(" order by a.ord");
 		List<Ta07_formfield> excelTitleList=new ArrayList<Ta07_formfield>();
 		ResultObject ro=queryService.search(hsql.toString());
 		while (ro.next()) {
