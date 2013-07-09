@@ -9,10 +9,11 @@ body{
 	height: 100%;
 	border:0;
 	text-align: left;
+	background-image: url(main-bg.jpg);
 	background-size:cover;	
 	background-repeat: no-repeat ;
 	background-position:center;	
-	background-color:#f5f5f5;
+	background-color:#eeeeee;
 } 
 form{
 	margin: 0;
@@ -33,16 +34,18 @@ form{
 }
 .login_top{
 	width: 100%;
-	min-height: 80px;/*登录面板头部高度*/
+	height: 80px;/*登录面板头部高度*/
+	border-bottom:solid 1px #d4d4d4;
+	background:#fff;
 }
 .login_middle{
 	width: 100%;
-	height: 1300px;/*登录面板中部高度*/
+	height: 0%/*登录面板中部高度*/	
 }
 .login_middleleft{
 	float: left;
 	width: 520px;/*登录面板中部左侧宽度*/
-	height: 100%;		
+	height: 100%;	
 	}
 .login_middlecenter{
 	float: left;
@@ -56,12 +59,13 @@ form{
 	height: 80px;/*登录面板底部高度*/
 	position:absolute;
 	bottom:0px;
+	background:#fff;
 }
 
 .top_title{
 	position:absolute;
-	left:145px;/*x坐标*/
-	top:-45px;/*y坐标*/
+	left:15px;/*x坐标*/
+	top:0px;/*y坐标*/
 	width:499px;/*宽度*/
 	height:80px;/*高度*/
 	background-image: url(top-title.png);
@@ -99,15 +103,15 @@ letter-spacing:1em;
 	font-family:微软雅黑;
 }
 .login_pass{
-	padding:22px 0 0 0px;/*密码框距用户名框的垂直距离*/
+	padding:38px 0 0 0px;/*密码框距用户名框的垂直距离*/
 	font-weight:bold;
 	font-size:14px;
 	font-family:微软雅黑;
 	color:#333;
 }
 .login_form{
-	padding:169px 203px 0px 0;/*表单位置*/
-	text-align:right;	
+	padding:193px 0px 0 85px;/*表单位置*/
+	text-align:center;
 }
 .login_button .input{
 	width: 80px;/*按钮宽度*/
@@ -118,34 +122,30 @@ letter-spacing:1em;
 }
 .login_user input{
 	border:transparent;/*边框色*/
-	width:208px;/*用户名框宽度*/
-	height:30px;
+	width:240px;/*用户名框宽度*/
+	height:28px;
 	line-height:26px;
-	background: url(login-box.png) no-repeat center;
-	padding-left:5px;
-	color:#c00;
-	font-size:12px;
+	background: /*url(login-box.png) no-repeat center */transparent;
+	padding-left:10px;
 }
 .login_pass input{
-	border:transparent;/*边框色*/
-	width:208px;/*用户名框宽度*/
-	height:30px;
+	border:transparent;/*边框色*/	
+	width:240px;/*密码框宽度*/
+	height:28px;
 	line-height:26px;
-	background: url(login-box.png) no-repeat center;
-	padding-left:5px;
-	color:#c00;
-	font-size:12px;
+	background: /*url(login-box.png) no-repeat center */transparent;
+	padding-left:10px;
 }
 .login_button_left{
 	position:absolute;
-	right:332px;/*提交按钮x坐标*/
-	top:310px;/*提交按钮y坐标*/
+	right:330px;/*提交按钮x坐标*/
+	top:345px;/*提交按钮y坐标*/
 }
 
 .login_button_right{
 	position:absolute;
-	left:500px;/*记住按钮x坐标*/
-	top:270px;/*记住按钮y坐标*/
+	left:285px;/*记住按钮x坐标*/
+	top:350px;/*记住按钮y坐标*/
 	width:150px;
 	color:#909090;
 	font-size:14px;
@@ -157,16 +157,11 @@ letter-spacing:1em;
 }
 
 .login_copyright{
-	position:absolute;
-	display:inline;
-	width:100%;
-	text-align:center;
 	color:#666a76;/*版权声明文字颜色*/
-	padding:0;/*版权声明位置*/
+	text-align:center;
+	padding:12px 0 20 0px;/*版权声明位置*/
 	line-height:20px;
-	height:.40px;
-	margin:5px;
+	height:40px;
+	margin:15px;
 	font-size:14px;
-	top:440px;
-	text-indent:10px;
 }
