@@ -154,7 +154,12 @@ public class Gcsj {
 
 					// 格式化数据
 					if ("NUMBER".equals(ta07.getDatatype()) && obj != null) {
-						row.add(df.format(new BigDecimal(obj.toString())));
+						if ((ta07.getDatalength().toString()).endsWith(".0")) {
+							row.add(obj.toString());
+						}else {
+							row.add(df.format(new BigDecimal(obj.toString())));
+						}
+						
 					} else if (obj instanceof Date) {
 						row.add(dateformat.format(obj));
 					} else {
