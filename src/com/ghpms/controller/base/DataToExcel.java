@@ -142,6 +142,8 @@ public class DataToExcel {
 		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(user, module_id);
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
+		//权限之外添加ID校验
+		docColsList.addAll(gcsjDataService.getUpdateProperty(module_id));
 
 		// 取session
 		Session session = null;

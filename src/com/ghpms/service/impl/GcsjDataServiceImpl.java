@@ -88,4 +88,14 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		return excelTitleList;
 	}
 
+	public List getUpdateProperty(Long module_id) {
+		StringBuffer hsql=new StringBuffer();
+		hsql.append("select a from Ta07_formfield a where a.module_id=");
+		hsql.append(module_id);
+		hsql.append(" and a.name ='");
+		hsql.append("id' ");
+		List list=queryService.searchList(hsql.toString());
+		return list;
+	}
+
 }
