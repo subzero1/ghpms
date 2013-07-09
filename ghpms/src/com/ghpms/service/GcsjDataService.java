@@ -11,5 +11,5 @@ import com.netsky.base.dataObjects.Ta07_formfield;
 public interface GcsjDataService {
 	public Map getFormTitleMap(Ta03_user user,Long module_id);
 	public void setDocColsList(HttpServletRequest request);
-	public List<Ta07_formfield> getExcelTitleList(Ta03_user user,Long moudle_id);
+	public List<Ta07_formfield> getExcelTitleList(Ta03_user user,Long module_id);
 }

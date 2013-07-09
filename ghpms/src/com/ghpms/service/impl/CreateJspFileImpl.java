@@ -175,7 +175,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 						+ tableName + "\" /> \n");
 		hsql.append("<input type=\"hidden\" name=\"" + packTableName
 				+ ".ID\" value=\"${param.project_id}\">");
-		for (int i = 1; i < fields.size(); i++) {
+		for (int i = 0; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
 			hsql.append(" <p> \n");
 			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
