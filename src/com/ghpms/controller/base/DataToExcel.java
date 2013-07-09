@@ -244,14 +244,12 @@ public class DataToExcel {
 			HttpServletResponse response) {
 
 		// 条件
-		Long module_id = convertUtil.toLong(request.getParameter("moudle_id"));
+		Long moudle_id = convertUtil.toLong(request.getParameter("moudle_id"));
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Ta06_module module = (Ta06_module) queryService.searchById(
-				Ta06_module.class, module_id);
+				Ta06_module.class, moudle_id);
 		// 取标题列
-		Map docMap = gcsjDataService.getFormTitleMap(user, module_id);
-		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
-				.get("docColsList");
+		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(user, moudle_id);
 		Map<String, List> sheetMap = new HashMap<String, List>();
 		List sheetList = new LinkedList();
 		List titleList = new LinkedList();

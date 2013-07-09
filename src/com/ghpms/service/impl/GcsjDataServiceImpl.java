@@ -1,5 +1,6 @@
 package com.ghpms.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,16 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ghpms.service.GcsjDataService;
-import com.netsky.base.baseObject.HibernateQueryBuilder;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.dataObjects.Ta01_dept;
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Ta07_formfield;
-import com.netsky.base.dataObjects.Ta21_user_ext;
-import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.utils.convertUtil;
 
 @Service("gcsjDataService")
 public class GcsjDataServiceImpl implements GcsjDataService {
@@ -33,7 +29,6 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		ResultObject rs;
 		StringBuffer hsql = new StringBuffer();
-
 
 		/**
 		 * 文档列表，列定义 列结构：ta07_formfield
@@ -71,6 +66,25 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 	}
 
 	public void setDocColsList(HttpServletRequest request) {
+	}
+
+	public List<Ta07_formfield> getExcelTitleList(Ta03_user user, Long moudle_id) {
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select distinct(a.id),a from Ta07_formfield a , Ta16_node_field b,Tb02_node c,Ta13_sta_node d,Ta02_station e,Ta11_sta_user f,Ta03_user g ");
+		hsql
+				.append(" where a.id=b.field_id and b.node_id=c.id and c.id=d.node_id and d.station_id=e.id and e.id=f.station_id and f.user_id=g.id ");
+		hsql.append(" and a.module_id=");
+		hsql.append(moudle_id);
+		hsql.append(" and g.id=");
+		hsql.append(user.getId());
+		List<Ta07_formfield> excelTitleList=new ArrayList<Ta07_formfield>();
+		ResultObject ro=queryService.search(hsql.toString());
+		while (ro.next()) {
+			Ta07_formfield field=(Ta07_formfield) ro.get("a");
+			excelTitleList.add(field);
+		}
+		return excelTitleList;
 	}
 
 }
