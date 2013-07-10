@@ -65,6 +65,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 			if (formfield.getData_type() != null
 					&& (formfield.getData_type() == 2 || formfield
 							.getDatalength() > 1000)) {
+				//文本域换行
+				hsql.append("<div style=\"height:0px;\"></div>");
 				hsql.append(" <p> \n");
 				hsql.append("<label> " + formfield.getComments()
 						+ ":</label> \n");
@@ -79,6 +81,9 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("\n </p> \n");
 				hsql.append("<div style=\"height:0px;\"></div> \n");
 			} else {
+				if (formfield.getDatalength()>500) {
+					hsql.append("<div style=\"height:0px;\"></div>");
+				}
 				hsql.append(" <p> \n");
 				hsql.append("<label> " + formfield.getComments()
 						+ ":</label> \n");
@@ -110,10 +115,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				}
 
 				hsql.append("\n </p> \n");
-			}
-			if (i%2==0) {
-				hsql.append("<div style=\"height:0px;\"></div>");
-			}
+			} 
 		}
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
