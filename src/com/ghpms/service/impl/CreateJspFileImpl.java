@@ -211,7 +211,27 @@ public class CreateJspFileImpl implements CreateJspFile {
 						formfield.getObject_name().length()).toLowerCase());
 				hsql.append("." + formfield.getName() + "}\" ");
 				hsql.append(" htmlClass=\"td-select\"/>");
-			} else {
+				//文本域 data_type=2
+			}else if (formfield.getData_type() != null
+					&& (formfield.getData_type() == 2||formfield.getDatalength()>1000)) {
+
+				hsql.append("<textarea ");
+				hsql.append(" name=\"");
+				hsql.append(packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+			 				hsql.append("style=\"width:256px;height:70px;\" >");
+				 
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "} ");
+				hsql.append("</textarea>");
+			
+			}
+			else {
 				// 非下拉框
 				hsql.append("<input type=\"text\" ");
 				hsql.append(" name=\"");
