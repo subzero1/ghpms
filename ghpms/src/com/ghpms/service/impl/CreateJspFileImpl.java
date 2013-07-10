@@ -70,7 +70,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				fieldQueue2.offer(formfield);
 			}
 			if (fieldQueue1.size()%2==0&&fieldQueue2.size()>0) {
-				formfield=fieldQueue2.peek();
+//				formfield=fieldQueue2.peek();
 				fieldQueue2.remove();
 			}
 			
