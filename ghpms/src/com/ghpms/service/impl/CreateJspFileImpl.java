@@ -99,14 +99,19 @@ public class CreateJspFileImpl implements CreateJspFile {
 				if (formfield.getDatatype().equals("DATE")) {
 					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
 				}
+				// 长文本框
+				if (formfield.getDatalength() > 200
+						&& formfield.getDatalength() < 500) {
+					hsql.append("style=\"width:619px;\" readonly/>");
+				} 
+				//短文本框
+				else {
+					hsql.append("style=\"width:256px;\" readonly/>");
+				}
 
-				hsql.append("style=\"width:256px;\" readonly/>");
 				hsql.append("\n </p> \n");
 			}
 
-			if (i % 2 == 0) {
-				hsql.append("<div style=\"height:0px;\"></div> \n");
-			}
 		}
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
