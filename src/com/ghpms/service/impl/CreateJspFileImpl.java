@@ -64,14 +64,18 @@ public class CreateJspFileImpl implements CreateJspFile {
 		Queue <Ta07_formfield>fieldQueue2=new LinkedList<Ta07_formfield>();
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			if (formfield.getDatalength()<200) {
-				fieldQueue1.offer(formfield);
-			}if (formfield.getDatalength()>200&&fieldQueue1.size()%2==1) {
-				fieldQueue2.offer(formfield);
-			}
-			if (fieldQueue1.size()%2==0&&fieldQueue2.size()>0) {
-//				formfield=fieldQueue2.peek();
-				fieldQueue2.remove();
+			
+			if (fieldQueue1.size()%2==1) {
+				if (formfield.getDatalength()>200) {
+					fieldQueue2.offer(formfield);
+					continue;
+				}else {
+					fieldQueue1.offer(formfield);
+				}
+			}else {
+				if (formfield.getDatalength()<200) {
+					fieldQueue1.offer(formfield);
+				}
 			}
 			
 			// 文本域
