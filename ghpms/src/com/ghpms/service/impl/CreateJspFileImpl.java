@@ -60,28 +60,50 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" \n ");
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			hsql.append(" <p> \n");
-			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
 
-			hsql.append("<input type=\"text\" ");
-			hsql.append(" value=\"");
-			// 如果是日期
-			if (formfield.getDatatype().equals("DATE")) {
-				hsql.append("<fmt:formatDate value=\"");
+			// 文本域
+			if (formfield.getData_type() != null
+					&& (formfield.getData_type() == 2 || formfield
+							.getDatalength() > 1000)) {
+				hsql.append(" <p> \n");
+				hsql.append("<label> " + formfield.getComments()
+						+ ":</label> \n");
+				hsql.append("<textarea ");
+				hsql.append(" style=\"width:619px;height:70px;\" >");
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "} ");
+				hsql.append("</textarea>");
+				hsql.append("\n </p> \n");
+				hsql.append("<div style=\"height:0px;\"></div> \n");
+			} else {
+				hsql.append(" <p> \n");
+				hsql.append("<label> " + formfield.getComments()
+						+ ":</label> \n");
+
+				hsql.append("<input type=\"text\" ");
+				hsql.append(" value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append("<fmt:formatDate value=\"");
+				}
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+
+				hsql.append("style=\"width:256px;\" readonly/>");
+				hsql.append("\n </p> \n");
 			}
-			hsql.append("${");
-			hsql.append(formfield.getObject_name().substring(
-					formfield.getObject_name().lastIndexOf(".") + 1,
-					formfield.getObject_name().length()).toLowerCase());
-			hsql.append("." + formfield.getName() + "}\" ");
 
-			// 如果是日期
-			if (formfield.getDatatype().equals("DATE")) {
-				hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
-			}
-
-			hsql.append("style=\"width:256px;\" readonly/>");
-			hsql.append("\n </p> \n");
 			if (i % 2 == 0) {
 				hsql.append("<div style=\"height:0px;\"></div> \n");
 			}
@@ -186,18 +208,17 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hql.append("select a from Tf01_field_property a where 1=1 ");
 				hql.append(" and a.field_id=");
 				hql.append(formfield.getId());
-				List fps =  queryService
-						.searchList(hql.toString());
-				Tf01_field_property fp=null;
-				if (fps!=null&&fps.size()>0) {
-					fp=(Tf01_field_property) fps.get(0);
+				List fps = queryService.searchList(hql.toString());
+				Tf01_field_property fp = null;
+				if (fps != null && fps.size() > 0) {
+					fp = (Tf01_field_property) fps.get(0);
 				}
-				//得到下拉框的值
-				List objs=null;
+				// 得到下拉框的值
+				List objs = null;
 				if (fp != null) {
 					objs = queryService.searchList(fp.getP_sql());
 					request.setAttribute("objs", objs);
-				}  
+				}
 				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
@@ -211,9 +232,10 @@ public class CreateJspFileImpl implements CreateJspFile {
 						formfield.getObject_name().length()).toLowerCase());
 				hsql.append("." + formfield.getName() + "}\" ");
 				hsql.append(" htmlClass=\"td-select\"/>");
-				//文本域 data_type=2
-			}else if (formfield.getData_type() != null
-					&& (formfield.getData_type() == 2||formfield.getDatalength()>1000)) {
+				// 文本域 data_type=2
+			} else if (formfield.getData_type() != null
+					&& (formfield.getData_type() == 2 || formfield
+							.getDatalength() > 1000)) {
 
 				hsql.append("<textarea ");
 				hsql.append(" name=\"");
@@ -221,17 +243,16 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
 				hsql.append("\" ");
-			 				hsql.append("style=\"width:256px;height:70px;\" >");
-				 
+				hsql.append("style=\"width:256px;height:70px;\" >");
+
 				hsql.append("${");
 				hsql.append(formfield.getObject_name().substring(
 						formfield.getObject_name().lastIndexOf(".") + 1,
 						formfield.getObject_name().length()).toLowerCase());
 				hsql.append("." + formfield.getName() + "} ");
 				hsql.append("</textarea>");
-			
-			}
-			else {
+
+			} else {
 				// 非下拉框
 				hsql.append("<input type=\"text\" ");
 				hsql.append(" name=\"");
