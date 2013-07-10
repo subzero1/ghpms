@@ -8,8 +8,10 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,9 +60,20 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql
 				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
+		Queue <Ta07_formfield>fieldQueue1=new LinkedList<Ta07_formfield>();
+		Queue <Ta07_formfield>fieldQueue2=new LinkedList<Ta07_formfield>();
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-
+			if (formfield.getDatalength()<200) {
+				fieldQueue1.offer(formfield);
+			}if (formfield.getDatalength()>200&&fieldQueue1.size()%2==1) {
+				fieldQueue2.offer(formfield);
+			}
+			if (fieldQueue1.size()%2==0&&fieldQueue2.size()>0) {
+				formfield=fieldQueue2.peek();
+				fieldQueue2.remove();
+			}
+			
 			// 文本域
 			if (formfield.getData_type() != null
 					&& (formfield.getData_type() == 2 || formfield
@@ -71,7 +84,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("<label> " + formfield.getComments()
 						+ ":</label> \n");
 				hsql.append("<textarea ");
-				hsql.append(" style=\"width:619px;height:70px;\" >");
+				hsql.append(" style=\"width:619px;height:70px;\" readonly>");
 				hsql.append("${");
 				hsql.append(formfield.getObject_name().substring(
 						formfield.getObject_name().lastIndexOf(".") + 1,
@@ -81,7 +94,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("\n </p> \n");
 				hsql.append("<div style=\"height:0px;\"></div> \n");
 			} else {
-				if (formfield.getDatalength()>500) {
+				if (formfield.getDatalength()>250) {
 					hsql.append("<div style=\"height:0px;\"></div>");
 				}
 				hsql.append(" <p> \n");
@@ -115,6 +128,9 @@ public class CreateJspFileImpl implements CreateJspFile {
 				}
 
 				hsql.append("\n </p> \n");
+				if (fieldQueue1.size()%2==0) {
+					hsql.append("<div style=\"height:0px;\"></div> \n");
+				}
 			} 
 		}
 		try {
