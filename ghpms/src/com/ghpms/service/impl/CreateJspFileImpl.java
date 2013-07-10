@@ -111,7 +111,9 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 				hsql.append("\n </p> \n");
 			}
-
+			if (i%2==0) {
+				hsql.append("<div style=\"height:0px;\"></div>");
+			}
 		}
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
