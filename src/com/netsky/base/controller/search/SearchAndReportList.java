@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -868,6 +869,15 @@ public class SearchAndReportList {
 
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
+		
+		/**
+		 * 设置表单选择下拉框
+		 */
+		List modules=queryService.searchList("select a from Ta06_module a where a.id<109 ");
+		/**
+		 * 设置返回对象
+		 */
+		request.setAttribute("modules", modules); 
 
 		List<String[]> searchField = new ArrayList<String[]>();
 
@@ -971,9 +981,8 @@ public class SearchAndReportList {
 		 * 显示流程和表单图标单元格默认70;
 		 */
 		tablewidth += 70;
-		/**
-		 * 设置返回对象
-		 */
+		
+
 		request.setAttribute("fields_select", columns);
 		request.setAttribute("searchField", searchField);
 		request.setAttribute("total", ro.getLength());
