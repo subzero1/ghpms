@@ -62,7 +62,7 @@
 	<div id="autoform_body" class="pageContent" layoutH="0">
 		
 		<!-- 表单主体 -->
-		<div id="mainBody" class="pageFormContent" layouth="80">
+		<div id="mainBody" class="pageFormContent" layouth="60">
 			<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 		    <input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="<c:out value="${fn:substring(module.form_table,32,fn:length(module.form_table))}"/>.PROJECT_ID"  value="<c:out value="${param.project_id}" default="-1"/>"/>
