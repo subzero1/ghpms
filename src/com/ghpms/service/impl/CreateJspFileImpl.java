@@ -42,6 +42,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append("select a from Ta07_formfield a where 1=1 ");
 		hsql.append(" and a.module_id=");
 		hsql.append(module_id);
+		hsql.append(" and a.name <> 'id' ");
 		hsql.append(" order by a.ord");
 		List fields = queryService.searchList(hsql.toString());
 
