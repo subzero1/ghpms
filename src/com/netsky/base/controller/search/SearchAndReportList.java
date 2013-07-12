@@ -108,6 +108,12 @@ public class SearchAndReportList {
 		String module_name = "综合";
 		StringBuffer searchStr = new StringBuffer();
 		/**
+		 * 取表单列表
+		 */
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 where ta06.id<109");
+		request.setAttribute("modules", modules);
+		
+		/**
 		 * 输出结果列表
 		 */
 		List<List<Td_Struct>> result = new ArrayList<List<Td_Struct>>();

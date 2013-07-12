@@ -13,7 +13,7 @@ function searchListExport(){
 	$form.attr("action","");
 }
 function searchList(param1){
-	var module_name=$("select[name='module_name']").val();
+	var module_name=$("select[name='module_name']",navTab.getCurrentPanel()).val();
 	var url="search/condition.do?module_id="+module_name+"&navtab="+param1;
 	$.pdialog.open(url, '', '设置查询条件', {mask:true,width:815,height:350});
 	
@@ -94,7 +94,6 @@ function searchList(param1){
 								<c:when test="${offset_td == 1 && param.module_id == 101}">
 								<c:if test="${param.module_id == 101}">
 									<td>
-								<!--  <img border="0" src="Images/station.png" /> -->
 										</td>
 								</c:if>
 									<td>
