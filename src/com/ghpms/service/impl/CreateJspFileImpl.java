@@ -66,6 +66,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+			
+			//如果文本框沒湊夠兩個一排,進入队列1
 			if (fieldQueue1.size() % 2 == 1) {
 				if (formfield.getDatalength() > 200) {
 					fieldQueue2.offer(formfield);
@@ -73,7 +75,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				} else {
 					fieldQueue1.offer(formfield);
 				}
-			} else {
+			} //如果是偶数
+			else {
 				if (fieldQueue2.size() > 0) {
 					formfield = fieldQueue2.poll();
 				} else {
