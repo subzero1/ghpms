@@ -62,29 +62,32 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql
 				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
-		Queue <Ta07_formfield>fieldQueue1=new LinkedList<Ta07_formfield>();
-		Queue <Ta07_formfield>fieldQueue2=new LinkedList<Ta07_formfield>();
+		Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
+		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
 		for (int i = 1; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			
-			if (fieldQueue1.size()%2==1) {
-				if (formfield.getDatalength()>200) {
+			if (fieldQueue1.size() % 2 == 1) {
+				if (formfield.getDatalength() > 200) {
 					fieldQueue2.offer(formfield);
 					continue;
-				}else {
+				} else {
 					fieldQueue1.offer(formfield);
 				}
-			}else {
-				if (formfield.getDatalength()<200) {
-					fieldQueue1.offer(formfield);
+			} else {
+				if (fieldQueue2.size() > 0) {
+					formfield = fieldQueue2.poll();
+				} else {
+					if (formfield.getDatalength() < 200) {
+						fieldQueue1.offer(formfield);
+					}
 				}
 			}
-			
+
 			// 文本域
 			if (formfield.getData_type() != null
 					&& (formfield.getData_type() == 2 || formfield
 							.getDatalength() > 1000)) {
-				//文本域换行
+				// 文本域换行
 				hsql.append("<div style=\"height:0px;\"></div>");
 				hsql.append(" <p> \n");
 				hsql.append("<label> " + formfield.getComments()
@@ -100,7 +103,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("\n </p> \n");
 				hsql.append("<div style=\"height:0px;\"></div> \n");
 			} else {
-				if (formfield.getDatalength()>250) {
+				if (formfield.getDatalength() > 250) {
 					hsql.append("<div style=\"height:0px;\"></div>");
 				}
 				hsql.append(" <p> \n");
@@ -127,17 +130,17 @@ public class CreateJspFileImpl implements CreateJspFile {
 				if (formfield.getDatalength() > 200
 						&& formfield.getDatalength() < 500) {
 					hsql.append("style=\"width:619px;\" readonly/>");
-				} 
-				//短文本框
+				}
+				// 短文本框
 				else {
 					hsql.append("style=\"width:256px;\" readonly/>");
 				}
 
 				hsql.append("\n </p> \n");
-				if (fieldQueue1.size()%2==0) {
+				if (fieldQueue1.size() % 2 == 0) {
 					hsql.append("<div style=\"height:0px;\"></div> \n");
 				}
-			} 
+			}
 		}
 		try {
 			FileOutputStream fos = new FileOutputStream(filePath);
