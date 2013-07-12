@@ -88,7 +88,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("<div style=\"height:0px;\"></div>");
 				hsql.append(" <p> \n");
 				hsql.append("<label> " + formfield.getComments()
-						+ ":</label> \n");
+						+ "：</label> \n");
 				hsql.append("<textarea ");
 				hsql.append(" style=\"width:619px;height:70px;\" readonly>");
 				hsql.append("${");
@@ -105,7 +105,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				}
 				hsql.append(" <p> \n");
 				hsql.append("<label> " + formfield.getComments()
-						+ ":</label> \n");
+						+ "：</label> \n");
 
 				hsql.append("<input type=\"text\" ");
 				hsql.append(" value=\"");
@@ -231,7 +231,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		for (int i = 0; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
 			hsql.append(" <p> \n");
-			hsql.append("<label> " + formfield.getComments() + ":</label> \n");
+			hsql.append("<label> " + formfield.getComments() + "：</label> \n");
 			// 下拉框的情況
 			if (formfield.getData_type() != null
 					&& formfield.getData_type() == 1) {
