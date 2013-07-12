@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%> 
 <script language="javascript">
 function searchListExport(){
 	$form = $("#pagerForm", navTab.getCurrentPanel());
@@ -10,6 +11,12 @@ function searchListExport(){
 	$form.attr("action","search/searchListExport.do");
 	$form.submit();
 	$form.attr("action","");
+}
+function searchList(param1){
+	var module_name=$("select[name='module_name']").val();
+	var url="search/condition.do?module_id="+module_name+"&navtab="+param1;
+	$.pdialog.open(url, '', '设置查询条件', {mask:true,width:815,height:350});
+	
 }
 </script>
 
@@ -32,9 +39,16 @@ function searchListExport(){
 	<div class="pageHeader">
 		<form onsubmit="return navTabSearch(this);" action="sysManage/userList.do" method="post">
 		<div class="searchBar">
+		<table class="searchContent">
+					<tr>
+						<td>
+						<input type="text" style="display:none"/>
+						选择表单： <netsky:htmlSelect name="module_name"  objectForOption="modules" style="width:128px;" valueForOption="id" showForOption="name" extend="-----------,101" extendPrefix="true" value="${param.module_id}"  htmlClass="td-select"/></td>
+					</tr>
+				</table>
 			<div class="subBar">
 				<ul>
-					<li><a class="button" href="search/condition.do?module_id=${param.module_id }&navtab=${param.navtab }" target="dialog" width="815" height="350" rel="searchCondition" title="设置查询条件"><span>条件过滤</span></a></li>
+					<li><a class="button" href="javascript:searchList('${param.navtab }')" title="设置查询条件"><span>条件过滤</span></a></li>
 					<li><a class="button" href="javascript:searchListExport();" title="EXCEL导出"><span>EXCEL导出</span></a></li>
 				</ul>
 			</div>
@@ -42,7 +56,7 @@ function searchListExport(){
 		</form>
 	</div>
 	<div class="pageContent">
-		<table class="table" width="100%" layouth="85">
+		<table class="table" width="100%" layouth="115">
 			<thead>
 				<tr>
 					<c:if test="${param.module_id == 101}">
