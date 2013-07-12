@@ -113,8 +113,7 @@ function searchListExport(param1){
 		</div>
 		<table class="table" layouth="138">
 			<thead>
-				<tr>
-					<th style="width:20px;"></th>
+				<tr> 
 					<th style="width:20px;"></th>
 					<!-- 初始化标题名称 -->
 					<c:forEach var="col" items="${docColsList}">
@@ -127,8 +126,6 @@ function searchListExport(param1){
 				<c:forEach var="doc" items="${docs}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr target="project_id" rel="${doc[cols].id}">
-						<td>
-						</td>
 						<td>
 						<c:if test="${doc[cols] != null }">
 							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].gcmc}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
@@ -150,7 +147,7 @@ function searchListExport(param1){
 					<tr>
 						<td></td>
 						<td></td>
-					<c:forEach var="j" begin="0" end ="${cols-1>0?cols-1:0}">
+					<c:forEach var="j" begin="1" end ="${cols-1>0?cols-1:0}">
 						<td></td>
 					</c:forEach>
 					</tr>
