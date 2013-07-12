@@ -14,6 +14,7 @@ function searchListExport(){
 </script>
 
 <form id="pagerForm" method="post" action="">
+	<input type="hidden" name="ids" value="-9999999" />
 	<input type="hidden" name="pageNum" value="${page}" />
 	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
 	<input type="hidden" name="orderField" value="${orderField}" />

@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.dataObjects.Ta03_user;
-import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -869,15 +868,6 @@ public class SearchAndReportList {
 
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
-		
-		/**
-		 * 设置表单选择下拉框
-		 */
-		List modules=queryService.searchList("select a from Ta06_module a where a.id<109 ");
-		/**
-		 * 设置返回对象
-		 */
-		request.setAttribute("modules", modules); 
 
 		List<String[]> searchField = new ArrayList<String[]>();
 
@@ -900,13 +890,8 @@ public class SearchAndReportList {
 		}
 
 		try {
-			String HSqlWhere = this.makeSearch(request, searchStr, searchField);
-			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(request
-					.getParameter("ids")));
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
-			String HSqlFrom = " from " + tableName + " " + tableName;
-			String HSqlSelect = "select " + tableName;
-
+			
+			Ta08_reportfield ta08 = null;
 			if (columns == null || columns.length == 0) {
 				/**
 				 * 获取默认查询字段
@@ -928,6 +913,15 @@ public class SearchAndReportList {
 				}
 
 			}
+			
+			//create select data sql
+			String HSqlWhere = this.makeSearch(request, searchStr, searchField);
+			ta08 = fieldList.get(0);
+			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			String HSqlFrom = " from " + tableName + " " + tableName;
+			String HSqlSelect = "select " + tableName;
+			
+			
 			ro = queryService.searchByPage(HSqlSelect + HSqlFrom + HSqlWhere, page, pageRowSize);
 			totalRows = ro.getTotalRows();
 			totalPages = ro.getTotalPages();
@@ -981,8 +975,9 @@ public class SearchAndReportList {
 		 * 显示流程和表单图标单元格默认70;
 		 */
 		tablewidth += 70;
-		
-
+		/**
+		 * 设置返回对象
+		 */
 		request.setAttribute("fields_select", columns);
 		request.setAttribute("searchField", searchField);
 		request.setAttribute("total", ro.getLength());
