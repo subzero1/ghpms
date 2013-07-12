@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="crht"%>
+ <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%> 
 
 <script language="javascript">
 //查看统计明细
@@ -22,15 +23,29 @@ function mainReportExport(){
 		alertMsg.warn("没有可输出信息!");
 }
 
+function searchList(){
+	var module_name=$("select[name='module_name']",navTab.getCurrentPanel()).val();
+	var url="search/condition.do?type=report&module_id="+module_name
+	$.pdialog.open(url, '', '设置统计条件', {mask:true,width:815,height:350});
+	
+}
+
 </script>
 
 <div class="page">
 	<div class="pageHeader">
 		<form action="" method="post">
 		<div class="searchBar">
+		<table class="searchContent">
+					<tr>
+						<td>
+						<input type="text" style="display:none"/>
+						选择表单： <netsky:htmlSelect name="module_name"  objectForOption="modules" style="width:128px;" valueForOption="id" showForOption="name" extend="-----------,101" extendPrefix="true" value="${module_id}"  htmlClass="td-select"/></td>
+					</tr>
+				</table>
 			<div class="subBar">
 				<ul>
-					<li><a class="button" href="search/condition.do?type=report&module_id=${param.module_id }" target="dialog" width="800" height="350" rel="reportCondition" title="设置统计条件"><span>条件过滤</span></a></li>
+					<li><a class="button" href="javascript:searchList()"  rel="reportCondition" title="设置统计条件"><span>条件过滤</span></a></li>
 					<li><a class="button" href="javascript:mainReportExport();" title="EXCEL导出"><span>EXCEL导出</span></a></li>
 					<li><a class="button" href="dispath.do?url=search/reportCharts.jsp;" title="统计图" target="navTab" rel="cacu"><span>统计图</span></a></li>
 				</ul>
