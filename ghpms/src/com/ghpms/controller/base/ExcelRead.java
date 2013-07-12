@@ -35,8 +35,9 @@ public class ExcelRead {
 	public static void main(String[] args) {
 
 		try {
-			File file = new File("d:\\test.xlsx");
-			InputStream instream = new FileInputStream(file);
+			System.out.println("区域"+4.0%1);
+//			File file = new File("d:\\test.xlsx");
+//			InputStream instream = new FileInputStream(file);
 			// byte[] bs = new byte[1024];
 			// while(instream.read(bs) != -1){
 			// //System.out.println(new String(bs));
