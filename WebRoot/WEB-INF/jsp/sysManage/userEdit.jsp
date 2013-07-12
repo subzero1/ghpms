@@ -65,13 +65,21 @@ $(function(){
 						valueForOption="id" showForOption="name"
 						value="${userObj.dept_id}" extend="" extendPrefix="true"  htmlClass="required"/>
 				</p>
-				
+				<p>
+					<label>是否可用：</label>
+					<input type="radio" name="Ta03_user.USEFLAG" value="1" <c:if test="${userObj.useflag=='1'||empty dept }">checked</c:if> />
+					是
+					<input type="radio" name="Ta03_user.USEFLAG" value="0" <c:if test="${userObj.useflag=='0' }">checked</c:if> />
+					否
+				</p>
+				<!-- 
 				<p>
 					<label>集中派工：</label>
 					<netsky:htmlSelect name="Ta03_user.SEND_HTGLY" style="width:90px;"
 						objectForOption="sendHtglyList"  value="${userObj.send_htgly}"
 						extendPrefix="true" extend="" />
 				</p>
+				 -->
 				<div style="height:0px;"></div>
 				<p>
 					<label>移动电话：</label>
@@ -91,14 +99,7 @@ $(function(){
 				<div style="height:0px;"></div>
 				<p>
 					<label>电子邮件：</label>
-					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:306px;"/>
-				</p>
-				<p>
-					<label>是否可用：</label>
-					<input type="radio" name="Ta03_user.USEFLAG" value="1" <c:if test="${userObj.useflag=='1'||empty dept }">checked</c:if> />
-					是
-					<input type="radio" name="Ta03_user.USEFLAG" value="0" <c:if test="${userObj.useflag=='0' }">checked</c:if> />
-					否
+					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:495px;"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
