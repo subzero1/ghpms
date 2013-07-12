@@ -28,7 +28,7 @@ function searchListExport(param1){
 
 <div class="page">
 	<div class="pageHeader">
-		<form	action="form/gcsjList.do" method="post">
+		<form	action="form/gcsjList.do?module_id=${param.module_id}" method="post">
 			<input type="hidden" id="selectedId_demo" />
 			<input type="hidden" name="workState" value="${param.workState}">
 			<div class="searchBar">
