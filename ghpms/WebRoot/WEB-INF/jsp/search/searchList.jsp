@@ -94,11 +94,11 @@ function searchList(param1){
 								<c:when test="${offset_td == 1 && param.module_id == 101}">
 								<c:if test="${param.module_id == 101}">
 									<td>
-								<a href="javascript:navTab.openTab('xmsgjd', 'wxdw/xmsgjd.do?id=${td.value}', {title:'项目施工进度'});" title="项目施工进度" ><img border="0" src="Images/station.png" /></a> 
+								<!--  <img border="0" src="Images/station.png" /> -->
 										</td>
 								</c:if>
 									<td>
-										<a href="javascript:openFlowForm('{project_id:${td.value},doc_id:${td.value},module_id:101,opernode_id:-1,node_id:-1,user_id:-1}');" title="表单[${doc[cols].project_id}${td.value}]"  title="项目信息"><img border="0" src="Images/project.png" /></a>
+										<a href="gh/openForm.do?project_id=${td.value}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].project_id}${td.value}]"  title="项目信息"><img border="0" src="Images/project.png" /></a>
 									</td>
 								</c:when>
 								<c:when test="${offset_td == 1 && param.module_id == 102}">
