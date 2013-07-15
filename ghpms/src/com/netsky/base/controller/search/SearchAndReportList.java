@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -1020,7 +1021,7 @@ public class SearchAndReportList {
 		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
-			module_id = new Long(100);
+			module_id = new Long(101);
 		}
 		try {
 			String HSqlWhere = this.makeSearch(request, searchStr, null);
@@ -1050,13 +1051,15 @@ public class SearchAndReportList {
 				}
 
 			}
+			List titlesList = new LinkedList();
 			for (int i = 0; i < fieldList.size(); i++) {
 				ta08 = fieldList.get(i);
-				HSqlSelect += "," + tableName + "." + ta08.getName() + " as " + ta08.getComments();
+				HSqlSelect += "," + tableName + "." + ta08.getName() ;
+				titlesList.add(ta08.getComments());
 			}
 
 			HSqlSelect = HSqlSelect.replaceFirst(",", "");
-			ro = queryService.search(HSqlSelect + HSqlFrom + HSqlWhere);
+			List resultList = queryService.searchList(HSqlSelect + HSqlFrom + HSqlWhere);
 
 			String file_name = "查询结果导出.xls";
 			response.reset();
@@ -1064,12 +1067,13 @@ public class SearchAndReportList {
 					+ new String(file_name.getBytes("GBK"), "iso8859-1"));
 			jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
 			jxl.write.WritableSheet ws0 = wwb.createSheet("查询列表", 0);
-			ExportExcel.Ro2Excel(ro, ws0);
+			ExportExcel.List2Excel(titlesList, resultList, ws0);
 			wwb.write();
 			wwb.close();
 			response.getOutputStream().flush();
 			response.getOutputStream().close();
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			return;
 		}
 	}
