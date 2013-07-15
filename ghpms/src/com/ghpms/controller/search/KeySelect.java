@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.controller.search.KeySelect;
-import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
-import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
@@ -99,18 +97,7 @@ public class KeySelect {
 				while (ro.next()) {
 					result.add(PropertyInject.getProperty(ro.get("ta01"), "name") + "");
 				}
-			}
-			
-			else if(type.equals("yslx")){
-				/*
-				 * 预算类型
-				 */
-				String HSql = "select tc01 from Tc01_property tc01 where type='预算类型' order by id";
-				ResultObject ro = queryService.search(HSql);
-				while (ro.next()) {
-					result.add(PropertyInject.getProperty(ro.get("tc01"), "name") + "");
-				}
-			}
+			} 
 			else if(type.equals("sgdw")){
 				/*
 				 * 施工单位
@@ -173,37 +160,25 @@ public class KeySelect {
 				while (ro.next()) {
 					result.add((String)ro.get("name"));
 				}
-			}else if (type.equals("zt")) {//目标库状态
-				String HSql = "select name from Tc01_property tc01 where type='目标库状态'";
+			}  else if (type.equals("kclx")) {//勘察类型
+				String HSql="select name from Tc01_property tc01 where typecode='KCLX'";
 				ResultObject ro = queryService.search(HSql);
 				while (ro.next()) {
 					result.add((String)ro.get("name"));
 				}
-			}else if (type.equals("jsdj")) {//建设等级
-					result.add("A");
-					result.add("B");
-					result.add("C");
-			}
-			else if (type.equals("zyyszt")) {//资源验收状态
-				result.add("通过");
-				result.add("回退");
-			}
-			else if (type.equals("ycystg")) {//一次资源验收通过
-				result.add("是");
-				result.add("否");
-			}
-			else if (type.equals("hzdwlb")) {//合作单位类别
-				result.add("设计");
-				result.add("施工");
-				result.add("监理");
-			}
-			else if (type.equals("khgl")) {//考核归类
-				String HSql = "select name from Tc01_property tc01 where type='考核类别'";
+			}  else if (type.equals("zxgc")) {//专项工程
+				String HSql="select name from Tc01_property tc01 where typecode='ZXGC'";
 				ResultObject ro = queryService.search(HSql);
 				while (ro.next()) {
 					result.add((String)ro.get("name"));
 				}
-			}
+			}  else if (type.equals("rwwcqk")) {//任务完成情况
+				String HSql="select name from Tc01_property tc01 where typecode='RWWCQK'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			} 
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(KeySelect.class.getName(), "选择基础多选项", e);

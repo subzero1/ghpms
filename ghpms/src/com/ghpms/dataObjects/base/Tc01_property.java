@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2012-06-04
+ * @author cmp_auto 2013-07-15
  * @hibernate.class table="Tc01_property"
  */
 
@@ -13,7 +13,7 @@ public class Tc01_property implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 874553105124825088L;
+	private static final long serialVersionUID = 345250184060970624L;
 
 	/**
 	 * 标识
@@ -87,13 +87,39 @@ public class Tc01_property implements Serializable{
     this.flag = flag;
   }
 
+ /**
+ * 属性分类编码[应用程序启动时作为key编码]
+ */
+ private String typecode;
+
+ /**
+ * @hibernate.property column="typecode"
+ * @return Returns the typecode.
+ */
+ public String getTypecode() {
+    return typecode;
+ }
+
+ public void setTypecode(String typecode) {
+    this.typecode = typecode;
+  }
+
+ /**
+ * optional
+ */
  private String ext_col;
 
-public String getExt_col() {
-	return ext_col;
-}
+ /**
+ * @hibernate.property column="ext_col"
+ * @return Returns the ext_col.
+ */
+ public String getExt_col() {
+    return ext_col;
+ }
 
-public void setExt_col(String ext_col) {
-	this.ext_col = ext_col;
-}
+ public void setExt_col(String ext_col) {
+    this.ext_col = ext_col;
+  }
+
+
 }
