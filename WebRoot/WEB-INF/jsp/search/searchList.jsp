@@ -20,8 +20,7 @@ function searchList(param1){
 }
 </script>
 
-<form id="pagerForm" method="post" action="">
-	<input type="hidden" name="ids" value="-9999999" />
+<form id="pagerForm" method="post" action=""> 
 	<input type="hidden" name="pageNum" value="${page}" />
 	<input type="hidden" name="numPerPage" value="${pageRowSize}" />
 	<input type="hidden" name="orderField" value="${orderField}" />
