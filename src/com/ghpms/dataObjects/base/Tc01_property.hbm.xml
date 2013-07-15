@@ -41,7 +41,15 @@
   insert="true"
   column="flag"
   />
-  
+
+  <property
+  name="typecode"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="typecode"
+  />
+
   <property
   name="ext_col"
   type="java.lang.String"
