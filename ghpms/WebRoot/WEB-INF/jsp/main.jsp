@@ -195,12 +195,13 @@ function getCookie(name)
 				<a class="logo" href="javascript:void(0)">标志</a>
 				<ul class="nav">
 					<li style="color: #666" class="LoginId">您好：${user.name }</li>
-  
-	  					<li class="navBtn">
+ 					<!--
+ 					<li class="navBtn">
 						<a	href="MessageWrite.do?type=phone" target="dialog" rel="messageWrite" title="手机短信" width="670" height="350">
 							<img src="Images/phone.png"  title="短信发送"/>
 						</a>
 					</li>
+					  -->
 					<li class="navBtn"><a href="pwdSetting.do" target="dialog" width="320" height="240" title="密码修改"><img src="Images/change_key.png"/></a></li>
 				</ul> 
 				<ul class="themeList" id="themeList">
