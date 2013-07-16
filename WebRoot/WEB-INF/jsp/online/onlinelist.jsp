@@ -117,11 +117,12 @@ function phoneMsg(tel,name){
 					<a class="lookover"	href="OnLineanswer.do?wtlx=${wtlx}&aq_id={qa_id}" target="dialog" width="750" height="500" title="${web_title }"><span>查看</span></a>
 				</li>
 				<li class="line">line</li>
-				
+				<!--
 				<li>
 					<a class="helponline"	href="javascript:enterHelp('xtgg')" ><span>在线帮助</span></a>
 				</li>
 				<li class="line">line</li>
+				  -->
 			</ul>
 		</div>
 		<table class="table" width="100%" layouth="138">
