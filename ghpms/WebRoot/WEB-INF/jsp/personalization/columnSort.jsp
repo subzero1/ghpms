@@ -56,7 +56,7 @@ function changeWidth(obj,obj1){
 </script>
 <div class="page">
 	<div class="pageContent">
-		<form id="form1" action="sysManage/saveColumnSore.do" method="post" class="pageForm"  onSubmit="return selectSubmit(this,dialogAjaxDone,'t_sta');"> 
+		<form id="form1" action="sysManage/saveColumnSort.do" method="post" class="pageForm"  onSubmit="return selectSubmit(this,dialogAjaxDone,'t_sta');"> 
 			<input type="hidden" name="module_id" value="${param.module_id }"/>
 			<div class="pageFormContent" layoutH="56">
 				<table>
@@ -81,10 +81,6 @@ function changeWidth(obj,obj1){
 			<div class="formBar">
 				<ul>
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">确 定</button></div></div></li>
-					<li>
-						<input type="hidden" name="clear" id="clear"/>
-						<div class="button"><div class="buttonContent"><button type="Button" id="clearbutton">恢复默认</button></div></div>
-					</li>
 					<li>
 						<div class="button"><div class="buttonContent"><button type="Button" class="close">取 消</button></div></div>
 					</li>
