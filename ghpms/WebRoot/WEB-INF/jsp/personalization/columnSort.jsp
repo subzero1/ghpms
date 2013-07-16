@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
+
 
 <script type="text/javascript">
 var width=0;
@@ -53,6 +55,9 @@ function changeWidth(obj,obj1){
 	$("#configW").val(width);
 	moveAct(obj,obj1);
 }
+function changeModule(_this){ 
+ $.pdialog.open('sysManage/columnSort.do?module_id='+$(_this).val(),'column', '字段排序',{mask:true, width:460, height:345});
+}
 </script>
 <div class="page">
 	<div class="pageContent">
@@ -60,6 +65,10 @@ function changeWidth(obj,obj1){
 			<input type="hidden" name="module_id" value="${param.module_id }"/>
 			<div class="pageFormContent" layoutH="56">
 				<table>
+					<tr>
+						<td colspan="2">
+						 <netsky:htmlSelect name="module_name"  objectForOption="modules" style="width:128px;" valueForOption="id" showForOption="name" extend="-----------,101" extendPrefix="true" onChange="changeModule(this)" value="${param.module_id}"  htmlClass="td-select"/></td>
+					</tr>
 					<tr>  
 						<td>
 							<select id="t_sta" name="t_sta" multiple=1 type=select-multiple   ondblclick="javascript:changeWidth('t_sta','s_sta')" style="width:320px;height:240px;">
