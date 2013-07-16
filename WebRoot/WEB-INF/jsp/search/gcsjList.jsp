@@ -5,6 +5,8 @@
 <%@ taglib uri="NetSkyTagLibs" prefix="netsky"%>
 <script type="text/javascript">
 $(function(){
+	navTab.getCurrentPanel().data("reloadFlag", 1);
+	
 	$("#keyword",navTab.getCurrentPanel()).keyup(function(e){
 		if (e.which == 13){
 			$("#searchButton",navTab.getCurrentPanel()).click();

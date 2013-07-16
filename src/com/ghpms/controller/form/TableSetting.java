@@ -85,8 +85,8 @@ public class TableSetting {
 		return new ModelAndView(view, modelMap);
 	}
 	
-	@RequestMapping("/sysManage/columnSore.do")
-	public ModelAndView columnSore(HttpServletRequest request ,HttpServletResponse response){
+	@RequestMapping("/sysManage/columnSort.do")
+	public ModelAndView columnSort(HttpServletRequest request ,HttpServletResponse response){
 
 
 		Long module_id=convertUtil.toLong(request.getParameter("module_id"),new Long(101));
@@ -98,7 +98,8 @@ public class TableSetting {
 		hql.append("select ta07 from Ta07_formfield ta07 where 1=1 ");
 		hql.append(" and ta07.module_id=");
 		hql.append(module_id);
-		hql.append(" order by ta07.ord ,ta07.comments");
+		hql.append(" and ta07.name <>'id' ");
+		hql.append(" order by ta07.ord ,ta07.comments ");
 		/**
 		 * 配置信息存放list
 		 */
@@ -113,12 +114,12 @@ public class TableSetting {
 		request.setAttribute("configList", configList);
 
 		return new ModelAndView(
-				"/WEB-INF/jsp/personalization/columnSore.jsp");
+				"/WEB-INF/jsp/personalization/columnSort.jsp");
 	
 	}
 	
-	@RequestMapping("/sysManage/saveColumnSore.do")
-	public void saveColumnSore(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	@RequestMapping("/sysManage/saveColumnSort.do")
+	public void saveColumnSort(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		try {
 			response.setCharacterEncoding(request.getCharacterEncoding());
 			String[] stas = request.getParameterValues("t_sta");
@@ -126,7 +127,7 @@ public class TableSetting {
 					"user")).getId();
 			Long module_id=convertUtil.toLong(request.getParameter("module_id"));
 			String forwardUrl = "";
-			int i=0;
+			int i=1;
 			for (String field_id : stas) {
 				Ta07_formfield formfield=(Ta07_formfield) queryService.searchById(Ta07_formfield.class, convertUtil.toLong(field_id));
 				formfield.setOrd(new Long(i++));

@@ -64,7 +64,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" \n ");
 		Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
 		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
-		for (int i = 1; i < fields.size(); i++) {
+		for (int i = 0; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
 			
 			//如果文本框沒湊夠兩個一排,進入队列1
