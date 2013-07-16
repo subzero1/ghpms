@@ -3,11 +3,8 @@ package com.ghpms.controller.sysManage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
-import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.Search_Level;
@@ -150,12 +146,7 @@ public class User {
 		user = (Ta03_user) dao.getObject(Ta03_user.class, id);
 		// 获取部门列表
 		modelMap
-				.put(
-						"deptList",
-						dao
-								.search("from Ta01_dept dept where dept.area_name="
-										+ "(select area_name from Ta03_user user where user.id="
-										+ id + ")"));
+				.put("deptList", dao.search("from Ta01_dept dept where 1=1"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
 				.search("from Tc02_area where type like '%[3]%' order by id"));

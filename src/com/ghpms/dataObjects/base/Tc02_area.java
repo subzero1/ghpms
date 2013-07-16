@@ -1,7 +1,6 @@
 package com.ghpms.dataObjects.base;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author cmp_auto 2012-06-04
