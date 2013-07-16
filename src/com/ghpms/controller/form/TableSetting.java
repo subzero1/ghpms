@@ -101,6 +101,11 @@ public class TableSetting {
 		hql.append(" and ta07.name <>'id' ");
 		hql.append(" order by ta07.ord ,ta07.comments ");
 		/**
+		 * 取表单列表
+		 */
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 where ta06.id<109");
+		request.setAttribute("modules", modules);
+		/**
 		 * 配置信息存放list
 		 */
 		List<?> configList = null;

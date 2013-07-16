@@ -872,7 +872,10 @@ public class SearchAndReportList {
 		} else {
 			module_id = new Long(100);
 		}
-
+		
+		/**
+		 * 取表单列表
+		 */
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
 		
