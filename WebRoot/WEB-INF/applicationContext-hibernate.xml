@@ -160,6 +160,7 @@
 				<value>com/netsky/base/dataObjects/Tz08_help_map.hbm.xml</value>
 				<value>com/ghpms/dataObjects/base/Tc01_property.hbm.xml</value>
 				<value>com/ghpms/dataObjects/base/Tc02_area.hbm.xml</value>
+				<value>com/ghpms/dataObjects/base/Tc03_table_setting.hbm.xml</value>
 				
 			</list>
 		</property>
