@@ -196,12 +196,10 @@ public class CreateJspFileImpl implements CreateJspFile {
 		request.setAttribute("nodeMaps", nodeMaps);
 	}
 
-	public void createJspFileToRecord(HttpServletRequest request, Map paraMap) {
+	public void createJspFileToRecord(HttpServletRequest request, Long node_id) {
 		StringBuffer hsql = new StringBuffer();
 		String filePath = "";
 
-		String node_id = StringFormatUtil.format((String) paraMap
-				.get("node_id"), "-1");
 		String tableName = "";
 		String packTableName = "";
 

@@ -243,7 +243,6 @@ public class Gcsj {
 		Long project_id = convertUtil
 				.toLong(request.getParameter("project_id"));
 		String node_id = convertUtil.toString(request.getParameter("node_id"));
-		Map paraMap = new HashMap<String, String>();
 
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, convertUtil.toLong(node_id.substring(0, 3)));
@@ -255,10 +254,7 @@ public class Gcsj {
 			obj = queryService.searchById(c, project_id);
 		}
 
-		paraMap.put("node_id", node_id);
-		paraMap.put("project_id", project_id);
 		map.put(tableName.toLowerCase(), obj);
-		createJspFile.createJspFileToRecord(request, paraMap);
 		return new ModelAndView(view, map);
 	}
 
