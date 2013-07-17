@@ -368,7 +368,6 @@ public class OpenFormControler {
 			 * 動態得到jspform表單
 			 */
 
-			createJspFile.AutoCreateJspFile(request, module_id);
 			createJspFile.getNode(request, paraMap);
 
 		} catch (Exception e) {

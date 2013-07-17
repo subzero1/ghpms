@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ghpms.dataObjects.form.Tf01_field_property;
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -162,6 +161,130 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
+	}
+	
+
+	public void AutoCreateJspFile(String path, Long module_id) {
+		StringBuffer hsql = new StringBuffer();
+
+		hsql.append("select a from Ta07_formfield a where 1=1 ");
+		hsql.append(" and a.module_id=");
+		hsql.append(module_id);
+		hsql.append(" and a.name <> 'id' ");
+		hsql.append(" order by a.ord");
+		List fields = queryService.searchList(hsql.toString());
+
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
+		path += "\\jsp\\" + module.getForm_url();
+
+		hsql.delete(0, hsql.length());
+		hsql
+				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
+		hsql.append(" \n ");
+		Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
+		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
+		for (int i = 0; i < fields.size(); i++) {
+			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+			
+			//如果文本框沒湊夠兩個一排,進入队列1
+			if (fieldQueue1.size() % 2 == 1) {
+				if (formfield.getDatalength() > 200) {
+					fieldQueue2.offer(formfield);
+					continue;
+				} else {
+					fieldQueue1.offer(formfield);
+				}
+			} //如果是偶数
+			else {
+				if (fieldQueue2.size() > 0) {
+					formfield = fieldQueue2.poll();
+				} else {
+					if (formfield.getDatalength() < 200) {
+						fieldQueue1.offer(formfield);
+					}
+				}
+			}
+
+			// 文本域
+			if (formfield.getData_type() != null
+					&& (formfield.getData_type() == 2 || formfield
+							.getDatalength() > 1000)) {
+				// 文本域换行
+				hsql.append("<div style=\"height:0px;\"></div>");
+				hsql.append(" <p> \n");
+				hsql.append("<label> " + formfield.getComments()
+						+ "：</label> \n");
+				hsql.append("<textarea ");
+				hsql.append(" style=\"width:619px;height:70px;\" readonly>");
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "} ");
+				hsql.append("</textarea>");
+				hsql.append("\n </p> \n");
+				hsql.append("<div style=\"height:0px;\"></div> \n");
+			} else {
+				if (formfield.getDatalength() > 250) {
+					hsql.append("<div style=\"height:0px;\"></div>");
+				}
+				hsql.append(" <p> \n");
+				hsql.append("<label> " + formfield.getComments()
+						+ "：</label> \n");
+
+				hsql.append("<input type=\"text\" ");
+				hsql.append(" value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append("<fmt:formatDate value=\"");
+				}
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+				// 长文本框
+				if (formfield.getDatalength() > 200
+						&& formfield.getDatalength() < 500) {
+					hsql.append("style=\"width:619px;\" readonly/>");
+				}
+				// 短文本框
+				else {
+					hsql.append("style=\"width:256px;\" readonly/>");
+				}
+
+				hsql.append("\n </p> \n");
+				if (fieldQueue1.size() % 2 == 0) {
+					hsql.append("<div style=\"height:0px;\"></div> \n");
+				}
+			}
+		}
+		try {
+			FileOutputStream fos = new FileOutputStream(path);
+			Writer out = new OutputStreamWriter(fos, "utf-8");
+			out.write(hsql.toString());
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	
 	}
 
 	public void getNode(HttpServletRequest request, Map paraMap) {
