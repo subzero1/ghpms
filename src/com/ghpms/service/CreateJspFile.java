@@ -13,6 +13,13 @@ public interface CreateJspFile {
 	public void AutoCreateJspFile(HttpServletRequest request,Long module_id);
 	
 	/**
+	 * 生成表单
+	 * @param path　路径
+	 * @param module_id void
+	 */
+	public void AutoCreateJspFile(String path,Long module_id);
+	
+	/**
 	 * 生成表单,分左右
 	 * @param request
 	 * @param module_id void

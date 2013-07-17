@@ -121,7 +121,12 @@
 		<servlet-name>ghpms</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>jspBuildServlet</servlet-name>
+		<servlet-class>com.ghpms.controller.base.JspBuildServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
 
 	<!-- 文件类型解析 -->
 	<mime-mapping>
