@@ -511,7 +511,7 @@ public class Relation {
 		unfield_rsql.append(field_rsql + ")");
 		unfield_rsql.append(" and ta07.module_id='"
 				+ id.toString().substring(0, 3) + "' ");
-		unfield_rsql.append(" order by ta07.name");
+		unfield_rsql.append(" order by ta07.ord,ta07.name");
 		List unfields = dao.search(unfield_rsql.toString());
 		modelMap.put("unselect_fields", unfields);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/nodeFields.jsp",
