@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ghpms.dataObjects.base.Tc01_property;
+import com.ghpms.dataObjects.form.Tf01_field_property;
 import com.ghpms.service.GcsjDataService;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -79,23 +81,64 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		hsql.append(" and g.id=");
 		hsql.append(user.getId());
 		hsql.append(" order by a.ord");
-		List<Ta07_formfield> excelTitleList=new ArrayList<Ta07_formfield>();
-		ResultObject ro=queryService.search(hsql.toString());
+		List<Ta07_formfield> excelTitleList = new ArrayList<Ta07_formfield>();
+		ResultObject ro = queryService.search(hsql.toString());
 		while (ro.next()) {
-			Ta07_formfield field=(Ta07_formfield) ro.get("a");
+			Ta07_formfield field = (Ta07_formfield) ro.get("a");
 			excelTitleList.add(field);
 		}
 		return excelTitleList;
 	}
 
 	public List getUpdateProperty(Long module_id) {
-		StringBuffer hsql=new StringBuffer();
+		StringBuffer hsql = new StringBuffer();
 		hsql.append("select a from Ta07_formfield a where a.module_id=");
 		hsql.append(module_id);
 		hsql.append(" and a.name ='");
 		hsql.append("id' ");
-		List list=queryService.searchList(hsql.toString());
+		List list = queryService.searchList(hsql.toString());
 		return list;
+	}
+
+	public Map setSelectValue(HttpServletRequest request,
+			Ta07_formfield formfield) {
+		StringBuffer hql = new StringBuffer();
+		Map map = new HashMap<String, String>();
+		List objs = null;
+
+		/**
+		 * 配置所属地区
+		 */
+		if (formfield.getName().equals("ssdq")
+				|| formfield.getName().equals("xzqb")
+				|| formfield.getName().equals("ssxzq")) {
+			hql.delete(0, hql.length());
+			hql.append("select tc02 from Tc02_area tc02 where 1=1 ");
+			hql.append(" order by tc02.name ");
+			objs = queryService.searchList(hql.toString());
+			request.setAttribute("ssdq", objs);
+			map.put("objectForOption", "ssdq");
+
+		}
+		/**
+		 * 配到Tc01的情況
+		 */
+		else {
+			hql.delete(0, hql.length());
+			hql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
+			hql.append(" and tc01.type like '%");
+			hql.append(formfield.getComments());
+			hql.append("%'");
+			objs = (List<Tc01_property>) queryService
+					.searchList(hql.toString());
+			Tc01_property property = null;
+			if (objs != null && objs.size() > 0) {
+				property = (Tc01_property) objs.get(0);
+				request.setAttribute(property.getTypecode(), objs);
+				map.put("objectForOption", property.getTypecode());
+			}
+		}
+		return map;
 	}
 
 }
