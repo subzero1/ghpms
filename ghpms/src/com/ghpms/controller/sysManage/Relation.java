@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.service.CreateJspFile;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Ta12_sta_role;
@@ -59,6 +60,11 @@ public class Relation {
 	 */
 	private Logger log = Logger.getLogger(this.getClass());
 
+	/**
+	 * 生成JSP文件
+	 */
+	@Autowired
+	private CreateJspFile createJspFile;
 	/**
 	 * 岗位角色配置
 	 * 
@@ -808,12 +814,14 @@ public class Relation {
 						dao.saveObject(ta16_node_field);
 					}
 				}
+				createJspFile.createJspFileToRecord(request, id);
 			}
 			response
 					.getWriter()
 					.print(
 							"{\"statusCode\":\"200\", \"message\":\"操作成功\", \"navTabId\":\"\",\"forwardUrl\":\"\", \"callbackType\":\"\"}");
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.getWriter().print(
 					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		}

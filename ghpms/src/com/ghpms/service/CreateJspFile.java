@@ -23,7 +23,7 @@ public interface CreateJspFile {
 	 * @param request
 	 * @param paraMap void
 	 */
-	public void createJspFileToRecord(HttpServletRequest request,Map paraMap);
+	public void createJspFileToRecord(HttpServletRequest request,Long node_id);
 	/**
 	 * 读取录入文件权限列表
 	 * @param request
