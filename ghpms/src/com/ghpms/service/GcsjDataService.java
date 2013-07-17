@@ -13,4 +13,5 @@ public interface GcsjDataService {
 	public void setDocColsList(HttpServletRequest request);
 	public List<Ta07_formfield> getExcelTitleList(Ta03_user user,Long module_id);
 	public List getUpdateProperty(Long module_id);
+	public Map setSelectValue(HttpServletRequest request,Ta07_formfield formfield); 
 }

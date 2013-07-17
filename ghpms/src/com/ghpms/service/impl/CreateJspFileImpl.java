@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.ghpms.dataObjects.form.Tf01_field_property;
 import com.ghpms.service.CreateJspFile;
+import com.ghpms.service.GcsjDataService;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
@@ -31,9 +32,12 @@ import com.netsky.base.utils.convertUtil;
 @Service("createJspFile")
 public class CreateJspFileImpl implements CreateJspFile {
 	@Autowired
-	QueryService queryService;
+	private QueryService queryService;
 	@Autowired
-	SaveService saveService;
+	private SaveService saveService;
+	
+	@Autowired
+	private GcsjDataService gcsjDataService;
 
 	public void AutoCreateJspFile(HttpServletRequest request, Long module_id) {
 		StringBuffer hsql = new StringBuffer();
@@ -241,27 +245,15 @@ public class CreateJspFileImpl implements CreateJspFile {
 			// 下拉框的情況
 			if (formfield.getData_type() != null
 					&& formfield.getData_type() == 1) {
-				StringBuffer hql = new StringBuffer();
-				hql.append("select a from Tf01_field_property a where 1=1 ");
-				hql.append(" and a.field_id=");
-				hql.append(formfield.getId());
-				List fps = queryService.searchList(hql.toString());
-				Tf01_field_property fp = null;
-				if (fps != null && fps.size() > 0) {
-					fp = (Tf01_field_property) fps.get(0);
-				}
-				// 得到下拉框的值
-				List objs = null;
-				if (fp != null) {
-					objs = queryService.searchList(fp.getP_sql());
-					request.setAttribute("objs", objs);
-				}
+				//加载文本框的值
+				Map map=gcsjDataService.setSelectValue(request, formfield);
+				
 				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
 				hsql.append("\" ");
-				hsql.append(" objectForOption=\"objs\" style=\"width:256px;\"");
-				hsql.append(" valueForOption=\"\" showForOption=\"\" ");
+				hsql.append(" objectForOption=\""+map.get("objectForOption")+"\" style=\"width:256px;\"");
+				hsql.append(" valueForOption=\"name\" showForOption=\"name\" ");
 				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
 				hsql.append("${");
 				hsql.append(formfield.getObject_name().substring(
