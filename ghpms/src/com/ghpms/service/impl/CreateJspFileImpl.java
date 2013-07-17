@@ -366,30 +366,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql
 				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
 		hsql.append(" \n ");
-		/**
-		 * 
-		 * 
-		 * hsql.append("<style>");hsql.append(" \n "); hsql.append(".tabsPage
-		 * .tabsPageContent{overflow:auto;}");hsql.append(" \n ");
-		 * hsql.append(".pageFormContent dl{margin: 1em 2em;padding:
-		 * 0;height:21px;position:relative;top:0px;width:100%;}");hsql.append("
-		 * \n "); hsql.append(".pageFormContent dt{padding:0
-		 * 5px;white-space:nowrap;}");hsql.append(" \n ");
-		 * hsql.append(".pageFormContent dd input{width:100%;}");hsql.append("
-		 * \n "); hsql.append("dl dt,dl dd{line-height: 21px; margin:0;
-		 * padding:0;float:left;}");hsql.append(" \n ");
-		 * hsql.append(".pageFormContent .column1,.pageFormContent
-		 * .column2{float:left;display:inline;clear:none;}");hsql.append(" \n
-		 * "); hsql.append(".pageFormContent .column1 {margin-left: 0em;
-		 * width:35%;}");hsql.append(" \n "); hsql.append(".pageFormContent
-		 * .column1 dt{width:70px;}");hsql.append(" \n ");
-		 * hsql.append(".pageFormContent .column1 dd{width:50%;}");hsql.append("
-		 * \n "); hsql.append(".pageFormContent .column2 {margin-left: 1em;
-		 * width:60%;}");hsql.append(" \n "); hsql.append(".pageFormContent
-		 * .column2 dt{width:165px;}");hsql.append(" \n ");
-		 * hsql.append(".column2 dt{width:37%;}");hsql.append(" \n ");
-		 * hsql.append("</style>");hsql.append(" \n ");
-		 */
 
 		hsql.append("<script type=\"text/javascript\" > ");
 		hsql.append(" \n ");
