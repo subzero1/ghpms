@@ -1038,7 +1038,7 @@ public class SearchAndReportList {
 				 * 获取默认查询字段
 				 */
 				queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
-				queryBuilder.eq("showflag", new Integer(1));
+				queryBuilder.eq("showflag", new Long(1));
 				queryBuilder.eq("module_id", module_id);
 				queryBuilder.addOrderBy(Order.asc("ord"));
 				fieldList = (List<Ta08_reportfield>) queryService.searchList(queryBuilder);
