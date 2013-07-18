@@ -822,7 +822,8 @@ public class Relation {
 					}
 				}
 				gcsjDataService.setSelectValue(request, id);
-				createJspFile.createJspFileToRecord(request, id);
+				createJspFile.createJspFileToRecord(request.getSession().getServletContext().getRealPath(
+				"/WEB-INF"), id);
 			}
 			response
 					.getWriter()

@@ -575,4 +575,134 @@ public class CreateJspFileImpl implements CreateJspFile {
 		}
 
 	}
+
+
+	public void createJspFileToRecord(String path, Long node_id) {
+		StringBuffer hsql = new StringBuffer();
+
+		String tableName = "";
+		String packTableName = "";
+
+		hsql
+				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
+		hsql.append(" and b.id=");
+		hsql.append(node_id);
+		hsql.append(" order by  a.ord");
+		List fields = queryService.searchList(hsql.toString());
+
+		if (fields.size() > 0) {
+			tableName = ((Ta07_formfield) fields.get(0)).getObject_name();
+			packTableName = tableName.substring(tableName.lastIndexOf(".") + 1,
+					tableName.length());
+		}
+		path += "\\jsp\\form\\" + node_id + ".jsp";
+
+		hsql.delete(0, hsql.length());
+		hsql
+				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+		hsql.append(" \n ");
+		hsql.append("<%@ taglib uri=\"NetSkyTagLibs\" prefix=\"netsky\"%>");
+		hsql.append(" \n ");
+		hsql
+				.append("<jsp:include page=\"basicEdit.jsp\"  flush=\"true\"></jsp:include>");
+		hsql.append(" \n ");
+		hsql
+				.append("<input type=\"hidden\" name=\"tableInfomation\" value=\"noFatherTable:"
+						+ tableName + "\" /> \n");
+		hsql.append("<input type=\"hidden\" name=\"" + packTableName
+				+ ".ID\" value=\"${param.project_id}\">");
+		for (int i = 0; i < fields.size(); i++) {
+			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+			hsql.append(" <p> \n");
+			hsql.append("<label> " + formfield.getComments() + "：</label> \n");
+			// 下拉框的情況
+			if (formfield.getData_type() != null
+					&& formfield.getData_type() == 1) {
+				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+				hsql.append(" objectForOption=\""+formfield.getName()+"\" style=\"width:256px;\"");
+				hsql.append(" valueForOption=\"name\" showForOption=\"name\" ");
+				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+				hsql.append(" htmlClass=\"td-select\"/>");
+				// 文本域 data_type=2
+			} else if (formfield.getData_type() != null
+					&& (formfield.getData_type() == 2 || formfield
+							.getDatalength() > 1000)) {
+
+				hsql.append("<textarea ");
+				hsql.append(" name=\"");
+				hsql.append(packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+				hsql.append("style=\"width:256px;height:70px;\" >");
+
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "} ");
+				hsql.append("</textarea>");
+
+			} else {
+				// 非下拉框
+				hsql.append("<input type=\"text\" ");
+				hsql.append(" name=\"");
+				hsql.append(packTableName);
+				hsql.append(".");
+				hsql.append(formfield.getName().toUpperCase());
+				hsql.append("\" ");
+				hsql.append("value=\"");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append("<fmt:formatDate value=\"");
+				}
+				hsql.append("${");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()).toLowerCase());
+				hsql.append("." + formfield.getName() + "}\" ");
+				// 如果是日期
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+				}
+				// 判断类型
+				if (formfield.getDatatype().equals("DATE")) {
+					hsql
+							.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
+				}
+				hsql.append("style=\"width:256px;\" />");
+			}
+
+			hsql.append("\n </p> \n");
+			if (i % 2 == 0) {
+				hsql.append("<div style=\"height:0px;\"></div> \n");
+			}
+
+		}
+		try {
+			FileOutputStream fos = new FileOutputStream(path);
+			Writer out = new OutputStreamWriter(fos, "utf-8");
+			out.write(hsql.toString());
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	
+	}
 }
