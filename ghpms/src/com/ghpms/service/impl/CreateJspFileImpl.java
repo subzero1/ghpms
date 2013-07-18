@@ -34,7 +34,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 	private QueryService queryService;
 	@Autowired
 	private SaveService saveService;
-	
+
 	@Autowired
 	private GcsjDataService gcsjDataService;
 
@@ -69,8 +69,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
 		for (int i = 0; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			
-			//如果文本框沒湊夠兩個一排,進入队列1
+
+			// 如果文本框沒湊夠兩個一排,進入队列1
 			if (fieldQueue1.size() % 2 == 1) {
 				if (formfield.getDatalength() > 200) {
 					fieldQueue2.offer(formfield);
@@ -78,7 +78,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				} else {
 					fieldQueue1.offer(formfield);
 				}
-			} //如果是偶数
+			} // 如果是偶数
 			else {
 				if (fieldQueue2.size() > 0) {
 					formfield = fieldQueue2.poll();
@@ -162,7 +162,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 		}
 
 	}
-	
 
 	public void AutoCreateJspFile(String path, Long module_id) {
 		StringBuffer hsql = new StringBuffer();
@@ -192,8 +191,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
 		for (int i = 0; i < fields.size(); i++) {
 			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-			
-			//如果文本框沒湊夠兩個一排,進入队列1
+
+			// 如果文本框沒湊夠兩個一排,進入队列1
 			if (fieldQueue1.size() % 2 == 1) {
 				if (formfield.getDatalength() > 200) {
 					fieldQueue2.offer(formfield);
@@ -201,7 +200,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				} else {
 					fieldQueue1.offer(formfield);
 				}
-			} //如果是偶数
+			} // 如果是偶数
 			else {
 				if (fieldQueue2.size() > 0) {
 					formfield = fieldQueue2.poll();
@@ -284,7 +283,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
-	
 	}
 
 	public void getNode(HttpServletRequest request, Map paraMap) {
@@ -371,7 +369,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
 				hsql.append("\" ");
-				hsql.append(" objectForOption=\""+formfield.getName()+"\" style=\"width:256px;\"");
+				hsql.append(" objectForOption=\"" + formfield.getName()
+						+ "\" style=\"width:256px;\"");
 				hsql.append(" valueForOption=\"name\" showForOption=\"name\" ");
 				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
 				hsql.append("${");
@@ -577,7 +576,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
-
 	public void createJspFileToRecord(String path, Long node_id) {
 		StringBuffer hsql = new StringBuffer();
 
@@ -626,7 +624,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
 				hsql.append("\" ");
-				hsql.append(" objectForOption=\""+formfield.getName()+"\" style=\"width:256px;\"");
+				hsql.append(" objectForOption=\"" + formfield.getName()
+						+ "\" style=\"width:256px;\"");
 				hsql.append(" valueForOption=\"name\" showForOption=\"name\" ");
 				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
 				hsql.append("${");
@@ -681,8 +680,16 @@ public class CreateJspFileImpl implements CreateJspFile {
 				if (formfield.getDatatype().equals("DATE")) {
 					hsql
 							.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
+				} else if (formfield.getDatatype().equals("NUMBER")) {
+					if (convertUtil.toString(formfield.getDatalength())
+							.lastIndexOf(".0") != -1) {
+						hsql.append("class=\"number\" ");
+					}else {
+						hsql.append("class=\"digits\" ");
+					}
+
 				}
-				hsql.append("style=\"width:256px;\" />");
+				hsql.append(" style=\"width:256px;\" />");
 			}
 
 			hsql.append("\n </p> \n");
@@ -704,6 +711,5 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
-	
 	}
 }
