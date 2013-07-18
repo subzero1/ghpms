@@ -135,6 +135,26 @@ public class Gcsj {
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
 				.get("docColsList");
+		
+		//如果是导出的话添加ID,重置标题
+		List <Ta07_formfield>listToExcel=new ArrayList();
+		if ("yes".equals(request.getParameter("toExcel"))) {
+			List <Ta07_formfield>list=new ArrayList();
+			//检测是否有ID
+			boolean isId=false;
+			for (Ta07_formfield ta07  : docColsList) {
+				if (ta07.getName().equals("id")) {
+					isId=true;
+					break;
+				}
+			}
+			if (!isId) {
+				list=gcsjDataService.getUpdateProperty(module_id);
+			}
+			listToExcel.addAll(list);
+		}
+		listToExcel.addAll(docColsList);
+		
 		// 取表单数据
 		List<List> docList = new LinkedList<List>();
 		DecimalFormat df = new DecimalFormat("#0.00");
@@ -146,7 +166,7 @@ public class Gcsj {
 				List row = new LinkedList(); // 行对像，先初始化各列数据
 				a = rs.get("a");
 				// 初始化各列数据
-				for (Ta07_formfield ta07 : docColsList) {
+				for (Ta07_formfield ta07 : listToExcel) {
 					Object obj = null;
 					// 取数据
 					obj = PropertyInject.getProperty(a, ta07.getName().trim());
@@ -177,23 +197,9 @@ public class Gcsj {
 		}
 		// 导EXCEL
 		if ("yes".equals(request.getParameter("toExcel"))) {
-			List <Ta07_formfield>listToExcel=new ArrayList();
 			Map<String, List> sheetMap = new HashMap<String, List>();
 			List sheetList = new LinkedList();
 			List titleList = new LinkedList();
-			//检测是否有无ID字段
-			List <Ta07_formfield>list=new ArrayList();
-			boolean isId=false;
-			for (Ta07_formfield ta07  : docColsList) {
-				if (!ta07.getName().equals("id")) {
-					isId=true;break;
-				}
-			}
-			if (isId) {
-				list=gcsjDataService.getUpdateProperty(module_id);
-			}
-			listToExcel.addAll(list);
-			listToExcel.addAll(docColsList);
 			for (Ta07_formfield ta07 : listToExcel) {
 				titleList.add(ta07.getComments().trim());
 			}
