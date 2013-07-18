@@ -58,12 +58,7 @@ function searchList(param1){
 		<table class="table" width="100%" layouth="115">
 			<thead>
 				<tr>
-					<c:if test="${param.module_id == 101}">
-									<th width="30"></th>
-								</c:if>
-								<c:if test="${param.module_id == 102}">
-									<th width="30"></th>
-								</c:if>
+				<th width="30"></th>
 					<th width="30"></th>
 					<c:forEach var="obj" items="${fieldList}">
 						<th width="${obj.width }">${obj.comments }</th>
@@ -82,31 +77,10 @@ function searchList(param1){
 						
 							<c:set var="offset_td" scope="page" value="${offset_td + 1}"/>
 							<c:choose>
-								
-								
-								
-								<c:when test="${offset_td == 1 && param.module_id == 1}">
-									<td>
-										<a href="mbk/mbkEdit.do?id=${td.value }" target="navTab" rel="mbk" title="目标库信息"><img border="0" src="Images/project.png" /></a>
-									</td>
-								</c:when>
-								<c:when test="${offset_td == 1 && param.module_id == 101}">
-								<c:if test="${param.module_id == 101}">
-									<td>
-										</td>
-								</c:if>
+								<c:when test="${offset_td == 1 }">
+									<td> </td>
 									<td>
 										<a href="gh/openForm.do?project_id=${td.value}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].project_id}${td.value}]"  title="项目信息"><img border="0" src="Images/project.png" /></a>
-									</td>
-								</c:when>
-								<c:when test="${offset_td == 1 && param.module_id == 102}">
-								<c:if test="${param.module_id == 102}">
-									<td>
-								<a href="javascript:navTab.openTab('gcsgjd', 'wxdw/gcsgjd.do?id=${td.value}', {title:'工程施工进度'});" title="工程施工进度" ><img border="0" src="Images/station.png" /></a> 
-										</td>
-								</c:if>	
-									<td>
-										<a href="javascript:openFlowForm('{project_id:${td.value},doc_id:${td.value},module_id:102,opernode_id:-1,node_id:-1,user_id:-1}');" title="表单[${doc[cols].project_id}${td.value}]"  title="工程信息"><img border="0" src="Images/project.png" /></a>
 									</td>
 								</c:when>
 								<c:otherwise>
