@@ -100,23 +100,30 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		return list;
 	}
 
-	public Map setSelectValue(HttpServletRequest request,
-			Ta07_formfield formfield) {
-		StringBuffer hql = new StringBuffer();
+	public Map setSelectValue(HttpServletRequest request, Long node_id) {
+		StringBuffer hsql = new StringBuffer();
 		Map map = new HashMap<String, String>();
 		List objs = null;
 
+		hsql
+				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
+		hsql.append(" and b.id=");
+		hsql.append(node_id);
+		hsql.append(" order by  a.ord");
+		List fields =  queryService.searchList(hsql.toString());
+		for (Object object : fields) {
+			Ta07_formfield formfield=(Ta07_formfield) object;
 		/**
 		 * 配置所属地区
 		 */
 		if (formfield.getName().equals("ssdq")
 				|| formfield.getName().equals("xzqb")
 				|| formfield.getName().equals("ssxzq")) {
-			hql.delete(0, hql.length());
-			hql.append("select tc02 from Tc02_area tc02 where 1=1 ");
-			hql.append(" order by tc02.name ");
-			objs = queryService.searchList(hql.toString());
-			request.setAttribute("ssdq", objs);
+			hsql.delete(0, hsql.length());
+			hsql.append("select tc02 from Tc02_area tc02 where 1=1 ");
+			hsql.append(" order by tc02.name ");
+			objs = queryService.searchList(hsql.toString());
+			request.setAttribute(formfield.getName(), objs);
 			map.put("objectForOption", "ssdq");
 
 		}
@@ -124,19 +131,22 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		 * 配到Tc01的情況
 		 */
 		else {
-			hql.delete(0, hql.length());
-			hql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
-			hql.append(" and tc01.type like '%");
-			hql.append(formfield.getComments());
-			hql.append("%'");
+			hsql.delete(0, hsql.length());
+			hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
+			hsql.append(" and tc01.type like '%");
+			hsql.append(formfield.getComments());
+			hsql.append("%'");
 			objs = (List<Tc01_property>) queryService
-					.searchList(hql.toString());
+					.searchList(hsql.toString());
 			Tc01_property property = null;
 			if (objs != null && objs.size() > 0) {
 				property = (Tc01_property) objs.get(0);
-				request.setAttribute(property.getTypecode(), objs);
+				request.setAttribute(formfield.getName(), objs);
 				map.put("objectForOption", property.getTypecode());
 			}
+		}
+
+		
 		}
 		return map;
 	}
