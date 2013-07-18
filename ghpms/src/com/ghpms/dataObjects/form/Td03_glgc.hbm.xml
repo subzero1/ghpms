@@ -740,7 +740,7 @@
 
   <property
   name="jjbgclx"
-  type="java.util.Date"
+  type="java.lang.String"
   update="true"
   insert="true"
   column="jjbgclx"

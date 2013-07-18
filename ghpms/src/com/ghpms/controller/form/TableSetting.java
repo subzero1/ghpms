@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.service.CreateJspFile;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -35,6 +36,9 @@ public class TableSetting {
 	
 	@Autowired
 	private SaveService saveService;
+	
+	@Autowired
+	private CreateJspFile createJspFile;
 	
 	@RequestMapping("/sysManage/tableSetList.do")
 	public ModelAndView tableSetList(HttpServletRequest request,
@@ -138,6 +142,9 @@ public class TableSetting {
 				formfield.setOrd(new Long(i++));
 				saveService.save(formfield);
 			}
+			createJspFile.AutoCreateJspFile(request.getSession().getServletContext().getRealPath(
+			"/WEB-INF"), module_id);  
+
 			response
 					.getWriter()
 					.print(
