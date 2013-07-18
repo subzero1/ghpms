@@ -21,6 +21,7 @@ function searchListExport(param1){
 }
 </script>
 <form id="pagerForm" method="post" action="form/gcsjList.do?module_id=${param.module_id}">
+	<input type="hidden" name="module_id" value="${param.module_id}" />
 	<input type="hidden" name="keyword" value="${keyword}" />
 	<input type="hidden" name="pageNum" value="${pageNum}" />
 	<input type="hidden" name="numPerPage" value="${numPerPage}" />
