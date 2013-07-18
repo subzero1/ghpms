@@ -1616,17 +1616,17 @@ public class Td03_glgc implements Serializable{
  * 计建部工程类型
 
  */
- private Date jjbgclx;
+ private String jjbgclx;
 
  /**
  * @hibernate.property column="jjbgclx"
  * @return Returns the jjbgclx.
  */
- public Date getJjbgclx() {
+ public String getJjbgclx() {
     return jjbgclx;
  }
 
- public void setJjbgclx(Date jjbgclx) {
+ public void setJjbgclx(String jjbgclx) {
     this.jjbgclx = jjbgclx;
   }
 
