@@ -99,14 +99,14 @@ letter-spacing:1em;
 	font-family:微软雅黑;
 }
 .login_pass{
-	padding:22px 0 0 0px;/*密码框距用户名框的垂直距离*/
+	padding:15px 0 0 0px;/*密码框距用户名框的垂直距离*/
 	font-weight:bold;
 	font-size:14px;
 	font-family:微软雅黑;
 	color:#333;
 }
 .login_form{
-	padding:169px 203px 0px 0;/*表单位置*/
+	padding:165px 203px 0px 0;/*表单位置*/
 	text-align:right;	
 }
 .login_button .input{
