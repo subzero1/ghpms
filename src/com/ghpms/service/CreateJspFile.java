@@ -31,6 +31,14 @@ public interface CreateJspFile {
 	 * @param paraMap void
 	 */
 	public void createJspFileToRecord(HttpServletRequest request,Long node_id);
+	
+	/**
+	 * 生成录入文件
+	 * @param path 文件路径
+	 * @param node_id void
+	 */
+	public void createJspFileToRecord(String path,Long node_id);
+	
 	/**
 	 * 读取录入文件权限列表
 	 * @param request

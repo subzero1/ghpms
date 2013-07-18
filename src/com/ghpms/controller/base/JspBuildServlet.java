@@ -1,6 +1,7 @@
 package com.ghpms.controller.base;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -13,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.QueryService;
 
 public class JspBuildServlet implements Servlet {
@@ -51,6 +53,12 @@ public class JspBuildServlet implements Servlet {
 		gcsjDataService=(GcsjDataService) ctx.getBean("gcsjDataService");
 		for (int i = 101; i < 109; i++) {
 			createJspFile.AutoCreateJspFile(path, new Long(i));  
+		}
+		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
+		List nodeList = queryService.searchList(hql.toString());
+		for (Object object : nodeList) {
+			Tb02_node node=(Tb02_node) object;
+			createJspFile.createJspFileToRecord(path, node.getId());
 		}
 
 	}
