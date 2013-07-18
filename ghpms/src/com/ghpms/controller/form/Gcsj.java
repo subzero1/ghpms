@@ -253,7 +253,7 @@ public class Gcsj {
 			c = Class.forName(tableClassName);
 			obj = queryService.searchById(c, project_id);
 		}
-
+		gcsjDataService.setSelectValue(request, convertUtil.toLong(node_id));
 		map.put(tableName.toLowerCase(), obj);
 		return new ModelAndView(view, map);
 	}

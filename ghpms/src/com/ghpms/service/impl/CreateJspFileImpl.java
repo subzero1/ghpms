@@ -366,14 +366,11 @@ public class CreateJspFileImpl implements CreateJspFile {
 			// 下拉框的情況
 			if (formfield.getData_type() != null
 					&& formfield.getData_type() == 1) {
-				//加载文本框的值
-				Map map=gcsjDataService.setSelectValue(request, formfield);
-				
 				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
 				hsql.append("\" ");
-				hsql.append(" objectForOption=\""+map.get("objectForOption")+"\" style=\"width:256px;\"");
+				hsql.append(" objectForOption=\""+formfield.getName()+"\" style=\"width:256px;\"");
 				hsql.append(" valueForOption=\"name\" showForOption=\"name\" ");
 				hsql.append("extend=\"\" extendPrefix=\"true\" value=\"");
 				hsql.append("${");

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.service.CreateJspFile;
+import com.ghpms.service.GcsjDataService;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Ta12_sta_role;
@@ -65,6 +66,12 @@ public class Relation {
 	 */
 	@Autowired
 	private CreateJspFile createJspFile;
+	
+	/**
+	 * 设置下拉框的值
+	 */
+	@Autowired
+	private GcsjDataService gcsjDataService;
 	/**
 	 * 岗位角色配置
 	 * 
@@ -814,6 +821,7 @@ public class Relation {
 						dao.saveObject(ta16_node_field);
 					}
 				}
+				gcsjDataService.setSelectValue(request, id);
 				createJspFile.createJspFileToRecord(request, id);
 			}
 			response
