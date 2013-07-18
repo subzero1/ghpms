@@ -313,7 +313,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 			nodeMap.put("editURL", "gcsj/gcsjEdit.do?node_id=" + node[0]
 					+ "&module_id=" + module_id);
 			nodeMap.put("node_id", node[0]);
-			nodeMap.put("title", node[1]);
+			nodeMap.put("node_name", node[1]);
+			nodeMap.put("title", node[4]);
 			nodeMaps.add(nodeMap);
 		}
 		request.setAttribute("nodeMaps", nodeMaps);
