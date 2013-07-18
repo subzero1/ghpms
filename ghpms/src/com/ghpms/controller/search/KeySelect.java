@@ -178,7 +178,19 @@ public class KeySelect {
 				while (ro.next()) {
 					result.add((String)ro.get("name"));
 				}
-			} 
+			} else if(type.equals("ghjl")){
+				String HSql="select name from Tc01_property tc01 where typecode='GHJL'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}else if (type.equals("gclx")) {
+				String HSql="select name from Tc01_property tc01 where typecode='GCLX'";
+				ResultObject ro = queryService.search(HSql);
+				while (ro.next()) {
+					result.add((String)ro.get("name"));
+				}
+			}
 			request.setAttribute("result", result);
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(KeySelect.class.getName(), "选择基础多选项", e);
