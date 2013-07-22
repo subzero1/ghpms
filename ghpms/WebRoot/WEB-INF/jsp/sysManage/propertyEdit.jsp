@@ -28,8 +28,8 @@
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：属性分类系统定制；<br>
-				&nbsp;勘察反馈内容：扩展标识为[1]时，反馈时不需要录入个数， 为[2]时，需要录入个数<br>
-				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[1]时，不参与自动派工
+				&nbsp;内容：扩展标识为[1]时， 为[2]时<br>
+				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[1]时
 				</div>
 			</div>
 			<div class="formBar">
