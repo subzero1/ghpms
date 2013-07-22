@@ -135,7 +135,8 @@ public class Gcsj {
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
 				.get("docColsList");
-		
+		//取标题长度
+		Integer docTabWitdh=(Integer) docMap.get("docTabWitdh");
 		//如果是导出的话添加ID,重置标题
 		List <Ta07_formfield>listToExcel=new ArrayList();
 		if ("yes".equals(request.getParameter("toExcel"))) {
@@ -215,6 +216,7 @@ public class Gcsj {
 		modelMap.put("cols", docColsList.size());
 		modelMap.put("docs", docList);
 		modelMap.put("docColsList", docColsList);
+		modelMap.put("docTabWitdh", docTabWitdh);
 		modelMap.put("node_id", node_id);
 		modelMap.put("module_id", module_id);
 		modelMap.put("totalPages", totalPages);

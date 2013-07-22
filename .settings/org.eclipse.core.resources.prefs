@@ -1,7 +1,9 @@
-#Thu Jul 18 17:03:48 CST 2013
+#Mon Jul 22 15:56:17 CST 2013
 eclipse.preferences.version=1
+encoding//WebRoot/js=UTF-8
 encoding//WebRoot/js/CutPic.js=GB2312
 encoding//WebRoot/js/dwz.src/dwz.ajax.js=UTF-8
+encoding//WebRoot/js/dwz.src/dwz.core.js=UTF-8
 encoding//WebRoot/js/dwz.src/dwz.database.js=UTF-8
 encoding//WebRoot/js/dwz.src/dwz.regional.zh.js=UTF-8
 encoding//WebRoot/js/dwz.src/dwz.util.number.js=UTF-8

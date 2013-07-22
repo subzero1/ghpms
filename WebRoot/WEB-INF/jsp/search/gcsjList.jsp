@@ -113,7 +113,7 @@ function searchListExport(param1){
 					</li>
 			</ul>
 		</div>
-		<table class="table" layouth="138">
+		<table class="table" layouth="138" style="width: ${docTabWitdh }">
 			<thead>
 				<tr> 
 					<th style="width:20px;"></th>
