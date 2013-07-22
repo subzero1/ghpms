@@ -55,7 +55,7 @@ function searchList(param1){
 		</form>
 	</div>
 	<div class="pageContent">
-		<table class="table" width="100%" layouth="115">
+		<table class="table" width="100%" layouth="115" style="width: ${tablewidth }">
 			<thead>
 				<tr>
 				<th width="30"></th>
