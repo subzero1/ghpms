@@ -93,14 +93,21 @@ public class Property {
 	@RequestMapping("/sysManage/propertyEdit.do")
 	public ModelAndView propertyEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Long id = convertUtil.toLong(request.getParameter("id"),-1L);
+		String type=convertUtil.toString(request.getParameter("type"));
+		if (type!=null&&!type.equals("")) {
+			type=new String(type.getBytes("ISO-8859-1"),"gbk");
+		}
 		ModelMap modelMap = new ModelMap();
 		Tc01_property property_type = null;
 		request.setAttribute("sxfl", dao.search("select distinct type from Tc01_property "));
 		
 		//获取属性对象
 		property_type = (Tc01_property) dao.getObject(Tc01_property.class, id);
+		if (property_type==null) {
+			property_type=new Tc01_property();
+			property_type.setType(type);
+		}
 		modelMap.put("property_type", property_type);
-		
 		return new ModelAndView("/WEB-INF/jsp/sysManage/propertyEdit.jsp",modelMap);
 	}	
 	
