@@ -36,7 +36,7 @@
 				<ul>
 				   <c:if test="${empty property_type.flag || fn:indexOf(property_type.flag,'[r]') == -1}">
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
-					<li><div class="button"><div class="buttonContent"><button class="divFileReload" type="Button" loadfile="sysManage/propertyEdit.do">添 加</button></div></div></li>
+					<li><div class="button"><div class="buttonContent"><button class="divFileReload" type="Button" loadfile="sysManage/propertyEdit.do?type=${property_type.type}">添 加</button></div></div></li>
 					<c:if test="${not empty property_type.id}">
 						<li><div class="button"><div class="buttonContent"><button class="formDataClear" type="Button">删 除</button></div></div></li>
 					</c:if>
