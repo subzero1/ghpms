@@ -14,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
+import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.QueryService;
 
@@ -51,9 +52,13 @@ public class JspBuildServlet implements Servlet {
 		queryService=(QueryService) ctx.getBean("queryService");
 		createJspFile=(CreateJspFile) ctx.getBean("createJspFile");
 		gcsjDataService=(GcsjDataService) ctx.getBean("gcsjDataService");
-		for (int i = 101; i < 109; i++) {
-			createJspFile.AutoCreateJspFile(path, new Long(i));  
-		}
+		List<Ta06_module> modules=(List<Ta06_module>) queryService.searchList("select ta06 from Ta06_module ta06 ");
+		//初始化Ta06的的jsp文件
+		if (modules!=null&&modules.size()>0) {
+			for (Ta06_module ta06_module : modules) {
+				createJspFile.AutoCreateJspFile(path,ta06_module.getId()); 
+			}
+		} 
 		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
 		List nodeList = queryService.searchList(hql.toString());
 		for (Object object : nodeList) {
