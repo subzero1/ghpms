@@ -16,11 +16,19 @@ $(function(){
 function searchListExport(param1){
 	var $form=$("#pagerForm",navTab.getCurrentPanel());
 	$form.attr("action","form/gcsjList.do?"+param1);
+	$form.removeAttr("onsubmit");
  	$form.submit();
+ 	$form.attr("onsubmit","return navTabSearch(this)");
  	$form.attr("action","form/gcsjList.do");
 }
+function navTabSearch(form){
+//alert( $(form).serializeArray()[0].name);
+var keyword=$("#keyword",$.pdialog.getCurrent()).val();
+navTab.reload("form/gcsjList.do?module_id=${param.module_id}&keyword="+keyword, $(form).serializeArray());
+return false;
+}
 </script>
-<form id="pagerForm" method="post" action="form/gcsjList.do?module_id=${param.module_id}">
+<form id="pagerForm" method="post" action="form/gcsjList.do?module_id=${param.module_id}" onsubmit="return navTabSearch(this)">
 	<input type="hidden" name="module_id" value="${param.module_id}" />
 	<input type="hidden" name="keyword" value="${keyword}" />
 	<input type="hidden" name="pageNum" value="${pageNum}" />
@@ -39,7 +47,7 @@ function searchListExport(param1){
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
+						关键字：<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" />
 						<input type="hidden" name="module_id" value="${param.module_id}"></td>
 						<td>
 							<c:if test="${param.workState == 5}">

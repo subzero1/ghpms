@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.form.Td11_gdkc"  table="Td11_gdkc">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td11_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="skbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skbh"
+  />
+
+  <property
+  name="ghbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghbh"
+  />
+
+  <property
+  name="gcbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcbh"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
+
+  <property
+  name="skxybh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skxybh"
+  />
+
+  <property
+  name="xzqy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xzqy"
+  />
+
+  <property
+  name="sgdz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sgdz"
+  />
+
+  <property
+  name="ghjl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghjl"
+  />
+
+  <property
+  name="ghkg"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghkg"
+  />
+
+  <property
+  name="ghjgsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghjgsj"
+  />
+
+  <property
+  name="rwjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="rwjsrq"
+  />
+
+  <property
+  name="lhsqyj"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="lhsqyj"
+  />
+
+  <property
+  name="rwly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="rwly"
+  />
+
+  <property
+  name="scbfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="scbfzr"
+  />
+
+  <property
+  name="jsdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsdw"
+  />
+
+  <property
+  name="jsdwfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jsdwfzr"
+  />
+
+  <property
+  name="sjdw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjdw"
+  />
+
+  <property
+  name="sjdwfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjdwfzr"
+  />
+
+  <property
+  name="jldw"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jldw"
+  />
+
+  <property
+  name="jldwfzr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jldwfzr"
+  />
+
+  <property
+  name="zbjg"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="zbjg"
+  />
+
+  <property
+  name="tjsjcgrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="tjsjcgrq"
+  />
+
+  <property
+  name="ghrwsbh"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghrwsbh"
+  />
+
+
+    </class>
+
+</hibernate-mapping>

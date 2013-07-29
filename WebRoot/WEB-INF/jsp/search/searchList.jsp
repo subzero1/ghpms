@@ -63,7 +63,6 @@ function searchList(param1){
 					<c:forEach var="obj" items="${fieldList}">
 						<th width="${obj.width }">${obj.comments }</th>
 					</c:forEach>
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -84,21 +83,14 @@ function searchList(param1){
 									</td>
 								</c:when>
 								<c:otherwise>
-									<td align="${td.align}" width="${td.width}">${td.value }</td>
+									<td style="text-align: ${td.align};"  width="${td.width}">${td.value }</td>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-						<td>&nbsp;</td>
 					</tr>
 				</c:forEach>
 				<c:forEach begin="1" end="${pageRowSize-offset}">
 					<tr>
-						<c:if test="${param.module_id == 101}">
-									<td width="30"></td>
-								</c:if>
-								<c:if test="${param.module_id == 102}">
-									<td width="30"></td>
-								</c:if>
 						<td>&nbsp;</td>
 						<c:forEach var="obj" items="${fieldList}">
 						<td>&nbsp;</td>

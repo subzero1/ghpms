@@ -56,7 +56,7 @@
 				content = "构造表单保存配置文件。生成条件：<br>1、配置环境变量eclipse_workspace=xxx <br> 2、ta06_module.extflag 包含[配置保存] <br> 3、ta06.extdesc 不包含[配置保存成功]";
 			}
 			else if(flag == '6'){
-				content = "预留功能，尚未启用";
+				content = "根据系统表构造字段表[TA07]。生成条件：生成条件：<br>1、对应的表单已经画完<br>2、ta06_module.extflag 包含[字段二] <br> 3、ta06.extdesc 不包含[字段二成功]";
 			}
 			else if(flag == ''){
 				content = "";
@@ -83,8 +83,7 @@
 			_url = "generalSaveCfg.do";
 		}
 		else if(flag == 6){
-			alertMsg.info("预留功能，尚未启用");
-			return false;
+			_url="generalFormFieldBySys.do";
 		}
 		alertMsg.confirm("继续操作有可能会更改系统设置，导致系统瘫痪，确认继续吗？", {
 			okCall: function(){
