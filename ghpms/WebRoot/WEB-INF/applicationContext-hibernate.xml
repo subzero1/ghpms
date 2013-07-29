@@ -141,6 +141,9 @@
  				<value>com/ghpms/dataObjects/form/Td06_jcgc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Td07_gdgc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Td08_qtgc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td09_zbkc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td10_jckc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td11_gdkc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Tf01_field_property.hbm.xml</value>
  				
  				

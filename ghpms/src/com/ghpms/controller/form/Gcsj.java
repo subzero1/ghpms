@@ -2,6 +2,7 @@ package com.ghpms.controller.form;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -31,6 +32,7 @@ import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta04_role;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -66,12 +68,13 @@ public class Gcsj {
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping("/form/gcsjList.do")
 	public ModelAndView gcsjList(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session)
 			throws IllegalArgumentException, IllegalAccessException,
-			InvocationTargetException {
+			InvocationTargetException, UnsupportedEncodingException {
 		ModelMap modelMap = new ModelMap();
 		Map docMap = null;
 		ResultObject rs = null;
@@ -114,6 +117,7 @@ public class Gcsj {
 		hsql.append(" a where 1=1 ");
 
 		if (!keyword.equals("")) {
+			keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
 			hsql.append(" and (a.ghbh like'%");
 			hsql.append(keyword);
 			hsql.append("%' ");
@@ -251,9 +255,11 @@ public class Gcsj {
 		Long project_id = convertUtil
 				.toLong(request.getParameter("project_id"));
 		String node_id = convertUtil.toString(request.getParameter("node_id"));
-
+		
+		//取Tb02
+		Tb02_node tb02_node=(Tb02_node) queryService.searchById(Tb02_node.class, convertUtil.toLong(node_id));
 		Ta06_module module = (Ta06_module) queryService.searchById(
-				Ta06_module.class, convertUtil.toLong(node_id.substring(0, 3)));
+				Ta06_module.class, tb02_node.getFlow_id());
 		if (module != null) {
 			tableClassName = module.getProject_table();
 			tableName = tableClassName.substring(tableClassName
@@ -300,6 +306,30 @@ public class Gcsj {
 			out
 					.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
 		}
+	}
+	
+	@RequestMapping("/gcsj/getProjectID.do")
+	public void getProjectID(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, IOException{
+		Long moudle_id=convertUtil.toLong(request.getParameter("module_id"));
+		StringBuffer hql=new StringBuffer();
+		Class c=null;
+		PrintWriter out=response.getWriter();
+		Ta06_module module=(Ta06_module) queryService.searchById(Ta06_module.class, convertUtil.toLong(moudle_id));
+		if (module!=null) {
+			String packTableName=module.getProject_table();
+			String tableName=packTableName.substring(packTableName.lastIndexOf(".")+1,packTableName.length());
+			hql.append("select max(id) from ");
+			hql.append(tableName);
+			List list=queryService.searchList(hql.toString());
+			Object obj=null;
+			if (list!=null&&list.size()>0) {
+				obj=list.get(0);
+				System.out.println(obj.toString());
+			}
+			out.print(obj.toString());
+		}
+		
+		
 	}
 
 }

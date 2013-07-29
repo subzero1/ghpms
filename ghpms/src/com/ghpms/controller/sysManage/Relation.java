@@ -517,13 +517,15 @@ public class Relation {
 		field_rsql.append(id);
 		List fields = dao.search(field_rsql.toString() + " order by ta07.name");
 		modelMap.put("select_fields", fields);
+		// 获取节点
+		Tb02_node tb02_node=(Tb02_node) queryService.searchById(Tb02_node.class, convertUtil.toLong(id));
 		// 获取岗位非相关的角色对象
 		StringBuffer unfield_rsql = new StringBuffer();
 		unfield_rsql
 				.append(" select ta07 from Ta07_formfield ta07 where ta07 not in(");
 		unfield_rsql.append(field_rsql + ")");
 		unfield_rsql.append(" and ta07.module_id='"
-				+ id.toString().substring(0, 3) + "' ");
+				+ tb02_node.getFlow_id() + "' ");
 		unfield_rsql.append(" and ta07.name <>'");
 		unfield_rsql.append("id' ");
 		unfield_rsql.append(" order by ta07.ord,ta07.name");

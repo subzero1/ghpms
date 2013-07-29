@@ -299,10 +299,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.append("where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id ");
 		hsql.append(" and a.id=");
 		hsql.append(user.getId());
-		hsql.append(" and d.id>");
-		hsql.append(module_id * 100);
-		hsql.append(" and d.id<");
-		hsql.append((module_id + 1) * 100);
+		hsql.append(" and d.flow_id=");
+		hsql.append(module_id );
 		List recordButtons = queryService.searchList(hsql.toString());
 		List nodeMaps = new ArrayList();
 		for (Object object : recordButtons) {

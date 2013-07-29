@@ -1,4 +1,4 @@
-#Mon Jul 22 15:56:17 CST 2013
+#Wed Jul 24 17:57:55 CST 2013
 eclipse.preferences.version=1
 encoding//WebRoot/js=UTF-8
 encoding//WebRoot/js/CutPic.js=GB2312
@@ -8,6 +8,7 @@ encoding//WebRoot/js/dwz.src/dwz.database.js=UTF-8
 encoding//WebRoot/js/dwz.src/dwz.regional.zh.js=UTF-8
 encoding//WebRoot/js/dwz.src/dwz.util.number.js=UTF-8
 encoding//WebRoot/js/src/netsky.searchReport.js=UTF-8
+encoding//WebRoot/js/src/netsky.ui.js=UTF-8
 encoding//src/com/netsky/base/controller/personalization/Alarm.java=UTF-8
 encoding//src/com/netsky/base/controller/search/ReportTemplate.java=UTF-8
 encoding//src/com/netsky/base/controller/search/SearchAndReportList.java=UTF-8

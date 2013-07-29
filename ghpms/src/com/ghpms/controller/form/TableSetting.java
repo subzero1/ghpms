@@ -2,7 +2,10 @@ package com.ghpms.controller.form;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +23,8 @@ import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Ta31_worklist_cfg;
+import com.netsky.base.dataObjects.Tb01_flow;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
@@ -156,5 +161,51 @@ public class TableSetting {
 					"{\"statusCode\":\"300\", \"message\":\"操作失败\"}");
 		}
 	}
+	
+	@RequestMapping("/sysManage/nodeList.do")
+	public ModelAndView nodeList(HttpServletRequest request,HttpServletResponse response){
+		String view ="/WEB-INF/jsp/sysManage/nodeList.jsp";
+		ModelMap modelMap=new ModelMap();
+		List<Tb01_flow> flowList=null;
+		List<Tb02_node> nodeList=null;
+		Map nodeMap=new HashMap();
+		StringBuffer hql=new StringBuffer();
+		hql.append("select tb01 from Tb01_flow tb01 order by tb01.id");
+		flowList=(List<Tb01_flow>) queryService.searchList(hql.toString());
+		
+		hql.delete(0, hql.length());
+		hql.append("select tb02 from Tb02_node tb02 order by tb02.flow_id,tb02.id");
+		nodeList=(List<Tb02_node>) queryService.searchList(hql.toString());
+		
+		for (Tb01_flow flow : flowList) {
+			List<Tb02_node> tb02List=new ArrayList<Tb02_node>();
+			for (int i = 0; i < nodeList.size(); i++) {
+				Tb02_node node=nodeList.get(i);
+				if (flow.getId().longValue()==node.getFlow_id().longValue()) {
+					tb02List.add(node);
+				}
+			} 
+			nodeMap.put(flow.getName(), tb02List);
+		}
+		modelMap.put("flowList", flowList);
+		modelMap.put("nodeMap", nodeMap);
+		return  new ModelAndView(view,modelMap);
+	}
+	
+	@RequestMapping("/sysManage/nodeEdit.do")
+	public ModelAndView nodeEdit(HttpServletRequest request,HttpServletResponse response){
+		String view ="/WEB-INF/jsp/sysManage/nodeEdit.jsp";
+		ModelMap modelMap=new ModelMap();
+		Long id = convertUtil.toLong(request.getParameter("id"),-1L);
+		StringBuffer hql=new StringBuffer();
+		hql.append("select tb01 from Tb01_flow tb01 order by tb01.id");
+		List flowList=(List<Tb01_flow>) queryService.searchList(hql.toString());
+		
+		Tb02_node node=(Tb02_node) queryService.searchById(Tb02_node.class, id);
+		modelMap.put("flowList", flowList);
+		modelMap.put("tb02_node", node);
+		return  new ModelAndView(view,modelMap);
+	}
+	
 
 }

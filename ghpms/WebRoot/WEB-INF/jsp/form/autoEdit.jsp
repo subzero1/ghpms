@@ -28,9 +28,32 @@
 	DWZ.ajaxDone(json);
 	if (json.statusCode == DWZ.statusCode.ok){
 		setTimeout(function(){$.pdialog.closeCurrent();}, 100);
-		docReload();
+		var $project_id=$("#project_id",$.pdialog.getCurrent());
+		var $module_id=$("#module_id",$.pdialog.getCurrent());
+		var $user_id=$("#user_id",$.pdialog.getCurrent());
+		var $node_id=$("#node_id",$.pdialog.getCurrent());
+		if($project_id.val()!=""){ 
+		   docReload();
+		}else{
+		
+		//回调函数,取得表的最大ID
+		 $.ajax({
+			type: 'POST',
+			url:'gcsj/getProjectID.do',
+			data:{module_id:$module_id.val()},
+			dataType:"html",
+			cache: false,
+			success: function openNavTab(data){
+				navTab.openTab('gcsj', 'gh/openForm.do?project_id='+data+'&module_id='+$module_id.val()+'&user_id='+$user_id.val()+'&node_id='+$node_id.val(), {title:'工程设计信息'});
+				},
+			error: DWZ.ajaxError
+		});
+		}
+		
 	}
 }
+
+
 </script>
 <div class="page">
 	<div id="autoform_body" class="pageContent" layoutH="0">

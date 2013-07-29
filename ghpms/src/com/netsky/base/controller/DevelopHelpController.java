@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
@@ -845,5 +846,176 @@ public class DevelopHelpController{
 			}
 			response.getWriter().print(	"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + msgBox.toString() + "\"}");
 		}
+	}
+	
+	@RequestMapping("/generalFormFieldBySys.do")
+	public void generalFormFieldBySys(HttpServletRequest request,HttpServletResponse response) throws IOException{
+
+		response.setCharacterEncoding("UTF-8");
+		StringBuffer logBox = new StringBuffer("");
+		StringBuffer msgBox = new StringBuffer("");
+		String statusCode = "200";
+		try{
+			int counter = 0;
+			HttpSession session = request.getSession();
+			if(session == null){
+				throw new Exception ("用户超时，请重新登录");
+			}
+			
+			StringBuffer sql = new StringBuffer();
+			sql.delete(0, sql.length());
+			sql.append("from Ta06_module ta06 ");
+			sql.append("where extFlag like '%[字段]%' ");
+			sql.append("and (extdesc not like '%[字段成功]%' or extdesc is null )");
+			ResultObject ro = queryService.search(sql.toString());
+			while(ro.next()){
+				Long module_id = null;
+				try{
+					/*
+					 * 获取TA06信息
+					 */
+					Ta06_module ta06 = (Ta06_module)ro.get("ta06");
+					module_id = convertUtil.toLong(ta06.getId());
+					String form_object = convertUtil.toString(ta06.getForm_table());
+					String form_table = form_object.substring(form_object.lastIndexOf(".") + 1,form_object.length());
+					/*
+					 * 备份TA07信息
+					 */
+					saveService.updateByHSql("update Ta07_formfield set module_id = module_id*(-1) where module_id = "+module_id);
+					/*
+					 * 从内容中提取字段信息【project_table 和 form_table]
+					 */
+					if(form_table.length() > 0){
+						Map<String,Object> paramMap = new HashMap<String,Object>();
+						paramMap.put("module_id", module_id);
+						paramMap.put("objectName", form_object);
+						paramMap.put("tableName", form_table);
+						setTa07(paramMap);
+					}
+					counter ++;
+					
+					/*
+					 * 记录一下生成结果
+					 */
+					ta06.setExtdesc(convertUtil.toString(ta06.getExtdesc()) + "[字段成功]");
+					saveService.save(ta06);
+					
+					/*
+					 * 删除备份数据
+					 */
+					saveService.updateByHSql("delete from  Ta07_formfield where module_id = "+module_id*(-1));
+				}
+				catch(Exception ee){
+					logBox.append("error [module_id="+module_id+":"+ee.getMessage()+"]\n\r");
+					/*
+					 * 恢复历史数据
+					 */
+					saveService.updateByHSql("update Ta07_formfield set module_id = module_id*(-1) where module_id = "+module_id*(-1));
+					
+				}
+			}
+			msgBox.append("成功处理"+counter+"个表的字段");
+		}
+		catch(Exception e){
+			logBox.append(" lastError="+e.getMessage()+ "\n\r");
+			msgBox.append("操作失败："+e.getMessage());
+			statusCode = "300";
+		}
+		finally{
+			if(logBox.length() > 0 && logBox.indexOf("error") != -1){
+				log.error(logBox.toString());
+			}
+			response.getWriter().print(	"{\"statusCode\":\"" + statusCode + "\", \"message\":\"" + msgBox.toString() + "\"}");
+		}
+	
+	}
+	
+	public void setTa07(Map paramMap){
+		StringBuffer sql = new StringBuffer("");
+		String tableName = convertUtil.toString(paramMap.get("tableName"));
+		String objectName = convertUtil.toString(paramMap.get("objectName"));
+		Long module_id = convertUtil.toLong(paramMap.get("module_id"));
+		Long isDetail = (Long)paramMap.get("isDetail");
+		
+		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
+			
+			Ta07_formfield ta07 = null;
+				/*
+				 * 根据TA07获得字段名
+				 */
+				sql.delete(0,sql.length());
+				sql.append("select col.column_name column_name,col.data_type data_type,com.comments comments, nullable,");
+				sql.append("case when data_precision is null then data_length else data_precision+data_scale*0.1 end data_length ");
+				sql.append("from user_tab_cols col,user_col_comments com ");
+				sql.append("where col.table_name = com.table_name ");
+				sql.append("and col.column_name = com.column_name ");
+				sql.append("and col.table_name = '"+tableName.toUpperCase()+"' ");
+				List list = jdbcTemplate.queryForList(sql.toString());
+				if(list != null && list.size() > 0){
+					for (Object object : list) {
+					Map<String,Object> map = (Map<String,Object>)object;
+					String t_name = convertUtil.toString(map.get("column_name")).toLowerCase();
+					String t_comment = convertUtil.toString(map.get("comments"),"未命名");
+					String t_datatype = convertUtil.toString(map.get("data_type"));
+					Double t_datalength = convertUtil.toDouble(map.get("data_length"));
+					String t_nullable = convertUtil.toString(map.get("nullable"));
+					
+					ta07 = new Ta07_formfield();
+					ta07.setModule_id(module_id);
+					ta07.setName(t_name);
+					ta07.setComments(t_comment.replace("[选项]", "").replace("[人员]",""));
+					if (t_comment.indexOf("[选项]")>0||t_comment.indexOf("[人员]")>0) {
+						ta07.setData_type(new Long(1));
+					} 
+					ta07.setDatatype(t_datatype.toUpperCase());
+					ta07.setDatalength(t_datalength);
+					ta07.setNullable(t_nullable);
+					ta07.setObject_name(objectName);
+					if(t_datatype.equals("DATE")){
+						ta07.setAlign("center");
+						ta07.setWidth(100L);
+					}
+					else if(t_datatype.equals("NUMBER") && t_datalength % 1 == 0 ){
+						ta07.setAlign("center");
+						ta07.setWidth(100L);
+					}
+					else if(t_datatype.equals("NUMBER") && t_datalength % 1 > 0 ){
+						ta07.setAlign("right");
+						ta07.setWidth(100L);
+					}
+					else if(t_datatype.indexOf("VARCHAR") != -1){
+						ta07.setAlign("left");
+						Long t_width = t_datalength.longValue() * 3;
+						if(t_width < 100){
+							t_width = 100L;
+						}
+						else if(t_width > 1000){
+							t_width = 1000L;
+							ta07.setData_type(new Long(2));
+						}
+						ta07.setWidth(t_width);
+					}
+					else{
+						ta07.setAlign("center");
+						ta07.setWidth(100L);
+					}
+					if(t_name.toUpperCase() != "ID" && t_name.toUpperCase().lastIndexOf("_ID") != t_name.length() - 3
+							&& t_datalength < 300){
+						ta07.setShow_flag(1L);
+					}
+					if(t_name.toUpperCase() != "ID" && t_name.toUpperCase().lastIndexOf("_ID") != t_name.length() - 3){
+						ta07.setSearch_flag(1L);
+					}
+					ta07.setOrder_flag(1L);
+					if(t_datatype.toUpperCase() != "DATE"){
+						ta07.setDate_flag(1L);
+					}
+					ta07.setIsdetail(isDetail);
+					saveService.save(ta07);
+					ta07.setOrd(ta07.getId());
+					saveService.save(ta07);
+				}	
+	}
+	
 	}
 }  
