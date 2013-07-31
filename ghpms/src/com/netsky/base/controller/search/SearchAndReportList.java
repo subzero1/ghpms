@@ -29,7 +29,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -111,7 +110,7 @@ public class SearchAndReportList {
 		/**
 		 * 取表单列表
 		 */
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 where ta06.id<109");
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 ");
 		request.setAttribute("modules", modules);
 		
 		/**
@@ -879,7 +878,7 @@ public class SearchAndReportList {
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
 		
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 where ta06.id<109");
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 ");
 		request.setAttribute("modules", modules);
 
 		List<String[]> searchField = new ArrayList<String[]>();
