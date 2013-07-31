@@ -131,19 +131,17 @@
 				<value>com/netsky/base/dataObjects/Tb02_node.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb04_flowgroup.hbm.xml</value>
 				<value>com/netsky/base/dataObjects/Tb15_docflow.hbm.xml</value>
- 
- 				
-				<value>com/ghpms/dataObjects/form/Td01_glsj.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td02_dlsj.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td03_glgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td04_dlgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td05_zbgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td06_jcgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td07_gdgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td08_qtgc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td09_zbkc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td10_jckc.hbm.xml</value>
- 				<value>com/ghpms/dataObjects/form/Td11_gdkc.hbm.xml</value>
+				
+				<value>com/ghpms/dataObjects/form/Td01_glkc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td02_dlkc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td03_zbkc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td04_jckc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td05_gdkc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td11_glgc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td12_dlgc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td13_zbgc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td14_jcgc.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Td15_gdgc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Tf01_field_property.hbm.xml</value>
  				
  				
