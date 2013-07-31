@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-29
- * @hibernate.class table="Td09_zbkc"
+ * @author cmp_auto 2013-07-31
+ * @hibernate.class table="Td03_zbkc"
  */
 
-public class Td09_zbkc implements Serializable{
+public class Td03_zbkc implements Serializable{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 24996354237982520L;
+	private static final long serialVersionUID = 303770979142127616L;
 
 	/**
 	 * 标识
@@ -22,7 +22,7 @@ public class Td09_zbkc implements Serializable{
 	
 	/**
 	 * @hibernate.id generator-class="sequence"
-	 * @hibernate.generator-param name="sequence" value="td09_num"
+	 * @hibernate.generator-param name="sequence" value="td03_num"
 	 * @return Returns the id.
 	 */
 	public Long getId() {

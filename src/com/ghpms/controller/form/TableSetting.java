@@ -112,7 +112,7 @@ public class TableSetting {
 		/**
 		 * 取表单列表
 		 */
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 where ta06.id<109");
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 ");
 		request.setAttribute("modules", modules);
 		/**
 		 * 配置信息存放list

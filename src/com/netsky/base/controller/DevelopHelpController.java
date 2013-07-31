@@ -951,6 +951,7 @@ public class DevelopHelpController{
 				sql.append("and col.column_name = com.column_name ");
 				sql.append("and col.table_name = '"+tableName.toUpperCase()+"' ");
 				List list = jdbcTemplate.queryForList(sql.toString());
+				int ord=1;
 				if(list != null && list.size() > 0){
 					for (Object object : list) {
 					Map<String,Object> map = (Map<String,Object>)object;
@@ -1011,9 +1012,9 @@ public class DevelopHelpController{
 						ta07.setDate_flag(1L);
 					}
 					ta07.setIsdetail(isDetail);
+					ta07.setOrd(new Long(ord));
 					saveService.save(ta07);
-					ta07.setOrd(ta07.getId());
-					saveService.save(ta07);
+					ord++;
 				}	
 	}
 	
