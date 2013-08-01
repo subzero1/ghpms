@@ -118,7 +118,7 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		 */
 		if (formfield.getName().equals("ssdq")
 				|| formfield.getName().equals("xzqb")
-				|| formfield.getName().equals("ssxzq")) {
+				|| formfield.getName().equals("ssxzq")||formfield.getName().equals("xzqy")) {
 			hsql.delete(0, hsql.length());
 			hsql.append("select tc02 from Tc02_area tc02 where 1=1 ");
 			hsql.append(" order by tc02.name ");
