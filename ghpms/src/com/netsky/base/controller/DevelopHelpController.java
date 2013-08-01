@@ -515,7 +515,7 @@ public class DevelopHelpController{
 				}
 				else if(t_datatype.indexOf("VARCHAR") != -1 && t_comment.indexOf("[选项]") != -1){
 					ta08.setAlign("left");
-					Long t_width = t_datalength.longValue() * 3;
+					Long t_width = t_datalength.longValue() * 2;
 					if(t_width < 100){
 						t_width = 100L;
 					}
@@ -587,7 +587,11 @@ public class DevelopHelpController{
 				if(t_name.toUpperCase() != "ID" && t_name.toUpperCase().lastIndexOf("_ID") != t_name.length() - 3){
 					ta08.setReportflag(1L);
 				}
-				
+				//对长度再次做调整,根据comments的长度变化
+				Integer t_width2=(int) (ta08.getComments().length()*13.125)+1;
+				if (ta08.getWidth()<t_width2) {
+					ta08.setWidth(new Long(t_width2));
+				}
 				ta08.setOrd(new Long(i));
 				saveService.save(ta08);
 			}
@@ -986,7 +990,7 @@ public class DevelopHelpController{
 					}
 					else if(t_datatype.indexOf("VARCHAR") != -1){
 						ta07.setAlign("left");
-						Long t_width = t_datalength.longValue() * 3;
+						Long t_width = t_datalength.longValue()*2;
 						if(t_width < 100){
 							t_width = 100L;
 						}
@@ -1011,6 +1015,13 @@ public class DevelopHelpController{
 					if(t_datatype.toUpperCase() != "DATE"){
 						ta07.setDate_flag(1L);
 					}
+					
+					//对长度再次做调整,根据comments的长度变化
+					Integer t_width2=(int) (ta07.getComments().length()*13.125)+1;
+					if (ta07.getWidth()<t_width2) {
+						ta07.setWidth(new Long(t_width2));
+					}
+					
 					ta07.setIsdetail(isDetail);
 					ta07.setOrd(new Long(ord));
 					saveService.save(ta07);
