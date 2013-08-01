@@ -19,6 +19,14 @@
         </id>
 
    <property
+  name="sjwcsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjwcsj"
+  />
+
+  <property
   name="rwbfzr"
   type="java.util.Date"
   update="true"
@@ -496,6 +504,14 @@
   update="true"
   insert="true"
   column="dxhtyjzfcwbsj"
+  />
+
+  <property
+  name="jhwcsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jhwcsj"
   />
 
   <property

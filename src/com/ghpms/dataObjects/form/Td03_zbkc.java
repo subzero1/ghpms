@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-31
+ * @author cmp_auto 2013-08-01
  * @hibernate.class table="Td03_zbkc"
  */
 
@@ -13,7 +13,7 @@ public class Td03_zbkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 303770979142127616L;
+	private static final long serialVersionUID = 835065864739713920L;
 
 	/**
 	 * 标识
@@ -37,276 +37,6 @@ public class Td03_zbkc implements Serializable{
 	}
 
 	 /**
- * 对下结算标准
-
- */
- private String dxjsbz;
-
- /**
- * @hibernate.property column="dxjsbz"
- * @return Returns the dxjsbz.
- */
- public String getDxjsbz() {
-    return dxjsbz;
- }
-
- public void setDxjsbz(String dxjsbz) {
-    this.dxjsbz = dxjsbz;
-  }
-
- /**
- * 对下结算金额
-
- */
- private Long dxjsje;
-
- /**
- * @hibernate.property column="dxjsje"
- * @return Returns the dxjsje.
- */
- public Long getDxjsje() {
-    return dxjsje;
- }
-
- public void setDxjsje(Long dxjsje) {
-    this.dxjsje = dxjsje;
-  }
-
- /**
- * 结算单签字日期
-
- */
- private Date jsdqzrq;
-
- /**
- * @hibernate.property column="jsdqzrq"
- * @return Returns the jsdqzrq.
- */
- public Date getJsdqzrq() {
-    return jsdqzrq;
- }
-
- public void setJsdqzrq(Date jsdqzrq) {
-    this.jsdqzrq = jsdqzrq;
-  }
-
- /**
- * 财务审核日期
-
- */
- private Date cwshrq;
-
- /**
- * @hibernate.property column="cwshrq"
- * @return Returns the cwshrq.
- */
- public Date getCwshrq() {
-    return cwshrq;
- }
-
- public void setCwshrq(Date cwshrq) {
-    this.cwshrq = cwshrq;
-  }
-
- /**
- * 对下结算批次
-
- */
- private String dxjspc;
-
- /**
- * @hibernate.property column="dxjspc"
- * @return Returns the dxjspc.
- */
- public String getDxjspc() {
-    return dxjspc;
- }
-
- public void setDxjspc(String dxjspc) {
-    this.dxjspc = dxjspc;
-  }
-
- /**
- * 对下付款批准日期
-
- */
- private Date dxfkpzrq;
-
- /**
- * @hibernate.property column="dxfkpzrq"
- * @return Returns the dxfkpzrq.
- */
- public Date getDxfkpzrq() {
-    return dxfkpzrq;
- }
-
- public void setDxfkpzrq(Date dxfkpzrq) {
-    this.dxfkpzrq = dxfkpzrq;
-  }
-
- /**
- * 领款日期
-
- */
- private Date lkrq;
-
- /**
- * @hibernate.property column="lkrq"
- * @return Returns the lkrq.
- */
- public Date getLkrq() {
-    return lkrq;
- }
-
- public void setLkrq(Date lkrq) {
-    this.lkrq = lkrq;
-  }
-
- /**
- * 对下预付款金额
-
- */
- private Long dxyfkje;
-
- /**
- * @hibernate.property column="dxyfkje"
- * @return Returns the dxyfkje.
- */
- public Long getDxyfkje() {
-    return dxyfkje;
- }
-
- public void setDxyfkje(Long dxyfkje) {
-    this.dxyfkje = dxyfkje;
-  }
-
- /**
- * 对下预付款批次
-
- */
- private String dxyfkpc;
-
- /**
- * @hibernate.property column="dxyfkpc"
- * @return Returns the dxyfkpc.
- */
- public String getDxyfkpc() {
-    return dxyfkpc;
- }
-
- public void setDxyfkpc(String dxyfkpc) {
-    this.dxyfkpc = dxyfkpc;
-  }
-
- /**
- * 预付款领款日期
-
- */
- private Date yfklkrq;
-
- /**
- * @hibernate.property column="yfklkrq"
- * @return Returns the yfklkrq.
- */
- public Date getYfklkrq() {
-    return yfklkrq;
- }
-
- public void setYfklkrq(Date yfklkrq) {
-    this.yfklkrq = yfklkrq;
-  }
-
- /**
- * 公司内部结算价
-
- */
- private Long gsnbjsj;
-
- /**
- * @hibernate.property column="gsnbjsj"
- * @return Returns the gsnbjsj.
- */
- public Long getGsnbjsj() {
-    return gsnbjsj;
- }
-
- public void setGsnbjsj(Long gsnbjsj) {
-    this.gsnbjsj = gsnbjsj;
-  }
-
- /**
- * 对上合同办公室盖章时间
-
- */
- private Date dshtbgsgzsj;
-
- /**
- * @hibernate.property column="dshtbgsgzsj"
- * @return Returns the dshtbgsgzsj.
- */
- public Date getDshtbgsgzsj() {
-    return dshtbgsgzsj;
- }
-
- public void setDshtbgsgzsj(Date dshtbgsgzsj) {
-    this.dshtbgsgzsj = dshtbgsgzsj;
-  }
-
- /**
- * 对下合同办公室盖章时间
-
- */
- private Date dxhtbgsgzsj;
-
- /**
- * @hibernate.property column="dxhtbgsgzsj"
- * @return Returns the dxhtbgsgzsj.
- */
- public Date getDxhtbgsgzsj() {
-    return dxhtbgsgzsj;
- }
-
- public void setDxhtbgsgzsj(Date dxhtbgsgzsj) {
-    this.dxhtbgsgzsj = dxhtbgsgzsj;
-  }
-
- /**
- * 对上合同原件转发财务部时间
-
- */
- private Date dshtyjzfcwbsj;
-
- /**
- * @hibernate.property column="dshtyjzfcwbsj"
- * @return Returns the dshtyjzfcwbsj.
- */
- public Date getDshtyjzfcwbsj() {
-    return dshtyjzfcwbsj;
- }
-
- public void setDshtyjzfcwbsj(Date dshtyjzfcwbsj) {
-    this.dshtyjzfcwbsj = dshtyjzfcwbsj;
-  }
-
- /**
- * 对下合同原件转发财务部时间
-
- */
- private Date dxhtyjzfcwbsj;
-
- /**
- * @hibernate.property column="dxhtyjzfcwbsj"
- * @return Returns the dxhtyjzfcwbsj.
- */
- public Date getDxhtyjzfcwbsj() {
-    return dxhtyjzfcwbsj;
- }
-
- public void setDxhtyjzfcwbsj(Date dxhtyjzfcwbsj) {
-    this.dxhtyjzfcwbsj = dxhtyjzfcwbsj;
-  }
-
- /**
  * 视宽编号
  */
  private String skbh;
@@ -1077,6 +807,310 @@ public class Td03_zbkc implements Serializable{
 
  public void setHkrq(Date hkrq) {
     this.hkrq = hkrq;
+  }
+
+ /**
+ * 计划完成时间
+ */
+ private Date jhwcsj;
+
+ /**
+ * @hibernate.property column="jhwcsj"
+ * @return Returns the jhwcsj.
+ */
+ public Date getJhwcsj() {
+    return jhwcsj;
+ }
+
+ public void setJhwcsj(Date jhwcsj) {
+    this.jhwcsj = jhwcsj;
+  }
+
+ /**
+ * 实际完成时间
+ */
+ private Date sjwcsj;
+
+ /**
+ * @hibernate.property column="sjwcsj"
+ * @return Returns the sjwcsj.
+ */
+ public Date getSjwcsj() {
+    return sjwcsj;
+ }
+
+ public void setSjwcsj(Date sjwcsj) {
+    this.sjwcsj = sjwcsj;
+  }
+
+ /**
+ * 对下结算标准
+
+ */
+ private String dxjsbz;
+
+ /**
+ * @hibernate.property column="dxjsbz"
+ * @return Returns the dxjsbz.
+ */
+ public String getDxjsbz() {
+    return dxjsbz;
+ }
+
+ public void setDxjsbz(String dxjsbz) {
+    this.dxjsbz = dxjsbz;
+  }
+
+ /**
+ * 对下结算金额
+
+ */
+ private Long dxjsje;
+
+ /**
+ * @hibernate.property column="dxjsje"
+ * @return Returns the dxjsje.
+ */
+ public Long getDxjsje() {
+    return dxjsje;
+ }
+
+ public void setDxjsje(Long dxjsje) {
+    this.dxjsje = dxjsje;
+  }
+
+ /**
+ * 结算单签字日期
+
+ */
+ private Date jsdqzrq;
+
+ /**
+ * @hibernate.property column="jsdqzrq"
+ * @return Returns the jsdqzrq.
+ */
+ public Date getJsdqzrq() {
+    return jsdqzrq;
+ }
+
+ public void setJsdqzrq(Date jsdqzrq) {
+    this.jsdqzrq = jsdqzrq;
+  }
+
+ /**
+ * 财务审核日期
+
+ */
+ private Date cwshrq;
+
+ /**
+ * @hibernate.property column="cwshrq"
+ * @return Returns the cwshrq.
+ */
+ public Date getCwshrq() {
+    return cwshrq;
+ }
+
+ public void setCwshrq(Date cwshrq) {
+    this.cwshrq = cwshrq;
+  }
+
+ /**
+ * 对下结算批次
+
+ */
+ private String dxjspc;
+
+ /**
+ * @hibernate.property column="dxjspc"
+ * @return Returns the dxjspc.
+ */
+ public String getDxjspc() {
+    return dxjspc;
+ }
+
+ public void setDxjspc(String dxjspc) {
+    this.dxjspc = dxjspc;
+  }
+
+ /**
+ * 对下付款批准日期
+
+ */
+ private Date dxfkpzrq;
+
+ /**
+ * @hibernate.property column="dxfkpzrq"
+ * @return Returns the dxfkpzrq.
+ */
+ public Date getDxfkpzrq() {
+    return dxfkpzrq;
+ }
+
+ public void setDxfkpzrq(Date dxfkpzrq) {
+    this.dxfkpzrq = dxfkpzrq;
+  }
+
+ /**
+ * 领款日期
+
+ */
+ private Date lkrq;
+
+ /**
+ * @hibernate.property column="lkrq"
+ * @return Returns the lkrq.
+ */
+ public Date getLkrq() {
+    return lkrq;
+ }
+
+ public void setLkrq(Date lkrq) {
+    this.lkrq = lkrq;
+  }
+
+ /**
+ * 对下预付款金额
+
+ */
+ private Long dxyfkje;
+
+ /**
+ * @hibernate.property column="dxyfkje"
+ * @return Returns the dxyfkje.
+ */
+ public Long getDxyfkje() {
+    return dxyfkje;
+ }
+
+ public void setDxyfkje(Long dxyfkje) {
+    this.dxyfkje = dxyfkje;
+  }
+
+ /**
+ * 对下预付款批次
+
+ */
+ private String dxyfkpc;
+
+ /**
+ * @hibernate.property column="dxyfkpc"
+ * @return Returns the dxyfkpc.
+ */
+ public String getDxyfkpc() {
+    return dxyfkpc;
+ }
+
+ public void setDxyfkpc(String dxyfkpc) {
+    this.dxyfkpc = dxyfkpc;
+  }
+
+ /**
+ * 预付款领款日期
+
+ */
+ private Date yfklkrq;
+
+ /**
+ * @hibernate.property column="yfklkrq"
+ * @return Returns the yfklkrq.
+ */
+ public Date getYfklkrq() {
+    return yfklkrq;
+ }
+
+ public void setYfklkrq(Date yfklkrq) {
+    this.yfklkrq = yfklkrq;
+  }
+
+ /**
+ * 公司内部结算价
+
+ */
+ private Long gsnbjsj;
+
+ /**
+ * @hibernate.property column="gsnbjsj"
+ * @return Returns the gsnbjsj.
+ */
+ public Long getGsnbjsj() {
+    return gsnbjsj;
+ }
+
+ public void setGsnbjsj(Long gsnbjsj) {
+    this.gsnbjsj = gsnbjsj;
+  }
+
+ /**
+ * 对上合同办公室盖章时间
+
+ */
+ private Date dshtbgsgzsj;
+
+ /**
+ * @hibernate.property column="dshtbgsgzsj"
+ * @return Returns the dshtbgsgzsj.
+ */
+ public Date getDshtbgsgzsj() {
+    return dshtbgsgzsj;
+ }
+
+ public void setDshtbgsgzsj(Date dshtbgsgzsj) {
+    this.dshtbgsgzsj = dshtbgsgzsj;
+  }
+
+ /**
+ * 对下合同办公室盖章时间
+
+ */
+ private Date dxhtbgsgzsj;
+
+ /**
+ * @hibernate.property column="dxhtbgsgzsj"
+ * @return Returns the dxhtbgsgzsj.
+ */
+ public Date getDxhtbgsgzsj() {
+    return dxhtbgsgzsj;
+ }
+
+ public void setDxhtbgsgzsj(Date dxhtbgsgzsj) {
+    this.dxhtbgsgzsj = dxhtbgsgzsj;
+  }
+
+ /**
+ * 对上合同原件转发财务部时间
+
+ */
+ private Date dshtyjzfcwbsj;
+
+ /**
+ * @hibernate.property column="dshtyjzfcwbsj"
+ * @return Returns the dshtyjzfcwbsj.
+ */
+ public Date getDshtyjzfcwbsj() {
+    return dshtyjzfcwbsj;
+ }
+
+ public void setDshtyjzfcwbsj(Date dshtyjzfcwbsj) {
+    this.dshtyjzfcwbsj = dshtyjzfcwbsj;
+  }
+
+ /**
+ * 对下合同原件转发财务部时间
+
+ */
+ private Date dxhtyjzfcwbsj;
+
+ /**
+ * @hibernate.property column="dxhtyjzfcwbsj"
+ * @return Returns the dxhtyjzfcwbsj.
+ */
+ public Date getDxhtyjzfcwbsj() {
+    return dxhtyjzfcwbsj;
+ }
+
+ public void setDxhtyjzfcwbsj(Date dxhtyjzfcwbsj) {
+    this.dxhtyjzfcwbsj = dxhtyjzfcwbsj;
   }
 
 
