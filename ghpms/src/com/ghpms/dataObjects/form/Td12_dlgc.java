@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-31
+ * @author cmp_auto 2013-08-01
  * @hibernate.class table="Td12_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td12_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 332972708573976192L;
+	private static final long serialVersionUID = 151410485342008960L;
 
 	/**
 	 * 标识
@@ -37,6 +37,40 @@ public class Td12_dlgc implements Serializable{
 	}
 
 	 /**
+ * 计划完成时间
+ */
+ private Date jhwcsj;
+
+ /**
+ * @hibernate.property column="jhwcsj"
+ * @return Returns the jhwcsj.
+ */
+ public Date getJhwcsj() {
+    return jhwcsj;
+ }
+
+ public void setJhwcsj(Date jhwcsj) {
+    this.jhwcsj = jhwcsj;
+  }
+
+ /**
+ * 实际完成时间
+ */
+ private Date sjwcsj;
+
+ /**
+ * @hibernate.property column="sjwcsj"
+ * @return Returns the sjwcsj.
+ */
+ public Date getSjwcsj() {
+    return sjwcsj;
+ }
+
+ public void setSjwcsj(Date sjwcsj) {
+    this.sjwcsj = sjwcsj;
+  }
+
+ /**
  * 歌华施工协议金额
  */
  private Long ghsgxyje;

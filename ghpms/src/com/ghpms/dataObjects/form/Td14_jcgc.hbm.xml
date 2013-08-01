@@ -27,6 +27,22 @@
   />
 
   <property
+  name="jhwcsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jhwcsj"
+  />
+
+  <property
+  name="sjwcsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sjwcsj"
+  />
+
+  <property
   name="cgqflsj"
   type="java.util.Date"
   update="true"
