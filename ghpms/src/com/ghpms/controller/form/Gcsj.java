@@ -36,6 +36,7 @@ import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
+import com.netsky.base.utils.DateFormatUtil;
 import com.netsky.base.utils.convertUtil;
 
 @Controller
@@ -65,16 +66,12 @@ public class Gcsj {
 	 * @param response
 	 * @param session
 	 * @return ModelAndView
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws UnsupportedEncodingException 
+	 * @throws Exception 
 	 */
 	@RequestMapping("/form/gcsjList.do")
 	public ModelAndView gcsjList(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session)
-			throws IllegalArgumentException, IllegalAccessException,
-			InvocationTargetException, UnsupportedEncodingException {
+			throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Map docMap = null;
 		ResultObject rs = null;
@@ -211,7 +208,8 @@ public class Gcsj {
 			sheetList.add(titleList);
 			sheetList.add(docList);
 			sheetMap.put("form_title", sheetList);
-			request.setAttribute("ExcelName", module.getName() + ".xls");
+			System.out.println("日期:"+new Date());
+			request.setAttribute("ExcelName", module.getName()+"-"+module.getForm_name()+module.getId()+"-"+DateFormatUtil.Format(new Date(), "yyyyMMdd") + ".xls");
 			request.setAttribute("sheetMap", sheetMap);
 			return new ModelAndView("/export/toExcelWhithList.do");
 		}
