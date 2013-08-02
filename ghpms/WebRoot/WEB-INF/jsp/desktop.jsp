@@ -77,24 +77,14 @@ function openOnLineList(){
 		  		<div class="contentc" style="height:225px;">
 					<table border="0" cellspacing="6" cellpadding="0" style="border-collapse:collapse;" id="remind">
 						<tr>
-							<c:choose>
-								<c:when test="${not empty rolesMap['110101']}">
-							    	<td class="gxwd" onclick="javascript:navTab.openTab('gxwdList', 'other/wdList.do?limit=1', {title:'文档管理'});"><br/>共享文档</td>
-							    </c:when>
-							    <c:otherwise>
-							    	<td class="gxwd" onclick="javascript:navTab.openTab('gxwdList', 'other/wdList.do?limit=0', {title:'文档查阅'});"><br/>共享文档</td>
-							    </c:otherwise>
-						    </c:choose>
 							<td class="zxTws" onclick="javascript:navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'});"><font>${csMap.zxWdfs}</font><br/>在线提问(${csMap.zxTws})</td>
-							<td class="jjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=jcs&user_id=${user.id }', {title:'超时提醒'});"><font> ${jcss}</font><br/>即将超时</td>
-							<td class="yjcs" onclick="javascript:navTab.openTab('remind', 'search/remindFlowList.do?remindType=cs&user_id=${user.id }', {title:'超时提醒'});"><font> ${css}</font><br/>已经超时</td>
+							<td class="jjcs" onclick="javascript:navTab.openTab('remind', 'gcsj/outDateList.do?outDateFlag=1&user_id=${user.id }', {title:'即将超期提醒'});"><font> ${jcss}</font><br/>即将超期</td>
+							<td class="yjcs" onclick="javascript:navTab.openTab('remind', 'gcsj/outDateList.do?outDateFlag=2&user_id=${user.id }', {title:'已经超期提醒'});"><font> ${css}</font><br/>已经超期</td>
+							<td class="dbWds" onclick="javascript:navTab.openTab('OnLineList', 'OnLineList.do?wtlx=601', {title:'系统公告'});"><br/>系统公告</td>
 							<td></td>
 						</tr>
 						<tr>
-							<td class="dbWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=1', {title:'待办文档'});"><font>${csMap.dbWds}</font><br/>待办文档</td>
-							<td class="zbWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=2', {title:'在办文档'});"><font>${csMap.zbWds}</font><br/>在办文档</td>
-							<td class="dfWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=3', {title:'待复文档'});"><font>${csMap.dfWds}</font><br/>待复文档</td>
-							<td class="hfWds" onclick="javascript:navTab.openTab('workList', 'workList.do?workState=4', {title:'回复文档'});"><font>${csMap.hfWds}</font><br/>回复文档</td>
+							<td class="dfWds" onclick="javascript:navTab.openTab('workList', 'MessageList.do?messageState=1', {title:'内部邮件'});"><font>${csMap.dfWds}</font><br/>内部邮件</td>
 							<td></td>
 						</tr>
 						<tr>

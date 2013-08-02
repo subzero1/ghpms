@@ -66,12 +66,11 @@ public class Gcsj {
 	 * @param response
 	 * @param session
 	 * @return ModelAndView
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@RequestMapping("/form/gcsjList.do")
 	public ModelAndView gcsjList(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session)
-			throws Exception {
+			HttpServletResponse response, HttpSession session) throws Exception {
 		ModelMap modelMap = new ModelMap();
 		Map docMap = null;
 		ResultObject rs = null;
@@ -114,7 +113,7 @@ public class Gcsj {
 		hsql.append(" a where 1=1 ");
 
 		if (!keyword.equals("")) {
-			keyword=new String(keyword.getBytes("ISO-8859-1"),"gbk");
+			keyword = new String(keyword.getBytes("ISO-8859-1"), "gbk");
 			hsql.append(" and (a.ghbh like'%");
 			hsql.append(keyword);
 			hsql.append("%' ");
@@ -136,27 +135,27 @@ public class Gcsj {
 		docMap = gcsjDataService.getFormTitleMap(user, module_id);
 		List<Ta07_formfield> docColsList = (List<Ta07_formfield>) docMap
 				.get("docColsList");
-		//取标题长度
-		Integer docTabWitdh=(Integer) docMap.get("docTabWitdh");
-		//如果是导出的话添加ID,重置标题
-		List <Ta07_formfield>listToExcel=new ArrayList();
+		// 取标题长度
+		Integer docTabWitdh = (Integer) docMap.get("docTabWitdh");
+		// 如果是导出的话添加ID,重置标题
+		List<Ta07_formfield> listToExcel = new ArrayList();
 		if ("yes".equals(request.getParameter("toExcel"))) {
-			List <Ta07_formfield>list=new ArrayList();
-			//检测是否有ID
-			boolean isId=false;
-			for (Ta07_formfield ta07  : docColsList) {
+			List<Ta07_formfield> list = new ArrayList();
+			// 检测是否有ID
+			boolean isId = false;
+			for (Ta07_formfield ta07 : docColsList) {
 				if (ta07.getName().equals("id")) {
-					isId=true;
+					isId = true;
 					break;
 				}
 			}
 			if (!isId) {
-				list=gcsjDataService.getUpdateProperty(module_id);
+				list = gcsjDataService.getUpdateProperty(module_id);
 			}
 			listToExcel.addAll(list);
 		}
 		listToExcel.addAll(docColsList);
-		
+
 		// 取表单数据
 		List<List> docList = new LinkedList<List>();
 		DecimalFormat df = new DecimalFormat("#0.00");
@@ -177,10 +176,10 @@ public class Gcsj {
 					if ("NUMBER".equals(ta07.getDatatype()) && obj != null) {
 						if ((ta07.getDatalength().toString()).endsWith(".0")) {
 							row.add(obj.toString());
-						}else {
+						} else {
 							row.add(df.format(new BigDecimal(obj.toString())));
 						}
-						
+
 					} else if (obj instanceof Date) {
 						row.add(dateformat.format(obj));
 					} else {
@@ -208,8 +207,9 @@ public class Gcsj {
 			sheetList.add(titleList);
 			sheetList.add(docList);
 			sheetMap.put("form_title", sheetList);
-			System.out.println("日期:"+new Date());
-			request.setAttribute("ExcelName", module.getName()+"-"+module.getForm_name()+module.getId()+"-"+DateFormatUtil.Format(new Date(), "yyyyMMdd") + ".xls");
+			request.setAttribute("ExcelName", module.getName() + "-"
+					+ module.getForm_name() + module.getId() + "-"
+					+ DateFormatUtil.Format(new Date(), "yyyyMMdd") + ".xls");
 			request.setAttribute("sheetMap", sheetMap);
 			return new ModelAndView("/export/toExcelWhithList.do");
 		}
@@ -253,9 +253,10 @@ public class Gcsj {
 		Long project_id = convertUtil
 				.toLong(request.getParameter("project_id"));
 		String node_id = convertUtil.toString(request.getParameter("node_id"));
-		
-		//取Tb02
-		Tb02_node tb02_node=(Tb02_node) queryService.searchById(Tb02_node.class, convertUtil.toLong(node_id));
+
+		// 取Tb02
+		Tb02_node tb02_node = (Tb02_node) queryService.searchById(
+				Tb02_node.class, convertUtil.toLong(node_id));
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, tb02_node.getFlow_id());
 		if (module != null) {
@@ -305,29 +306,91 @@ public class Gcsj {
 					.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
 		}
 	}
-	
+
+	/**
+	 * 取最大ID的记录
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 *             void
+	 */
 	@RequestMapping("/gcsj/getProjectID.do")
-	public void getProjectID(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, IOException{
-		Long moudle_id=convertUtil.toLong(request.getParameter("module_id"));
-		StringBuffer hql=new StringBuffer();
-		Class c=null;
-		PrintWriter out=response.getWriter();
-		Ta06_module module=(Ta06_module) queryService.searchById(Ta06_module.class, convertUtil.toLong(moudle_id));
-		if (module!=null) {
-			String packTableName=module.getProject_table();
-			String tableName=packTableName.substring(packTableName.lastIndexOf(".")+1,packTableName.length());
+	public void getProjectID(HttpServletRequest request,
+			HttpServletResponse response) throws ClassNotFoundException,
+			IOException {
+		Long moudle_id = convertUtil.toLong(request.getParameter("module_id"));
+		StringBuffer hql = new StringBuffer();
+		Class c = null;
+		PrintWriter out = response.getWriter();
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, convertUtil.toLong(moudle_id));
+		if (module != null) {
+			String packTableName = module.getProject_table();
+			String tableName = packTableName.substring(packTableName
+					.lastIndexOf(".") + 1, packTableName.length());
 			hql.append("select max(id) from ");
 			hql.append(tableName);
-			List list=queryService.searchList(hql.toString());
-			Object obj=null;
-			if (list!=null&&list.size()>0) {
-				obj=list.get(0);
+			List list = queryService.searchList(hql.toString());
+			Object obj = null;
+			if (list != null && list.size() > 0) {
+				obj = list.get(0);
 				System.out.println(obj.toString());
 			}
 			out.print(obj.toString());
 		}
+	}
+
+	@RequestMapping("/gcsj/outDateList.do")
+	public ModelAndView outDateList(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelMap modelMap = new ModelMap();
+		String view = "/WEB-INF/jsp/search/outDateList.jsp";
+		ResultObject rs = null;
+		StringBuffer hsql = new StringBuffer("");
+		Integer outDateFlag=convertUtil.toInteger(request.getParameter("outDateFlag"),0);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "id");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "asc";
+		}
 		
-		
+		String tableName;
+		String className;
+		List outDateMapList=new ArrayList();
+		List<Ta06_module> modules = (List<Ta06_module>) queryService
+				.searchList(Ta06_module.class);
+		for (Ta06_module ta06_module : modules) {
+			className = ta06_module.getForm_table();
+			tableName = className.substring(className.lastIndexOf(".") + 1,
+					className.length());
+			if (outDateFlag==1) {//即将超期
+				hsql.delete(0, hsql.length());
+				hsql.append("from ");
+				hsql.append(tableName);
+				hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
+			}else if (outDateFlag==2) {//已经超期
+				hsql.delete(0, hsql.length());
+				hsql.append("from ");
+				hsql.append(tableName);
+				hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0 ");
+			}
+			List list=queryService.searchList(hsql.toString());
+			for (Object object : list) {
+				Map tableMap=new HashMap();
+				tableMap.put("name", ta06_module.getName());
+				tableMap.put("project", object);
+				outDateMapList.add(tableMap);
+			}
+		}
+		modelMap.put("outDateMapList", outDateMapList);
+		return new ModelAndView(view, modelMap);
 	}
 
 }
