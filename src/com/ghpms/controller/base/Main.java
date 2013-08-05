@@ -408,6 +408,8 @@ public class Main {
 		 */
 		List objList1 = null;//即将超期
 		List objList2=null;//已经超期
+		Integer toOutDateCount=0;
+		Integer inOutDateCount=0;
 		String remindContent1 = "";
 		String remindContent2="";
 		String tableName;
@@ -422,17 +424,25 @@ public class Main {
 			objList1 = queryService.searchList("from " + tableName
 					+ " t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
 			if (objList1 != null && objList1.size() > 0 ) {
-					remindContent1 += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您有（"
-							+ objList1.size() + "）个"+ta06_module.getName()+"单即将超期</a></li>";
+				toOutDateCount+=objList1.size();
+					
 			}
 			objList2 = queryService.searchList("from " + tableName
 					+ " t where t.sjwcsj is null and t.jhwcsj-sysdate<0  ");
 			if (objList2 != null && objList2.size() > 0 ) {
-					remindContent2 += "<li><a href=\"javascript:navTab.openTab(\\'gcxxList\\',\\'form/gcxxListForNeed.do\\',{title:\\'工程信息\\'})\">您有（"
-							+ objList2.size() + "）个"+ta06_module.getName()+"单已经超期</a></li>";
+				inOutDateCount+=objList2.size();	
 			}
 
 		}
+		if (toOutDateCount>0) {
+			remindContent1 += "<li><a href=\"javascript:navTab.openTab(\\'remind\\',\\'gcsj/outDateList.do?outDateFlag=1\\',{title:\\'即将超期提醒\\'})\">您有（"
+			+ toOutDateCount + "）个表单即将超期</a></li>";
+		}
+		if (inOutDateCount>0) {
+			remindContent2 += "<li><a href=\"javascript:navTab.openTab(\\'remind\\',\\'gcsj/outDateList.do?outDateFlag=2\\',{title:\\'已经超期提醒\\'})\">您有（"
+			+inOutDateCount + "）个表单已经超期</a></li>";
+		}
+		
 		remindContent=remindContent1+remindContent2;
 
 
