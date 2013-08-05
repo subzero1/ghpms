@@ -273,7 +273,12 @@ public class Main {
 		// application.getAttribute("totalSessions"));
 		Map<?, List<?>> onlineUserList = (Map<?, List<?>>) application
 				.getAttribute("onlineUserList");
-		request.setAttribute("zxrs", onlineUserList.size());
+		if (onlineUserList!=null) {
+			request.setAttribute("zxrs", onlineUserList.size());
+		}else {
+			request.setAttribute("zxrs", 0);
+		}
+		
 
 		/**
 		 * 超时提醒数据获取

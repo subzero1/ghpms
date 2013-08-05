@@ -33,7 +33,7 @@
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=3',navTabSearch);">发件箱</button></div></div></li>
 					</ul>
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=1',navTabSearch);">收件箱1</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=1',navTabSearch);">收件箱</button></div></div></li>
 					</ul>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 			<ul class="toolBar">
 				<li class="line">line</li>
 				<li>
-					<a class="add"	href="MessageWrite2.do?messageState=${param.messageState}" target="navTab"  rel="messageWrite" title="撰写内部邮件"><span>新建</span></a>
+					<a class="add"	href="MessageWrite3.do?messageState=${param.messageState}" target="navTab"  rel="messageWrite" title="撰写内部邮件"><span>新建</span></a>
 				</li>
 				<li class="line">line</li>
 				<li>
