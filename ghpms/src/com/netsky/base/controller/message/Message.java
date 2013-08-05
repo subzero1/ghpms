@@ -1339,4 +1339,59 @@ public class Message {
 		te08.setState(state);
 		saveService.save(te08);
 	}
+	
+	/**
+	 * 短消息发送中的初始化人员、地区、部门
+	 * 
+	 * @throws UnsupportedEncodingException
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/MessageWrite3.do")
+	public ModelAndView wirtemessage3(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		QueryBuilder queryBuilder = null;
+		ModelMap modelMap = new ModelMap();
+		String type = StringFormatUtil.format(request.getParameter("type"), "");
+		String url = null;
+		try {
+			// 查询用户所在部门信息
+			StringBuffer sql = new StringBuffer();
+
+			//获得部门列表
+			List dept_List=queryService.searchList(Ta01_dept.class);
+			modelMap.put("dept_list", dept_List);
+			// 查询部门下所有的人
+			queryBuilder = new HibernateQueryBuilder(Ta03_user.class);
+			queryBuilder.addOrderBy(Order.asc("login_id"));
+			List<?> user_list = queryService.searchList(queryBuilder);
+			modelMap.put("user_list", user_list);
+			 
+		} catch (Exception e) {
+			return exceptionService.exceptionControl(this.getClass().getName(), "短消息发送中的初始化人员、地区、部门  －错误", e);
+		}
+		if ("message".equals(type) || "".equals(type)) {
+			url = "/WEB-INF/jsp/message/messagewrite3.jsp";
+		}
+		if ("phone".equals(type)) {
+			String phonenum = "";
+			String onlinename = "";
+			if (request.getParameter("name")!=null){
+				onlinename = StringFormatUtil.format(java.net.URLDecoder.decode(request.getParameter("name"),"UTF-8"), "");
+				phonenum = StringFormatUtil.format(request.getParameter("phonenum"), "");
+				
+			}
+			// phonenum = phonenum.replaceAll(";", ",");
+			if (!"".equals(onlinename) && !"".equals(phonenum)) {
+				String tmp = onlinename;
+				for(int i = 1 ; i < phonenum.split(",").length ; i++){
+					onlinename += "；"+tmp;
+				}
+				modelMap.put("reader_name1", tmp);
+				modelMap.put("reader_name", onlinename);
+				modelMap.put("reader_tel", phonenum);
+			}
+			url = "/WEB-INF/jsp/message/phonemessage.jsp";
+		}
+		return new ModelAndView(url, modelMap);
+	}
 }
