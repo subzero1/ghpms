@@ -38,7 +38,7 @@
 		<table class="table" width="100%" layouth="116" >
 			<thead>
 				<tr> 
-					<th style="width: 40px;">序号</th>
+				<th style="width:20px;"></th>
 					<th style="width: 100px;">表单类别</th> 
 					<th style="width: 100px;">歌华编号</th>
 					<th style="width: 100px;">视宽编号</th>
@@ -53,8 +53,10 @@
 				<c:forEach var="obj" items="${outDateMapList}">
 				<c:set var="offset" value="${offset+1}"/>
 					<tr> 
-						<td style="text-align:center">${offset }</td>
-						<td>${obj.name }</td>
+					<td>
+										<a href="gh/openForm.do?project_id=${obj.project.id}&module_id=${obj.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${obj.project.gcmc}]"  title="项目信息"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
+									</td>
+						<td>${obj.module_name }</td>
 						<td>${obj.project.ghbh}</td>
 						<td>${obj.project.skbh}</td>
 						<td>${obj.project.gcmc}</td>

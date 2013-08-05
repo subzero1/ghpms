@@ -20,6 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.service.GcsjDataService;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
@@ -53,6 +54,9 @@ public class workList {
 	
 	@Autowired
 	private FlowService flowServiceImpl;
+	
+	@Autowired
+	GcsjDataService gcsjDataService;
 
 	/**
 	 * 文档列表列示
@@ -328,98 +332,16 @@ public class workList {
 				}
 				user_ids = user.getId() + user_ids;
 			}
-			/*
-			 * 
-			 
-			
-			// 构造hsql
-			String docView = "NeedWork";
-			String form_title = "文档文档";
-			switch (workState) {
-			case 2:
-				docView = " OnWork";
-				form_title = "在办文档";
-				break;
-			case 3:
-				docView = " WaitWork";
-				form_title = "待复文档";
-				break;
-			case 4:
-				docView = " ReplyWork";
-				form_title = "回复文档";
-				break;
-			case 5:
-				docView = " OffWork";
-				form_title = "办结文档";
-				break;
-			case 6:
-				docView = " RespiteWork";
-				form_title = "不具条件";
-				break;
-			case 7:
-				docView = " HaltWork";
-				form_title = "终止工程";
-				break;
-			default:
-				docView = " NeedWork";
-				form_title = "待办文档";
-			}
-
-			modelMap.put("form_title", form_title);
-			*/
-			/**
-			 * 判断当前人工作是否委托出去
-			 */
-			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
-			if(tmpList.size()>0){
-				return new ModelAndView("/WEB-INF/jsp/docListUI.jsp" ,modelMap);
-			}
-			
-			/*
-			// 取列表数据
-			List<Object[]> docList = new LinkedList<Object[]>();
-			
-			hsql.append(" from " + docView);
-			hsql.append(" doc,ProjectInf gcxx where gcxx.id = doc.project_id ");
-			if("".equals(user_ids)){
-				hsql.append(" and doc.user_id = " + user.getId());
-			} else {
-				hsql.append(" and doc.user_id in(" + user_ids +")");
-			}
-			
-			//设置排序
-			hsql.append(" order by ");
-			hsql.append(orderField+" ");
-			hsql.append(orderDirection);
-			
-			ResultObject rs = queryService.search("select doc,gcxx " + hsql.toString());
-			
-			
-			while (rs.next()) {
-				docList.add(new Object[] { rs.get("doc"), rs.get("gcxx") });
-			}
-			rs = null;
-			
-			if(" NeedWork".equals(docView)){
-				rs = queryService.search("select doc,gcxx " + hsql.toString().replace("NeedWork", "ReplyWork")
-						+ "  order by doc.oper_time desc ");
-				while (rs.next()) {
-					docList.add(new Object[] { rs.get("doc"), rs.get("gcxx") });
-				}				
-			}
-
-			modelMap.put("docList", docList);
-
-			modelMap.put("totalCount", docList.size());
-			modelMap.put("numPerPage", numPerPage);
-			*/
-			
-			//新建表单的下拉菜单{}newFormList
+ 
 			Map <String,Object> paraMap = new HashMap<String,Object>();
 			MapUtil.load(paraMap,request);
 			List<Button> newFormList = flowServiceImpl.listNewFormButtons(paraMap);
 			modelMap.put("newFormList", newFormList);
-
+			List outDateList=gcsjDataService.getOutDateList();
+			modelMap.put("outDateList", outDateList);
+			if (outDateList!=null&&outDateList.size()>0) {
+				modelMap.put("totalCount", outDateList.size());
+			}
 			return new ModelAndView("/WEB-INF/jsp/docListUI.jsp", modelMap);
 
 		} catch (Exception e) {

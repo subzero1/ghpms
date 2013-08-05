@@ -384,7 +384,8 @@ public class Gcsj {
 			List list=queryService.searchList(hsql.toString());
 			for (Object object : list) {
 				Map tableMap=new HashMap();
-				tableMap.put("name", ta06_module.getName());
+				tableMap.put("module_name", ta06_module.getName());
+				tableMap.put("module_id", ta06_module.getId());
 				tableMap.put("project", object);
 				outDateMapList.add(tableMap);
 			}

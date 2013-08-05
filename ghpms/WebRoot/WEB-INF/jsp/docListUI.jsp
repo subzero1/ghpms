@@ -31,13 +31,6 @@ $(function(){
 				<h1 style="line-height:26px;">超期列表</h1>
 			</li>
 			<li class="line">line</li>
-			<c:forEach items="${newFormList}" var="formItem">
-				<c:if test="${fn:contains(formItem.url,'module_id=109')}">
-				<li style="float:right;">
-					<a class="add"	href="${formItem.url }" target="navTab" rel="autoform" title="新建需求"><span>新建需求</span></a>&nbsp;&nbsp;&nbsp;
-				</li>
-				</c:if>
-	     	</c:forEach> 
 		</ul>
 	</div>
 	<div class="pageContent"  style="overflow-y:auto;overflow-x:hidden;height:300px;">
@@ -45,34 +38,28 @@ $(function(){
 			<thead>
 				<tr>
 					<th width="25"></th>
-					<th width="35"></th>
 					<th width="100">表单类别</th>
+					<th width="100">歌华编号</th>
+					<th width="100">视宽编号</th>
 					<th width="">名称</th>
-					<th width="140">处理时间</th>
-					<th width="80">节点</th>
-					<th width="45">状态</th>
+					<th width="100">计划时间</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="i" begin="0" end ="${numPerPage-1>0?numPerPage-1:0}">
+				<c:forEach var="obj" items="${outDateList }">
 					<tr>
 						<td>
-							<c:if test="${docList[i][0] != null}">	
-								<a href="javascript:openFlowForm('{project_id:${docList[i][0].project_id},doc_id:${docList[i][0].doc_id},module_id:${docList[i][0].module_id},opernode_id:${docList[i][0].opernode_id},node_id:${docList[i][0].node_id},user_id:${docList[i][0].user_id}}');" title="表单"><img border="0" src="Images/form.gif" style="cursor:pointer"/></a>					
+							<c:if test="${obj != null}">	
+								<a href="gh/openForm.do?project_id=${obj.project.id}&module_id=${obj.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${obj.project.gcmc}]"  title="项目信息"><img border="0" src="Images/form.gif" style="cursor:pointer"/></a>					
 							</c:if>	
 						</td>
+						<td>${obj.module_name}</td>
+						<td>${obj.project.skbh}</td>
+						<td>${obj.project.ghbh}</td>
 						<td>
-							<c:if test="${docList[i][0] != null}">	
-								<a href="showTree.do?project_id=${docList[i][0].project_id}&doc_id=${docList[i][0].doc_id}&module_id=${docList[i][0].module_id}" target="navTab" rel="showTree" title="流程图"><img border="0" src="Images/node.gif" style="cursor:pointer"/></a>					
-							</c:if>	
+							<a href="javascript:openFlowForm('{project_id:${docList[i][0].project_id},doc_id:${docList[i][0].doc_id},module_id:${docList[i][0].module_id},opernode_id:${docList[i][0].opernode_id},node_id:${docList[i][0].node_id},user_id:${docList[i][0].user_id}}');" title="${docList[i][1].xmmc}">${obj.project.gcmc}</a>
 						</td>
-						<td>${docList[i][0].module_name}</td>
-						<td>
-							<a href="javascript:openFlowForm('{project_id:${docList[i][0].project_id},doc_id:${docList[i][0].doc_id},module_id:${docList[i][0].module_id},opernode_id:${docList[i][0].opernode_id},node_id:${docList[i][0].node_id},user_id:${docList[i][0].user_id}}');" title="${docList[i][1].xmmc}">${docList[i][1].xmmc}</a>
-						</td>
-						<td>${docList[i][0].oper_time}</td>
-						<td>${docList[i][0].near_user}</td>
-						<td>${docList[i][0].near_status}</td>
+						<td style="color: red;"><fmt:formatDate value="${obj.project.jhwcsj}" pattern="yyyy-MM-dd"/> </td>
 					</tr>
 				</c:forEach>
 			</tbody>
