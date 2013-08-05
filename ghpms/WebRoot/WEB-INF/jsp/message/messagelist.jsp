@@ -33,7 +33,7 @@
 						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=3',navTabSearch);">发件箱</button></div></div></li>
 					</ul>
 					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=1',navTabSearch);">收件箱</button></div></div></li>
+						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'MessageList.do?messageState=1',navTabSearch);">收件箱1</button></div></div></li>
 					</ul>
 				</div>
 			</div>
