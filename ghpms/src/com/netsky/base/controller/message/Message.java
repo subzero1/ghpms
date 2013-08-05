@@ -364,7 +364,7 @@ public class Message {
 			modelMap.put("user_dept_list", user_dept_list);
 
 			// 查询地区
-	//		queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
+			queryBuilder = new HibernateQueryBuilder(Tc02_area.class);
 			queryBuilder.like("type", "[3]", MatchMode.ANYWHERE);
 			List<?> areaList = queryService.searchList(queryBuilder);
 			modelMap.put("areaList", areaList);
