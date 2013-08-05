@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.dataObjects.base.Tc01_property;
 import com.ghpms.dataObjects.form.Tf01_field_property;
 import com.ghpms.service.GcsjDataService;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.convertUtil;
@@ -110,45 +113,85 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		hsql.append(" and b.id=");
 		hsql.append(node_id);
 		hsql.append(" order by  a.ord");
-		List fields =  queryService.searchList(hsql.toString());
+		List fields = queryService.searchList(hsql.toString());
 		for (Object object : fields) {
-			Ta07_formfield formfield=(Ta07_formfield) object;
-		/**
-		 * 配置所属地区
-		 */
-		if (formfield.getName().equals("ssdq")
-				|| formfield.getName().equals("xzqb")
-				|| formfield.getName().equals("ssxzq")||formfield.getName().equals("xzqy")) {
-			hsql.delete(0, hsql.length());
-			hsql.append("select tc02 from Tc02_area tc02 where 1=1 ");
-			hsql.append(" order by tc02.name ");
-			objs = queryService.searchList(hsql.toString());
-			request.setAttribute(formfield.getName(), objs);
-			map.put("objectForOption", "ssdq");
-
-		}
-		/**
-		 * 配到Tc01的情況
-		 */
-		else {
-			hsql.delete(0, hsql.length());
-			hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
-			hsql.append(" and tc01.type like '%");
-			hsql.append(formfield.getComments());
-			hsql.append("%'");
-			objs = (List<Tc01_property>) queryService
-					.searchList(hsql.toString());
-			Tc01_property property = null;
-			if (objs != null && objs.size() > 0) {
-				property = (Tc01_property) objs.get(0);
+			Ta07_formfield formfield = (Ta07_formfield) object;
+			/**
+			 * 配置所属地区
+			 */
+			if (formfield.getName().equals("ssdq")
+					|| formfield.getName().equals("xzqb")
+					|| formfield.getName().equals("ssxzq")
+					|| formfield.getName().equals("xzqy")) {
+				hsql.delete(0, hsql.length());
+				hsql.append("select tc02 from Tc02_area tc02 where 1=1 ");
+				hsql.append(" order by tc02.name ");
+				objs = queryService.searchList(hsql.toString());
 				request.setAttribute(formfield.getName(), objs);
-				map.put("objectForOption", property.getTypecode());
-			}
-		}
+				map.put("objectForOption", "ssdq");
 
-		
+			}
+			/**
+			 * 配到Tc01的情況
+			 */
+			else {
+				hsql.delete(0, hsql.length());
+				hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
+				hsql.append(" and tc01.type like '%");
+				hsql.append(formfield.getComments());
+				hsql.append("%'");
+				objs = (List<Tc01_property>) queryService.searchList(hsql
+						.toString());
+				Tc01_property property = null;
+				if (objs != null && objs.size() > 0) {
+					property = (Tc01_property) objs.get(0);
+					request.setAttribute(formfield.getName(), objs);
+					map.put("objectForOption", property.getTypecode());
+				}
+			}
+
 		}
 		return map;
+	}
+
+	/**
+	 * 超期列表 重载方法：getOutDateList (non-Javadoc)
+	 * 
+	 * @see com.ghpms.service.GcsjDataService#getOutDateList()
+	 */
+	public List getOutDateList() {
+
+		ModelMap modelMap = new ModelMap();
+		ResultObject rs = null;
+		StringBuffer hsql = new StringBuffer("");
+
+		String tableName;
+		String className;
+		List outDateMapList = new ArrayList();
+		List<Ta06_module> modules = (List<Ta06_module>) queryService
+				.searchList(Ta06_module.class);
+		for (Ta06_module ta06_module : modules) {
+			List outDateList=new ArrayList();
+			className = ta06_module.getForm_table();
+			tableName = className.substring(className.lastIndexOf(".") + 1,
+					className.length());
+
+			// 已经超期
+			hsql.delete(0, hsql.length());
+			hsql.append("from ");
+			hsql.append(tableName);
+			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0 ");
+			List inOutDateList = queryService.searchList(hsql.toString());
+			for (Object object : inOutDateList) {
+				Map tableMap = new HashMap();
+				tableMap.put("module_name", ta06_module.getName());
+				tableMap.put("module_id", ta06_module.getId());
+				tableMap.put("project", object);
+				outDateMapList.add(tableMap);
+			}
+		}
+		
+		return outDateMapList;
 	}
 
 }
