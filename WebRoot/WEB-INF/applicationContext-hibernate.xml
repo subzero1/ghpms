@@ -163,6 +163,8 @@
 				<value>com/ghpms/dataObjects/base/Tc02_area.hbm.xml</value>
 				<value>com/ghpms/dataObjects/base/Tc03_table_setting.hbm.xml</value>
 				
+				<value>com/netsky/base/dataObjects/V_message_receiver.hbm.xml</value>
+				
 			</list>
 		</property>
 	</bean>
