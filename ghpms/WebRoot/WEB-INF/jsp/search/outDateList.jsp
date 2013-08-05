@@ -13,29 +13,11 @@
 
 <div class="page">
 	<div class="pageHeader">
-		<form action="search/userLogin.do" method="post"onsubmit="return navTabSearch(this);">
-			<div class="searchBar">
-				<table class="searchContent">
-					<tr>
-						<td>
-						<input type="text" style="display:none"/>
-						计划完成时间：<input id="dlsj1" class="date" pattern="yyyy-MM-dd" name="dlsj1" value="${param.dlsj1}" type="text" size="10" />  至  <input id="dlsj2" name="dlsj2" class="date" pattern="yyyy-MM-dd" value="${param.dlsj2}" type="text" size="10" />&nbsp;&nbsp;&nbsp;&nbsp;
-					</tr>
-				</table>
-				<div class="subBar">
-					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/userLogin.do',navTabSearch);">检 索</button></div>
-						<!-- 
-						<div class="buttonContent"><button type="button" onClick="javascript:alert('开发中')">Excel导出</button></div></div></li>
-						 -->
-					</ul>
-				</div>
-			</div>
-		</form>
+	 
 	</div>
 	<div class="pageContent">
 		 
-		<table class="table" width="100%" layouth="116" >
+		<table class="table" width="100%" layouth="75" >
 			<thead>
 				<tr> 
 				<th style="width:20px;"></th>
