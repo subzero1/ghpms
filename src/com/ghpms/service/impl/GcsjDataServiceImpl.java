@@ -136,18 +136,35 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 			 * 配到Tc01的情況
 			 */
 			else {
-				hsql.delete(0, hsql.length());
-				hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
-				hsql.append(" and tc01.type like '%");
-				hsql.append(formfield.getComments());
-				hsql.append("%'");
-				objs = (List<Tc01_property>) queryService.searchList(hsql
-						.toString());
-				Tc01_property property = null;
-				if (objs != null && objs.size() > 0) {
-					property = (Tc01_property) objs.get(0);
-					request.setAttribute(formfield.getName(), objs);
-					map.put("objectForOption", property.getTypecode());
+				//仅包含是否的下拉框
+				if (formfield.getData_type()==4) {
+					hsql.delete(0, hsql.length());
+					hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
+					hsql.append(" and tc01.type = 'XOR'"); 
+					objs = (List<Tc01_property>) queryService.searchList(hsql
+							.toString());
+					Tc01_property property = null;
+					if (objs != null && objs.size() > 0) {
+						property = (Tc01_property) objs.get(0);
+						request.setAttribute(formfield.getName(), objs);
+						map.put("objectForOption", property.getTypecode());
+					}
+				//其他情况
+				}else { 
+					hsql.delete(0, hsql.length());
+					hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
+					hsql.append(" and tc01.type like '%");
+					hsql.append(formfield.getComments());
+					hsql.append("%'");
+					objs = (List<Tc01_property>) queryService.searchList(hsql
+							.toString());
+					Tc01_property property = null;
+					if (objs != null && objs.size() > 0) {
+						property = (Tc01_property) objs.get(0);
+						request.setAttribute(formfield.getName(), objs);
+						map.put("objectForOption", property.getTypecode());
+					}
+				
 				}
 			}
 
