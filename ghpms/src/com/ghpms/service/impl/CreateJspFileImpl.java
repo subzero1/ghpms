@@ -617,7 +617,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 			hsql.append("<label> " + formfield.getComments() + "：</label> \n");
 			// 下拉框的情況
 			if (formfield.getData_type() != null
-					&& formfield.getData_type() == 1) {
+					&& (formfield.getData_type() == 1||formfield.getData_type() == 4)) {
 				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
