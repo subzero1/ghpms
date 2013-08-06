@@ -11,7 +11,7 @@
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/propertySettingList.do?property_id=${property_type.id}" keep="true"/>
 			<input type="hidden" name="_navTabId" value="propertySetting" keep="true"/>
-			<input type="hidden" name="Tc01_property.TYPECODE" value="${property_type.typecode}" keep="true"/>
+			<input type="hidden" name="Tc01_property.TYPECODE" value="${property_type.typecode}"/>
 			<div class="pageFormContent" style="height:200px">
 				<p>
 					<label>属性名称：</label>
@@ -29,8 +29,6 @@
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：属性分类系统定制；<br>
-				&nbsp;内容：扩展标识为[1]时， 为[2]时<br>
-				&nbsp;工程类别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩展标识为[1]时
 				</div>
 			</div>
 			<div class="formBar">
