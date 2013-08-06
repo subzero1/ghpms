@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td11_glgc"
  */
 
@@ -13,7 +13,7 @@ public class Td11_glgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 239754050706333056L;
+	private static final long serialVersionUID = 596698303919120896L;
 
 	/**
 	 * 标识
@@ -463,7 +463,7 @@ public class Td11_glgc implements Serializable{
   }
 
  /**
- * 工程年份
+ * 工程年份[选项]
  */
  private Long gcnf;
 
@@ -1670,7 +1670,7 @@ public class Td11_glgc implements Serializable{
   }
 
  /**
- * 第一次核料歌华料是否需要补退料[选项]
+ * 第一次核料歌华料是否需要补退料[选项][XOR]
  */
  private String btk_btl1;
 
@@ -1687,7 +1687,7 @@ public class Td11_glgc implements Serializable{
   }
 
  /**
- * 第一次核料视宽自备料是否需要补退料[选项]
+ * 第一次核料视宽自备料是否需要补退料[选项][XOR]
  */
  private String skzblsfxbtl_hl1;
 
@@ -1806,7 +1806,7 @@ public class Td11_glgc implements Serializable{
   }
 
  /**
- * 是否二次需要补退料[选项]
+ * 是否二次需要补退料[选项][XOR]
  */
  private String sfxybtl2;
 

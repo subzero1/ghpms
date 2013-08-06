@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td04_jckc"
  */
 
@@ -13,7 +13,7 @@ public class Td04_jckc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 372069890882408704L;
+	private static final long serialVersionUID = 291709034831130752L;
 
 	/**
 	 * 标识
@@ -375,7 +375,7 @@ public class Td04_jckc implements Serializable{
 
  /**
  * 是否需要完成设计图
-[选项]
+[选项][XOR]
  */
  private String sfxywcsjt;
 
@@ -573,7 +573,7 @@ public class Td04_jckc implements Serializable{
 
  /**
  * 超时统计
-[选项]
+[选项][XOR]
  */
  private String cstj;
 
@@ -807,19 +807,19 @@ public class Td04_jckc implements Serializable{
 
  /**
  * 工程年份
-
+[选项]
  */
- private String gcnf;
+ private Long gcnf;
 
  /**
  * @hibernate.property column="gcnf"
  * @return Returns the gcnf.
  */
- public String getGcnf() {
+ public Long getGcnf() {
     return gcnf;
  }
 
- public void setGcnf(String gcnf) {
+ public void setGcnf(Long gcnf) {
     this.gcnf = gcnf;
   }
 

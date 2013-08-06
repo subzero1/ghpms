@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td12_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td12_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 151410485342008960L;
+	private static final long serialVersionUID = 687692044500946304L;
 
 	/**
 	 * 标识
@@ -190,19 +190,19 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 工程年份
+ * 工程年份[选项]
  */
- private String gcnf;
+ private Long gcnf;
 
  /**
  * @hibernate.property column="gcnf"
  * @return Returns the gcnf.
  */
- public String getGcnf() {
+ public Long getGcnf() {
     return gcnf;
  }
 
- public void setGcnf(String gcnf) {
+ public void setGcnf(Long gcnf) {
     this.gcnf = gcnf;
   }
 
@@ -700,7 +700,7 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 第一次核料歌华料是否需要补退料[选项]
+ * 第一次核料歌华料是否需要补退料[选项][XOR]
  */
  private String btk_btl1;
 
@@ -717,7 +717,7 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 第一次核料视宽自备料是否需要补退料[选项]
+ * 第一次核料视宽自备料是否需要补退料[选项][XOR]
  */
  private String skzblsfxbtl_hl1;
 
@@ -836,7 +836,7 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 是否二次需要补退料[选项]
+ * 是否二次需要补退料[选项][XOR]
  */
  private String sfxybtl2;
 
@@ -1924,7 +1924,7 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * GIS录入是否完成[选项]
+ * GIS录入是否完成[选项][XOR]
  */
  private String gis_lrsfwc;
 
@@ -1958,7 +1958,7 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 超时统计[选项]
+ * 超时统计[选项][XOR]
  */
  private String cstj;
 

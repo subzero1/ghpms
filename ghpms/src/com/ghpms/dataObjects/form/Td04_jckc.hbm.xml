@@ -364,7 +364,7 @@
 
   <property
   name="gcnf"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="gcnf"

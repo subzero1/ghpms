@@ -340,7 +340,7 @@
 
   <property
   name="gcnf"
-  type="java.util.Date"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="gcnf"
