@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td13_zbgc"
  */
 
@@ -13,7 +13,7 @@ public class Td13_zbgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 885253891003698048L;
+	private static final long serialVersionUID = 310912480636899584L;
 
 	/**
 	 * 标识
@@ -445,19 +445,19 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 工程年份
+ * 工程年份[选项]
  */
- private String gcnf;
+ private Long gcnf;
 
  /**
  * @hibernate.property column="gcnf"
  * @return Returns the gcnf.
  */
- public String getGcnf() {
+ public Long getGcnf() {
     return gcnf;
  }
 
- public void setGcnf(String gcnf) {
+ public void setGcnf(Long gcnf) {
     this.gcnf = gcnf;
   }
 
@@ -1245,7 +1245,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 第一次核料歌华料是否需要补退料[选项]
+ * 第一次核料歌华料是否需要补退料[选项][XOR]
  */
  private String btk_btl1;
 
@@ -1262,7 +1262,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 第一次核料视宽自备料是否需要补退料[选项]
+ * 第一次核料视宽自备料是否需要补退料[选项][XOR]
  */
  private String skzblsfxbtl_hl1;
 
@@ -1381,7 +1381,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 是否二次需要补退料[选项]
+ * 是否二次需要补退料[选项][XOR]
  */
  private String sfxybtl2;
 
@@ -1775,17 +1775,17 @@ public class Td13_zbgc implements Serializable{
  /**
  * 接收工程年份[选项]
  */
- private String jsgcnf;
+ private Long jsgcnf;
 
  /**
  * @hibernate.property column="jsgcnf"
  * @return Returns the jsgcnf.
  */
- public String getJsgcnf() {
+ public Long getJsgcnf() {
     return jsgcnf;
  }
 
- public void setJsgcnf(String jsgcnf) {
+ public void setJsgcnf(Long jsgcnf) {
     this.jsgcnf = jsgcnf;
   }
 

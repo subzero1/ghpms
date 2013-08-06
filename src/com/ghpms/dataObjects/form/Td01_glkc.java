@@ -13,7 +13,7 @@ public class Td01_glkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 729964300891476608L;
+	private static final long serialVersionUID = 648406620798996096L;
 
 	/**
 	 * 标识
@@ -394,7 +394,7 @@ public class Td01_glkc implements Serializable{
   }
 
  /**
- * 二次勘查[选项]
+ * 二次勘查[选项][XOR]
  */
  private String eckc;
 
@@ -513,7 +513,7 @@ public class Td01_glkc implements Serializable{
   }
 
  /**
- * 是否现场勘查[选项]
+ * 是否现场勘查[选项][XOR]
  */
  private String sfxckc;
 
@@ -564,7 +564,7 @@ public class Td01_glkc implements Serializable{
   }
 
  /**
- * 超时无情况说明[选项]
+ * 超时无情况说明[选项][XOR]
  */
  private String cswqksm;
 
@@ -717,19 +717,19 @@ public class Td01_glkc implements Serializable{
   }
 
  /**
- * 工程年份
+ * 工程年份[选项]
  */
- private Date gcnf;
+ private Long gcnf;
 
  /**
  * @hibernate.property column="gcnf"
  * @return Returns the gcnf.
  */
- public Date getGcnf() {
+ public Long getGcnf() {
     return gcnf;
  }
 
- public void setGcnf(Date gcnf) {
+ public void setGcnf(Long gcnf) {
     this.gcnf = gcnf;
   }
 

@@ -140,7 +140,7 @@
 
   <property
   name="gcnf"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="gcnf"
@@ -340,7 +340,7 @@
 
   <property
   name="jsgcnf"
-  type="java.lang.String"
+  type="java.lang.Long"
   update="true"
   insert="true"
   column="jsgcnf"

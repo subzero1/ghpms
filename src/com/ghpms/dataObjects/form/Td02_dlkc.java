@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td02_dlkc"
  */
 
@@ -13,7 +13,7 @@ public class Td02_dlkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 889278131355382528L;
+	private static final long serialVersionUID = 450957926485202752L;
 
 	/**
 	 * 标识
@@ -156,7 +156,7 @@ public class Td02_dlkc implements Serializable{
   }
 
  /**
- * 光缆是否到位[选项]
+ * 光缆是否到位[选项][XOR]
  */
  private String glsfdw;
 
@@ -294,17 +294,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 工程年份[选项]
  */
- private String gcnf;
+ private Long gcnf;
 
  /**
  * @hibernate.property column="gcnf"
  * @return Returns the gcnf.
  */
- public String getGcnf() {
+ public Long getGcnf() {
     return gcnf;
  }
 
- public void setGcnf(String gcnf) {
+ public void setGcnf(Long gcnf) {
     this.gcnf = gcnf;
   }
 
@@ -719,17 +719,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 接受工程年份[选项]
  */
- private String jsgcnf;
+ private Long jsgcnf;
 
  /**
  * @hibernate.property column="jsgcnf"
  * @return Returns the jsgcnf.
  */
- public String getJsgcnf() {
+ public Long getJsgcnf() {
     return jsgcnf;
  }
 
- public void setJsgcnf(String jsgcnf) {
+ public void setJsgcnf(Long jsgcnf) {
     this.jsgcnf = jsgcnf;
   }
 
