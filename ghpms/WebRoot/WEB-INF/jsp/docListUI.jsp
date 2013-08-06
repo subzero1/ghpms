@@ -46,7 +46,7 @@ $(function(){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="obj" items="${outDateList }">
+				<c:forEach var="obj" items="${outDateList }" end="5">
 					<tr>
 						<td>
 							<c:if test="${obj != null}">	
@@ -57,7 +57,7 @@ $(function(){
 						<td>${obj.project.skbh}</td>
 						<td>${obj.project.ghbh}</td>
 						<td>
-							<a href="javascript:openFlowForm('{project_id:${docList[i][0].project_id},doc_id:${docList[i][0].doc_id},module_id:${docList[i][0].module_id},opernode_id:${docList[i][0].opernode_id},node_id:${docList[i][0].node_id},user_id:${docList[i][0].user_id}}');" title="${docList[i][1].xmmc}">${obj.project.gcmc}</a>
+							<a href="gh/openForm.do?project_id=${obj.project.id}&module_id=${obj.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${obj.project.gcmc}]"  title="项目信息">${obj.project.gcmc}</a>
 						</td>
 						<td style="color: red;"><fmt:formatDate value="${obj.project.jhwcsj}" pattern="yyyy-MM-dd"/> </td>
 					</tr>
