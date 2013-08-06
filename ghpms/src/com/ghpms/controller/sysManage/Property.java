@@ -86,7 +86,7 @@ public class Property {
 		}
 		prooertyListMap.put(type, tmpList);
 		modelMap.put("propertyListMap",prooertyListMap);
-		modelMap.put("propertyList", dao.search("select distinct type from Tc01_property"));
+		modelMap.put("propertyList", dao.search("select distinct type from Tc01_property order by type "));
 		return new ModelAndView("/WEB-INF/jsp/sysManage/propertySetting.jsp",modelMap);
 	}
 	
