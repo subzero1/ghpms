@@ -557,7 +557,7 @@ public class DevelopHelpController {
 			Ta08_reportfield ta08 = new Ta08_reportfield();
 			ta08.setModule_id(module_id);
 			ta08.setName(t_name);
-			ta08.setComments(t_comment.replace("[选项]", "").replace("[人员]", ""));
+			ta08.setComments(t_comment.replace("[选项]", "").replace("[人员]", "").replace("[XOR]", ""));
 			ta08.setDatatype(t_datatype.toUpperCase());
 			ta08.setObject_name(objectName);
 
@@ -1088,11 +1088,11 @@ public class DevelopHelpController {
 					ta07 = new Ta07_formfield();
 					ta07.setModule_id(module_id);
 					ta07.setName(t_name);
-					ta07.setComments(t_comment.replace("[选项]", "").replace("[人员]","").replace("[YON]", ""));
+					ta07.setComments(t_comment.replace("[选项]", "").replace("[人员]","").replace("[XOR]", ""));
 					if (t_comment.indexOf("[选项]")>0||t_comment.indexOf("[人员]")>0) {
 						ta07.setData_type(new Long(1));
-						if (t_comment.indexOf("[YON])")>0) {
-							
+						if (t_comment.indexOf("[XOR]")>0) {
+							ta07.setData_type(new Long(4));
 						}
 					} 
 					ta07.setDatatype(t_datatype.toUpperCase());
