@@ -94,6 +94,7 @@ public class Property {
 	public ModelAndView propertyEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Long id = convertUtil.toLong(request.getParameter("id"),-1L);
 		String type=convertUtil.toString(request.getParameter("type"));
+		String typecode=convertUtil.toString(request.getParameter("typecode"));
 		if (type!=null&&!type.equals("")) {
 			type=new String(type.getBytes("ISO-8859-1"),"gbk");
 		}
@@ -106,6 +107,7 @@ public class Property {
 		if (property_type==null) {
 			property_type=new Tc01_property();
 			property_type.setType(type);
+			property_type.setTypecode(typecode);
 		}
 		modelMap.put("property_type", property_type);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/propertyEdit.jsp",modelMap);
