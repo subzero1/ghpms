@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-06
  * @hibernate.class table="Td01_glkc"
  */
 
@@ -13,7 +13,7 @@ public class Td01_glkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 435376583033377984L;
+	private static final long serialVersionUID = 729964300891476608L;
 
 	/**
 	 * 标识
@@ -56,18 +56,18 @@ public class Td01_glkc implements Serializable{
  /**
  * 任务完成情况[选项]
  */
- private Date rwbfzr;
+ private String rwwcqk;
 
  /**
- * @hibernate.property column="rwbfzr"
- * @return Returns the rwbfzr.
+ * @hibernate.property column="rwwcqk"
+ * @return Returns the rwwcqk.
  */
- public Date getRwbfzr() {
-    return rwbfzr;
+ public String getRwwcqk() {
+    return rwwcqk;
  }
 
- public void setRwbfzr(Date rwbfzr) {
-    this.rwbfzr = rwbfzr;
+ public void setRwwcqk(String rwwcqk) {
+    this.rwwcqk = rwwcqk;
   }
 
  /**

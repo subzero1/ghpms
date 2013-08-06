@@ -27,11 +27,11 @@
   />
 
   <property
-  name="rwbfzr"
-  type="java.util.Date"
+  name="rwwcqk"
+  type="java.lang.String"
   update="true"
   insert="true"
-  column="rwbfzr"
+  column="rwwcqk"
   />
 
   <property
