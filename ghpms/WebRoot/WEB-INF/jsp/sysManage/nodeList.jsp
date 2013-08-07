@@ -13,7 +13,7 @@
 					<c:forEach var="nodeElement" items="${nodeMap[flow.name]}">
 						<li>
 							<a href="sysManage/nodeEdit.do?id=${nodeElement.id}"
-								target="loadFileArea" rel="nodeEdit">${nodeElement.name}</a>
+								target="loadFileArea" rel="nodeEdit" title="${nodeElement.remark}">${nodeElement.name}</a>
 						</li>
 					</c:forEach>
 				</ul>
