@@ -174,7 +174,7 @@ public class TableSetting {
 		flowList=(List<Tb01_flow>) queryService.searchList(hql.toString());
 		
 		hql.delete(0, hql.length());
-		hql.append("select tb02 from Tb02_node tb02 order by tb02.flow_id,tb02.name,tb02.id");
+		hql.append("select tb02 from Tb02_node tb02 order by tb02.flow_id,tb02.name,tb02.remark,tb02.id");
 		nodeList=(List<Tb02_node>) queryService.searchList(hql.toString());
 		
 		for (Tb01_flow flow : flowList) {
