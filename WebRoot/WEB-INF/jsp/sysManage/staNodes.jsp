@@ -28,7 +28,7 @@ function changeFlow(obj){
 							<select id="s_node" name="s_node" multiple=1 type=select-multiple  ondblclick="javascript:moveAct('s_node','t_node');" style="width:195px;height:210px;">
 							<option style="background-color:#ccc;" disabled>----------未选项----------</option>
 							<c:forEach var="obj" items="${unselect_nodes}">
-								<option value="${obj.id}">${obj.name}</option>
+								<option value="${obj.id}">${obj.name}[${obj.remark}]</option>
 							</c:forEach>
 							</select>
 						</td>
