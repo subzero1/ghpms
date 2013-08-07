@@ -153,9 +153,9 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 				}else { 
 					hsql.delete(0, hsql.length());
 					hsql.append("select tc01 from Tc01_property  tc01 where 1=1 ");
-					hsql.append(" and tc01.type like '%");
+					hsql.append(" and tc01.type = '");
 					hsql.append(formfield.getComments());
-					hsql.append("%'");
+					hsql.append("'");
 					objs = (List<Tc01_property>) queryService.searchList(hsql
 							.toString());
 					Tc01_property property = null;
