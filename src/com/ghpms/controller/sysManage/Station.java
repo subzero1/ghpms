@@ -63,7 +63,7 @@ public class Station {
 	@RequestMapping("/sysManage/staList.do")
 	public ModelAndView staList(HttpServletRequest request,HttpServletResponse response ,HttpSession session)  {
 		ModelMap modelMap = new ModelMap();
-		List<Ta02_station> treeData = (List<Ta02_station>)dao.search("from Ta02_station order by id ");//所有岗位
+		List<Ta02_station> treeData = (List<Ta02_station>)dao.search("from Ta02_station order by name,id ");//所有岗位
 		
 		modelMap.put("staList", treeData);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/staList.jsp",modelMap);
