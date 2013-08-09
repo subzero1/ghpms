@@ -387,11 +387,11 @@
   />
 
   <property
-  name="sjyr"
+  name="sjry"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="sjyr"
+  column="sjry"
   />
 
   <property

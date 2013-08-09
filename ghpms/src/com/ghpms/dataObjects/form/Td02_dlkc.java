@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-08-09
  * @hibernate.class table="Td02_dlkc"
  */
 
@@ -13,7 +13,7 @@ public class Td02_dlkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 450957926485202752L;
+	private static final long serialVersionUID = 405818828507928832L;
 
 	/**
 	 * 标识
@@ -717,7 +717,7 @@ public class Td02_dlkc implements Serializable{
   }
 
  /**
- * 接受工程年份[选项]
+ * 接收工程年份[选项]
  */
  private Long jsgcnf;
 
@@ -821,18 +821,18 @@ public class Td02_dlkc implements Serializable{
  /**
  * 设计人员[选项]
  */
- private String sjyr;
+ private String sjry;
 
  /**
- * @hibernate.property column="sjyr"
- * @return Returns the sjyr.
+ * @hibernate.property column="sjry"
+ * @return Returns the sjry.
  */
- public String getSjyr() {
-    return sjyr;
+ public String getSjry() {
+    return sjry;
  }
 
- public void setSjyr(String sjyr) {
-    this.sjyr = sjyr;
+ public void setSjry(String sjry) {
+    this.sjry = sjry;
   }
 
  /**
