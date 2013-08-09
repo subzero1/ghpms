@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-08-09
  * @hibernate.class table="Td11_glgc"
  */
 
@@ -13,7 +13,7 @@ public class Td11_glgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 596698303919120896L;
+	private static final long serialVersionUID = 235948550410030368L;
 
 	/**
 	 * 标识
@@ -2182,18 +2182,18 @@ public class Td11_glgc implements Serializable{
  /**
  * 熔接（协议）
  */
- private Long hj_xy;
+ private Long rj_xy;
 
  /**
- * @hibernate.property column="hj_xy"
- * @return Returns the hj_xy.
+ * @hibernate.property column="rj_xy"
+ * @return Returns the rj_xy.
  */
- public Long getHj_xy() {
-    return hj_xy;
+ public Long getRj_xy() {
+    return rj_xy;
  }
 
- public void setHj_xy(Long hj_xy) {
-    this.hj_xy = hj_xy;
+ public void setRj_xy(Long rj_xy) {
+    this.rj_xy = rj_xy;
   }
 
  /**
@@ -2301,35 +2301,35 @@ public class Td11_glgc implements Serializable{
  /**
  * 熔接架空敷设
  */
- private Long hjjkfs;
+ private Long rjjkfs;
 
  /**
- * @hibernate.property column="hjjkfs"
- * @return Returns the hjjkfs.
+ * @hibernate.property column="rjjkfs"
+ * @return Returns the rjjkfs.
  */
- public Long getHjjkfs() {
-    return hjjkfs;
+ public Long getRjjkfs() {
+    return rjjkfs;
  }
 
- public void setHjjkfs(Long hjjkfs) {
-    this.hjjkfs = hjjkfs;
+ public void setRjjkfs(Long rjjkfs) {
+    this.rjjkfs = rjjkfs;
   }
 
  /**
  * 熔接拆除光缆
  */
- private Long hjccgl;
+ private Long rjccgl;
 
  /**
- * @hibernate.property column="hjccgl"
- * @return Returns the hjccgl.
+ * @hibernate.property column="rjccgl"
+ * @return Returns the rjccgl.
  */
- public Long getHjccgl() {
-    return hjccgl;
+ public Long getRjccgl() {
+    return rjccgl;
  }
 
- public void setHjccgl(Long hjccgl) {
-    this.hjccgl = hjccgl;
+ public void setRjccgl(Long rjccgl) {
+    this.rjccgl = rjccgl;
   }
 
  /**
@@ -2454,18 +2454,18 @@ public class Td11_glgc implements Serializable{
  /**
  * 熔接单位[选项]
  */
- private String hjdw;
+ private String rjdw;
 
  /**
- * @hibernate.property column="hjdw"
- * @return Returns the hjdw.
+ * @hibernate.property column="rjdw"
+ * @return Returns the rjdw.
  */
- public String getHjdw() {
-    return hjdw;
+ public String getRjdw() {
+    return rjdw;
  }
 
- public void setHjdw(String hjdw) {
-    this.hjdw = hjdw;
+ public void setRjdw(String rjdw) {
+    this.rjdw = rjdw;
   }
 
  /**
@@ -2556,35 +2556,35 @@ public class Td11_glgc implements Serializable{
  /**
  * 熔接状况[选项]
  */
- private String hjzk;
+ private String rjzk;
 
  /**
- * @hibernate.property column="hjzk"
- * @return Returns the hjzk.
+ * @hibernate.property column="rjzk"
+ * @return Returns the rjzk.
  */
- public String getHjzk() {
-    return hjzk;
+ public String getRjzk() {
+    return rjzk;
  }
 
- public void setHjzk(String hjzk) {
-    this.hjzk = hjzk;
+ public void setRjzk(String rjzk) {
+    this.rjzk = rjzk;
   }
 
  /**
  * 熔接完工日期
  */
- private Date hjwgrq;
+ private Date rjwgrq;
 
  /**
- * @hibernate.property column="hjwgrq"
- * @return Returns the hjwgrq.
+ * @hibernate.property column="rjwgrq"
+ * @return Returns the rjwgrq.
  */
- public Date getHjwgrq() {
-    return hjwgrq;
+ public Date getRjwgrq() {
+    return rjwgrq;
  }
 
- public void setHjwgrq(Date hjwgrq) {
-    this.hjwgrq = hjwgrq;
+ public void setRjwgrq(Date rjwgrq) {
+    this.rjwgrq = rjwgrq;
   }
 
  /**
@@ -2709,18 +2709,18 @@ public class Td11_glgc implements Serializable{
  /**
  * 熔接负责人[人员]
  */
- private String hjfzr;
+ private String rjfzr;
 
  /**
- * @hibernate.property column="hjfzr"
- * @return Returns the hjfzr.
+ * @hibernate.property column="rjfzr"
+ * @return Returns the rjfzr.
  */
- public String getHjfzr() {
-    return hjfzr;
+ public String getRjfzr() {
+    return rjfzr;
  }
 
- public void setHjfzr(String hjfzr) {
-    this.hjfzr = hjfzr;
+ public void setRjfzr(String rjfzr) {
+    this.rjfzr = rjfzr;
   }
 
  /**
