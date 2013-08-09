@@ -1027,11 +1027,11 @@
   />
 
   <property
-  name="hj_xy"
+  name="rj_xy"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="hj_xy"
+  column="rj_xy"
   />
 
   <property
@@ -1083,19 +1083,19 @@
   />
 
   <property
-  name="hjjkfs"
+  name="rjjkfs"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="hjjkfs"
+  column="rjjkfs"
   />
 
   <property
-  name="hjccgl"
+  name="rjccgl"
   type="java.lang.Long"
   update="true"
   insert="true"
-  column="hjccgl"
+  column="rjccgl"
   />
 
   <property
@@ -1155,11 +1155,11 @@
   />
 
   <property
-  name="hjdw"
+  name="rjdw"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="hjdw"
+  column="rjdw"
   />
 
   <property
@@ -1203,19 +1203,19 @@
   />
 
   <property
-  name="hjzk"
+  name="rjzk"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="hjzk"
+  column="rjzk"
   />
 
   <property
-  name="hjwgrq"
+  name="rjwgrq"
   type="java.util.Date"
   update="true"
   insert="true"
-  column="hjwgrq"
+  column="rjwgrq"
   />
 
   <property
@@ -1275,11 +1275,11 @@
   />
 
   <property
-  name="hjfzr"
+  name="rjfzr"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="hjfzr"
+  column="rjfzr"
   />
 
   <property
