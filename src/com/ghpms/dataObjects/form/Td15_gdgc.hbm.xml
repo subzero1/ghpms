@@ -419,6 +419,14 @@
   />
 
   <property
+  name="jfzbj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="jfzbj"
+  />
+
+  <property
   name="jhwcsj"
   type="java.util.Date"
   update="true"
@@ -432,6 +440,14 @@
   update="true"
   insert="true"
   column="sjwcsj"
+  />
+
+  <property
+  name="sgdwzbj"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sgdwzbj"
   />
 
   <property
