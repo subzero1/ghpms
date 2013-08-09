@@ -132,7 +132,7 @@ $(function(){
 											<c:forEach var="obj" items="${selectList}">
 											<tr>
 												<td	width="90" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-												<td width="310"><input name="${obj.id }" fieldName="${obj.name }" <c:if test="${obj.comments=='管理部门'&&user.login_id!='admin' }">value="${xqbms }"</c:if>  style="width:280px;" <c:if test="${(user.login_id=='admin'&&obj.comments=='管理部门')||obj.comments!='管理部门' }"> title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400}); </c:if>"/></td>			
+												<td width="310"><input name="${obj.id }" fieldName="${obj.name }" <c:if test="${obj.comments=='管理部门'&&user.login_id!='admin' }">value="${xqbms }"</c:if>  style="width:280px;" <c:if test="${(user.login_id=='admin'&&obj.comments=='管理部门')||obj.comments!='管理部门' }"> title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name+'&module_id='+${obj.module_id }, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400}); </c:if>"/></td>			
 											</tr>
 											</c:forEach>
 										</table>
