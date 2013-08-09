@@ -132,7 +132,7 @@ $(function(){
 											<c:forEach var="obj" items="${selectList}">
 											<tr>
 												<td	width="90" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-												<td width="310"><input name="${obj.id }" fieldName="${obj.name }"  style="width:280px;"  title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name+'&module_id='+${obj.module_id }, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});"/></td>			
+												<td width="310"><input name="${obj.id }" fieldName="${obj.name }"  style="width:280px;"  title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name+'&module_id='+${obj.module_id }, 'sel_key', '选择${obj.comments}', {mask:true,width:500,height:400});"/></td>			
 											</tr>
 											</c:forEach>
 										</table>
