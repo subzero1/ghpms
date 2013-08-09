@@ -878,7 +878,7 @@ public class SearchAndReportList {
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
 		
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 ");
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
 		request.setAttribute("modules", modules);
 
 		List<String[]> searchField = new ArrayList<String[]>();
