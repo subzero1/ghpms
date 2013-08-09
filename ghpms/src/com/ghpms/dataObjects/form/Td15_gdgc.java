@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-08-09
  * @hibernate.class table="Td15_gdgc"
  */
 
@@ -13,7 +13,7 @@ public class Td15_gdgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 414648350315337536L;
+	private static final long serialVersionUID = 762763784416371072L;
 
 	/**
 	 * 标识
@@ -445,7 +445,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 第一次核料歌华料是否需要补退料[选项]
+ * 第一次核料歌华料是否需要补退料[选项][XOR]
  */
  private String btk_btl1;
 
@@ -462,7 +462,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 第一次核料视宽自备料是否需要补退料[选项]
+ * 第一次核料视宽自备料是否需要补退料[选项][XOR]
  */
  private String skzblsfxbtl_hl1;
 
@@ -581,7 +581,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 是否二次需要补退料[选项]
+ * 是否二次需要补退料[选项][XOR]
  */
  private String sfxybtl2;
 
@@ -887,6 +887,23 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
+ * 甲方质保金
+ */
+ private Long jfzbj;
+
+ /**
+ * @hibernate.property column="jfzbj"
+ * @return Returns the jfzbj.
+ */
+ public Long getJfzbj() {
+    return jfzbj;
+ }
+
+ public void setJfzbj(Long jfzbj) {
+    this.jfzbj = jfzbj;
+  }
+
+ /**
  * 计划完成时间
  */
  private Date jhwcsj;
@@ -918,6 +935,23 @@ public class Td15_gdgc implements Serializable{
 
  public void setSjwcsj(Date sjwcsj) {
     this.sjwcsj = sjwcsj;
+  }
+
+ /**
+ * 施工单位质保金
+ */
+ private Long sgdwzbj;
+
+ /**
+ * @hibernate.property column="sgdwzbj"
+ * @return Returns the sgdwzbj.
+ */
+ public Long getSgdwzbj() {
+    return sgdwzbj;
+ }
+
+ public void setSgdwzbj(Long sgdwzbj) {
+    this.sgdwzbj = sgdwzbj;
   }
 
  /**
@@ -1007,7 +1041,6 @@ public class Td15_gdgc implements Serializable{
 
  /**
  * 歌华监理
-
  */
  private String ghjl;
 
@@ -1025,7 +1058,6 @@ public class Td15_gdgc implements Serializable{
 
  /**
  * 歌华开工时间
-
  */
  private Date ghkg;
 
@@ -1043,7 +1075,6 @@ public class Td15_gdgc implements Serializable{
 
  /**
  * 歌华竣工时间
-
  */
  private Date ghjgsj;
 
@@ -1061,7 +1092,6 @@ public class Td15_gdgc implements Serializable{
 
  /**
  * 任务接收日期
-
  */
  private Date rwjsrq;
 
@@ -1078,8 +1108,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 令号申请依据
-[选项]
+ * 令号申请依据[选项]
  */
  private String lhsqyj;
 
@@ -1096,8 +1125,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 任务来源
-[选项]
+ * 任务来源[选项]
  */
  private String rwly;
 
@@ -1114,8 +1142,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 市场部负责人
-[人员]
+ * 市场部负责人[人员]
  */
  private String scbfzr;
 
@@ -1252,7 +1279,6 @@ public class Td15_gdgc implements Serializable{
 
  /**
  * 验收报告合同部接收时间
-
  */
  private Date ysbghtbjssj;
 
