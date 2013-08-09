@@ -110,7 +110,7 @@ public class SearchAndReportList {
 		/**
 		 * 取表单列表
 		 */
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 ");
+		List modules=queryService.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
 		request.setAttribute("modules", modules);
 		
 		/**
