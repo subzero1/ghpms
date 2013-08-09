@@ -40,7 +40,7 @@ function searchList(){
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						选择表单： <netsky:htmlSelect name="module_name"  objectForOption="modules" style="width:128px;" valueForOption="id" showForOption="name" extend="-----------,101" extendPrefix="true" value="${module_id}"  htmlClass="td-select"/></td>
+						选择表单： <netsky:htmlSelect name="module_name"  objectForOption="modules" style="width:128px;" valueForOption="id" showForOption="name" extend="-----------,101" extendPrefix="true" value="${param.module_id}"  htmlClass="td-select"/></td>
 					</tr>
 				</table>
 			<div class="subBar">
