@@ -47,7 +47,7 @@ function creatHiddenCondition(c_form){
 		$(condi_html).appendTo(mainDiv);
 		condi = $("#"+module_id , mainDiv);
 	}
-	//c_form.clone().appendTo(condi);
+	c_form.clone().appendTo(condi);
 }
 
 </script>
