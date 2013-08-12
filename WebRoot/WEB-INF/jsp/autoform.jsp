@@ -83,6 +83,7 @@
 			<jsp:include page="${module.form_url}" flush="true"></jsp:include>
 			</form>
 				<div class="divider"></div>
+	<!-- 
 	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;表单附件列表[${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h3></div><div class="divider" style="height:1px;"></div>
 	<div style="width:780px;">
 		<table class="table" width="100%">
@@ -121,6 +122,7 @@
 			</tbody>
 		</table>
 	</div>
+	-->
 		</div>		
 	</div>
 </div>
