@@ -32,6 +32,22 @@ $(function(){
 	
 	$("#template_sel",$.pdialog.getCurrent()).change();
 });
+function changeTemp(obj){
+	changeTemplate(obj);
+	var admin="${admin}";
+	if(admin!='true'){
+	var $option=$("#template_sel option[ selected='selected']");
+	var $saveTemp=$("input[value='保存模板']");
+	var $deleTemp=$("input[value='删除模板']");
+	if($option.attr('class')==1){
+		 $saveTemp.attr('disabled','disabled');
+		 $deleTemp.attr('disabled','disabled');
+	}else{
+		$saveTemp.removeAttr('disabled');
+		$deleTemp.removeAttr('disabled');
+	}
+	}
+}
 </script>
 
 <div class="page">
@@ -192,15 +208,13 @@ $(function(){
 										<input id="template_name" name="template_name" value="" style="width:136px;"/>
 										</div>
 										<div>
-										<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(searchCtCallback);" value="${param.template_id }">
+										<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemp(searchCtCallback);" value="${param.template_id }">
 											<option value="" >新建模板</option>
 											<c:forEach var="obj" items="${templateList}">
-												<option value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if> >${obj.name }</option>
+												<option class="${obj.user_id }" value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if> >${obj.name }</option>
 											</c:forEach>
 										</select>&nbsp;<input type="button" value="保存模板" onclick="javascript:saveTemplate(this,1);"/>
-										<c:if  test="${admin == true}">
 											<input type="button" value="删除模板" onclick="javascript:delTemplate(this);"/>
-										</c:if>
 										</div>
 									</td>
 								</tr>
