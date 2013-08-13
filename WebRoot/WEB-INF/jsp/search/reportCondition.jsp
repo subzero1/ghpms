@@ -253,9 +253,7 @@ function creatHiddenCondition(c_form){
 													<option value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if>>${obj.name }</option>
 												</c:forEach>
 											</select>&nbsp;<input type="button" value="保存模板" onclick="javascript:saveTemplate(this,2);"/>
-											<c:if  test="${admin == true}">
 												<input type="button" value="删除模板" onclick="javascript:delTemplate(this);"/>
-											</c:if>
 											</div>
 										</td>
 									</tr>
