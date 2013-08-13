@@ -349,6 +349,7 @@ public class Gcsj {
 		String view = "/WEB-INF/jsp/search/outDateList.jsp";
 		ResultObject rs = null;
 		StringBuffer hsql = new StringBuffer("");
+		Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
 		Integer outDateFlag=convertUtil.toInteger(request.getParameter("outDateFlag"),0);
 		String orderField = convertUtil.toString(request
 				.getParameter("orderField"), "id");
@@ -375,11 +376,31 @@ public class Gcsj {
 				hsql.append("from ");
 				hsql.append(tableName);
 				hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
+				hsql.append(" and exists(");
+				hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+				hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+				hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+				hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+				hsql.append(" and a.id=");
+				hsql.append(user.getId());
+				hsql.append(" and d.flow_id=");
+				hsql.append(ta06_module.getId());
+				hsql.append(")");
 			}else if (outDateFlag==2) {//已经超期
 				hsql.delete(0, hsql.length());
 				hsql.append("from ");
 				hsql.append(tableName);
 				hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0 ");
+				hsql.append(" and exists(");
+				hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+				hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+				hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+				hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+				hsql.append(" and a.id=");
+				hsql.append(user.getId());
+				hsql.append(" and d.flow_id=");
+				hsql.append(ta06_module.getId());
+				hsql.append(")");
 			}
 			List list=queryService.searchList(hsql.toString());
 			for (Object object : list) {
