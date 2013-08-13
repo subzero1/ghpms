@@ -49,6 +49,22 @@ function creatHiddenCondition(c_form){
 	}
 	c_form.clone().appendTo(condi);
 }
+function changeTemp(obj){
+	changeTemplate(obj);
+	var admin="${admin}";
+	if(admin!='true'){
+	var $option=$("#template_sel option[ selected='selected']");
+	var $saveTemp=$("input[value='保存模板']");
+	var $deleTemp=$("input[value='删除模板']");
+	if($option.attr('class')==1){
+		 $saveTemp.attr('disabled','disabled');
+		 $deleTemp.attr('disabled','disabled');
+	}else{
+		$saveTemp.removeAttr('disabled');
+		$deleTemp.removeAttr('disabled');
+	}
+	}
+}
 
 </script>
 
@@ -247,10 +263,10 @@ function creatHiddenCondition(c_form){
 										<td>
 											<div style="position:absolute;"><input id="template_name" name="template_name" value="" style="width:140px"/></div>
 											<div>
-											<select id="template_sel" name="template_id" style="width:160px" onchange="javascript:changeTemplate(reportCtCallback);">
+											<select id="template_sel" name="template_id" style="width:160px" onchange="javascript: changeTemp(reportCtCallback);">
 												<option value="">新建模板</option>
 												<c:forEach var="obj" items="${templateList}">
-													<option value="${obj.id }" <c:if test="${obj.id==param.template_id }">selected</c:if>>${obj.name }</option>
+													<option value="${obj.id }" class="${obj.user_id }" <c:if test="${obj.id==param.template_id }">selected</c:if>>${obj.name }</option>
 												</c:forEach>
 											</select>&nbsp;<input type="button" value="保存模板" onclick="javascript:saveTemplate(this,2);"/>
 												<input type="button" value="删除模板" onclick="javascript:delTemplate(this);"/>
