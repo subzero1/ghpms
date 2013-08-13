@@ -412,12 +412,12 @@ public class Main {
 		 * 10个工程超期总数
 		 */
 		List objList1 = null;//即将超期
-		List objList2=null;//已经超期
-		Integer toOutDateCount=0;
+		List objList2=null;//已经超期 
+		Integer toOutDateCount=0;//即将超期
 		Integer inOutDateCount=0;
 		String remindContent1 = "";
 		String remindContent2="";
-		String tableName;
+		String tableName;//表名
 		String className;
 		List<Ta06_module> modules = (List<Ta06_module>) queryService
 				.searchList(Ta06_module.class);
@@ -425,15 +425,44 @@ public class Main {
 			className = ta06_module.getForm_table();
 			tableName = className.substring(className.lastIndexOf(".") + 1,
 					className.length());
-
-			objList1 = queryService.searchList("from " + tableName
-					+ " t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
+			
+			//即将超期
+			hsql.delete(0, hsql.length());
+			hsql.append("select  t from ");
+			hsql.append(tableName);
+			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
+			hsql.append(" and exists(");
+			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+			hsql.append(" and a.id=");
+			hsql.append(user.getId());
+			hsql.append(" and d.flow_id=");
+			hsql.append(ta06_module.getId());
+			hsql.append(")");
+			objList1 = dao.search(hsql.toString());
 			if (objList1 != null && objList1.size() > 0 ) {
 				toOutDateCount+=objList1.size();
 					
 			}
-			objList2 = queryService.searchList("from " + tableName
-					+ " t where t.sjwcsj is null and t.jhwcsj-sysdate<0  ");
+			
+			//已经超期
+			hsql.delete(0, hsql.length());
+			hsql.append("select  t from ");
+			hsql.append(tableName);
+			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0  ");
+			hsql.append(" and exists(");
+			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+			hsql.append(" and a.id=");
+			hsql.append(user.getId());
+			hsql.append(" and d.flow_id=");
+			hsql.append(ta06_module.getId());
+			hsql.append(")");
+			objList2 = dao.search(hsql.toString());
 			if (objList2 != null && objList2.size() > 0 ) {
 				inOutDateCount+=objList2.size();	
 			}

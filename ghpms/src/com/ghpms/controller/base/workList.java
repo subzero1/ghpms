@@ -337,7 +337,7 @@ public class workList {
 			MapUtil.load(paraMap,request);
 			List<Button> newFormList = flowServiceImpl.listNewFormButtons(paraMap);
 			modelMap.put("newFormList", newFormList);
-			List outDateList=gcsjDataService.getOutDateList();
+			List outDateList=gcsjDataService.getOutDateList(user);
 			modelMap.put("outDateList", outDateList);
 			if (outDateList!=null&&outDateList.size()>0) {
 				modelMap.put("totalCount", outDateList.size());

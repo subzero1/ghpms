@@ -18,5 +18,5 @@ public interface GcsjDataService {
 	 * 获得超期列表
 	 * @return List
 	 */
-	public List getOutDateList();
+	public List getOutDateList(Ta03_user user);
 }

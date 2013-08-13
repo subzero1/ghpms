@@ -177,7 +177,7 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 	 * 
 	 * @see com.ghpms.service.GcsjDataService#getOutDateList()
 	 */
-	public List getOutDateList() {
+	public List getOutDateList(Ta03_user user) {
 
 		ModelMap modelMap = new ModelMap();
 		ResultObject rs = null;
@@ -199,6 +199,16 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 			hsql.append("from ");
 			hsql.append(tableName);
 			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0 ");
+			hsql.append(" and exists(");
+			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+			hsql.append(" and a.id=");
+			hsql.append(user.getId());
+			hsql.append(" and d.flow_id=");
+			hsql.append(ta06_module.getId());
+			hsql.append(")");
 			List inOutDateList = queryService.searchList(hsql.toString());
 			for (Object object : inOutDateList) {
 				Map tableMap = new HashMap();
