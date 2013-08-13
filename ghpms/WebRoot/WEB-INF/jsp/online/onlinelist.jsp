@@ -156,12 +156,14 @@ function phoneMsg(tel,name){
 						</c:if>
 						<c:if test="${qa.flag!=0}">${qa.title_jx}</c:if>
 					</td>
-					<td style="text-align: right">
+					<td style="text-align: left;">
 						<c:if test="${qa != null}">
 							${qa.aq_name}&nbsp;&nbsp;&nbsp;
+							<!-- 
 							<a	href="javascript:phoneMsg('${qa.aq_tel}','${qa.aq_name}');">
 								<img src="Images/phone.png" border="0" title="手机短信" />
 							</a>
+							 -->
 						</c:if>
 					</td>
 					<td>${qa.aq_tel}</td>
