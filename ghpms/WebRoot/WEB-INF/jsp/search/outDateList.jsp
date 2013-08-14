@@ -42,8 +42,8 @@
 						<td>${obj.project.ghbh}</td>
 						<td>${obj.project.skbh}</td>
 						<td>${obj.project.gcmc}</td>
-						<td>${obj.project.jhwcsj}</td>
-						<td>${obj.project.sjwcsj}</td>
+						<td><fmt:formatDate value="${obj.project.jhwcsj}" pattern="yyyy-MM-dd"/> </td>
+						<td><fmt:formatDate value="${obj.project.sjwcsj}" pattern="yyyy-MM-dd"/> </td>
 						<td></td>
 					</tr>
 				</c:forEach>
