@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-08-14
  * @hibernate.class table="Td01_glkc"
  */
 
@@ -13,7 +13,7 @@ public class Td01_glkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 648406620798996096L;
+	private static final long serialVersionUID = 96073734395539344L;
 
 	/**
 	 * 标识
@@ -1212,18 +1212,18 @@ public class Td01_glkc implements Serializable{
  /**
  * 光节点地址
  */
- private String gjdbh;
+ private String gjddz;
 
  /**
- * @hibernate.property column="gjdbh"
- * @return Returns the gjdbh.
+ * @hibernate.property column="gjddz"
+ * @return Returns the gjddz.
  */
- public String getGjdbh() {
-    return gjdbh;
+ public String getGjddz() {
+    return gjddz;
  }
 
- public void setGjdbh(String gjdbh) {
-    this.gjdbh = gjdbh;
+ public void setGjddz(String gjddz) {
+    this.gjddz = gjddz;
   }
 
  /**

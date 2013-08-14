@@ -571,11 +571,11 @@
   />
 
   <property
-  name="gjdbh"
+  name="gjddz"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="gjdbh"
+  column="gjddz"
   />
 
   <property

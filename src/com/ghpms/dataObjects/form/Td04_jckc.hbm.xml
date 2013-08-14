@@ -75,11 +75,11 @@
   />
 
   <property
-  name="szqy"
+  name="xzqy"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="szqy"
+  column="xzqy"
   />
 
   <property
