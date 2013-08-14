@@ -60,7 +60,7 @@
 		
 		<!-- 表单主体 -->
 		<form id="auto_form" action="save.do" method="post"  class="pageForm required-validate" onsubmit="return validateCallback(this, recordCallBack);">
-		<div id="mainBody" class="pageFormContent" layouth="80">
+		<div id="mainBody2" class="pageFormContent" layouth="80">
 		    <input type="hidden" name="project_id" id="project_id" value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="<c:out value="${fn:substring(module.form_table,32,fn:length(module.form_table))}"/>.PROJECT_ID"  value="<c:out value="${param.project_id}" default="-1"/>"/>
 		    <input type="hidden" name="module_id" id="module_id" value="${param.module_id}"/>
