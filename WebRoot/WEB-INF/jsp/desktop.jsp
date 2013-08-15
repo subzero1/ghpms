@@ -80,11 +80,10 @@ function openOnLineList(){
 							<td class="zxTws" onclick="javascript:navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'});"><font>${csMap.zxWdfs}</font><br/>在线提问(${csMap.zxTws})</td>
 							<td class="jjcs" onclick="javascript:navTab.openTab('remind', 'gcsj/outDateList.do?outDateFlag=1&user_id=${user.id }', {title:'即将超期提醒'});"><font> ${jcss}</font><br/>即将超期</td>
 							<td class="yjcs" onclick="javascript:navTab.openTab('remind', 'gcsj/outDateList.do?outDateFlag=2&user_id=${user.id }', {title:'已经超期提醒'});"><font> ${css}</font><br/>已经超期</td>
-							<td class="dbWds" onclick="javascript:navTab.openTab('OnLineList', 'OnLineList.do?wtlx=601', {title:'系统公告'});"><br/>系统公告</td>
+							<td class="dfWds" onclick="javascript:navTab.openTab('workList', 'MessageList.do?messageState=1', {title:'内部邮件'});"><font>${csMap.dfWds}</font><br/>内部邮件</td>
 							<td></td>
 						</tr>
 						<tr>
-							<td class="dfWds" onclick="javascript:navTab.openTab('workList', 'MessageList.do?messageState=1', {title:'内部邮件'});"><font>${csMap.dfWds}</font><br/>内部邮件</td>
 							<td></td>
 						</tr>
 						<tr>
