@@ -65,9 +65,9 @@ $(function(){
 					</tr>
 				</c:forEach>
 				<c:if test="${offset<5}">
-				<c:forEach begin="${offset}" end="6">
+				<c:forEach begin="${offset}" end="5">
 				<tr>
-					<c:forEach begin="1" end="6">
+					<c:forEach begin="1" end="5">
 				      <td></td>
 				    </c:forEach>
 				</tr>
