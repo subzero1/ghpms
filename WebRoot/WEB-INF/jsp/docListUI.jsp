@@ -10,7 +10,7 @@ $(function(){
 	var bo = $(".pageContent", $("#needWorkList_ui"));
 	if(bo){
 		//计算列表高度
-		var temp_h = navTab._panelBox.height() - 306;
+		var temp_h = navTab._panelBox.height() - 320;
 		bo.height(temp_h);
 	}
 	
@@ -67,7 +67,7 @@ $(function(){
 				<c:if test="${offset<5}">
 				<c:forEach begin="${offset}" end="5">
 				<tr>
-					<c:forEach begin="1" end="5">
+					<c:forEach begin="1" end="6">
 				      <td></td>
 				    </c:forEach>
 				</tr>
@@ -80,6 +80,6 @@ $(function(){
 				<span>共${totalCount}条 </span>
 			</div>
 		</div>
-		
 	</div>
+	
 </div>
