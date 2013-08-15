@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.form.Tf16_temp"  table="Tf16_temp">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf16_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="user_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="user_id"
+  />
+
+  <property
+  name="operate_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="operate_id"
+  />
+
+  <property
+  name="type"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="type"
+  />
+
+  <property
+  name="c1"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c1"
+  />
+
+  <property
+  name="c2"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c2"
+  />
+
+  <property
+  name="c3"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c3"
+  />
+
+  <property
+  name="c4"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c4"
+  />
+
+  <property
+  name="c5"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c5"
+  />
+
+  <property
+  name="c6"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c6"
+  />
+
+  <property
+  name="c7"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c7"
+  />
+
+  <property
+  name="c8"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c8"
+  />
+
+  <property
+  name="c9"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c9"
+  />
+
+  <property
+  name="c10"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c10"
+  />
+
+  <property
+  name="c11"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c11"
+  />
+
+  <property
+  name="c12"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c12"
+  />
+
+  <property
+  name="c13"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c13"
+  />
+
+  <property
+  name="c14"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c14"
+  />
+
+  <property
+  name="c15"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c15"
+  />
+
+  <property
+  name="c16"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c16"
+  />
+
+  <property
+  name="c17"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c17"
+  />
+
+  <property
+  name="c18"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c18"
+  />
+
+  <property
+  name="c19"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c19"
+  />
+
+  <property
+  name="c20"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="c20"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
