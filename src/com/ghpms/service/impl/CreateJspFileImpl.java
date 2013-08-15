@@ -221,6 +221,12 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("<label> " + formfield.getComments()
 						+ "：</label> \n");
 				hsql.append("<textarea ");
+				hsql.append(" name=\"");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()));
+				hsql.append("." + formfield.getName().toUpperCase());
+				hsql.append("\"");
 				hsql.append(" style=\"width:619px;height:70px;\" readonly>");
 				hsql.append("${");
 				hsql.append(formfield.getObject_name().substring(
@@ -239,6 +245,12 @@ public class CreateJspFileImpl implements CreateJspFile {
 						+ "：</label> \n");
 
 				hsql.append("<input type=\"text\" ");
+				hsql.append(" name=\"");
+				hsql.append(formfield.getObject_name().substring(
+						formfield.getObject_name().lastIndexOf(".") + 1,
+						formfield.getObject_name().length()));
+				hsql.append("." + formfield.getName().toUpperCase());
+				hsql.append("\"");
 				hsql.append(" value=\"");
 				// 如果是日期
 				if (formfield.getDatatype().equals("DATE")) {

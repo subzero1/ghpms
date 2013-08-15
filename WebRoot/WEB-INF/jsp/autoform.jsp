@@ -21,7 +21,7 @@
 {
  #attachBody{position:absolute;float:right;right:15px;}
  #mainBody{position:absolute;width:100%;right:0px;}
-}
+} 
 </style>
 
 <div class="page">
@@ -30,7 +30,8 @@
 	<div class="pageHeader">
 		<div class="searchBar">
 			<!-- 表单名称 -->
-			<h1>${module.name}<c:if test="${not empty param.project_id}">【${param.project_id}】</c:if><c:if test="${not empty node}">(${node.name})</c:if></h1>
+			<h3>${module.name}<c:if test="${not empty param.project_id}">【${param.project_id}】</c:if><c:if test="${not empty node}">(${node.name})</c:if></h3>
+			<span id="gcmc"></span>
 			<!-- 辅助操作 -->
 			<p style="float: right;text-align:right;">
 				<c:forEach var="action" items="${actions}"><a href="${action.url}" >【${action.name}】</a>&nbsp;&nbsp;</c:forEach>
@@ -155,4 +156,13 @@
 			navTab._getTabs().eq(navTab._currentIndex).attr("tabid","autoform"+module_id+doc_id);
 		}
 	}
+	$(function(){
+	var gcmc =$("input[name$='GCMC']",navTab.getCurrentPanel());
+	var skbh =$("input[name$='SKBH']",navTab.getCurrentPanel());
+	var gcmc_span=$("#gcmc",navTab.getCurrentPanel());
+	if(gcmc.val()!="")
+	gcmc_span.append("工程名称:【"+gcmc.val()+"】      ");
+	if(skbh.val()!="")
+	gcmc_span.append("视宽编号:【"+skbh.val()+"】");
+});
 </script>
