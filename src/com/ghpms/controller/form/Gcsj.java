@@ -282,6 +282,7 @@ public class Gcsj {
 	@RequestMapping("/gcsj/ajaxGcsjDel.do")
 	public void ajaxGcsjDel(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("UTF-8");
 		Long id = convertUtil.toLong(request.getParameter("id"));
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
 
@@ -298,12 +299,12 @@ public class Gcsj {
 			saveService.removeObject(c, id);
 
 			out
-					.print("{\"statusCode\":\"200\", \"message\":\"operation succeed!\", \"callbackType\":\"\",\"navTabId\":\"\"}");
+					.print("{\"statusCode\":\"200\", \"message\":\"删除成功!\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			out
-					.print("{\"statusCode\":\"300\", \"message\":\" operation fail!\"}");
+					.print("{\"statusCode\":\"300\", \"message\":\" 删除失败!\"}");
 		}
 	}
 
