@@ -63,12 +63,11 @@
 					alertMsg.info('<font color=red><b>〖 错误 〗</b></font> <br/>&nbsp;短信通知管理员失败');
 					} 
 				$("#form1").submit();
-				setTimeout("navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'})",1000);
 				}
 	    	})
-	    	}else {
+	    	}
+	    	else {
 	    		$("#form1").submit();
-	    		setTimeout("navTab.openTab('onlineList', 'OnLineList.do?wtlx=15', {title:'在线提问'})",1000);
 	    	}
     	})
     })
