@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
-import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta09_menu;
@@ -120,39 +119,6 @@ public class Main {
 
 			Map csMap = new HashMap();
 
-			/**
-			 * 
-			 * 
-			 * //获取待办文档数 sql.delete(0, sql.length()); sql.append(" select 'x'
-			 * from NeedWork where user_id = ?"); tmpList =
-			 * dao.search(sql.toString(), new Object[]{user.getId()});
-			 * if(tmpList.size() > 0){ csMap.put("dbWds", tmpList.size()); }
-			 * else { csMap.put("dbWds", 0); } tmpList.clear();
-			 * 
-			 * //获取在办文档数 sql.delete(0, sql.length()); sql.append(" select 'x'
-			 * from OnWork where user_id = ?"); tmpList =
-			 * dao.search(sql.toString(), new Object[]{user.getId()});
-			 * if(tmpList.size() > 0){ csMap.put("zbWds", tmpList.size()); }
-			 * else { csMap.put("zbWds", 0); } tmpList.clear();
-			 * 
-			 * //获取待复文档数 sql.delete(0, sql.length()); sql.append(" select 'x'
-			 * from WaitWork where user_id = ?"); tmpList =
-			 * dao.search(sql.toString(), new Object[]{user.getId()});
-			 * if(tmpList.size() > 0){ csMap.put("dfWds", tmpList.size()); }
-			 * else { csMap.put("dfWds", 0); } tmpList.clear();
-			 * 
-			 * //获取回复文档数 sql.delete(0, sql.length()); sql.append(" select 'x'
-			 * from ReplyWork where user_id = ?"); tmpList =
-			 * dao.search(sql.toString(), new Object[]{user.getId()});
-			 * if(tmpList.size() > 0){ csMap.put("hfWds", tmpList.size()); }
-			 * else { csMap.put("hfWds", 0); } tmpList.clear();
-			 * 
-			 * //获取办结文档数 sql.delete(0, sql.length()); sql.append(" select 'x'
-			 * from OffWork where user_id = ?"); tmpList =
-			 * dao.search(sql.toString(), new Object[]{user.getId()});
-			 * if(tmpList.size() > 0){ csMap.put("bjWds", tmpList.size()); }
-			 * else { csMap.put("bjWds", 0); } tmpList.clear();
-			 */
 			request.setAttribute("csMap", csMap);
 
 			/*
@@ -303,32 +269,7 @@ public class Main {
 		}
 		tmpList.clear();
 		hsql.delete(0, hsql.length());
-		/**
-		 * 
-		 * //获取待办文档数 hsql.append(" select 'x' from NeedWork where user_id = ?");
-		 * tmpList = dao.search(hsql.toString(), new Object[]{user.getId()});
-		 * if(tmpList.size() > 0){ csMap.put("dbWds", tmpList.size());
-		 * remind_num++; } else { csMap.put("dbWds", 0); } tmpList.clear();
-		 * hsql.delete(0, hsql.length());
-		 * 
-		 * //获取在办文档数 hsql.append(" select 'x' from OnWork where user_id = ?");
-		 * tmpList = dao.search(hsql.toString(), new Object[]{user.getId()});
-		 * if(tmpList.size() > 0){ csMap.put("zbWds", tmpList.size()); } else {
-		 * csMap.put("zbWds", 0); } tmpList.clear(); hsql.delete(0,
-		 * hsql.length());
-		 * 
-		 * //获取待复文档数 hsql.append(" select 'x' from WaitWork where user_id = ?");
-		 * tmpList = dao.search(hsql.toString(), new Object[]{user.getId()});
-		 * if(tmpList.size() > 0){ csMap.put("dfWds", tmpList.size()); } else {
-		 * csMap.put("dfWds", 0); } tmpList.clear(); hsql.delete(0,
-		 * hsql.length());
-		 * 
-		 * //获取回复文档数 hsql.append(" select 'x' from ReplyWork where user_id =
-		 * ?"); tmpList = dao.search(hsql.toString(), new
-		 * Object[]{user.getId()}); if(tmpList.size() > 0){ csMap.put("hfWds",
-		 * tmpList.size()); remind_num++; } else { csMap.put("hfWds", 0); }
-		 */
-
+ 
 		tmpList.clear();
 		hsql.delete(0, hsql.length());
 
@@ -402,10 +343,6 @@ public class Main {
 			user = new Ta03_user();
 		}
 		String remindContent = "";
-		String login_id = convertUtil.toString(user.getLogin_id());
-		String dept_name = convertUtil.toString(user.getDept_name());
-		String user_name = convertUtil.toString(user.getName());
-		String zys = convertUtil.toString(user.getZys());
 		StringBuffer hsql = new StringBuffer("");
 
 		/*
