@@ -179,8 +179,6 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 	 */
 	public List getOutDateList(Ta03_user user) {
 
-		ModelMap modelMap = new ModelMap();
-		ResultObject rs = null;
 		StringBuffer hsql = new StringBuffer("");
 
 		String tableName;
