@@ -52,7 +52,7 @@ public class JspBuildServlet implements Servlet {
 		queryService=(QueryService) ctx.getBean("queryService");
 		createJspFile=(CreateJspFile) ctx.getBean("createJspFile");
 		gcsjDataService=(GcsjDataService) ctx.getBean("gcsjDataService");
-		List<Ta06_module> modules=(List<Ta06_module>) queryService.searchList("select ta06 from Ta06_module ta06 ");
+		List<Ta06_module> modules=(List<Ta06_module>) queryService.searchList("select ta06 from Ta06_module ta06 and ta06.type=1 ");
 		//初始化Ta06的的jsp文件
 		if (modules!=null&&modules.size()>0) {
 			for (Ta06_module ta06_module : modules) {
