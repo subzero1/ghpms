@@ -307,43 +307,15 @@ public class workList {
 	@RequestMapping("/docListUI.do")
 	public ModelAndView docListUIhandleRequest(HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
-		Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),15);
-		Integer workState = convertUtil.toInteger(request.getParameter("workState"),1);
-		String orderField = StringFormatUtil.format(request.getParameter("orderField"),"doc.oper_time");
-		String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"),"desc");
-		StringBuffer hsql = new StringBuffer();
-
-		int totalPages = 1;
-		int totalCount = 1;
-		
 		ModelMap modelMap = new ModelMap();
-		
 		try {
 			Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
-			
-			/**
-			 * 判断是否有委托工作，如果有取出所有委托人ID
-			 */
-			String user_ids = "";
-			if(session.getAttribute("trustUserMap")!= null){
-				Map<String,?> trustUserMap =(Map<String,?>)session.getAttribute("trustUserMap");
-				for(String tmpId:trustUserMap.keySet()){
-					user_ids += "," + tmpId ;
-				}
-				user_ids = user.getId() + user_ids;
-			}
- 
-			Map <String,Object> paraMap = new HashMap<String,Object>();
-			MapUtil.load(paraMap,request);
-			List<Button> newFormList = flowServiceImpl.listNewFormButtons(paraMap);
-			modelMap.put("newFormList", newFormList);
 			List outDateList=gcsjDataService.getOutDateList(user);
 			modelMap.put("outDateList", outDateList);
 			if (outDateList!=null&&outDateList.size()>0) {
 				modelMap.put("totalCount", outDateList.size());
 			}
 			return new ModelAndView("/WEB-INF/jsp/docListUI.jsp", modelMap);
-
 		} catch (Exception e) {
 			return exceptionService.exceptionControl(this.getClass().getName(), "表单列表错误", e);
 		}
