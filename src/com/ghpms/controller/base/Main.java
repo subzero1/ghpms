@@ -1,5 +1,6 @@
 package com.ghpms.controller.base;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -119,14 +120,6 @@ public class Main {
 			Map csMap = new HashMap();
 
 			request.setAttribute("csMap", csMap);
-
-			/*
-			 * 提醒列表
-			 */
-			String remindContent = getRemindList(request, response, session);
-			if (remindContent != null && remindContent.length() > 0) {
-				request.setAttribute("remindContent", remindContent);
-			}
 
 			return new ModelAndView("/WEB-INF/jsp/main.jsp", modelMap);
 		} else {
@@ -334,9 +327,11 @@ public class Main {
 	/*
 	 * 获得需要提醒列表
 	 */
-	private String getRemindList(HttpServletRequest request,
+	@RequestMapping("/getRemindList.do")
+	private void getRemindList(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
-
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		Ta03_user user = (Ta03_user) session.getAttribute("user");
 		if (user == null) {
 			user = new Ta03_user();
@@ -405,17 +400,16 @@ public class Main {
 
 		}
 		if (toOutDateCount>0) {
-			remindContent1 += "<li><a href=\"javascript:navTab.openTab(\\'remind\\',\\'gcsj/outDateList.do?outDateFlag=1\\',{title:\\'即将超期提醒\\'})\">您有（"
+			remindContent1 += "<li><a href=\"javascript:navTab.openTab(\'remind\',\'gcsj/outDateList.do?outDateFlag=1\',{title:\'即将超期提醒\'})\">您有（"
 			+ toOutDateCount + "）个表单即将超期</a></li>";
 		}
 		if (inOutDateCount>0) {
-			remindContent2 += "<li><a href=\"javascript:navTab.openTab(\\'remind\\',\\'gcsj/outDateList.do?outDateFlag=2\\',{title:\\'已经超期提醒\\'})\">您有（"
+			remindContent2 += "<li><a href=\"javascript:navTab.openTab(\'remind\',\'gcsj/outDateList.do?outDateFlag=2\',{title:\'已经超期提醒\'})\">您有（"
 			+inOutDateCount + "）个表单已经超期</a></li>";
 		}
 		
 		remindContent=remindContent1+remindContent2;
+		out.print(remindContent);
 
-
-		return remindContent;
 	}
 }

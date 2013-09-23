@@ -112,18 +112,40 @@ $(function(){
 	*/
 	
 	var remindContent = '${remindContent}';
+	/*
 	if(remindContent != null && remindContent != ''){
 		//弹出消息框
 		$.messager.lays(300, 200);
 		$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
 		$.messager.show('提醒', '<font style="font-size:14px;font-weight:bold;">${remindContent}</font>', 0);
-	}
-	
+	}  
+	*/
+	setTimeout('getRemindList()',8000);
 });
 
 //清理浏览器内存,只对IE起效,FF不需要
 if ($.browser.msie) {
 	window.setInterval("CollectGarbage();", 10000);
+}
+//取得超期列表
+function getRemindList(){
+		 $.ajax({
+			type: 'POST',
+			url:'getRemindList.do',
+			data:{},
+			dataType:"text",
+			cache: false, 
+		 	async:false,
+			success: function openNavTab(data){
+			if(data != null && data != ''){
+				//弹出消息框
+				$.messager.lays(300, 200);
+				$.messager.anim('fade', 2000);	//$.messager.anim('show', 1000);
+				$.messager.show('提醒', '<font style="font-size:14px;font-weight:bold;">'+data+'</font>', 0);
+			}
+				},
+			error: DWZ.ajaxError
+		});
 }
 function strTrim(str){
 	blankExp1=/^ +/;
