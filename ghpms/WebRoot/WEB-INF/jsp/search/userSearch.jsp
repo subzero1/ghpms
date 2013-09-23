@@ -70,7 +70,7 @@
 							<td style="text-align: center">${offset }</td>
 							<td style="text-align: center">${user_list.login_id}</td>
 							<td style="text-align: left" title="查看权限">
-								<a href="search/user_tail.do?user_id=${user.id}" target="dialog" width="680" height="350" title="权限查看">${user_list.name}</a>
+								<a href="search/user_tail.do?user_id=${user.id}" target="dialog" width="680" height="380" title="权限查看">${user_list.name}</a>
 							</td>
 							<td style="text-align: left">${user_list.tel}</td>
 							<td style="text-align: left">${user_list.mobile}</td>
