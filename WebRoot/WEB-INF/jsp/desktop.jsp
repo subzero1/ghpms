@@ -47,7 +47,7 @@ function openOnLineList(){
 							<td>${user.login_id}</td>
 							<td>
  								<div id="see">
- 								<a href="search/user_tail.do?user_id=${user.id}" target="dialog" width="680" height="350" title="权限查看"><img src="Images/station.png"/></a>
+ 								<a href="search/user_tail.do?user_id=${user.id}" target="dialog" width="680" height="380" title="权限查看"><img src="Images/station.png"/></a>
 	 					 		<a href="userInfo.do" target="dialog" width="520" height="320" title="用户个人信息设置"><img src="Images/setting.png"/></a>
 		 					 	<a href="personalHead.do" target="dialog" width="600" height="380" title="头像修改"><img src="Images/headedit.png"/></a>
 		 					 	<!-- <a href="setGetPassowrdInfo.do" target="dialog" width="300" height="200" title="找回密码"><img src="Images/icon11.png"/></a> -->														
