@@ -31,7 +31,7 @@
 		<div class="searchBar">
 			<!-- 表单名称 -->
 			<h3>${module.name}<c:if test="${not empty param.project_id}">【${param.project_id}】</c:if><c:if test="${not empty node}">(${node.name})</c:if></h3>
-			<span id="gcmc"></span>
+			<span id="gcmc" style="font-size:15;font-weight:bold;"></span>
 			<!-- 辅助操作 -->
 			<p style="float: right;text-align:right;">
 				<c:forEach var="action" items="${actions}"><a href="${action.url}" >【${action.name}】</a>&nbsp;&nbsp;</c:forEach>
@@ -161,8 +161,8 @@
 	var skbh =$("input[name$='SKBH']",navTab.getCurrentPanel());
 	var gcmc_span=$("#gcmc",navTab.getCurrentPanel());
 	if(gcmc.val()!="")
-	gcmc_span.append("工程名称:【"+gcmc.val()+"】      ");
+	gcmc_span.append("工程名称：【"+gcmc.val()+"】      ");
 	if(skbh.val()!="")
-	gcmc_span.append("视宽编号:【"+skbh.val()+"】");
+	gcmc_span.append("视宽编号：【"+skbh.val()+"】");
 });
 </script>
