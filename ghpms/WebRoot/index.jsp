@@ -200,7 +200,7 @@
 					</form>
 				<div class="clear"></div>
 				<div class="login_copyright">
-					研发单位：网天信息技术有限公司 | 服务热线：022-83946861/83946862
+					研发单位：网天信息技术有限公司 | 0000服务热线：022-83946861/83946862 &nbsp;<a href="download.do?slave_id=1" target="_blank" style="color:#c00;font-weight:bold;">[IE7安装包]</a><a href="download.do?slave_id=2" target="_blank" style="color:#c00;font-weight:bold;">[IE8安装包]</a> 
 			</div>
 		</div>
 			<div class="login_bottom">
