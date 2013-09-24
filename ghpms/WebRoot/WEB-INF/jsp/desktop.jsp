@@ -130,9 +130,9 @@ function openOnLineList(){
 					</c:if>	
 					<c:if test="${online_list[i] == null}">
 						<tr>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
-							<td>&nbsp</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
 						</tr>	
 					</c:if>							
 				</c:forEach>
