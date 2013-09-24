@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.form.Tf02_operation_log"  table="Tf02_operation_log">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">tf02_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="login_id"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="login_id"
+  />
+
+  <property
+  name="method_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="method_name"
+  />
+
+  <property
+  name="request_url"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="request_url"
+  />
+
+  <property
+  name="start_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="start_time"
+  />
+
+  <property
+  name="end_time"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="end_time"
+  />
+
+  <property
+  name="tatal_time"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="tatal_time"
+  />
+
+  <property
+  name="user_name"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_name"
+  />
+
+  <property
+  name="user_address"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="user_address"
+  />
+
+  <property
+  name="session_id"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="session_id"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
