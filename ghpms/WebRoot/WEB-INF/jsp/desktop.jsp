@@ -83,18 +83,13 @@ function openOnLineList(){
 							<td width="80" class="dfWds" onclick="javascript:navTab.openTab('workList', 'MessageList.do?messageState=1', {title:'内部邮件'});"><font>${csMap.dfWds}</font><br/>内部邮件</td>
 							<td></td>
 						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<th colspan="4">最后登录时间： <fmt:formatDate value="${csMap.zhdl}" pattern="yyyy-MM-dd HH:mm"/> 共 <a href="javascript:navTab.openTab('dljl', 'search/LoginLog.do', {title:'登录记录'});"><font color="#FF0000">${csMap.dlcs}</font></a> 次  <span style="cursor:hand" title="文档处理情况" onclick ="javascript:navTab.openTab('wdclqk', 'search/FormOperDetail.do?type=per', {title:'文档处理情况'});">	</span> </th>
-						</tr>
 						<c:if test="${not empty rolesMap['40107']}">	
 							<tr>
-								<th colspan="4"><a href="search/queryForBoss.do" target="navTab" rel="queryForBoss"><b><font style="color:blue">系统使用情况查询</font></b></a>  </th>
+								<th colspan="5"><a href="search/queryForBoss.do" target="navTab" rel="queryForBoss"><b><font style="color:blue">系统使用情况查询</font></b></a>  </th>
 							</tr>		
 						</c:if>				
 					</table>
+					<div style="position:relative;bottom:-130px;text-align:right;">最后登录时间： <fmt:formatDate value="${csMap.zhdl}" pattern="yyyy-MM-dd HH:mm"/> 共 <a href="javascript:navTab.openTab('dljl', 'search/LoginLog.do', {title:'登录记录'});"><font color="#FF0000">${csMap.dlcs}</font></a> 次。  <span style="cursor:hand" title="文档处理情况" onclick ="javascript:navTab.openTab('wdclqk', 'search/FormOperDetail.do?type=per', {title:'文档处理情况'});">	</span> </div>
 				</div>
 		   		<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>									
 			</div>
