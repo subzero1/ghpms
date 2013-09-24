@@ -143,6 +143,7 @@
  				<value>com/ghpms/dataObjects/form/Td14_jcgc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Td15_gdgc.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Tf01_field_property.hbm.xml</value>
+ 				<value>com/ghpms/dataObjects/form/Tf02_operation_log.hbm.xml</value>
  				<value>com/ghpms/dataObjects/form/Tf16_temp.hbm.xml</value>
  				
  				
