@@ -1,6 +1,9 @@
 package com.ghpms.controller.base;
 
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseDao.JdbcSupport;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
@@ -50,6 +54,9 @@ public class Main {
 	private QueryService queryService;
 	@Autowired
 	private SaveService saveService;
+	
+	@Autowired
+	private JdbcSupport jdbcSupport;
 	/**
 	 * 异常处理服务
 	 */
@@ -338,67 +345,25 @@ public class Main {
 		}
 		String remindContent = "";
 		StringBuffer hsql = new StringBuffer("");
-
-		/*
-		 * 10个工程超期总数
-		 */
-		List objList1 = null;//即将超期
-		List objList2=null;//已经超期 
+		
 		Integer toOutDateCount=0;//即将超期
 		Integer inOutDateCount=0;
 		String remindContent1 = "";
 		String remindContent2="";
-		String tableName;//表名
-		String className;
-		List<Ta06_module> modules = (List<Ta06_module>) queryService
-				.searchList(Ta06_module.class);
-		for (Ta06_module ta06_module : modules) {
-			className = ta06_module.getForm_table();
-			tableName = className.substring(className.lastIndexOf(".") + 1,
-					className.length());
-			
-			//即将超期
-			hsql.delete(0, hsql.length());
-			hsql.append("select  t from ");
-			hsql.append(tableName);
-			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<2 and t.jhwcsj-sysdate>0  ");
-			hsql.append(" and exists(");
-			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
-			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
-			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
-			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
-			hsql.append(" and a.id=");
-			hsql.append(user.getId());
-			hsql.append(" and d.flow_id=");
-			hsql.append(ta06_module.getId());
-			hsql.append(")");
-			objList1 = dao.search(hsql.toString());
-			if (objList1 != null && objList1.size() > 0 ) {
-				toOutDateCount+=objList1.size();
-					
-			}
-			
-			//已经超期
-			hsql.delete(0, hsql.length());
-			hsql.append("select  t from ");
-			hsql.append(tableName);
-			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0  ");
-			hsql.append(" and exists(");
-			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
-			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
-			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
-			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
-			hsql.append(" and a.id=");
-			hsql.append(user.getId());
-			hsql.append(" and d.flow_id=");
-			hsql.append(ta06_module.getId());
-			hsql.append(")");
-			objList2 = dao.search(hsql.toString());
-			if (objList2 != null && objList2.size() > 0 ) {
-				inOutDateCount+=objList2.size();	
-			}
-
-		}
+	
+		Connection con = jdbcSupport.getConnection();
+		con.setAutoCommit(false);
+		String procedure = "{call p_outdate(?,?,?)}";
+		CallableStatement cstmt = con.prepareCall(procedure);
+		cstmt.setLong(1, user.getId());
+		cstmt.registerOutParameter(2, Types.INTEGER);
+		cstmt.registerOutParameter(3, Types.INTEGER);
+		cstmt.executeUpdate(); 
+		toOutDateCount=cstmt.getInt(2);
+		inOutDateCount=cstmt.getInt(3);
+		cstmt.close();
+		con.commit();
+		con.close();
 		if (toOutDateCount>0) {
 			remindContent1 += "<li><a href=\"javascript:navTab.openTab(\'remind\',\'gcsj/outDateList.do?outDateFlag=1\',{title:\'即将超期提醒\'})\">您有（"
 			+ toOutDateCount + "）个表单即将超期</a></li>";
