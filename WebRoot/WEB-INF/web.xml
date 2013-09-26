@@ -84,7 +84,7 @@
 		<filter-name>sessionFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
-
+<!--操作日志 -->
 	<filter>
 		<filter-name>operateFilter</filter-name>
 		<filter-class>
