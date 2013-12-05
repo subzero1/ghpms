@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-12-04
  * @hibernate.class table="Td12_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td12_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 687692044500946304L;
+	private static final long serialVersionUID = 784577806649603584L;
 
 	/**
 	 * 标识
@@ -37,6 +37,992 @@ public class Td12_dlgc implements Serializable{
 	}
 
 	 /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Long skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Long getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Long skxyje) {
+    this.skxyje = skxyje;
+  }
+
+ /**
+ * 歌华工程编号
+ */
+ private String ghbh;
+
+ /**
+ * @hibernate.property column="ghbh"
+ * @return Returns the ghbh.
+ */
+ public String getGhbh() {
+    return ghbh;
+ }
+
+ public void setGhbh(String ghbh) {
+    this.ghbh = ghbh;
+  }
+
+ /**
+ * 视宽编号
+ */
+ private String skbh;
+
+ /**
+ * @hibernate.property column="skbh"
+ * @return Returns the skbh.
+ */
+ public String getSkbh() {
+    return skbh;
+ }
+
+ public void setSkbh(String skbh) {
+    this.skbh = skbh;
+  }
+
+ /**
+ * 工程名称
+ */
+ private String gcmc;
+
+ /**
+ * @hibernate.property column="gcmc"
+ * @return Returns the gcmc.
+ */
+ public String getGcmc() {
+    return gcmc;
+ }
+
+ public void setGcmc(String gcmc) {
+    this.gcmc = gcmc;
+  }
+
+ /**
+ * 行政区域
+ */
+ private String xzqy;
+
+ /**
+ * @hibernate.property column="xzqy"
+ * @return Returns the xzqy.
+ */
+ public String getXzqy() {
+    return xzqy;
+ }
+
+ public void setXzqy(String xzqy) {
+    this.xzqy = xzqy;
+  }
+
+ /**
+ * 施工地址
+ */
+ private String sgdz;
+
+ /**
+ * @hibernate.property column="sgdz"
+ * @return Returns the sgdz.
+ */
+ public String getSgdz() {
+    return sgdz;
+ }
+
+ public void setSgdz(String sgdz) {
+    this.sgdz = sgdz;
+  }
+
+ /**
+ * 歌华监理
+ */
+ private String ghjl;
+
+ /**
+ * @hibernate.property column="ghjl"
+ * @return Returns the ghjl.
+ */
+ public String getGhjl() {
+    return ghjl;
+ }
+
+ public void setGhjl(String ghjl) {
+    this.ghjl = ghjl;
+  }
+
+ /**
+ * 歌华开工时间
+ */
+ private Date ghkgsj;
+
+ /**
+ * @hibernate.property column="ghkgsj"
+ * @return Returns the ghkgsj.
+ */
+ public Date getGhkgsj() {
+    return ghkgsj;
+ }
+
+ public void setGhkgsj(Date ghkgsj) {
+    this.ghkgsj = ghkgsj;
+  }
+
+ /**
+ * 歌华竣工时间
+ */
+ private Date ghjgsj;
+
+ /**
+ * @hibernate.property column="ghjgsj"
+ * @return Returns the ghjgsj.
+ */
+ public Date getGhjgsj() {
+    return ghjgsj;
+ }
+
+ public void setGhjgsj(Date ghjgsj) {
+    this.ghjgsj = ghjgsj;
+  }
+
+ /**
+ * 协议户数
+ */
+ private Long yxhs;
+
+ /**
+ * @hibernate.property column="yxhs"
+ * @return Returns the yxhs.
+ */
+ public Long getYxhs() {
+    return yxhs;
+ }
+
+ public void setYxhs(Long yxhs) {
+    this.yxhs = yxhs;
+  }
+
+ /**
+ * 二端数量
+ */
+ private Long edsl;
+
+ /**
+ * @hibernate.property column="edsl"
+ * @return Returns the edsl.
+ */
+ public Long getEdsl() {
+    return edsl;
+ }
+
+ public void setEdsl(Long edsl) {
+    this.edsl = edsl;
+  }
+
+ /**
+ * 协议干线长度
+ */
+ private Long xygxcd;
+
+ /**
+ * @hibernate.property column="xygxcd"
+ * @return Returns the xygxcd.
+ */
+ public Long getXygxcd() {
+    return xygxcd;
+ }
+
+ public void setXygxcd(Long xygxcd) {
+    this.xygxcd = xygxcd;
+  }
+
+ /**
+ * 任务接收日期
+ */
+ private Date rwjsrq;
+
+ /**
+ * @hibernate.property column="rwjsrq"
+ * @return Returns the rwjsrq.
+ */
+ public Date getRwjsrq() {
+    return rwjsrq;
+ }
+
+ public void setRwjsrq(Date rwjsrq) {
+    this.rwjsrq = rwjsrq;
+  }
+
+ /**
+ * 令号申请依据[选项]
+ */
+ private String lhsqyj;
+
+ /**
+ * @hibernate.property column="lhsqyj"
+ * @return Returns the lhsqyj.
+ */
+ public String getLhsqyj() {
+    return lhsqyj;
+ }
+
+ public void setLhsqyj(String lhsqyj) {
+    this.lhsqyj = lhsqyj;
+  }
+
+ /**
+ * 任务来源[选项]
+ */
+ private String rwly;
+
+ /**
+ * @hibernate.property column="rwly"
+ * @return Returns the rwly.
+ */
+ public String getRwly() {
+    return rwly;
+ }
+
+ public void setRwly(String rwly) {
+    this.rwly = rwly;
+  }
+
+ /**
+ * 市场部负责人[人员]
+ */
+ private String scbfzr;
+
+ /**
+ * @hibernate.property column="scbfzr"
+ * @return Returns the scbfzr.
+ */
+ public String getScbfzr() {
+    return scbfzr;
+ }
+
+ public void setScbfzr(String scbfzr) {
+    this.scbfzr = scbfzr;
+  }
+
+ /**
+ * 分公司负责人
+ */
+ private String fgsfzr;
+
+ /**
+ * @hibernate.property column="fgsfzr"
+ * @return Returns the fgsfzr.
+ */
+ public String getFgsfzr() {
+    return fgsfzr;
+ }
+
+ public void setFgsfzr(String fgsfzr) {
+    this.fgsfzr = fgsfzr;
+  }
+
+ /**
+ * 验收报告合同部接收时间
+ */
+ private Date ysbg_htbjssj;
+
+ /**
+ * @hibernate.property column="ysbg_htbjssj"
+ * @return Returns the ysbg_htbjssj.
+ */
+ public Date getYsbg_htbjssj() {
+    return ysbg_htbjssj;
+ }
+
+ public void setYsbg_htbjssj(Date ysbg_htbjssj) {
+    this.ysbg_htbjssj = ysbg_htbjssj;
+  }
+
+ /**
+ * 竣工户数
+ */
+ private Long jghs;
+
+ /**
+ * @hibernate.property column="jghs"
+ * @return Returns the jghs.
+ */
+ public Long getJghs() {
+    return jghs;
+ }
+
+ public void setJghs(Long jghs) {
+    this.jghs = jghs;
+  }
+
+ /**
+ * 竣工端数
+ */
+ private Long jgds;
+
+ /**
+ * @hibernate.property column="jgds"
+ * @return Returns the jgds.
+ */
+ public Long getJgds() {
+    return jgds;
+ }
+
+ public void setJgds(Long jgds) {
+    this.jgds = jgds;
+  }
+
+ /**
+ * 竣工干线
+ */
+ private Long jggx;
+
+ /**
+ * @hibernate.property column="jggx"
+ * @return Returns the jggx.
+ */
+ public Long getJggx() {
+    return jggx;
+ }
+
+ public void setJggx(Long jggx) {
+    this.jggx = jggx;
+  }
+
+ /**
+ * 视宽开工日期
+ */
+ private Date skkgrq;
+
+ /**
+ * @hibernate.property column="skkgrq"
+ * @return Returns the skkgrq.
+ */
+ public Date getSkkgrq() {
+    return skkgrq;
+ }
+
+ public void setSkkgrq(Date skkgrq) {
+    this.skkgrq = skkgrq;
+  }
+
+ /**
+ * 视宽竣工日期
+ */
+ private Date skjgrq;
+
+ /**
+ * @hibernate.property column="skjgrq"
+ * @return Returns the skjgrq.
+ */
+ public Date getSkjgrq() {
+    return skjgrq;
+ }
+
+ public void setSkjgrq(Date skjgrq) {
+    this.skjgrq = skjgrq;
+  }
+
+ /**
+ * 视宽负责人[人员]
+ */
+ private String skfzr;
+
+ /**
+ * @hibernate.property column="skfzr"
+ * @return Returns the skfzr.
+ */
+ public String getSkfzr() {
+    return skfzr;
+ }
+
+ public void setSkfzr(String skfzr) {
+    this.skfzr = skfzr;
+  }
+
+ /**
+ * 施工单位[选项]
+ */
+ private String sgdw;
+
+ /**
+ * @hibernate.property column="sgdw"
+ * @return Returns the sgdw.
+ */
+ public String getSgdw() {
+    return sgdw;
+ }
+
+ public void setSgdw(String sgdw) {
+    this.sgdw = sgdw;
+  }
+
+ /**
+ * 是否有开工证[选项][XOR]
+ */
+ private String sfykgz;
+
+ /**
+ * @hibernate.property column="sfykgz"
+ * @return Returns the sfykgz.
+ */
+ public String getSfykgz() {
+    return sfykgz;
+ }
+
+ public void setSfykgz(String sfykgz) {
+    this.sfykgz = sfykgz;
+  }
+
+ /**
+ * 工程状态[选项]
+ */
+ private String gczt;
+
+ /**
+ * @hibernate.property column="gczt"
+ * @return Returns the gczt.
+ */
+ public String getGczt() {
+    return gczt;
+ }
+
+ public void setGczt(String gczt) {
+    this.gczt = gczt;
+  }
+
+ /**
+ * 工程状态备注
+ */
+ private String gcztbz;
+
+ /**
+ * @hibernate.property column="gcztbz"
+ * @return Returns the gcztbz.
+ */
+ public String getGcztbz() {
+    return gcztbz;
+ }
+
+ public void setGcztbz(String gcztbz) {
+    this.gcztbz = gcztbz;
+  }
+
+ /**
+ * 工程状态更新
+ */
+ private String gcztgx;
+
+ /**
+ * @hibernate.property column="gcztgx"
+ * @return Returns the gcztgx.
+ */
+ public String getGcztgx() {
+    return gcztgx;
+ }
+
+ public void setGcztgx(String gcztgx) {
+    this.gcztgx = gcztgx;
+  }
+
+ /**
+ * 工程完工日期
+ */
+ private Date gcwgrq;
+
+ /**
+ * @hibernate.property column="gcwgrq"
+ * @return Returns the gcwgrq.
+ */
+ public Date getGcwgrq() {
+    return gcwgrq;
+ }
+
+ public void setGcwgrq(Date gcwgrq) {
+    this.gcwgrq = gcwgrq;
+  }
+
+ /**
+ * 调试完工日期
+ */
+ private Date tswgrq;
+
+ /**
+ * @hibernate.property column="tswgrq"
+ * @return Returns the tswgrq.
+ */
+ public Date getTswgrq() {
+    return tswgrq;
+ }
+
+ public void setTswgrq(Date tswgrq) {
+    this.tswgrq = tswgrq;
+  }
+
+ /**
+ * 工程资料上报日期
+ */
+ private Date gczlsbrq;
+
+ /**
+ * @hibernate.property column="gczlsbrq"
+ * @return Returns the gczlsbrq.
+ */
+ public Date getGczlsbrq() {
+    return gczlsbrq;
+ }
+
+ public void setGczlsbrq(Date gczlsbrq) {
+    this.gczlsbrq = gczlsbrq;
+  }
+
+ /**
+ * 歌华器材核算完成日期
+ */
+ private Date ghqc_hswcrq;
+
+ /**
+ * @hibernate.property column="ghqc_hswcrq"
+ * @return Returns the ghqc_hswcrq.
+ */
+ public Date getGhqc_hswcrq() {
+    return ghqc_hswcrq;
+ }
+
+ public void setGhqc_hswcrq(Date ghqc_hswcrq) {
+    this.ghqc_hswcrq = ghqc_hswcrq;
+  }
+
+ /**
+ * 自备料核算完成日期
+ */
+ private Date zbl_hswcrq;
+
+ /**
+ * @hibernate.property column="zbl_hswcrq"
+ * @return Returns the zbl_hswcrq.
+ */
+ public Date getZbl_hswcrq() {
+    return zbl_hswcrq;
+ }
+
+ public void setZbl_hswcrq(Date zbl_hswcrq) {
+    this.zbl_hswcrq = zbl_hswcrq;
+  }
+
+ /**
+ * 工程实际验收日期
+ */
+ private Date gcsjysrq;
+
+ /**
+ * @hibernate.property column="gcsjysrq"
+ * @return Returns the gcsjysrq.
+ */
+ public Date getGcsjysrq() {
+    return gcsjysrq;
+ }
+
+ public void setGcsjysrq(Date gcsjysrq) {
+    this.gcsjysrq = gcsjysrq;
+  }
+
+ /**
+ * 验收报告收到日期
+ */
+ private Date ysbgsdrq;
+
+ /**
+ * @hibernate.property column="ysbgsdrq"
+ * @return Returns the ysbgsdrq.
+ */
+ public Date getYsbgsdrq() {
+    return ysbgsdrq;
+ }
+
+ public void setYsbgsdrq(Date ysbgsdrq) {
+    this.ysbgsdrq = ysbgsdrq;
+  }
+
+ /**
+ * 反向模块位置
+ */
+ private String fxmkwz;
+
+ /**
+ * @hibernate.property column="fxmkwz"
+ * @return Returns the fxmkwz.
+ */
+ public String getFxmkwz() {
+    return fxmkwz;
+ }
+
+ public void setFxmkwz(String fxmkwz) {
+    this.fxmkwz = fxmkwz;
+  }
+
+ /**
+ * 上报歌华日期
+ */
+ private Date sbghrq;
+
+ /**
+ * @hibernate.property column="sbghrq"
+ * @return Returns the sbghrq.
+ */
+ public Date getSbghrq() {
+    return sbghrq;
+ }
+
+ public void setSbghrq(Date sbghrq) {
+    this.sbghrq = sbghrq;
+  }
+
+ /**
+ * 反向情况
+ */
+ private String fxqk;
+
+ /**
+ * @hibernate.property column="fxqk"
+ * @return Returns the fxqk.
+ */
+ public String getFxqk() {
+    return fxqk;
+ }
+
+ public void setFxqk(String fxqk) {
+    this.fxqk = fxqk;
+  }
+
+ /**
+ * 反向上架位号
+ */
+ private String fxsjwh;
+
+ /**
+ * @hibernate.property column="fxsjwh"
+ * @return Returns the fxsjwh.
+ */
+ public String getFxsjwh() {
+    return fxsjwh;
+ }
+
+ public void setFxsjwh(String fxsjwh) {
+    this.fxsjwh = fxsjwh;
+  }
+
+ /**
+ * 反向情况备注
+ */
+ private String fxqkbz;
+
+ /**
+ * @hibernate.property column="fxqkbz"
+ * @return Returns the fxqkbz.
+ */
+ public String getFxqkbz() {
+    return fxqkbz;
+ }
+
+ public void setFxqkbz(String fxqkbz) {
+    this.fxqkbz = fxqkbz;
+  }
+
+ /**
+ * GIS录入是否完成[选项][XOR]
+ */
+ private String gis_lrsfwc;
+
+ /**
+ * @hibernate.property column="gis_lrsfwc"
+ * @return Returns the gis_lrsfwc.
+ */
+ public String getGis_lrsfwc() {
+    return gis_lrsfwc;
+ }
+
+ public void setGis_lrsfwc(String gis_lrsfwc) {
+    this.gis_lrsfwc = gis_lrsfwc;
+  }
+
+ /**
+ * 转生计部日期
+ */
+ private Date zsjbrq;
+
+ /**
+ * @hibernate.property column="zsjbrq"
+ * @return Returns the zsjbrq.
+ */
+ public Date getZsjbrq() {
+    return zsjbrq;
+ }
+
+ public void setZsjbrq(Date zsjbrq) {
+    this.zsjbrq = zsjbrq;
+  }
+
+ /**
+ * 超时统计[选项][XOR]
+ */
+ private String cstj;
+
+ /**
+ * @hibernate.property column="cstj"
+ * @return Returns the cstj.
+ */
+ public String getCstj() {
+    return cstj;
+ }
+
+ public void setCstj(String cstj) {
+    this.cstj = cstj;
+  }
+
+ /**
+ * 收到网络工程部转来任务通知书、器材表
+ */
+ private Date rwtzsqcb;
+
+ /**
+ * @hibernate.property column="rwtzsqcb"
+ * @return Returns the rwtzsqcb.
+ */
+ public Date getRwtzsqcb() {
+    return rwtzsqcb;
+ }
+
+ public void setRwtzsqcb(Date rwtzsqcb) {
+    this.rwtzsqcb = rwtzsqcb;
+  }
+
+ /**
+ * 领料部门
+ */
+ private String llbm;
+
+ /**
+ * @hibernate.property column="llbm"
+ * @return Returns the llbm.
+ */
+ public String getLlbm() {
+    return llbm;
+ }
+
+ public void setLlbm(String llbm) {
+    this.llbm = llbm;
+  }
+
+ /**
+ * 领料时间
+ */
+ private Date llsj;
+
+ /**
+ * @hibernate.property column="llsj"
+ * @return Returns the llsj.
+ */
+ public Date getLlsj() {
+    return llsj;
+ }
+
+ public void setLlsj(Date llsj) {
+    this.llsj = llsj;
+  }
+
+ /**
+ * 领料人
+ */
+ private String llr;
+
+ /**
+ * @hibernate.property column="llr"
+ * @return Returns the llr.
+ */
+ public String getLlr() {
+    return llr;
+ }
+
+ public void setLlr(String llr) {
+    this.llr = llr;
+  }
+
+ /**
+ * 发料人
+ */
+ private String flr;
+
+ /**
+ * @hibernate.property column="flr"
+ * @return Returns the flr.
+ */
+ public String getFlr() {
+    return flr;
+ }
+
+ public void setFlr(String flr) {
+    this.flr = flr;
+  }
+
+ /**
+ * 收到网络工程部转来补料器材表
+ */
+ private String bqcb;
+
+ /**
+ * @hibernate.property column="bqcb"
+ * @return Returns the bqcb.
+ */
+ public String getBqcb() {
+    return bqcb;
+ }
+
+ public void setBqcb(String bqcb) {
+    this.bqcb = bqcb;
+  }
+
+ /**
+ * 二次领料部门
+ */
+ private String llbm_2;
+
+ /**
+ * @hibernate.property column="llbm_2"
+ * @return Returns the llbm_2.
+ */
+ public String getLlbm_2() {
+    return llbm_2;
+ }
+
+ public void setLlbm_2(String llbm_2) {
+    this.llbm_2 = llbm_2;
+  }
+
+ /**
+ * 二次设计领料时间
+ */
+ private Date sjllsj_2;
+
+ /**
+ * @hibernate.property column="sjllsj_2"
+ * @return Returns the sjllsj_2.
+ */
+ public Date getSjllsj_2() {
+    return sjllsj_2;
+ }
+
+ public void setSjllsj_2(Date sjllsj_2) {
+    this.sjllsj_2 = sjllsj_2;
+  }
+
+ /**
+ * 二次领料人
+ */
+ private String llr_2;
+
+ /**
+ * @hibernate.property column="llr_2"
+ * @return Returns the llr_2.
+ */
+ public String getLlr_2() {
+    return llr_2;
+ }
+
+ public void setLlr_2(String llr_2) {
+    this.llr_2 = llr_2;
+  }
+
+ /**
+ * 二次发料人
+ */
+ private String flr_2;
+
+ /**
+ * @hibernate.property column="flr_2"
+ * @return Returns the flr_2.
+ */
+ public String getFlr_2() {
+    return flr_2;
+ }
+
+ public void setFlr_2(String flr_2) {
+    this.flr_2 = flr_2;
+  }
+
+ /**
+ * 接收采购申请表时间
+ */
+ private Date jscgsqbsj;
+
+ /**
+ * @hibernate.property column="jscgsqbsj"
+ * @return Returns the jscgsqbsj.
+ */
+ public Date getJscgsqbsj() {
+    return jscgsqbsj;
+ }
+
+ public void setJscgsqbsj(Date jscgsqbsj) {
+    this.jscgsqbsj = jscgsqbsj;
+  }
+
+ /**
  * 计划完成时间
  */
  private Date jhwcsj;
@@ -68,6 +1054,125 @@ public class Td12_dlgc implements Serializable{
 
  public void setSjwcsj(Date sjwcsj) {
     this.sjwcsj = sjwcsj;
+  }
+
+ /**
+ * 歌华协议签订日期
+ */
+ private Date ghxyqdrq;
+
+ /**
+ * @hibernate.property column="ghxyqdrq"
+ * @return Returns the ghxyqdrq.
+ */
+ public Date getGhxyqdrq() {
+    return ghxyqdrq;
+ }
+
+ public void setGhxyqdrq(Date ghxyqdrq) {
+    this.ghxyqdrq = ghxyqdrq;
+  }
+
+ /**
+ * 歌华协议盖章返回日期
+ */
+ private Date ghxygzrq;
+
+ /**
+ * @hibernate.property column="ghxygzrq"
+ * @return Returns the ghxygzrq.
+ */
+ public Date getGhxygzrq() {
+    return ghxygzrq;
+ }
+
+ public void setGhxygzrq(Date ghxygzrq) {
+    this.ghxygzrq = ghxygzrq;
+  }
+
+ /**
+ * 歌华协议金额
+ */
+ private Long ghxyje;
+
+ /**
+ * @hibernate.property column="ghxyje"
+ * @return Returns the ghxyje.
+ */
+ public Long getGhxyje() {
+    return ghxyje;
+ }
+
+ public void setGhxyje(Long ghxyje) {
+    this.ghxyje = ghxyje;
+  }
+
+ /**
+ * 视宽协议签定日期
+ */
+ private Date skxyqdrq;
+
+ /**
+ * @hibernate.property column="skxyqdrq"
+ * @return Returns the skxyqdrq.
+ */
+ public Date getSkxyqdrq() {
+    return skxyqdrq;
+ }
+
+ public void setSkxyqdrq(Date skxyqdrq) {
+    this.skxyqdrq = skxyqdrq;
+  }
+
+ /**
+ * 对下协议金额
+ */
+ private Long dxxyje;
+
+ /**
+ * @hibernate.property column="dxxyje"
+ * @return Returns the dxxyje.
+ */
+ public Long getDxxyje() {
+    return dxxyje;
+ }
+
+ public void setDxxyje(Long dxxyje) {
+    this.dxxyje = dxxyje;
+  }
+
+ /**
+ * 电缆拆除长度（协议）
+ */
+ private Long dlcccd;
+
+ /**
+ * @hibernate.property column="dlcccd"
+ * @return Returns the dlcccd.
+ */
+ public Long getDlcccd() {
+    return dlcccd;
+ }
+
+ public void setDlcccd(Long dlcccd) {
+    this.dlcccd = dlcccd;
+  }
+
+ /**
+ * 备注
+ */
+ private String bz;
+
+ /**
+ * @hibernate.property column="bz"
+ * @return Returns the bz.
+ */
+ public String getBz() {
+    return bz;
+ }
+
+ public void setBz(String bz) {
+    this.bz = bz;
   }
 
  /**
@@ -1227,938 +2332,20 @@ public class Td12_dlgc implements Serializable{
   }
 
  /**
- * 歌华编号
+ * N编号
  */
- private String ghbh;
+ private String n_bh;
 
  /**
- * @hibernate.property column="ghbh"
- * @return Returns the ghbh.
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
  */
- public String getGhbh() {
-    return ghbh;
+ public String getN_bh() {
+    return n_bh;
  }
 
- public void setGhbh(String ghbh) {
-    this.ghbh = ghbh;
-  }
-
- /**
- * 视宽编号
- */
- private String skbh;
-
- /**
- * @hibernate.property column="skbh"
- * @return Returns the skbh.
- */
- public String getSkbh() {
-    return skbh;
- }
-
- public void setSkbh(String skbh) {
-    this.skbh = skbh;
-  }
-
- /**
- * 工程名称
- */
- private String gcmc;
-
- /**
- * @hibernate.property column="gcmc"
- * @return Returns the gcmc.
- */
- public String getGcmc() {
-    return gcmc;
- }
-
- public void setGcmc(String gcmc) {
-    this.gcmc = gcmc;
-  }
-
- /**
- * 工程编号
- */
- private String gcbh;
-
- /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
- */
- public String getGcbh() {
-    return gcbh;
- }
-
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
-  }
-
- /**
- * 行政区域
- */
- private String xzqy;
-
- /**
- * @hibernate.property column="xzqy"
- * @return Returns the xzqy.
- */
- public String getXzqy() {
-    return xzqy;
- }
-
- public void setXzqy(String xzqy) {
-    this.xzqy = xzqy;
-  }
-
- /**
- * 施工地址
- */
- private String sgdz;
-
- /**
- * @hibernate.property column="sgdz"
- * @return Returns the sgdz.
- */
- public String getSgdz() {
-    return sgdz;
- }
-
- public void setSgdz(String sgdz) {
-    this.sgdz = sgdz;
-  }
-
- /**
- * 歌华监理
- */
- private String ghjl;
-
- /**
- * @hibernate.property column="ghjl"
- * @return Returns the ghjl.
- */
- public String getGhjl() {
-    return ghjl;
- }
-
- public void setGhjl(String ghjl) {
-    this.ghjl = ghjl;
-  }
-
- /**
- * 歌华开工时间
- */
- private Date ghkgsj;
-
- /**
- * @hibernate.property column="ghkgsj"
- * @return Returns the ghkgsj.
- */
- public Date getGhkgsj() {
-    return ghkgsj;
- }
-
- public void setGhkgsj(Date ghkgsj) {
-    this.ghkgsj = ghkgsj;
-  }
-
- /**
- * 歌华竣工时间
- */
- private Date ghjgsj;
-
- /**
- * @hibernate.property column="ghjgsj"
- * @return Returns the ghjgsj.
- */
- public Date getGhjgsj() {
-    return ghjgsj;
- }
-
- public void setGhjgsj(Date ghjgsj) {
-    this.ghjgsj = ghjgsj;
-  }
-
- /**
- * 协议户数
- */
- private Long yxhs;
-
- /**
- * @hibernate.property column="yxhs"
- * @return Returns the yxhs.
- */
- public Long getYxhs() {
-    return yxhs;
- }
-
- public void setYxhs(Long yxhs) {
-    this.yxhs = yxhs;
-  }
-
- /**
- * 二端数量
- */
- private Long edsl;
-
- /**
- * @hibernate.property column="edsl"
- * @return Returns the edsl.
- */
- public Long getEdsl() {
-    return edsl;
- }
-
- public void setEdsl(Long edsl) {
-    this.edsl = edsl;
-  }
-
- /**
- * 协议干线长度
- */
- private Long xygxcd;
-
- /**
- * @hibernate.property column="xygxcd"
- * @return Returns the xygxcd.
- */
- public Long getXygxcd() {
-    return xygxcd;
- }
-
- public void setXygxcd(Long xygxcd) {
-    this.xygxcd = xygxcd;
-  }
-
- /**
- * 任务接收日期
- */
- private Date rwjsrq;
-
- /**
- * @hibernate.property column="rwjsrq"
- * @return Returns the rwjsrq.
- */
- public Date getRwjsrq() {
-    return rwjsrq;
- }
-
- public void setRwjsrq(Date rwjsrq) {
-    this.rwjsrq = rwjsrq;
-  }
-
- /**
- * 令号申请依据[选项]
- */
- private String lhsqyj;
-
- /**
- * @hibernate.property column="lhsqyj"
- * @return Returns the lhsqyj.
- */
- public String getLhsqyj() {
-    return lhsqyj;
- }
-
- public void setLhsqyj(String lhsqyj) {
-    this.lhsqyj = lhsqyj;
-  }
-
- /**
- * 任务来源[选项]
- */
- private String rwly;
-
- /**
- * @hibernate.property column="rwly"
- * @return Returns the rwly.
- */
- public String getRwly() {
-    return rwly;
- }
-
- public void setRwly(String rwly) {
-    this.rwly = rwly;
-  }
-
- /**
- * 市场部负责人[人员]
- */
- private String scbfzr;
-
- /**
- * @hibernate.property column="scbfzr"
- * @return Returns the scbfzr.
- */
- public String getScbfzr() {
-    return scbfzr;
- }
-
- public void setScbfzr(String scbfzr) {
-    this.scbfzr = scbfzr;
-  }
-
- /**
- * 分公司负责人
- */
- private String fgsfzr;
-
- /**
- * @hibernate.property column="fgsfzr"
- * @return Returns the fgsfzr.
- */
- public String getFgsfzr() {
-    return fgsfzr;
- }
-
- public void setFgsfzr(String fgsfzr) {
-    this.fgsfzr = fgsfzr;
-  }
-
- /**
- * 验收报告合同部接收时间
- */
- private Date ysbg_htbjssj;
-
- /**
- * @hibernate.property column="ysbg_htbjssj"
- * @return Returns the ysbg_htbjssj.
- */
- public Date getYsbg_htbjssj() {
-    return ysbg_htbjssj;
- }
-
- public void setYsbg_htbjssj(Date ysbg_htbjssj) {
-    this.ysbg_htbjssj = ysbg_htbjssj;
-  }
-
- /**
- * 竣工户数
- */
- private Long jghs;
-
- /**
- * @hibernate.property column="jghs"
- * @return Returns the jghs.
- */
- public Long getJghs() {
-    return jghs;
- }
-
- public void setJghs(Long jghs) {
-    this.jghs = jghs;
-  }
-
- /**
- * 竣工端数
- */
- private Long jgds;
-
- /**
- * @hibernate.property column="jgds"
- * @return Returns the jgds.
- */
- public Long getJgds() {
-    return jgds;
- }
-
- public void setJgds(Long jgds) {
-    this.jgds = jgds;
-  }
-
- /**
- * 竣工干线
- */
- private Long jggx;
-
- /**
- * @hibernate.property column="jggx"
- * @return Returns the jggx.
- */
- public Long getJggx() {
-    return jggx;
- }
-
- public void setJggx(Long jggx) {
-    this.jggx = jggx;
-  }
-
- /**
- * 视宽开工日期
- */
- private Date skkgrq;
-
- /**
- * @hibernate.property column="skkgrq"
- * @return Returns the skkgrq.
- */
- public Date getSkkgrq() {
-    return skkgrq;
- }
-
- public void setSkkgrq(Date skkgrq) {
-    this.skkgrq = skkgrq;
-  }
-
- /**
- * 视宽竣工日期
- */
- private Date skjgrq;
-
- /**
- * @hibernate.property column="skjgrq"
- * @return Returns the skjgrq.
- */
- public Date getSkjgrq() {
-    return skjgrq;
- }
-
- public void setSkjgrq(Date skjgrq) {
-    this.skjgrq = skjgrq;
-  }
-
- /**
- * 视宽负责人[人员]
- */
- private String skfzr;
-
- /**
- * @hibernate.property column="skfzr"
- * @return Returns the skfzr.
- */
- public String getSkfzr() {
-    return skfzr;
- }
-
- public void setSkfzr(String skfzr) {
-    this.skfzr = skfzr;
-  }
-
- /**
- * 施工单位[选项]
- */
- private String sgdw;
-
- /**
- * @hibernate.property column="sgdw"
- * @return Returns the sgdw.
- */
- public String getSgdw() {
-    return sgdw;
- }
-
- public void setSgdw(String sgdw) {
-    this.sgdw = sgdw;
-  }
-
- /**
- * 是否有开工证[选项]
- */
- private String sfykgz;
-
- /**
- * @hibernate.property column="sfykgz"
- * @return Returns the sfykgz.
- */
- public String getSfykgz() {
-    return sfykgz;
- }
-
- public void setSfykgz(String sfykgz) {
-    this.sfykgz = sfykgz;
-  }
-
- /**
- * 工程状态[选项]
- */
- private String gczt;
-
- /**
- * @hibernate.property column="gczt"
- * @return Returns the gczt.
- */
- public String getGczt() {
-    return gczt;
- }
-
- public void setGczt(String gczt) {
-    this.gczt = gczt;
-  }
-
- /**
- * 工程状态备注
- */
- private String gcztbz;
-
- /**
- * @hibernate.property column="gcztbz"
- * @return Returns the gcztbz.
- */
- public String getGcztbz() {
-    return gcztbz;
- }
-
- public void setGcztbz(String gcztbz) {
-    this.gcztbz = gcztbz;
-  }
-
- /**
- * 工程状态更新
- */
- private String gcztgx;
-
- /**
- * @hibernate.property column="gcztgx"
- * @return Returns the gcztgx.
- */
- public String getGcztgx() {
-    return gcztgx;
- }
-
- public void setGcztgx(String gcztgx) {
-    this.gcztgx = gcztgx;
-  }
-
- /**
- * 工程完工日期
- */
- private Date gcwgrq;
-
- /**
- * @hibernate.property column="gcwgrq"
- * @return Returns the gcwgrq.
- */
- public Date getGcwgrq() {
-    return gcwgrq;
- }
-
- public void setGcwgrq(Date gcwgrq) {
-    this.gcwgrq = gcwgrq;
-  }
-
- /**
- * 调试完工日期
- */
- private Date tswgrq;
-
- /**
- * @hibernate.property column="tswgrq"
- * @return Returns the tswgrq.
- */
- public Date getTswgrq() {
-    return tswgrq;
- }
-
- public void setTswgrq(Date tswgrq) {
-    this.tswgrq = tswgrq;
-  }
-
- /**
- * 工程资料上报日期
- */
- private Date gczlsbrq;
-
- /**
- * @hibernate.property column="gczlsbrq"
- * @return Returns the gczlsbrq.
- */
- public Date getGczlsbrq() {
-    return gczlsbrq;
- }
-
- public void setGczlsbrq(Date gczlsbrq) {
-    this.gczlsbrq = gczlsbrq;
-  }
-
- /**
- * 歌华器材核算完成日期
- */
- private Date ghqc_hswcrq;
-
- /**
- * @hibernate.property column="ghqc_hswcrq"
- * @return Returns the ghqc_hswcrq.
- */
- public Date getGhqc_hswcrq() {
-    return ghqc_hswcrq;
- }
-
- public void setGhqc_hswcrq(Date ghqc_hswcrq) {
-    this.ghqc_hswcrq = ghqc_hswcrq;
-  }
-
- /**
- * 自备料核算完成日期
- */
- private Date zbl_hswcrq;
-
- /**
- * @hibernate.property column="zbl_hswcrq"
- * @return Returns the zbl_hswcrq.
- */
- public Date getZbl_hswcrq() {
-    return zbl_hswcrq;
- }
-
- public void setZbl_hswcrq(Date zbl_hswcrq) {
-    this.zbl_hswcrq = zbl_hswcrq;
-  }
-
- /**
- * 工程实际验收日期
- */
- private Date gcsjysrq;
-
- /**
- * @hibernate.property column="gcsjysrq"
- * @return Returns the gcsjysrq.
- */
- public Date getGcsjysrq() {
-    return gcsjysrq;
- }
-
- public void setGcsjysrq(Date gcsjysrq) {
-    this.gcsjysrq = gcsjysrq;
-  }
-
- /**
- * 验收报告收到日期
- */
- private Date ysbgsdrq;
-
- /**
- * @hibernate.property column="ysbgsdrq"
- * @return Returns the ysbgsdrq.
- */
- public Date getYsbgsdrq() {
-    return ysbgsdrq;
- }
-
- public void setYsbgsdrq(Date ysbgsdrq) {
-    this.ysbgsdrq = ysbgsdrq;
-  }
-
- /**
- * 反向模块位置
- */
- private String fxmkwz;
-
- /**
- * @hibernate.property column="fxmkwz"
- * @return Returns the fxmkwz.
- */
- public String getFxmkwz() {
-    return fxmkwz;
- }
-
- public void setFxmkwz(String fxmkwz) {
-    this.fxmkwz = fxmkwz;
-  }
-
- /**
- * 上报歌华日期
- */
- private Date sbghrq;
-
- /**
- * @hibernate.property column="sbghrq"
- * @return Returns the sbghrq.
- */
- public Date getSbghrq() {
-    return sbghrq;
- }
-
- public void setSbghrq(Date sbghrq) {
-    this.sbghrq = sbghrq;
-  }
-
- /**
- * 反向情况
- */
- private String fxqk;
-
- /**
- * @hibernate.property column="fxqk"
- * @return Returns the fxqk.
- */
- public String getFxqk() {
-    return fxqk;
- }
-
- public void setFxqk(String fxqk) {
-    this.fxqk = fxqk;
-  }
-
- /**
- * 反向上架位号
- */
- private String fxsjwh;
-
- /**
- * @hibernate.property column="fxsjwh"
- * @return Returns the fxsjwh.
- */
- public String getFxsjwh() {
-    return fxsjwh;
- }
-
- public void setFxsjwh(String fxsjwh) {
-    this.fxsjwh = fxsjwh;
-  }
-
- /**
- * 反向情况备注
- */
- private String fxqkbz;
-
- /**
- * @hibernate.property column="fxqkbz"
- * @return Returns the fxqkbz.
- */
- public String getFxqkbz() {
-    return fxqkbz;
- }
-
- public void setFxqkbz(String fxqkbz) {
-    this.fxqkbz = fxqkbz;
-  }
-
- /**
- * GIS录入是否完成[选项][XOR]
- */
- private String gis_lrsfwc;
-
- /**
- * @hibernate.property column="gis_lrsfwc"
- * @return Returns the gis_lrsfwc.
- */
- public String getGis_lrsfwc() {
-    return gis_lrsfwc;
- }
-
- public void setGis_lrsfwc(String gis_lrsfwc) {
-    this.gis_lrsfwc = gis_lrsfwc;
-  }
-
- /**
- * 转生计部日期
- */
- private Date zsjbrq;
-
- /**
- * @hibernate.property column="zsjbrq"
- * @return Returns the zsjbrq.
- */
- public Date getZsjbrq() {
-    return zsjbrq;
- }
-
- public void setZsjbrq(Date zsjbrq) {
-    this.zsjbrq = zsjbrq;
-  }
-
- /**
- * 超时统计[选项][XOR]
- */
- private String cstj;
-
- /**
- * @hibernate.property column="cstj"
- * @return Returns the cstj.
- */
- public String getCstj() {
-    return cstj;
- }
-
- public void setCstj(String cstj) {
-    this.cstj = cstj;
-  }
-
- /**
- * 收到网络工程部转来任务通知书、器材表
- */
- private Date rwtzsqcb;
-
- /**
- * @hibernate.property column="rwtzsqcb"
- * @return Returns the rwtzsqcb.
- */
- public Date getRwtzsqcb() {
-    return rwtzsqcb;
- }
-
- public void setRwtzsqcb(Date rwtzsqcb) {
-    this.rwtzsqcb = rwtzsqcb;
-  }
-
- /**
- * 领料部门
- */
- private String llbm;
-
- /**
- * @hibernate.property column="llbm"
- * @return Returns the llbm.
- */
- public String getLlbm() {
-    return llbm;
- }
-
- public void setLlbm(String llbm) {
-    this.llbm = llbm;
-  }
-
- /**
- * 领料时间
- */
- private Date llsj;
-
- /**
- * @hibernate.property column="llsj"
- * @return Returns the llsj.
- */
- public Date getLlsj() {
-    return llsj;
- }
-
- public void setLlsj(Date llsj) {
-    this.llsj = llsj;
-  }
-
- /**
- * 领料人
- */
- private String llr;
-
- /**
- * @hibernate.property column="llr"
- * @return Returns the llr.
- */
- public String getLlr() {
-    return llr;
- }
-
- public void setLlr(String llr) {
-    this.llr = llr;
-  }
-
- /**
- * 发料人
- */
- private String flr;
-
- /**
- * @hibernate.property column="flr"
- * @return Returns the flr.
- */
- public String getFlr() {
-    return flr;
- }
-
- public void setFlr(String flr) {
-    this.flr = flr;
-  }
-
- /**
- * 收到网络工程部转来补料器材表
- */
- private String bqcb;
-
- /**
- * @hibernate.property column="bqcb"
- * @return Returns the bqcb.
- */
- public String getBqcb() {
-    return bqcb;
- }
-
- public void setBqcb(String bqcb) {
-    this.bqcb = bqcb;
-  }
-
- /**
- * 二次领料部门
- */
- private String llbm_2;
-
- /**
- * @hibernate.property column="llbm_2"
- * @return Returns the llbm_2.
- */
- public String getLlbm_2() {
-    return llbm_2;
- }
-
- public void setLlbm_2(String llbm_2) {
-    this.llbm_2 = llbm_2;
-  }
-
- /**
- * 二次设计领料时间
- */
- private Date sjllsj_2;
-
- /**
- * @hibernate.property column="sjllsj_2"
- * @return Returns the sjllsj_2.
- */
- public Date getSjllsj_2() {
-    return sjllsj_2;
- }
-
- public void setSjllsj_2(Date sjllsj_2) {
-    this.sjllsj_2 = sjllsj_2;
-  }
-
- /**
- * 二次领料人
- */
- private String llr_2;
-
- /**
- * @hibernate.property column="llr_2"
- * @return Returns the llr_2.
- */
- public String getLlr_2() {
-    return llr_2;
- }
-
- public void setLlr_2(String llr_2) {
-    this.llr_2 = llr_2;
-  }
-
- /**
- * 二次发料人
- */
- private String flr_2;
-
- /**
- * @hibernate.property column="flr_2"
- * @return Returns the flr_2.
- */
- public String getFlr_2() {
-    return flr_2;
- }
-
- public void setFlr_2(String flr_2) {
-    this.flr_2 = flr_2;
-  }
-
- /**
- * 接收采购申请表时间
- */
- private Date jscgsqbsj;
-
- /**
- * @hibernate.property column="jscgsqbsj"
- * @return Returns the jscgsqbsj.
- */
- public Date getJscgsqbsj() {
-    return jscgsqbsj;
- }
-
- public void setJscgsqbsj(Date jscgsqbsj) {
-    this.jscgsqbsj = jscgsqbsj;
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
   }
 
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-12-04
  * @hibernate.class table="Td03_zbkc"
  */
 
@@ -13,7 +13,7 @@ public class Td03_zbkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 780647688332692992L;
+	private static final long serialVersionUID = 408117516055017088L;
 
 	/**
 	 * 标识
@@ -37,6 +37,108 @@ public class Td03_zbkc implements Serializable{
 	}
 
 	 /**
+ * 视宽协议编号（备注）
+ */
+ private String skbh_bz;
+
+ /**
+ * @hibernate.property column="skbh_bz"
+ * @return Returns the skbh_bz.
+ */
+ public String getSkbh_bz() {
+    return skbh_bz;
+ }
+
+ public void setSkbh_bz(String skbh_bz) {
+    this.skbh_bz = skbh_bz;
+  }
+
+ /**
+ * N编号
+ */
+ private String n_bh;
+
+ /**
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
+ */
+ public String getN_bh() {
+    return n_bh;
+ }
+
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
+  }
+
+ /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Long skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Long getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Long skxyje) {
+    this.skxyje = skxyje;
+  }
+
+ /**
  * 视宽编号
  */
  private String skbh;
@@ -54,7 +156,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 歌华编号
+ * 歌华工程编号
  */
  private String ghbh;
 
@@ -68,23 +170,6 @@ public class Td03_zbkc implements Serializable{
 
  public void setGhbh(String ghbh) {
     this.ghbh = ghbh;
-  }
-
- /**
- * 工程编号
- */
- private String gcbh;
-
- /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
- */
- public String getGcbh() {
-    return gcbh;
- }
-
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
   }
 
  /**
@@ -105,8 +190,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 行政区域
-[选项]
+ * 行政区域[选项]
  */
  private String xzqy;
 
@@ -124,7 +208,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 施工地址
-
  */
  private String sgdz;
 
@@ -142,7 +225,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华监理
-
  */
  private String ghjl;
 
@@ -160,7 +242,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华开工时间
-
  */
  private Date ghkgsj;
 
@@ -178,7 +259,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华竣工时间
-
  */
  private Date ghjgsj;
 
@@ -196,7 +276,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 任务接收日期
-
  */
  private Date rwjsrq;
 
@@ -213,8 +292,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 令号申请依据
-[选项]
+ * 令号申请依据[选项]
  */
  private String lhsqyj;
 
@@ -232,7 +310,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 任务来源[选项]
-
  */
  private String rwly;
 
@@ -249,8 +326,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 市场部负责人
-[人员]
+ * 市场部负责人[人员]
  */
  private String scbfzr;
 
@@ -268,7 +344,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 验收报告合同部接收时间
-
  */
  private Date ysbghtbjssj;
 
@@ -286,7 +361,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 机房代号
-
  */
  private String jfdh;
 
@@ -304,7 +378,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 任务书接收时间
-
  */
  private Date rwsjssj;
 
@@ -322,7 +395,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 视宽项目负责人
-
  */
  private String skxmfzr;
 
@@ -339,8 +411,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 是否需要完成设计图
-[选项][XOR]
+ * 是否需要完成设计图[选项][XOR]
  */
  private String sfxywcsjt;
 
@@ -358,7 +429,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 设计情况说明
-
  */
  private String sjqksm;
 
@@ -375,9 +445,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 设计工作量
-
-[选项]
+ * 设计工作量[选项]
  */
  private String sjgzl;
 
@@ -394,9 +462,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 设计状态
-
-[选项]
+ * 设计状态[选项]
  */
  private String sjzt;
 
@@ -414,7 +480,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 设计提交日期
-
  */
  private Date sjtjrq;
 
@@ -431,9 +496,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 超时统计
-
-[选项][XOR]
+ * 超时统计[选项][XOR]
  */
  private String cstj;
 
@@ -451,7 +514,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华施工协议盖章日期
-
  */
  private Date ghsgxygzrq;
 
@@ -469,7 +531,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华施工协议盖章返回日期
-
  */
  private Date ghsgxygzfhrq;
 
@@ -487,7 +548,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 验收报告返回合同部日期
-
  */
  private Date ysbgfhhtbrq;
 
@@ -505,7 +565,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 调试协议盖章日期
-
  */
  private Date tsxygzrq;
 
@@ -523,7 +582,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 调试协议盖章返回日期
-
  */
  private Date tsxygzfhrq;
 
@@ -541,7 +599,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华施工协议金额
-
  */
  private Long ghsgxyje;
 
@@ -559,7 +616,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 歌华调试协议金额
-
  */
  private Long ghtsxyje;
 
@@ -577,7 +633,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 结算状态说明
-
  */
  private String jsztsm;
 
@@ -595,7 +650,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 施工、调试对上结算金额
-
  */
  private Long sgtsdsjsje;
 
@@ -613,7 +667,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 设计对上结算金额
-
  */
  private Long sjdsjsje;
 
@@ -631,7 +684,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对上结算批次
-
  */
  private String dsjspc;
 
@@ -649,7 +701,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 开发票日期
-
  */
  private Date kfprq;
 
@@ -666,8 +717,7 @@ public class Td03_zbkc implements Serializable{
   }
 
  /**
- * 工程年份
-[选项]
+ * 工程年份[选项]
  */
  private Long gcnf;
 
@@ -685,7 +735,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 上报器材结算日期
-
  */
  private Date sbqcjsrq;
 
@@ -703,7 +752,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 器材结算日期
-
  */
  private Date qcjsrq;
 
@@ -721,7 +769,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 计财结算申请日期
-
  */
  private Date jcjssqrq;
 
@@ -739,7 +786,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 计财结算日期
-
  */
  private Date jcjsrq;
 
@@ -757,7 +803,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 预付金额
-
  */
  private Long yfje;
 
@@ -775,7 +820,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 预付日期
-
  */
  private Date yfrq;
 
@@ -793,7 +837,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 回款日期
-
  */
  private Date hkrq;
 
@@ -845,7 +888,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下结算标准
-
  */
  private String dxjsbz;
 
@@ -863,7 +905,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下结算金额
-
  */
  private Long dxjsje;
 
@@ -881,7 +922,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 结算单签字日期
-
  */
  private Date jsdqzrq;
 
@@ -899,7 +939,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 财务审核日期
-
  */
  private Date cwshrq;
 
@@ -917,7 +956,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下结算批次
-
  */
  private String dxjspc;
 
@@ -935,7 +973,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下付款批准日期
-
  */
  private Date dxfkpzrq;
 
@@ -953,7 +990,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 领款日期
-
  */
  private Date lkrq;
 
@@ -971,7 +1007,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下预付款金额
-
  */
  private Long dxyfkje;
 
@@ -989,7 +1024,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下预付款批次
-
  */
  private String dxyfkpc;
 
@@ -1007,7 +1041,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 预付款领款日期
-
  */
  private Date yfklkrq;
 
@@ -1025,7 +1058,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 公司内部结算价
-
  */
  private Long gsnbjsj;
 
@@ -1043,7 +1075,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对上合同办公室盖章时间
-
  */
  private Date dshtbgsgzsj;
 
@@ -1061,7 +1092,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下合同办公室盖章时间
-
  */
  private Date dxhtbgsgzsj;
 
@@ -1079,7 +1109,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对上合同原件转发财务部时间
-
  */
  private Date dshtyjzfcwbsj;
 
@@ -1097,7 +1126,6 @@ public class Td03_zbkc implements Serializable{
 
  /**
  * 对下合同原件转发财务部时间
-
  */
  private Date dxhtyjzfcwbsj;
 

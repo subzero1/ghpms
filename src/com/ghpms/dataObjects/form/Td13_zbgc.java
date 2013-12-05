@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-06
+ * @author cmp_auto 2013-12-04
  * @hibernate.class table="Td13_zbgc"
  */
 
@@ -13,7 +13,7 @@ public class Td13_zbgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 310912480636899584L;
+	private static final long serialVersionUID = 44310747230055016L;
 
 	/**
 	 * 标识
@@ -37,6 +37,91 @@ public class Td13_zbgc implements Serializable{
 	}
 
 	 /**
+ * N编号
+ */
+ private String n_bh;
+
+ /**
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
+ */
+ public String getN_bh() {
+    return n_bh;
+ }
+
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
+  }
+
+ /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Long skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Long getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Long skxyje) {
+    this.skxyje = skxyje;
+  }
+
+ /**
  * 计划完成时间
  */
  private Date jhwcsj;
@@ -68,6 +153,91 @@ public class Td13_zbgc implements Serializable{
 
  public void setSjwcsj(Date sjwcsj) {
     this.sjwcsj = sjwcsj;
+  }
+
+ /**
+ * 歌华合同金额
+ */
+ private Long ghhtje;
+
+ /**
+ * @hibernate.property column="ghhtje"
+ * @return Returns the ghhtje.
+ */
+ public Long getGhhtje() {
+    return ghhtje;
+ }
+
+ public void setGhhtje(Long ghhtje) {
+    this.ghhtje = ghhtje;
+  }
+
+ /**
+ * 歌华合同签订日期
+ */
+ private Date ghhtqdrq;
+
+ /**
+ * @hibernate.property column="ghhtqdrq"
+ * @return Returns the ghhtqdrq.
+ */
+ public Date getGhhtqdrq() {
+    return ghhtqdrq;
+ }
+
+ public void setGhhtqdrq(Date ghhtqdrq) {
+    this.ghhtqdrq = ghhtqdrq;
+  }
+
+ /**
+ * 歌华合同返回日期
+ */
+ private Date ghhtfhrq;
+
+ /**
+ * @hibernate.property column="ghhtfhrq"
+ * @return Returns the ghhtfhrq.
+ */
+ public Date getGhhtfhrq() {
+    return ghhtfhrq;
+ }
+
+ public void setGhhtfhrq(Date ghhtfhrq) {
+    this.ghhtfhrq = ghhtfhrq;
+  }
+
+ /**
+ * 对下合同签订日期
+ */
+ private Date dxhtqdrq;
+
+ /**
+ * @hibernate.property column="dxhtqdrq"
+ * @return Returns the dxhtqdrq.
+ */
+ public Date getDxhtqdrq() {
+    return dxhtqdrq;
+ }
+
+ public void setDxhtqdrq(Date dxhtqdrq) {
+    this.dxhtqdrq = dxhtqdrq;
+  }
+
+ /**
+ * 备注
+ */
+ private String bz;
+
+ /**
+ * @hibernate.property column="bz"
+ * @return Returns the bz.
+ */
+ public String getBz() {
+    return bz;
+ }
+
+ public void setBz(String bz) {
+    this.bz = bz;
   }
 
  /**
@@ -922,7 +1092,6 @@ public class Td13_zbgc implements Serializable{
 
  /**
  * 对下结算金额
-
  */
  private Long dxjsje;
 
@@ -1534,7 +1703,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 歌华编号
+ * 歌华工程编号
  */
  private String ghbh;
 
@@ -1548,23 +1717,6 @@ public class Td13_zbgc implements Serializable{
 
  public void setGhbh(String ghbh) {
     this.ghbh = ghbh;
-  }
-
- /**
- * 工程编号
- */
- private String gcbh;
-
- /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
- */
- public String getGcbh() {
-    return gcbh;
- }
-
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
   }
 
  /**
@@ -1909,7 +2061,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 未开工工作内容[选项]
+ * 未开工工作内容
  */
  private String wkggznr;
 
@@ -1926,7 +2078,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 装修工作内容[选项]
+ * 装修工作内容
  */
  private String zxgznr;
 
@@ -1943,7 +2095,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 电气工作内容[选项]
+ * 电气工作内容
  */
  private String dqgznr;
 
@@ -1960,7 +2112,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 弱电工作内容[选项]
+ * 弱电工作内容
  */
  private String rdgznr;
 
@@ -1977,7 +2129,7 @@ public class Td13_zbgc implements Serializable{
   }
 
  /**
- * 报验工作内容[选项]
+ * 报验工作内容
  */
  private String bygznr;
 
