@@ -19,6 +19,54 @@
         </id>
 
    <property
+  name="skbh_bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skbh_bz"
+  />
+
+  <property
+  name="n_bh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="n_bh"
+  />
+
+  <property
+  name="ghxyjsrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="ghxyjsrq"
+  />
+
+  <property
+  name="xygzfhskrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="xygzfhskrq"
+  />
+
+  <property
+  name="tjskxyqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="tjskxyqdrq"
+  />
+
+  <property
+  name="skxyje"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="skxyje"
+  />
+
+  <property
   name="skbh"
   type="java.lang.String"
   update="true"
@@ -32,14 +80,6 @@
   update="true"
   insert="true"
   column="ghbh"
-  />
-
-  <property
-  name="gcbh"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="gcbh"
   />
 
   <property

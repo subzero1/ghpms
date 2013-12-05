@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-01
+ * @author cmp_auto 2013-12-04
  * @hibernate.class table="Td05_gdkc"
  */
 
@@ -13,7 +13,7 @@ public class Td05_gdkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 450695421535543680L;
+	private static final long serialVersionUID = 63827979958553496L;
 
 	/**
 	 * 标识
@@ -71,6 +71,91 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
+ * N编号
+ */
+ private String n_bh;
+
+ /**
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
+ */
+ public String getN_bh() {
+    return n_bh;
+ }
+
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
+  }
+
+ /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Long skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Long getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Long skxyje) {
+    this.skxyje = skxyje;
+  }
+
+ /**
  * 视宽编号
  */
  private String skbh;
@@ -88,7 +173,7 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 歌华编号
+ * 歌华工程编号
  */
  private String ghbh;
 
@@ -102,23 +187,6 @@ public class Td05_gdkc implements Serializable{
 
  public void setGhbh(String ghbh) {
     this.ghbh = ghbh;
-  }
-
- /**
- * 工程编号
- */
- private String gcbh;
-
- /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
- */
- public String getGcbh() {
-    return gcbh;
- }
-
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
   }
 
  /**
@@ -139,21 +207,20 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 视宽协议编号
-
+ * 视宽协议编号（备注）
  */
- private String skxybh;
+ private String skbh_bz;
 
  /**
- * @hibernate.property column="skxybh"
- * @return Returns the skxybh.
+ * @hibernate.property column="skbh_bz"
+ * @return Returns the skbh_bz.
  */
- public String getSkxybh() {
-    return skxybh;
+ public String getSkbh_bz() {
+    return skbh_bz;
  }
 
- public void setSkxybh(String skxybh) {
-    this.skxybh = skxybh;
+ public void setSkbh_bz(String skbh_bz) {
+    this.skbh_bz = skbh_bz;
   }
 
  /**
@@ -175,7 +242,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 施工地址
-
  */
  private String sgdz;
 
@@ -193,7 +259,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 歌华监理
-
  */
  private String ghjl;
 
@@ -211,7 +276,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 歌华开工时间
-
  */
  private Date ghkg;
 
@@ -229,7 +293,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 歌华竣工时间
-
  */
  private Date ghjgsj;
 
@@ -247,7 +310,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 任务接收日期
-
  */
  private Date rwjsrq;
 
@@ -264,8 +326,7 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 令号申请依据
-[选项]
+ * 令号申请依据[选项]
  */
  private String lhsqyj;
 
@@ -282,8 +343,7 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 任务来源
-[选项]
+ * 任务来源[选项]
  */
  private String rwly;
 
@@ -300,8 +360,7 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 市场部负责人
-[人员]
+ * 市场部负责人[人员]
  */
  private String scbfzr;
 
@@ -319,7 +378,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 建设单位
-
  */
  private String jsdw;
 
@@ -337,7 +395,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 建设单位负责人
-
  */
  private String jsdwfzr;
 
@@ -355,7 +412,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 设计单位
-
  */
  private String sjdw;
 
@@ -373,7 +429,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 设计单位负责人
-
  */
  private String sjdwfzr;
 
@@ -391,7 +446,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 监理单位
-
  */
  private String jldw;
 
@@ -409,7 +463,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 监理单位负责人
-
  */
  private String jldwfzr;
 
@@ -427,7 +480,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 中标价格
-
  */
  private Long zbjg;
 
@@ -445,7 +497,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 提交设计成果日期
-
  */
  private Date tjsjcgrq;
 
@@ -463,7 +514,6 @@ public class Td05_gdkc implements Serializable{
 
  /**
  * 歌华任务书编号
-
  */
  private Date ghrwsbh;
 
@@ -480,7 +530,7 @@ public class Td05_gdkc implements Serializable{
   }
 
  /**
- * 工程类型[选项]
+ * 计建部类型[选项]
  */
  private String gclx;
 

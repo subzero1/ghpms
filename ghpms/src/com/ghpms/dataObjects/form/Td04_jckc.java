@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-08-14
+ * @author cmp_auto 2013-12-04
  * @hibernate.class table="Td04_jckc"
  */
 
@@ -13,7 +13,7 @@ public class Td04_jckc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 349111410351671040L;
+	private static final long serialVersionUID = 554377725968686080L;
 
 	/**
 	 * 标识
@@ -71,6 +71,108 @@ public class Td04_jckc implements Serializable{
   }
 
  /**
+ * 视宽协议编号(备注)
+ */
+ private String skbh_bz;
+
+ /**
+ * @hibernate.property column="skbh_bz"
+ * @return Returns the skbh_bz.
+ */
+ public String getSkbh_bz() {
+    return skbh_bz;
+ }
+
+ public void setSkbh_bz(String skbh_bz) {
+    this.skbh_bz = skbh_bz;
+  }
+
+ /**
+ * N编号
+ */
+ private String n_bh;
+
+ /**
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
+ */
+ public String getN_bh() {
+    return n_bh;
+ }
+
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
+  }
+
+ /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Long skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Long getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Long skxyje) {
+    this.skxyje = skxyje;
+  }
+
+ /**
  * 视宽编号
  */
  private String skbh;
@@ -122,23 +224,6 @@ public class Td04_jckc implements Serializable{
   }
 
  /**
- * 工程编号
- */
- private String gcbh;
-
- /**
- * @hibernate.property column="gcbh"
- * @return Returns the gcbh.
- */
- public String getGcbh() {
-    return gcbh;
- }
-
- public void setGcbh(String gcbh) {
-    this.gcbh = gcbh;
-  }
-
- /**
  * 施工地址
  */
  private String gcdz;
@@ -156,7 +241,7 @@ public class Td04_jckc implements Serializable{
   }
 
  /**
- * 行政区域
+ * 行政区域[选项]
  */
  private String xzqy;
 
