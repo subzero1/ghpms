@@ -114,10 +114,7 @@ public class Gcsj {
 
 		if (!keyword.equals("")) {
 			keyword = new String(keyword.getBytes("ISO-8859-1"), "gbk");
-			hsql.append(" and (a.ghbh like'%");
-			hsql.append(keyword);
-			hsql.append("%' ");
-			hsql.append(" or a.skbh like'%");
+			hsql.append(" and a.skbh like'%");
 			hsql.append(keyword);
 			hsql.append("%' ");
 			hsql.append(" or a.gcmc like'%");
