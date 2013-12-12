@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-04
+ * @author cmp_auto 2013-12-11
  * @hibernate.class table="Td12_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td12_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 784577806649603584L;
+	private static final long serialVersionUID = 185387894940408512L;
 
 	/**
 	 * 标识
@@ -90,17 +90,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 视宽协议金额
  */
- private Long skxyje;
+ private Double skxyje;
 
  /**
  * @hibernate.property column="skxyje"
  * @return Returns the skxyje.
  */
- public Long getSkxyje() {
+ public Double getSkxyje() {
     return skxyje;
  }
 
- public void setSkxyje(Long skxyje) {
+ public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
   }
 
@@ -277,17 +277,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 协议干线长度
  */
- private Long xygxcd;
+ private Double xygxcd;
 
  /**
  * @hibernate.property column="xygxcd"
  * @return Returns the xygxcd.
  */
- public Long getXygxcd() {
+ public Double getXygxcd() {
     return xygxcd;
  }
 
- public void setXygxcd(Long xygxcd) {
+ public void setXygxcd(Double xygxcd) {
     this.xygxcd = xygxcd;
   }
 
@@ -430,17 +430,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 竣工干线
  */
- private Long jggx;
+ private Double jggx;
 
  /**
  * @hibernate.property column="jggx"
  * @return Returns the jggx.
  */
- public Long getJggx() {
+ public Double getJggx() {
     return jggx;
  }
 
- public void setJggx(Long jggx) {
+ public void setJggx(Double jggx) {
     this.jggx = jggx;
   }
 
@@ -1093,17 +1093,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 歌华协议金额
  */
- private Long ghxyje;
+ private Double ghxyje;
 
  /**
  * @hibernate.property column="ghxyje"
  * @return Returns the ghxyje.
  */
- public Long getGhxyje() {
+ public Double getGhxyje() {
     return ghxyje;
  }
 
- public void setGhxyje(Long ghxyje) {
+ public void setGhxyje(Double ghxyje) {
     this.ghxyje = ghxyje;
   }
 
@@ -1127,34 +1127,34 @@ public class Td12_dlgc implements Serializable{
  /**
  * 对下协议金额
  */
- private Long dxxyje;
+ private Double dxxyje;
 
  /**
  * @hibernate.property column="dxxyje"
  * @return Returns the dxxyje.
  */
- public Long getDxxyje() {
+ public Double getDxxyje() {
     return dxxyje;
  }
 
- public void setDxxyje(Long dxxyje) {
+ public void setDxxyje(Double dxxyje) {
     this.dxxyje = dxxyje;
   }
 
  /**
  * 电缆拆除长度（协议）
  */
- private Long dlcccd;
+ private Double dlcccd;
 
  /**
  * @hibernate.property column="dlcccd"
  * @return Returns the dlcccd.
  */
- public Long getDlcccd() {
+ public Double getDlcccd() {
     return dlcccd;
  }
 
- public void setDlcccd(Long dlcccd) {
+ public void setDlcccd(Double dlcccd) {
     this.dlcccd = dlcccd;
   }
 
@@ -1178,34 +1178,34 @@ public class Td12_dlgc implements Serializable{
  /**
  * 歌华施工协议金额
  */
- private Long ghsgxyje;
+ private Double ghsgxyje;
 
  /**
  * @hibernate.property column="ghsgxyje"
  * @return Returns the ghsgxyje.
  */
- public Long getGhsgxyje() {
+ public Double getGhsgxyje() {
     return ghsgxyje;
  }
 
- public void setGhsgxyje(Long ghsgxyje) {
+ public void setGhsgxyje(Double ghsgxyje) {
     this.ghsgxyje = ghsgxyje;
   }
 
  /**
  * 歌华调试协议金额
  */
- private Long ghtsxyje;
+ private Double ghtsxyje;
 
  /**
  * @hibernate.property column="ghtsxyje"
  * @return Returns the ghtsxyje.
  */
- public Long getGhtsxyje() {
+ public Double getGhtsxyje() {
     return ghtsxyje;
  }
 
- public void setGhtsxyje(Long ghtsxyje) {
+ public void setGhtsxyje(Double ghtsxyje) {
     this.ghtsxyje = ghtsxyje;
   }
 
@@ -1229,34 +1229,34 @@ public class Td12_dlgc implements Serializable{
  /**
  * 施工、调试对上结算金额
  */
- private Long sgtsdsjsje;
+ private Double sgtsdsjsje;
 
  /**
  * @hibernate.property column="sgtsdsjsje"
  * @return Returns the sgtsdsjsje.
  */
- public Long getSgtsdsjsje() {
+ public Double getSgtsdsjsje() {
     return sgtsdsjsje;
  }
 
- public void setSgtsdsjsje(Long sgtsdsjsje) {
+ public void setSgtsdsjsje(Double sgtsdsjsje) {
     this.sgtsdsjsje = sgtsdsjsje;
   }
 
  /**
  * 设计对上结算金额
  */
- private Long sjdsjsje;
+ private Double sjdsjsje;
 
  /**
  * @hibernate.property column="sjdsjsje"
  * @return Returns the sjdsjsje.
  */
- public Long getSjdsjsje() {
+ public Double getSjdsjsje() {
     return sjdsjsje;
  }
 
- public void setSjdsjsje(Long sjdsjsje) {
+ public void setSjdsjsje(Double sjdsjsje) {
     this.sjdsjsje = sjdsjsje;
   }
 
@@ -1382,17 +1382,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 预付金额
  */
- private Long yfje;
+ private Double yfje;
 
  /**
  * @hibernate.property column="yfje"
  * @return Returns the yfje.
  */
- public Long getYfje() {
+ public Double getYfje() {
     return yfje;
  }
 
- public void setYfje(Long yfje) {
+ public void setYfje(Double yfje) {
     this.yfje = yfje;
   }
 
@@ -1450,17 +1450,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 对下结算金额
  */
- private Long dxjsje;
+ private Double dxjsje;
 
  /**
  * @hibernate.property column="dxjsje"
  * @return Returns the dxjsje.
  */
- public Long getDxjsje() {
+ public Double getDxjsje() {
     return dxjsje;
  }
 
- public void setDxjsje(Long dxjsje) {
+ public void setDxjsje(Double dxjsje) {
     this.dxjsje = dxjsje;
   }
 
@@ -1552,17 +1552,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 对下预付款金额
  */
- private Long dxyfkje;
+ private Double dxyfkje;
 
  /**
  * @hibernate.property column="dxyfkje"
  * @return Returns the dxyfkje.
  */
- public Long getDxyfkje() {
+ public Double getDxyfkje() {
     return dxyfkje;
  }
 
- public void setDxyfkje(Long dxyfkje) {
+ public void setDxyfkje(Double dxyfkje) {
     this.dxyfkje = dxyfkje;
   }
 
@@ -1603,17 +1603,17 @@ public class Td12_dlgc implements Serializable{
  /**
  * 公司内部结算价
  */
- private Long gsnbjsj;
+ private Double gsnbjsj;
 
  /**
  * @hibernate.property column="gsnbjsj"
  * @return Returns the gsnbjsj.
  */
- public Long getGsnbjsj() {
+ public Double getGsnbjsj() {
     return gsnbjsj;
  }
 
- public void setGsnbjsj(Long gsnbjsj) {
+ public void setGsnbjsj(Double gsnbjsj) {
     this.gsnbjsj = gsnbjsj;
   }
 

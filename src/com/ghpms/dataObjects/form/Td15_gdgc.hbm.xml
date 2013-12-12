@@ -140,7 +140,7 @@
 
   <property
   name="skxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skxyje"
@@ -180,7 +180,7 @@
 
   <property
   name="ggl"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ggl"
@@ -196,7 +196,7 @@
 
   <property
   name="kgl"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="kgl"
@@ -204,7 +204,7 @@
 
   <property
   name="zkgl"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="zkgl"
@@ -220,7 +220,7 @@
 
   <property
   name="htje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="htje"
@@ -268,7 +268,7 @@
 
   <property
   name="kgldj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="kgldj"
@@ -308,7 +308,7 @@
 
   <property
   name="sjysje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sjysje"
@@ -324,7 +324,7 @@
 
   <property
   name="dxhtje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxhtje"
@@ -340,7 +340,7 @@
 
   <property
   name="jfsjzfje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="jfsjzfje"
@@ -348,7 +348,7 @@
 
   <property
   name="jfjszj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="jfjszj"
@@ -372,7 +372,7 @@
 
   <property
   name="sgdwgcyszj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sgdwgcyszj"
@@ -388,7 +388,7 @@
 
   <property
   name="skyfkje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skyfkje"
@@ -420,7 +420,7 @@
 
   <property
   name="skyfje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skyfje"
@@ -820,7 +820,7 @@
 
   <property
   name="jfzbj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="jfzbj"
@@ -844,7 +844,7 @@
 
   <property
   name="sgdwzbj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sgdwzbj"
@@ -868,7 +868,7 @@
 
   <property
   name="ghhtje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghhtje"
@@ -884,7 +884,7 @@
 
   <property
   name="dxxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxxyje"

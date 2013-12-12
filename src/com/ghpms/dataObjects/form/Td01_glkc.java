@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-04
+ * @author cmp_auto 2013-12-11
  * @hibernate.class table="Td01_glkc"
  */
 
@@ -13,7 +13,7 @@ public class Td01_glkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 800582105375888512L;
+	private static final long serialVersionUID = 177092802739713504L;
 
 	/**
 	 * 标识
@@ -56,17 +56,17 @@ public class Td01_glkc implements Serializable{
  /**
  * 视宽协议金额
  */
- private Long skxyje;
+ private Double skxyje;
 
  /**
  * @hibernate.property column="skxyje"
  * @return Returns the skxyje.
  */
- public Long getSkxyje() {
+ public Double getSkxyje() {
     return skxyje;
  }
 
- public void setSkxyje(Long skxyje) {
+ public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
   }
 
@@ -515,187 +515,187 @@ public class Td01_glkc implements Serializable{
  /**
  * 架空（缆长）
  */
- private Long jk_lc;
+ private Double jk_lc;
 
  /**
  * @hibernate.property column="jk_lc"
  * @return Returns the jk_lc.
  */
- public Long getJk_lc() {
+ public Double getJk_lc() {
     return jk_lc;
  }
 
- public void setJk_lc(Long jk_lc) {
+ public void setJk_lc(Double jk_lc) {
     this.jk_lc = jk_lc;
   }
 
  /**
  * 架空（路由）
  */
- private Long jk_ly;
+ private Double jk_ly;
 
  /**
  * @hibernate.property column="jk_ly"
  * @return Returns the jk_ly.
  */
- public Long getJk_ly() {
+ public Double getJk_ly() {
     return jk_ly;
  }
 
- public void setJk_ly(Long jk_ly) {
+ public void setJk_ly(Double jk_ly) {
     this.jk_ly = jk_ly;
   }
 
  /**
  * 管道（缆长）
  */
- private Long gd_lc;
+ private Double gd_lc;
 
  /**
  * @hibernate.property column="gd_lc"
  * @return Returns the gd_lc.
  */
- public Long getGd_lc() {
+ public Double getGd_lc() {
     return gd_lc;
  }
 
- public void setGd_lc(Long gd_lc) {
+ public void setGd_lc(Double gd_lc) {
     this.gd_lc = gd_lc;
   }
 
  /**
  * 管道（路由）
  */
- private Long gd_ly;
+ private Double gd_ly;
 
  /**
  * @hibernate.property column="gd_ly"
  * @return Returns the gd_ly.
  */
- public Long getGd_ly() {
+ public Double getGd_ly() {
     return gd_ly;
  }
 
- public void setGd_ly(Long gd_ly) {
+ public void setGd_ly(Double gd_ly) {
     this.gd_ly = gd_ly;
   }
 
  /**
  * 拆除（缆长）
  */
- private Long cc_lc;
+ private Double cc_lc;
 
  /**
  * @hibernate.property column="cc_lc"
  * @return Returns the cc_lc.
  */
- public Long getCc_lc() {
+ public Double getCc_lc() {
     return cc_lc;
  }
 
- public void setCc_lc(Long cc_lc) {
+ public void setCc_lc(Double cc_lc) {
     this.cc_lc = cc_lc;
   }
 
  /**
  * 拆除（路由）
  */
- private Long cc_ly;
+ private Double cc_ly;
 
  /**
  * @hibernate.property column="cc_ly"
  * @return Returns the cc_ly.
  */
- public Long getCc_ly() {
+ public Double getCc_ly() {
     return cc_ly;
  }
 
- public void setCc_ly(Long cc_ly) {
+ public void setCc_ly(Double cc_ly) {
     this.cc_ly = cc_ly;
   }
 
  /**
  * 杆公里
  */
- private Long ggl;
+ private Double ggl;
 
  /**
  * @hibernate.property column="ggl"
  * @return Returns the ggl.
  */
- public Long getGgl() {
+ public Double getGgl() {
     return ggl;
  }
 
- public void setGgl(Long ggl) {
+ public void setGgl(Double ggl) {
     this.ggl = ggl;
   }
 
  /**
  * 沟公里
  */
- private Long gougl;
+ private Double gougl;
 
  /**
  * @hibernate.property column="gougl"
  * @return Returns the gougl.
  */
- public Long getGougl() {
+ public Double getGougl() {
     return gougl;
  }
 
- public void setGougl(Long gougl) {
+ public void setGougl(Double gougl) {
     this.gougl = gougl;
   }
 
  /**
  * 道路长
  */
- private Long dlc;
+ private Double dlc;
 
  /**
  * @hibernate.property column="dlc"
  * @return Returns the dlc.
  */
- public Long getDlc() {
+ public Double getDlc() {
     return dlc;
  }
 
- public void setDlc(Long dlc) {
+ public void setDlc(Double dlc) {
     this.dlc = dlc;
   }
 
  /**
  * 管道需求长
  */
- private Long gdxqc;
+ private Double gdxqc;
 
  /**
  * @hibernate.property column="gdxqc"
  * @return Returns the gdxqc.
  */
- public Long getGdxqc() {
+ public Double getGdxqc() {
     return gdxqc;
  }
 
- public void setGdxqc(Long gdxqc) {
+ public void setGdxqc(Double gdxqc) {
     this.gdxqc = gdxqc;
   }
 
  /**
  * 路由和
  */
- private Long lyh;
+ private Double lyh;
 
  /**
  * @hibernate.property column="lyh"
  * @return Returns the lyh.
  */
- public Long getLyh() {
+ public Double getLyh() {
     return lyh;
  }
 
- public void setLyh(Long lyh) {
+ public void setLyh(Double lyh) {
     this.lyh = lyh;
   }
 
@@ -719,51 +719,51 @@ public class Td01_glkc implements Serializable{
  /**
  * 二次勘查杆公里
  */
- private Long eckcggl;
+ private Double eckcggl;
 
  /**
  * @hibernate.property column="eckcggl"
  * @return Returns the eckcggl.
  */
- public Long getEckcggl() {
+ public Double getEckcggl() {
     return eckcggl;
  }
 
- public void setEckcggl(Long eckcggl) {
+ public void setEckcggl(Double eckcggl) {
     this.eckcggl = eckcggl;
   }
 
  /**
  * 二次勘查沟公里
  */
- private Long eckcgougl;
+ private Double eckcgougl;
 
  /**
  * @hibernate.property column="eckcgougl"
  * @return Returns the eckcgougl.
  */
- public Long getEckcgougl() {
+ public Double getEckcgougl() {
     return eckcgougl;
  }
 
- public void setEckcgougl(Long eckcgougl) {
+ public void setEckcgougl(Double eckcgougl) {
     this.eckcgougl = eckcgougl;
   }
 
  /**
  * 勘查设计费估算
  */
- private Long kcsjfgs;
+ private Double kcsjfgs;
 
  /**
  * @hibernate.property column="kcsjfgs"
  * @return Returns the kcsjfgs.
  */
- public Long getKcsjfgs() {
+ public Double getKcsjfgs() {
     return kcsjfgs;
  }
 
- public void setKcsjfgs(Long kcsjfgs) {
+ public void setKcsjfgs(Double kcsjfgs) {
     this.kcsjfgs = kcsjfgs;
   }
 
@@ -906,34 +906,34 @@ public class Td01_glkc implements Serializable{
  /**
  * 结算长度
  */
- private Long jscd;
+ private Double jscd;
 
  /**
  * @hibernate.property column="jscd"
  * @return Returns the jscd.
  */
- public Long getJscd() {
+ public Double getJscd() {
     return jscd;
  }
 
- public void setJscd(Long jscd) {
+ public void setJscd(Double jscd) {
     this.jscd = jscd;
   }
 
  /**
  * 对上结算金额
  */
- private Long dsjsje;
+ private Double dsjsje;
 
  /**
  * @hibernate.property column="dsjsje"
  * @return Returns the dsjsje.
  */
- public Long getDsjsje() {
+ public Double getDsjsje() {
     return dsjsje;
  }
 
- public void setDsjsje(Long dsjsje) {
+ public void setDsjsje(Double dsjsje) {
     this.dsjsje = dsjsje;
   }
 
@@ -1144,17 +1144,17 @@ public class Td01_glkc implements Serializable{
  /**
  * 对下结算金额
  */
- private Long dxjsje;
+ private Double dxjsje;
 
  /**
  * @hibernate.property column="dxjsje"
  * @return Returns the dxjsje.
  */
- public Long getDxjsje() {
+ public Double getDxjsje() {
     return dxjsje;
  }
 
- public void setDxjsje(Long dxjsje) {
+ public void setDxjsje(Double dxjsje) {
     this.dxjsje = dxjsje;
   }
 
@@ -1246,17 +1246,17 @@ public class Td01_glkc implements Serializable{
  /**
  * 对下预付款金额
  */
- private Long dxfkje;
+ private Double dxfkje;
 
  /**
  * @hibernate.property column="dxfkje"
  * @return Returns the dxfkje.
  */
- public Long getDxfkje() {
+ public Double getDxfkje() {
     return dxfkje;
  }
 
- public void setDxfkje(Long dxfkje) {
+ public void setDxfkje(Double dxfkje) {
     this.dxfkje = dxfkje;
   }
 
@@ -1297,17 +1297,17 @@ public class Td01_glkc implements Serializable{
  /**
  * 公司内部结算价
  */
- private Long gsnbjsj;
+ private Double gsnbjsj;
 
  /**
  * @hibernate.property column="gsnbjsj"
  * @return Returns the gsnbjsj.
  */
- public Long getGsnbjsj() {
+ public Double getGsnbjsj() {
     return gsnbjsj;
  }
 
- public void setGsnbjsj(Long gsnbjsj) {
+ public void setGsnbjsj(Double gsnbjsj) {
     this.gsnbjsj = gsnbjsj;
   }
 
