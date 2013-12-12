@@ -44,7 +44,7 @@
 
   <property
   name="skxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skxyje"
@@ -132,7 +132,7 @@
 
   <property
   name="xygxcd"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="xygxcd"
@@ -204,7 +204,7 @@
 
   <property
   name="jggx"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="jggx"
@@ -516,7 +516,7 @@
 
   <property
   name="ghxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghxyje"
@@ -532,7 +532,7 @@
 
   <property
   name="dxxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxxyje"
@@ -540,7 +540,7 @@
 
   <property
   name="dlcccd"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dlcccd"
@@ -556,7 +556,7 @@
 
   <property
   name="ghsgxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghsgxyje"
@@ -564,7 +564,7 @@
 
   <property
   name="ghtsxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghtsxyje"
@@ -580,7 +580,7 @@
 
   <property
   name="sgtsdsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sgtsdsjsje"
@@ -588,7 +588,7 @@
 
   <property
   name="sjdsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sjdsjsje"
@@ -652,7 +652,7 @@
 
   <property
   name="yfje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="yfje"
@@ -684,7 +684,7 @@
 
   <property
   name="dxjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxjsje"
@@ -732,7 +732,7 @@
 
   <property
   name="dxyfkje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxyfkje"
@@ -756,7 +756,7 @@
 
   <property
   name="gsnbjsj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="gsnbjsj"

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-04
+ * @author cmp_auto 2013-12-11
  * @hibernate.class table="Td11_glgc"
  */
 
@@ -13,7 +13,7 @@ public class Td11_glgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 10610792660247558L;
+	private static final long serialVersionUID = 72426130918380128L;
 
 	/**
 	 * 标识
@@ -90,17 +90,17 @@ public class Td11_glgc implements Serializable{
  /**
  * 视宽协议金额
  */
- private Long skxyje;
+ private Double skxyje;
 
  /**
  * @hibernate.property column="skxyje"
  * @return Returns the skxyje.
  */
- public Long getSkxyje() {
+ public Double getSkxyje() {
     return skxyje;
  }
 
- public void setSkxyje(Long skxyje) {
+ public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
   }
 
@@ -362,221 +362,221 @@ public class Td11_glgc implements Serializable{
  /**
  * 架空（协议）
  */
- private Long jk_xy;
+ private Double jk_xy;
 
  /**
  * @hibernate.property column="jk_xy"
  * @return Returns the jk_xy.
  */
- public Long getJk_xy() {
+ public Double getJk_xy() {
     return jk_xy;
  }
 
- public void setJk_xy(Long jk_xy) {
+ public void setJk_xy(Double jk_xy) {
     this.jk_xy = jk_xy;
   }
 
  /**
  * 管道（协议）
  */
- private Long gd_xy;
+ private Double gd_xy;
 
  /**
  * @hibernate.property column="gd_xy"
  * @return Returns the gd_xy.
  */
- public Long getGd_xy() {
+ public Double getGd_xy() {
     return gd_xy;
  }
 
- public void setGd_xy(Long gd_xy) {
+ public void setGd_xy(Double gd_xy) {
     this.gd_xy = gd_xy;
   }
 
  /**
  * 拆除（协议）
  */
- private Long cc_xy;
+ private Double cc_xy;
 
  /**
  * @hibernate.property column="cc_xy"
  * @return Returns the cc_xy.
  */
- public Long getCc_xy() {
+ public Double getCc_xy() {
     return cc_xy;
  }
 
- public void setCc_xy(Long cc_xy) {
+ public void setCc_xy(Double cc_xy) {
     this.cc_xy = cc_xy;
   }
 
  /**
  * 子管（协议）
  */
- private Long zg_xy;
+ private Double zg_xy;
 
  /**
  * @hibernate.property column="zg_xy"
  * @return Returns the zg_xy.
  */
- public Long getZg_xy() {
+ public Double getZg_xy() {
     return zg_xy;
  }
 
- public void setZg_xy(Long zg_xy) {
+ public void setZg_xy(Double zg_xy) {
     this.zg_xy = zg_xy;
   }
 
  /**
  * 熔接（协议）
  */
- private Long rj_xy;
+ private Double rj_xy;
 
  /**
  * @hibernate.property column="rj_xy"
  * @return Returns the rj_xy.
  */
- public Long getRj_xy() {
+ public Double getRj_xy() {
     return rj_xy;
  }
 
- public void setRj_xy(Long rj_xy) {
+ public void setRj_xy(Double rj_xy) {
     this.rj_xy = rj_xy;
   }
 
  /**
  * 上架（协议）
  */
- private Long sj_xy;
+ private Double sj_xy;
 
  /**
  * @hibernate.property column="sj_xy"
  * @return Returns the sj_xy.
  */
- public Long getSj_xy() {
+ public Double getSj_xy() {
     return sj_xy;
  }
 
- public void setSj_xy(Long sj_xy) {
+ public void setSj_xy(Double sj_xy) {
     this.sj_xy = sj_xy;
   }
 
  /**
  * 装调（协议）
  */
- private Long zt_xy;
+ private Double zt_xy;
 
  /**
  * @hibernate.property column="zt_xy"
  * @return Returns the zt_xy.
  */
- public Long getZt_xy() {
+ public Double getZt_xy() {
     return zt_xy;
  }
 
- public void setZt_xy(Long zt_xy) {
+ public void setZt_xy(Double zt_xy) {
     this.zt_xy = zt_xy;
   }
 
  /**
  * 24芯以下开盒（协议）
  */
- private Long kh_24;
+ private Double kh_24;
 
  /**
  * @hibernate.property column="kh_24"
  * @return Returns the kh_24.
  */
- public Long getKh_24() {
+ public Double getKh_24() {
     return kh_24;
  }
 
- public void setKh_24(Long kh_24) {
+ public void setKh_24(Double kh_24) {
     this.kh_24 = kh_24;
   }
 
  /**
  * 28—100芯开盒（协议）
  */
- private Long kh_100;
+ private Double kh_100;
 
  /**
  * @hibernate.property column="kh_100"
  * @return Returns the kh_100.
  */
- public Long getKh_100() {
+ public Double getKh_100() {
     return kh_100;
  }
 
- public void setKh_100(Long kh_100) {
+ public void setKh_100(Double kh_100) {
     this.kh_100 = kh_100;
   }
 
  /**
  * 104芯以上开盒（协议）
  */
- private Long kh_104;
+ private Double kh_104;
 
  /**
  * @hibernate.property column="kh_104"
  * @return Returns the kh_104.
  */
- public Long getKh_104() {
+ public Double getKh_104() {
     return kh_104;
  }
 
- public void setKh_104(Long kh_104) {
+ public void setKh_104(Double kh_104) {
     this.kh_104 = kh_104;
   }
 
  /**
  * 拉线（协议）
  */
- private Long lx_xy;
+ private Double lx_xy;
 
  /**
  * @hibernate.property column="lx_xy"
  * @return Returns the lx_xy.
  */
- public Long getLx_xy() {
+ public Double getLx_xy() {
     return lx_xy;
  }
 
- public void setLx_xy(Long lx_xy) {
+ public void setLx_xy(Double lx_xy) {
     this.lx_xy = lx_xy;
   }
 
  /**
  * 熔接架空敷设
  */
- private Long rjjkfs;
+ private Double rjjkfs;
 
  /**
  * @hibernate.property column="rjjkfs"
  * @return Returns the rjjkfs.
  */
- public Long getRjjkfs() {
+ public Double getRjjkfs() {
     return rjjkfs;
  }
 
- public void setRjjkfs(Long rjjkfs) {
+ public void setRjjkfs(Double rjjkfs) {
     this.rjjkfs = rjjkfs;
   }
 
  /**
  * 熔接拆除光缆
  */
- private Long rjccgl;
+ private Double rjccgl;
 
  /**
  * @hibernate.property column="rjccgl"
  * @return Returns the rjccgl.
  */
- public Long getRjccgl() {
+ public Double getRjccgl() {
     return rjccgl;
  }
 
- public void setRjccgl(Long rjccgl) {
+ public void setRjccgl(Double rjccgl) {
     this.rjccgl = rjccgl;
   }
 
@@ -1195,85 +1195,85 @@ public class Td11_glgc implements Serializable{
  /**
  * 竣工架空
  */
- private Long jgjk;
+ private Double jgjk;
 
  /**
  * @hibernate.property column="jgjk"
  * @return Returns the jgjk.
  */
- public Long getJgjk() {
+ public Double getJgjk() {
     return jgjk;
  }
 
- public void setJgjk(Long jgjk) {
+ public void setJgjk(Double jgjk) {
     this.jgjk = jgjk;
   }
 
  /**
  * 竣工管道敷设(米)
  */
- private Long jggdfs;
+ private Double jggdfs;
 
  /**
  * @hibernate.property column="jggdfs"
  * @return Returns the jggdfs.
  */
- public Long getJggdfs() {
+ public Double getJggdfs() {
     return jggdfs;
  }
 
- public void setJggdfs(Long jggdfs) {
+ public void setJggdfs(Double jggdfs) {
     this.jggdfs = jggdfs;
   }
 
  /**
  * 吹缆(米)
  */
- private Long cl;
+ private Double cl;
 
  /**
  * @hibernate.property column="cl"
  * @return Returns the cl.
  */
- public Long getCl() {
+ public Double getCl() {
     return cl;
  }
 
- public void setCl(Long cl) {
+ public void setCl(Double cl) {
     this.cl = cl;
   }
 
  /**
  * 竣工拆除(米)
  */
- private Long jgcc;
+ private Double jgcc;
 
  /**
  * @hibernate.property column="jgcc"
  * @return Returns the jgcc.
  */
- public Long getJgcc() {
+ public Double getJgcc() {
     return jgcc;
  }
 
- public void setJgcc(Long jgcc) {
+ public void setJgcc(Double jgcc) {
     this.jgcc = jgcc;
   }
 
  /**
  * 竣工子管敷设(米)
  */
- private Long jgzgfs;
+ private Double jgzgfs;
 
  /**
  * @hibernate.property column="jgzgfs"
  * @return Returns the jgzgfs.
  */
- public Long getJgzgfs() {
+ public Double getJgzgfs() {
     return jgzgfs;
  }
 
- public void setJgzgfs(Long jgzgfs) {
+ public void setJgzgfs(Double jgzgfs) {
     this.jgzgfs = jgzgfs;
   }
 
@@ -1604,34 +1604,34 @@ public class Td11_glgc implements Serializable{
  /**
  * 结算长度
  */
- private Long jscd;
+ private Double jscd;
 
  /**
  * @hibernate.property column="jscd"
  * @return Returns the jscd.
  */
- public Long getJscd() {
+ public Double getJscd() {
     return jscd;
  }
 
- public void setJscd(Long jscd) {
+ public void setJscd(Double jscd) {
     this.jscd = jscd;
   }
 
  /**
  * 对上结算金额
  */
- private Long dsjsje;
+ private Double dsjsje;
 
  /**
  * @hibernate.property column="dsjsje"
  * @return Returns the dsjsje.
  */
- public Long getDsjsje() {
+ public Double getDsjsje() {
     return dsjsje;
  }
 
- public void setDsjsje(Long dsjsje) {
+ public void setDsjsje(Double dsjsje) {
     this.dsjsje = dsjsje;
   }
 
@@ -1842,17 +1842,17 @@ public class Td11_glgc implements Serializable{
  /**
  * 对下结算金额
  */
- private Long dxjsje;
+ private Double dxjsje;
 
  /**
  * @hibernate.property column="dxjsje"
  * @return Returns the dxjsje.
  */
- public Long getDxjsje() {
+ public Double getDxjsje() {
     return dxjsje;
  }
 
- public void setDxjsje(Long dxjsje) {
+ public void setDxjsje(Double dxjsje) {
     this.dxjsje = dxjsje;
   }
 
@@ -1944,17 +1944,17 @@ public class Td11_glgc implements Serializable{
  /**
  * 对下预付款金额
  */
- private Long dxyfkje;
+ private Double dxyfkje;
 
  /**
  * @hibernate.property column="dxyfkje"
  * @return Returns the dxyfkje.
  */
- public Long getDxyfkje() {
+ public Double getDxyfkje() {
     return dxyfkje;
  }
 
- public void setDxyfkje(Long dxyfkje) {
+ public void setDxyfkje(Double dxyfkje) {
     this.dxyfkje = dxyfkje;
   }
 
@@ -1995,17 +1995,17 @@ public class Td11_glgc implements Serializable{
  /**
  * 公司内部结算价
  */
- private Long gsnbjsj;
+ private Double gsnbjsj;
 
  /**
  * @hibernate.property column="gsnbjsj"
  * @return Returns the gsnbjsj.
  */
- public Long getGsnbjsj() {
+ public Double getGsnbjsj() {
     return gsnbjsj;
  }
 
- public void setGsnbjsj(Long gsnbjsj) {
+ public void setGsnbjsj(Double gsnbjsj) {
     this.gsnbjsj = gsnbjsj;
   }
 
@@ -2114,51 +2114,51 @@ public class Td11_glgc implements Serializable{
  /**
  * 竣工立8米木电杆(棵)
  */
- private Long jgmdg_8;
+ private Double jgmdg_8;
 
  /**
  * @hibernate.property column="jgmdg_8"
  * @return Returns the jgmdg_8.
  */
- public Long getJgmdg_8() {
+ public Double getJgmdg_8() {
     return jgmdg_8;
  }
 
- public void setJgmdg_8(Long jgmdg_8) {
+ public void setJgmdg_8(Double jgmdg_8) {
     this.jgmdg_8 = jgmdg_8;
   }
 
  /**
  * 竣工立8米水泥电杆(棵)
  */
- private Long jgsndg_8;
+ private Double jgsndg_8;
 
  /**
  * @hibernate.property column="jgsndg_8"
  * @return Returns the jgsndg_8.
  */
- public Long getJgsndg_8() {
+ public Double getJgsndg_8() {
     return jgsndg_8;
  }
 
- public void setJgsndg_8(Long jgsndg_8) {
+ public void setJgsndg_8(Double jgsndg_8) {
     this.jgsndg_8 = jgsndg_8;
   }
 
  /**
  * 竣工立10米水泥电杆(棵)
  */
- private Long jgsndg_10;
+ private Double jgsndg_10;
 
  /**
  * @hibernate.property column="jgsndg_10"
  * @return Returns the jgsndg_10.
  */
- public Long getJgsndg_10() {
+ public Double getJgsndg_10() {
     return jgsndg_10;
  }
 
- public void setJgsndg_10(Long jgsndg_10) {
+ public void setJgsndg_10(Double jgsndg_10) {
     this.jgsndg_10 = jgsndg_10;
   }
 
@@ -2182,17 +2182,17 @@ public class Td11_glgc implements Serializable{
  /**
  * 竣工固定拉线(根)
  */
- private Long jggdlx;
+ private Double jggdlx;
 
  /**
  * @hibernate.property column="jggdlx"
  * @return Returns the jggdlx.
  */
- public Long getJggdlx() {
+ public Double getJggdlx() {
     return jggdlx;
  }
 
- public void setJggdlx(Long jggdlx) {
+ public void setJggdlx(Double jggdlx) {
     this.jggdlx = jggdlx;
   }
 
@@ -2301,136 +2301,136 @@ public class Td11_glgc implements Serializable{
  /**
  * 报竣24芯以下开盒(协议)
  */
- private Long bjkh_24;
+ private Double bjkh_24;
 
  /**
  * @hibernate.property column="bjkh_24"
  * @return Returns the bjkh_24.
  */
- public Long getBjkh_24() {
+ public Double getBjkh_24() {
     return bjkh_24;
  }
 
- public void setBjkh_24(Long bjkh_24) {
+ public void setBjkh_24(Double bjkh_24) {
     this.bjkh_24 = bjkh_24;
   }
 
  /**
  * 报竣28芯至100芯
  */
- private Long bj_100;
+ private Double bj_100;
 
  /**
  * @hibernate.property column="bj_100"
  * @return Returns the bj_100.
  */
- public Long getBj_100() {
+ public Double getBj_100() {
     return bj_100;
  }
 
- public void setBj_100(Long bj_100) {
+ public void setBj_100(Double bj_100) {
     this.bj_100 = bj_100;
   }
 
  /**
  * 报竣104芯以上
  */
- private Long bj_104;
+ private Double bj_104;
 
  /**
  * @hibernate.property column="bj_104"
  * @return Returns the bj_104.
  */
- public Long getBj_104() {
+ public Double getBj_104() {
     return bj_104;
  }
 
- public void setBj_104(Long bj_104) {
+ public void setBj_104(Double bj_104) {
     this.bj_104 = bj_104;
   }
 
  /**
  * 报竣熔接芯数
  */
- private Long bjrjxs;
+ private Double bjrjxs;
 
  /**
  * @hibernate.property column="bjrjxs"
  * @return Returns the bjrjxs.
  */
- public Long getBjrjxs() {
+ public Double getBjrjxs() {
     return bjrjxs;
  }
 
- public void setBjrjxs(Long bjrjxs) {
+ public void setBjrjxs(Double bjrjxs) {
     this.bjrjxs = bjrjxs;
   }
 
  /**
  * 报竣光机装调台数
  */
- private Long bjgjztts;
+ private Double bjgjztts;
 
  /**
  * @hibernate.property column="bjgjztts"
  * @return Returns the bjgjztts.
  */
- public Long getBjgjztts() {
+ public Double getBjgjztts() {
     return bjgjztts;
  }
 
- public void setBjgjztts(Long bjgjztts) {
+ public void setBjgjztts(Double bjgjztts) {
     this.bjgjztts = bjgjztts;
   }
 
  /**
  * 报竣ODF上架芯数
  */
- private Long odfsjxs;
+ private Double odfsjxs;
 
  /**
  * @hibernate.property column="odfsjxs"
  * @return Returns the odfsjxs.
  */
- public Long getOdfsjxs() {
+ public Double getOdfsjxs() {
     return odfsjxs;
  }
 
- public void setOdfsjxs(Long odfsjxs) {
+ public void setOdfsjxs(Double odfsjxs) {
     this.odfsjxs = odfsjxs;
   }
 
  /**
  * 报竣熔接拆缆（米）
  */
- private Long bjrjcl;
+ private Double bjrjcl;
 
  /**
  * @hibernate.property column="bjrjcl"
  * @return Returns the bjrjcl.
  */
- public Long getBjrjcl() {
+ public Double getBjrjcl() {
     return bjrjcl;
  }
 
- public void setBjrjcl(Long bjrjcl) {
+ public void setBjrjcl(Double bjrjcl) {
     this.bjrjcl = bjrjcl;
   }
 
  /**
  * 报竣熔接架空（米）
  */
- private Long bjrjjk;
+ private Double bjrjjk;
 
  /**
  * @hibernate.property column="bjrjjk"
  * @return Returns the bjrjjk.
  */
- public Long getBjrjjk() {
+ public Double getBjrjjk() {
     return bjrjjk;
  }
 
- public void setBjrjjk(Long bjrjjk) {
+ public void setBjrjjk(Double bjrjjk) {
     this.bjrjjk = bjrjjk;
   }
 

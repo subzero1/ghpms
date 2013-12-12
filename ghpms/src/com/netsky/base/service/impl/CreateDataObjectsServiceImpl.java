@@ -150,14 +150,13 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 根据TA07获得字段名
 		 */
-		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments "
-			       + "from dba_tab_cols col,dba_col_comments com "
+		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments, "
+				   + "case when data_precision is null then data_length else data_precision+data_scale*0.1 end data_length "
+			       + "from user_tab_cols col,user_col_comments com "
 			       + "where col.table_name = com.table_name "
 			       + "and col.column_name = com.column_name "
-			       + "and col.owner = com.owner "
 			       + "and col.column_name <> 'ID' "
-			       + "and col.table_name = '"+tableName.toUpperCase()+"' "
-				   + "and col.owner='"+owner+"'";
+			       + "and col.table_name = '"+tableName.toUpperCase()+"' ";
 		
 		StringBuffer t_fieldlist = new StringBuffer("");
 		List list = jdbcTemplate.queryForList(sql);
@@ -168,11 +167,15 @@ public class CreateDataObjectsServiceImpl {
 			String tt_name = t_name.toUpperCase().substring(0,1) + t_name.toLowerCase().substring(1,t_name.length());
 			String t_comment = convertUtil.toString(map.get("comments"));
 			String t_datatype = convertUtil.toString(map.get("data_type"));
+			Double t_datalength = convertUtil.toDouble(map.get("data_length"));
 			if(t_datatype.toLowerCase().indexOf("date") != -1){
 				t_datatype = "Date";
 			}
-			else if(t_datatype.toLowerCase().indexOf("number") != -1){
+			else if(t_datatype.toLowerCase().indexOf("number") != -1 && t_datalength % 1 == 0){
 				t_datatype = "Long";
+			}
+			else if(t_datatype.toLowerCase().indexOf("number") != -1 && t_datalength % 1 != 0){
+				t_datatype = "Double";
 			}
 			else{
 				t_datatype = "String";
@@ -286,14 +289,13 @@ public class CreateDataObjectsServiceImpl {
 		/*
 		 * 根据TA07获得字段名
 		 */
-		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments "
-			       + "from dba_tab_cols col,dba_col_comments com "
+		String sql = "select col.column_name column_name,col.data_type data_type,com.comments comments, "
+			 	   + "case when data_precision is null then data_length else data_precision+data_scale*0.1 end data_length "
+			       + "from user_tab_cols col,user_col_comments com "
 			       + "where col.table_name = com.table_name "
 			       + "and col.column_name = com.column_name "
-			       + "and col.owner = com.owner "
 			       + "and col.column_name <> 'ID' "
-			       + "and col.table_name = '"+tableName.toUpperCase()+"' "
-			       + "and col.owner='"+owner+"'";
+			       + "and col.table_name = '"+tableName.toUpperCase()+"' ";
 		
 		StringBuffer t_fieldlist = new StringBuffer("");
 		List list = jdbcTemplate.queryForList(sql);
@@ -304,11 +306,16 @@ public class CreateDataObjectsServiceImpl {
 			String tt_name = t_name.toUpperCase().substring(0,1) + t_name.toLowerCase().substring(1,t_name.length());
 			String t_comment = convertUtil.toString(map.get("comments"));
 			String t_datatype = convertUtil.toString(map.get("data_type"));
+			Double t_datalength = convertUtil.toDouble(map.get("data_length"));
+			
 			if(t_datatype.toLowerCase().indexOf("date") != -1){
 				t_datatype = "java.util.Date";
 			}
-			else if(t_datatype.toLowerCase().indexOf("number") != -1){
+			else if(t_datatype.toLowerCase().indexOf("number") != -1 && t_datalength % 1 == 0){
 				t_datatype = "java.lang.Long";
+			}
+			else if(t_datatype.toLowerCase().indexOf("number") != -1 && t_datalength % 1 != 0){
+				t_datatype = "java.lang.Double";
 			}
 			else{
 				t_datatype = "java.lang.String";

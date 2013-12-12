@@ -44,7 +44,7 @@
 
   <property
   name="skxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skxyje"
@@ -308,7 +308,7 @@
 
   <property
   name="dsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dsjsje"
@@ -404,7 +404,7 @@
 
   <property
   name="dxfkje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxfkje"
@@ -420,7 +420,7 @@
 
   <property
   name="sknbjsjg"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sknbjsjg"

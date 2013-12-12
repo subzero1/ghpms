@@ -52,7 +52,7 @@
 
   <property
   name="skxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="skxyje"
@@ -76,7 +76,7 @@
 
   <property
   name="ghhtje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghhtje"
@@ -236,7 +236,7 @@
 
   <property
   name="ghsgxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghsgxyje"
@@ -244,7 +244,7 @@
 
   <property
   name="ghtsxyje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="ghtsxyje"
@@ -260,7 +260,7 @@
 
   <property
   name="sgtsdsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sgtsdsjsje"
@@ -268,7 +268,7 @@
 
   <property
   name="sjdsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="sjdsjsje"
@@ -332,7 +332,7 @@
 
   <property
   name="yfje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="yfje"
@@ -404,7 +404,7 @@
 
   <property
   name="dxyfkje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxyfkje"
@@ -428,7 +428,7 @@
 
   <property
   name="gsnbjsj"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="gsnbjsj"
@@ -492,7 +492,7 @@
 
   <property
   name="dshtje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dshtje"
@@ -500,7 +500,7 @@
 
   <property
   name="dxhtje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxhtje"
@@ -508,7 +508,7 @@
 
   <property
   name="dsjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dsjsje"
@@ -516,7 +516,7 @@
 
   <property
   name="dxjsje"
-  type="java.lang.Long"
+  type="java.lang.Double"
   update="true"
   insert="true"
   column="dxjsje"

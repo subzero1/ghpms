@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-04
+ * @author cmp_auto 2013-12-11
  * @hibernate.class table="Td15_gdgc"
  */
 
@@ -13,7 +13,7 @@ public class Td15_gdgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 553925367781450048L;
+	private static final long serialVersionUID = 525061393583412736L;
 
 	/**
 	 * 标识
@@ -294,17 +294,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 视宽协议金额
  */
- private Long skxyje;
+ private Double skxyje;
 
  /**
  * @hibernate.property column="skxyje"
  * @return Returns the skxyje.
  */
- public Long getSkxyje() {
+ public Double getSkxyje() {
     return skxyje;
  }
 
- public void setSkxyje(Long skxyje) {
+ public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
   }
 
@@ -379,17 +379,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 沟公里
  */
- private Long ggl;
+ private Double ggl;
 
  /**
  * @hibernate.property column="ggl"
  * @return Returns the ggl.
  */
- public Long getGgl() {
+ public Double getGgl() {
     return ggl;
  }
 
- public void setGgl(Long ggl) {
+ public void setGgl(Double ggl) {
     this.ggl = ggl;
   }
 
@@ -413,34 +413,34 @@ public class Td15_gdgc implements Serializable{
  /**
  * 孔公里
  */
- private Long kgl;
+ private Double kgl;
 
  /**
  * @hibernate.property column="kgl"
  * @return Returns the kgl.
  */
- public Long getKgl() {
+ public Double getKgl() {
     return kgl;
  }
 
- public void setKgl(Long kgl) {
+ public void setKgl(Double kgl) {
     this.kgl = kgl;
   }
 
  /**
  * 子孔公里
  */
- private Long zkgl;
+ private Double zkgl;
 
  /**
  * @hibernate.property column="zkgl"
  * @return Returns the zkgl.
  */
- public Long getZkgl() {
+ public Double getZkgl() {
     return zkgl;
  }
 
- public void setZkgl(Long zkgl) {
+ public void setZkgl(Double zkgl) {
     this.zkgl = zkgl;
   }
 
@@ -464,17 +464,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 合同金额（元）
  */
- private Long htje;
+ private Double htje;
 
  /**
  * @hibernate.property column="htje"
  * @return Returns the htje.
  */
- public Long getHtje() {
+ public Double getHtje() {
     return htje;
  }
 
- public void setHtje(Long htje) {
+ public void setHtje(Double htje) {
     this.htje = htje;
   }
 
@@ -566,17 +566,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 孔公里单价
  */
- private Long kgldj;
+ private Double kgldj;
 
  /**
  * @hibernate.property column="kgldj"
  * @return Returns the kgldj.
  */
- public Long getKgldj() {
+ public Double getKgldj() {
     return kgldj;
  }
 
- public void setKgldj(Long kgldj) {
+ public void setKgldj(Double kgldj) {
     this.kgldj = kgldj;
   }
 
@@ -651,17 +651,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 实际应收金额
  */
- private Long sjysje;
+ private Double sjysje;
 
  /**
  * @hibernate.property column="sjysje"
  * @return Returns the sjysje.
  */
- public Long getSjysje() {
+ public Double getSjysje() {
     return sjysje;
  }
 
- public void setSjysje(Long sjysje) {
+ public void setSjysje(Double sjysje) {
     this.sjysje = sjysje;
   }
 
@@ -685,17 +685,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 对下合同金额
  */
- private Long dxhtje;
+ private Double dxhtje;
 
  /**
  * @hibernate.property column="dxhtje"
  * @return Returns the dxhtje.
  */
- public Long getDxhtje() {
+ public Double getDxhtje() {
     return dxhtje;
  }
 
- public void setDxhtje(Long dxhtje) {
+ public void setDxhtje(Double dxhtje) {
     this.dxhtje = dxhtje;
   }
 
@@ -719,34 +719,34 @@ public class Td15_gdgc implements Serializable{
  /**
  * 甲方实际支付金额
  */
- private Long jfsjzfje;
+ private Double jfsjzfje;
 
  /**
  * @hibernate.property column="jfsjzfje"
  * @return Returns the jfsjzfje.
  */
- public Long getJfsjzfje() {
+ public Double getJfsjzfje() {
     return jfsjzfje;
  }
 
- public void setJfsjzfje(Long jfsjzfje) {
+ public void setJfsjzfje(Double jfsjzfje) {
     this.jfsjzfje = jfsjzfje;
   }
 
  /**
  * 甲方决算总价
  */
- private Long jfjszj;
+ private Double jfjszj;
 
  /**
  * @hibernate.property column="jfjszj"
  * @return Returns the jfjszj.
  */
- public Long getJfjszj() {
+ public Double getJfjszj() {
     return jfjszj;
  }
 
- public void setJfjszj(Long jfjszj) {
+ public void setJfjszj(Double jfjszj) {
     this.jfjszj = jfjszj;
   }
 
@@ -787,17 +787,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 施工单位工程预算总价
  */
- private Long sgdwgcyszj;
+ private Double sgdwgcyszj;
 
  /**
  * @hibernate.property column="sgdwgcyszj"
  * @return Returns the sgdwgcyszj.
  */
- public Long getSgdwgcyszj() {
+ public Double getSgdwgcyszj() {
     return sgdwgcyszj;
  }
 
- public void setSgdwgcyszj(Long sgdwgcyszj) {
+ public void setSgdwgcyszj(Double sgdwgcyszj) {
     this.sgdwgcyszj = sgdwgcyszj;
   }
 
@@ -821,17 +821,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 视宽预付款金额
  */
- private Long skyfkje;
+ private Double skyfkje;
 
  /**
  * @hibernate.property column="skyfkje"
  * @return Returns the skyfkje.
  */
- public Long getSkyfkje() {
+ public Double getSkyfkje() {
     return skyfkje;
  }
 
- public void setSkyfkje(Long skyfkje) {
+ public void setSkyfkje(Double skyfkje) {
     this.skyfkje = skyfkje;
   }
 
@@ -889,17 +889,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 视宽预付金额
  */
- private Long skyfje;
+ private Double skyfje;
 
  /**
  * @hibernate.property column="skyfje"
  * @return Returns the skyfje.
  */
- public Long getSkyfje() {
+ public Double getSkyfje() {
     return skyfje;
  }
 
- public void setSkyfje(Long skyfje) {
+ public void setSkyfje(Double skyfje) {
     this.skyfje = skyfje;
   }
 
@@ -1739,17 +1739,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 甲方质保金
  */
- private Long jfzbj;
+ private Double jfzbj;
 
  /**
  * @hibernate.property column="jfzbj"
  * @return Returns the jfzbj.
  */
- public Long getJfzbj() {
+ public Double getJfzbj() {
     return jfzbj;
  }
 
- public void setJfzbj(Long jfzbj) {
+ public void setJfzbj(Double jfzbj) {
     this.jfzbj = jfzbj;
   }
 
@@ -1790,17 +1790,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 施工单位质保金
  */
- private Long sgdwzbj;
+ private Double sgdwzbj;
 
  /**
  * @hibernate.property column="sgdwzbj"
  * @return Returns the sgdwzbj.
  */
- public Long getSgdwzbj() {
+ public Double getSgdwzbj() {
     return sgdwzbj;
  }
 
- public void setSgdwzbj(Long sgdwzbj) {
+ public void setSgdwzbj(Double sgdwzbj) {
     this.sgdwzbj = sgdwzbj;
   }
 
@@ -1841,17 +1841,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 歌华合同金额
  */
- private Long ghhtje;
+ private Double ghhtje;
 
  /**
  * @hibernate.property column="ghhtje"
  * @return Returns the ghhtje.
  */
- public Long getGhhtje() {
+ public Double getGhhtje() {
     return ghhtje;
  }
 
- public void setGhhtje(Long ghhtje) {
+ public void setGhhtje(Double ghhtje) {
     this.ghhtje = ghhtje;
   }
 
@@ -1875,17 +1875,17 @@ public class Td15_gdgc implements Serializable{
  /**
  * 对下协议金额（需公式）
  */
- private Long dxxyje;
+ private Double dxxyje;
 
  /**
  * @hibernate.property column="dxxyje"
  * @return Returns the dxxyje.
  */
- public Long getDxxyje() {
+ public Double getDxxyje() {
     return dxxyje;
  }
 
- public void setDxxyje(Long dxxyje) {
+ public void setDxxyje(Double dxxyje) {
     this.dxxyje = dxxyje;
   }
 

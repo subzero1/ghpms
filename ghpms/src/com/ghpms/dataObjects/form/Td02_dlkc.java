@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-04
+ * @author cmp_auto 2013-12-11
  * @hibernate.class table="Td02_dlkc"
  */
 
@@ -13,7 +13,7 @@ public class Td02_dlkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 848759578479189120L;
+	private static final long serialVersionUID = 133560240205228944L;
 
 	/**
 	 * 标识
@@ -90,17 +90,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 视宽协议金额
  */
- private Long skxyje;
+ private Double skxyje;
 
  /**
  * @hibernate.property column="skxyje"
  * @return Returns the skxyje.
  */
- public Long getSkxyje() {
+ public Double getSkxyje() {
     return skxyje;
  }
 
- public void setSkxyje(Long skxyje) {
+ public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
   }
 
@@ -651,17 +651,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 对上结算金额
  */
- private Long dsjsje;
+ private Double dsjsje;
 
  /**
  * @hibernate.property column="dsjsje"
  * @return Returns the dsjsje.
  */
- public Long getDsjsje() {
+ public Double getDsjsje() {
     return dsjsje;
  }
 
- public void setDsjsje(Long dsjsje) {
+ public void setDsjsje(Double dsjsje) {
     this.dsjsje = dsjsje;
   }
 
@@ -855,17 +855,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 对下付款金额
  */
- private Long dxfkje;
+ private Double dxfkje;
 
  /**
  * @hibernate.property column="dxfkje"
  * @return Returns the dxfkje.
  */
- public Long getDxfkje() {
+ public Double getDxfkje() {
     return dxfkje;
  }
 
- public void setDxfkje(Long dxfkje) {
+ public void setDxfkje(Double dxfkje) {
     this.dxfkje = dxfkje;
   }
 
@@ -889,17 +889,17 @@ public class Td02_dlkc implements Serializable{
  /**
  * 视宽内部结算价格
  */
- private Long sknbjsjg;
+ private Double sknbjsjg;
 
  /**
  * @hibernate.property column="sknbjsjg"
  * @return Returns the sknbjsjg.
  */
- public Long getSknbjsjg() {
+ public Double getSknbjsjg() {
     return sknbjsjg;
  }
 
- public void setSknbjsjg(Long sknbjsjg) {
+ public void setSknbjsjg(Double sknbjsjg) {
     this.sknbjsjg = sknbjsjg;
   }
 
