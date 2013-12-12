@@ -19,6 +19,7 @@ import jxl.DateCell;
 import jxl.Sheet;
 import jxl.Workbook;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ import com.netsky.base.service.ConfigXMLService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.DateFormatUtil;
+import com.netsky.base.utils.RegExp;
 import com.netsky.base.utils.convertUtil;
 
 @Controller
@@ -55,6 +57,11 @@ public class DataToExcel {
 
 	@Autowired
 	private SaveService saveService;
+
+	/**
+	 * 日志处理类
+	 */
+	private Logger log = Logger.getLogger(this.getClass());
 
 	/**
 	 * 通用导出Excel 需要配置文件
@@ -139,10 +146,11 @@ public class DataToExcel {
 		ModelMap modelMap = new ModelMap();
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
-		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(user, module_id);
+		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(
+				user, module_id);
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
-		//权限之外添加ID校验
+		// 权限之外添加ID校验
 		docColsList.addAll(gcsjDataService.getUpdateProperty(module_id));
 
 		// 取session
@@ -252,7 +260,8 @@ public class DataToExcel {
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, moudle_id);
 		// 取标题列
-		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(user, moudle_id);
+		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(
+				user, moudle_id);
 		Map<String, List> sheetMap = new HashMap<String, List>();
 		List sheetList = new LinkedList();
 		List titleList = new LinkedList();
@@ -312,24 +321,56 @@ public class DataToExcel {
 					if (colMap != null) {
 						int index = ((Integer) colMap.get("$index")).intValue();
 						Cell cell = sheet.getCell(index, row);
-						//转换日期
-						CellType cellType=cell.getType();
+						// 转换日期
+						CellType cellType = cell.getType();
+						String dataType = clazz1[0].getName();
 						Date date;
 						if (cell.getContents() != null
 								&& cell.getContents().length() > 0) {
-							if (cellType==CellType.DATE) {
-								date=((DateCell)cell).getDate();
-								property=new String[]{DateFormatUtil.FormatDate(date)};
-							}else {
-								property = new String[] { cell.getContents() };
+							if (cellType == CellType.DATE) {
+								date = ((DateCell) cell).getDate();
+								property = new String[] { DateFormatUtil
+										.FormatDate(date) };
+							} else {
+								new RegExp().pickup("(\\d{4}(\\-\\d{1,2}){2})",
+										"2012-12-152012-12-12 12:12");
+								if (dataType.equals("java.util.Date")) {
+									// 替掉.,取第一个日期
+									property = new String[] { new RegExp()
+											.pickup("(\\d{4}(\\-\\d{1,2}){2})",
+													cell.getContents().replace(
+															".", "-").replace(
+															"/", "-")) };
+								} else if (dataType.equals("java.lang.Long")) {
+									property = new String[] { new RegExp()
+											.pickup("([0-9]+)", cell
+													.getContents().replace(",",
+															"")) };
+								} else if (dataType.equals("java.lang.Double")) {
+									property = new String[] { new RegExp()
+											.pickup("(\\d+\\.?\\d*)", cell
+													.getContents().replace(",",
+															"")) };
+								} else {
+									property = new String[] { cell
+											.getContents() };
+								}
+
 							}
-							
+
 						}
 					}
-					if (property != null) {
-						if (PropertyInject.invoke(o, method[i], property,
-								"GBK", "GBK"))
-							set = true;
+					try {
+						if (property != null) {
+							if (PropertyInject.invoke(o, method[i], property,
+									"GBK", "GBK"))
+								set = true;
+						}
+					} catch (Exception e) {
+						// TODO: handle exception;
+						System.err.println(e.getMessage());
+						log.error("字段" + colName + ",出错信息:" + e.getMessage());
+						continue;
 					}
 				}
 			}
