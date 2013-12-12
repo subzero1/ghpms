@@ -77,7 +77,7 @@ $(function(){
 		</table>
 		<div class="panelBar">
 			<div class="pages">
-				<span>共${totalCount}条 </span>
+				<span>共<c:if test="${empty totalCount}">0</c:if><c:if test="${!empty totalCount}">0</c:if>条 </span>
 			</div>
 		</div>
 	</div>
