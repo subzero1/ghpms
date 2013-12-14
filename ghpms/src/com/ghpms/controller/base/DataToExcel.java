@@ -295,8 +295,11 @@ public class DataToExcel {
 		boolean set = false;
 		Class<?> clazz = o.getClass();
 		Method method[] = clazz.getDeclaredMethods();
+		String className=clazz.getName();
 
-		Map<?, ?> t_colMap = (Map<?, ?>) columnIndex.get("ID");
+		Map<?, ?> t_colMap = (Map<?, ?>) columnIndex.get("ID"); 
+		Map<?, ?> t_colMap1 = (Map<?, ?>) columnIndex.get("GHBH");
+		Map<?, ?> t_colMap2 = (Map<?, ?>) columnIndex.get("SKBH");
 		String t_value = null;
 		if (t_colMap != null) {
 			int index = ((Integer) t_colMap.get("$index")).intValue();
@@ -308,6 +311,32 @@ public class DataToExcel {
 				o = queryService.searchById(o.getClass(), convertUtil
 						.toLong(t_value));
 			}
+		}else if (t_colMap1 != null) {
+			int index = ((Integer) t_colMap1.get("$index")).intValue();
+			Cell cell = sheet.getCell(index, row);
+			if (cell.getContents() != null && cell.getContents().length() > 0) {
+				t_value = cell.getContents();
+			}
+			if (t_value != null && !t_value.equals("")) {
+				List objList=new ArrayList();
+				objList = queryService.searchList("select t from "+className+" t where t.ghbh='"+t_value+"'");
+				if (objList.size()>0) {
+					o=objList.get(0);
+				}
+			} 
+		}else if (t_colMap2 != null) {
+			int index = ((Integer) t_colMap2.get("$index")).intValue();
+			Cell cell = sheet.getCell(index, row);
+			if (cell.getContents() != null && cell.getContents().length() > 0) {
+				t_value = cell.getContents();
+			}
+			if (t_value != null && !t_value.equals("")) {
+				List objList=new ArrayList();
+				objList = queryService.searchList("select t from "+className+" t where t.skbh='"+t_value+"'");
+				if (objList.size()>0) {
+					o=objList.get(0);
+				}
+			} 
 		}
 
 		for (int i = 0; i < method.length; i++) {
@@ -332,8 +361,6 @@ public class DataToExcel {
 								property = new String[] { DateFormatUtil
 										.FormatDate(date) };
 							} else {
-								new RegExp().pickup("(\\d{4}(\\-\\d{1,2}){2})",
-										"2012-12-152012-12-12 12:12");
 								if (dataType.equals("java.util.Date")) {
 									// 替掉.,取第一个日期
 									property = new String[] { new RegExp()
