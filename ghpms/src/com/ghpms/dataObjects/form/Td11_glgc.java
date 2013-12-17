@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-11
+ * @author cmp_auto 2013-12-17
  * @hibernate.class table="Td11_glgc"
  */
 
@@ -13,7 +13,7 @@ public class Td11_glgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 72426130918380128L;
+	private static final long serialVersionUID = 120366839738732848L;
 
 	/**
 	 * 标识
@@ -102,6 +102,74 @@ public class Td11_glgc implements Serializable{
 
  public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
+  }
+
+ /**
+ * 歌华协议金额
+ */
+ private Double ghxyje;
+
+ /**
+ * @hibernate.property column="ghxyje"
+ * @return Returns the ghxyje.
+ */
+ public Double getGhxyje() {
+    return ghxyje;
+ }
+
+ public void setGhxyje(Double ghxyje) {
+    this.ghxyje = ghxyje;
+  }
+
+ /**
+ * 视宽协议签订日期
+ */
+ private Date skxyqdrq;
+
+ /**
+ * @hibernate.property column="skxyqdrq"
+ * @return Returns the skxyqdrq.
+ */
+ public Date getSkxyqdrq() {
+    return skxyqdrq;
+ }
+
+ public void setSkxyqdrq(Date skxyqdrq) {
+    this.skxyqdrq = skxyqdrq;
+  }
+
+ /**
+ * 数据编号
+ */
+ private String sjbh;
+
+ /**
+ * @hibernate.property column="sjbh"
+ * @return Returns the sjbh.
+ */
+ public String getSjbh() {
+    return sjbh;
+ }
+
+ public void setSjbh(String sjbh) {
+    this.sjbh = sjbh;
+  }
+
+ /**
+ * 器材表下发日期
+ */
+ private Date qqbxfrq;
+
+ /**
+ * @hibernate.property column="qqbxfrq"
+ * @return Returns the qqbxfrq.
+ */
+ public Date getQqbxfrq() {
+    return qqbxfrq;
+ }
+
+ public void setQqbxfrq(Date qqbxfrq) {
+    this.qqbxfrq = qqbxfrq;
   }
 
  /**
