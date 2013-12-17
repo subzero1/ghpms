@@ -51,6 +51,38 @@
   />
 
   <property
+  name="ghxyje"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="ghxyje"
+  />
+
+  <property
+  name="skxyqdrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="skxyqdrq"
+  />
+
+  <property
+  name="sjbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sjbh"
+  />
+
+  <property
+  name="qqbxfrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="qqbxfrq"
+  />
+
+  <property
   name="xzqy"
   type="java.lang.String"
   update="true"
