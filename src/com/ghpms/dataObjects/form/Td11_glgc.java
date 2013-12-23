@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-17
+ * @author cmp_auto 2013-12-23
  * @hibernate.class table="Td11_glgc"
  */
 
@@ -13,7 +13,7 @@ public class Td11_glgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 120366839738732848L;
+	private static final long serialVersionUID = 871159064791939968L;
 
 	/**
 	 * 标识
@@ -360,20 +360,20 @@ public class Td11_glgc implements Serializable{
   }
 
  /**
- * 视宽协议编号
+ * 视宽协议编号（备注）
  */
- private String skxybh;
+ private String skbh_bz;
 
  /**
- * @hibernate.property column="skxybh"
- * @return Returns the skxybh.
+ * @hibernate.property column="skbh_bz"
+ * @return Returns the skbh_bz.
  */
- public String getSkxybh() {
-    return skxybh;
+ public String getSkbh_bz() {
+    return skbh_bz;
  }
 
- public void setSkxybh(String skxybh) {
-    this.skxybh = skxybh;
+ public void setSkbh_bz(String skbh_bz) {
+    this.skbh_bz = skbh_bz;
   }
 
  /**
