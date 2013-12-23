@@ -171,11 +171,11 @@
   />
 
   <property
-  name="skxybh"
+  name="skbh_bz"
   type="java.lang.String"
   update="true"
   insert="true"
-  column="skxybh"
+  column="skbh_bz"
   />
 
   <property
