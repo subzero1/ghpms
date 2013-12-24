@@ -435,6 +435,7 @@ public class DevelopHelpController {
 		StringBuffer logBox = new StringBuffer("");
 		StringBuffer msgBox = new StringBuffer("");
 		String statusCode = "200";
+		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
 		try {
 			int counter = 0;
 			HttpSession session = request.getSession();
@@ -497,6 +498,18 @@ public class DevelopHelpController {
 								.updateByHSql("delete from  Ta08_reportfield where module_id = "
 										+ module_id * (-1));
 					}
+					/*
+					 * 删除多余的数据
+					 */
+					sql.delete(0, sql.length());
+					sql.append("delete from ta08_reportfield t where 1=1 ");
+					sql.append(" and t.module_id=");
+					sql.append(module_id);
+					sql.append(" and t.name  not in");
+					sql.append("(select lower(u.column_name) from user_col_comments u where u.table_name='");
+					sql.append(project_table.toUpperCase());
+					sql.append("')");
+					jdbcTemplate.execute(sql.toString());
 				} catch (Exception ee) {
 					logBox.append(" error [module_id=" + module_id + ":"
 							+ ee.getMessage() + "]\n\r");
@@ -614,7 +627,10 @@ public class DevelopHelpController {
 			}
 
 			if (ta08.getSearchtype() == 2) {
-				ta08.setSelecturl("search/keySelect.do?type=xxx");
+				ta08.setSelecturl("search/keySelect.do?type="+t_name.toUpperCase());
+				if (t_comment.contains("[XOR]")) {
+					ta08.setSelecturl("search/keySelect.do?type=XOR");
+				}
 			}
 
 			/*
