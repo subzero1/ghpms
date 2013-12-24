@@ -557,7 +557,8 @@ public class DevelopHelpController {
 			Ta08_reportfield ta08 = new Ta08_reportfield();
 			ta08.setModule_id(module_id);
 			ta08.setName(t_name);
-			ta08.setComments(t_comment.replace("[选项]", "").replace("[人员]", "").replace("[XOR]", ""));
+			ta08.setComments(t_comment.replace("[选项]", "").replace("[人员]", "")
+					.replace("[XOR]", ""));
 			ta08.setDatatype(t_datatype.toUpperCase());
 			ta08.setObject_name(objectName);
 
@@ -656,7 +657,8 @@ public class DevelopHelpController {
 			if (ta08.getWidth() < t_width2) {
 				ta08.setWidth(new Long(t_width2));
 			}
-			if (!t_name.equals("gcmc")&&!t_name.equals("ghbh")&&!t_name.equals("skbh")&&!t_name.equals("xzqy")) {
+			if (!t_name.equals("gcmc") && !t_name.equals("ghbh")
+					&& !t_name.equals("skbh") && !t_name.equals("xzqy")) {
 				ta08.setShowflag(0L);
 			}
 			ta08.setOrd(new Long(i));
@@ -970,6 +972,7 @@ public class DevelopHelpController {
 		StringBuffer logBox = new StringBuffer("");
 		StringBuffer msgBox = new StringBuffer("");
 		String statusCode = "200";
+		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
 		try {
 			int counter = 0;
 			HttpSession session = request.getSession();
@@ -996,12 +999,6 @@ public class DevelopHelpController {
 					String form_table = form_object.substring(form_object
 							.lastIndexOf(".") + 1, form_object.length());
 					/*
-					 * 备份TA07信息
-					 */
-					saveService
-							.updateByHSql("update Ta07_formfield set module_id = module_id*(-1) where module_id = "
-									+ module_id);
-					/*
 					 * 从内容中提取字段信息【project_table 和 form_table]
 					 */
 					if (form_table.length() > 0) {
@@ -1011,6 +1008,19 @@ public class DevelopHelpController {
 						paramMap.put("tableName", form_table);
 						setTa07(paramMap);
 					}
+					
+					// 删掉多余的记录
+					sql.delete(0, sql.length());
+					sql.append(" delete from Ta07_formfield t where 1=1 ");
+					sql.append(" and t.module_id=");
+					sql.append(module_id);
+					sql.append(" and t.name not in ");
+					sql
+							.append("(select lower(u.column_name) from user_col_comments u where u.table_name='");
+					sql.append(form_table.toUpperCase());
+					sql.append("')");
+					jdbcTemplate.execute(sql.toString());
+
 					counter++;
 
 					/*
@@ -1019,23 +1029,9 @@ public class DevelopHelpController {
 					ta06.setExtdesc(convertUtil.toString(ta06.getExtdesc())
 							+ "[字段成功]");
 					saveService.save(ta06);
-
-					/*
-					 * 删除备份数据
-					 */
-					saveService
-							.updateByHSql("delete from  Ta07_formfield where module_id = "
-									+ module_id * (-1));
 				} catch (Exception ee) {
 					logBox.append("error [module_id=" + module_id + ":"
 							+ ee.getMessage() + "]\n\r");
-					/*
-					 * 恢复历史数据
-					 */
-					saveService
-							.updateByHSql("update Ta07_formfield set module_id = module_id*(-1) where module_id = "
-									+ module_id * (-1));
-
 				}
 			}
 			msgBox.append("成功处理" + counter + "个表的字段");
@@ -1054,106 +1050,127 @@ public class DevelopHelpController {
 
 	}
 
-	public void setTa07(Map paramMap){
+	public void setTa07(Map paramMap) {
 		StringBuffer sql = new StringBuffer("");
 		String tableName = convertUtil.toString(paramMap.get("tableName"));
 		String objectName = convertUtil.toString(paramMap.get("objectName"));
 		Long module_id = convertUtil.toLong(paramMap.get("module_id"));
-		Long isDetail = (Long)paramMap.get("isDetail");
-		
+		Long isDetail = (Long) paramMap.get("isDetail");
+
 		JdbcTemplate jdbcTemplate = jdbcSupport.getJdbcTemplate();
-			
-			Ta07_formfield ta07 = null;
-				/*
-				 * 根据TA07获得字段名
-				 */
-				sql.delete(0,sql.length());
-				sql.append("select col.column_name column_name,col.data_type data_type,com.comments comments, nullable,");
-				sql.append("case when data_precision is null then data_length else data_precision+data_scale*0.1 end data_length ");
-				sql.append("from user_tab_cols col,user_col_comments com ");
-				sql.append("where col.table_name = com.table_name ");
-				sql.append("and col.column_name = com.column_name ");
-				sql.append("and col.table_name = '"+tableName.toUpperCase()+"' ");
-				List list = jdbcTemplate.queryForList(sql.toString());
-				int ord=1;
-				if(list != null && list.size() > 0){
-					for (Object object : list) {
-					Map<String,Object> map = (Map<String,Object>)object;
-					String t_name = convertUtil.toString(map.get("column_name")).toLowerCase();
-					String t_comment = convertUtil.toString(map.get("comments"),"未命名");
-					String t_datatype = convertUtil.toString(map.get("data_type"));
-					Double t_datalength = convertUtil.toDouble(map.get("data_length"));
-					String t_nullable = convertUtil.toString(map.get("nullable"));
-					
-					ta07 = new Ta07_formfield();
-					ta07.setModule_id(module_id);
-					ta07.setName(t_name);
-					ta07.setComments(t_comment.replace("[选项]", "").replace("[人员]","").replace("[XOR]", ""));
-					if (t_comment.indexOf("[选项]")>0||t_comment.indexOf("[人员]")>0) {
-						ta07.setData_type(new Long(1));
-						if (t_comment.indexOf("[XOR]")>0) {
-							ta07.setData_type(new Long(4));
-						}
-					} 
-					ta07.setDatatype(t_datatype.toUpperCase());
-					ta07.setDatalength(t_datalength);
-					ta07.setNullable(t_nullable);
-					ta07.setObject_name(objectName);
-					if(t_datatype.equals("DATE")){
-						ta07.setAlign("center");
-						ta07.setWidth(100L);
+
+		Ta07_formfield ta07 = null;
+		/*
+		 * 根据TA07获得字段名
+		 */
+		sql.delete(0, sql.length());
+		sql
+				.append("select col.column_name column_name,col.data_type data_type,com.comments comments, nullable,");
+		sql
+				.append("case when data_precision is null then data_length else data_precision+data_scale*0.1 end data_length ");
+		sql.append("from user_tab_cols col,user_col_comments com ");
+		sql.append("where col.table_name = com.table_name ");
+		sql.append("and col.column_name = com.column_name ");
+		sql.append("and col.table_name = '" + tableName.toUpperCase() + "' ");
+		List list = jdbcTemplate.queryForList(sql.toString());
+		int ord = 1;
+		if (list != null && list.size() > 0) {
+			for (Object object : list) {
+				Map<String, Object> map = (Map<String, Object>) object;
+				String t_name = convertUtil.toString(map.get("column_name"))
+						.toLowerCase();
+				String t_comment = convertUtil.toString(map.get("comments"),
+						"未命名");
+				String t_datatype = convertUtil.toString(map.get("data_type"));
+				Double t_datalength = convertUtil.toDouble(map
+						.get("data_length"));
+				String t_nullable = convertUtil.toString(map.get("nullable"));
+
+				ta07 = new Ta07_formfield();
+				// 用户更新Ta07
+				sql.delete(0, sql.length());
+				sql.append("select t from Ta07_formfield t where 1=1 ");
+				sql.append(" and t.name='");
+				sql.append(t_name);
+				sql.append("'");
+				sql.append(" and module_id=");
+				sql.append(module_id);
+				List ta07List = queryService.searchList(sql.toString());
+				for (Object object2 : ta07List) {
+					ta07 = (Ta07_formfield) object2;
+				}
+
+				ta07.setModule_id(module_id);
+				ta07.setName(t_name);
+				ta07.setComments(t_comment.replace("[选项]", "").replace("[人员]",
+						"").replace("[XOR]", ""));
+				if (t_comment.indexOf("[选项]") > 0
+						|| t_comment.indexOf("[人员]") > 0) {
+					ta07.setData_type(new Long(1));
+					if (t_comment.indexOf("[XOR]") > 0) {
+						ta07.setData_type(new Long(4));
 					}
-					else if(t_datatype.equals("NUMBER") && t_datalength % 1 == 0 ){
-						ta07.setAlign("center");
-						ta07.setWidth(100L);
+				}
+				ta07.setDatatype(t_datatype.toUpperCase());
+				ta07.setDatalength(t_datalength);
+				ta07.setNullable(t_nullable);
+				ta07.setObject_name(objectName);
+				if (t_datatype.equals("DATE")) {
+					ta07.setAlign("center");
+					ta07.setWidth(100L);
+				} else if (t_datatype.equals("NUMBER") && t_datalength % 1 == 0) {
+					ta07.setAlign("center");
+					ta07.setWidth(100L);
+				} else if (t_datatype.equals("NUMBER") && t_datalength % 1 > 0) {
+					ta07.setAlign("right");
+					ta07.setWidth(100L);
+				} else if (t_datatype.indexOf("VARCHAR") != -1) {
+					ta07.setAlign("left");
+					Long t_width = t_datalength.longValue() * 2;
+					if (t_width < 100) {
+						t_width = 100L;
+					} else if (t_width > 1000) {
+						t_width = 1000L;
+						ta07.setData_type(new Long(2));
 					}
-					else if(t_datatype.equals("NUMBER") && t_datalength % 1 > 0 ){
-						ta07.setAlign("right");
-						ta07.setWidth(100L);
-					}
-					else if(t_datatype.indexOf("VARCHAR") != -1){
-						ta07.setAlign("left");
-						Long t_width = t_datalength.longValue()*2;
-						if(t_width < 100){
-							t_width = 100L;
-						}
-						else if(t_width > 1000){
-							t_width = 1000L;
-							ta07.setData_type(new Long(2));
-						}
-						ta07.setWidth(t_width);
-					}
-					else{
-						ta07.setAlign("center");
-						ta07.setWidth(100L);
-					}
-					if(t_name.toUpperCase() != "ID" && t_name.toUpperCase().lastIndexOf("_ID") != t_name.length() - 3
-							&& t_datalength < 300){
-						ta07.setShow_flag(1L);
-					}
-					if(t_name.toUpperCase() != "ID" && t_name.toUpperCase().lastIndexOf("_ID") != t_name.length() - 3){
-						ta07.setSearch_flag(1L);
-					}
-					ta07.setOrder_flag(1L);
-					if(t_datatype.toUpperCase() != "DATE"){
-						ta07.setDate_flag(1L);
-					}
-					
-					// 对长度再次做调整,根据comments的长度变化
-					Integer t_width2=(int) (ta07.getComments().length()*13.125)+1;
-					if (ta07.getWidth()<t_width2) {
-						ta07.setWidth(new Long(t_width2));
-					}
-					if (!t_name.equals("gcmc")&&!t_name.equals("ghbh")&&!t_name.equals("skbh")&&!t_name.equals("xzqy")) {
-						ta07.setShow_flag(0L);
-					}
-					
-					ta07.setIsdetail(isDetail);
+					ta07.setWidth(t_width);
+				} else {
+					ta07.setAlign("center");
+					ta07.setWidth(100L);
+				}
+				if (t_name.toUpperCase() != "ID"
+						&& t_name.toUpperCase().lastIndexOf("_ID") != t_name
+								.length() - 3 && t_datalength < 300) {
+					ta07.setShow_flag(1L);
+				}
+				if (t_name.toUpperCase() != "ID"
+						&& t_name.toUpperCase().lastIndexOf("_ID") != t_name
+								.length() - 3) {
+					ta07.setSearch_flag(1L);
+				}
+				ta07.setOrder_flag(1L);
+				if (t_datatype.toUpperCase() != "DATE") {
+					ta07.setDate_flag(1L);
+				}
+
+				// 对长度再次做调整,根据comments的长度变化
+				Integer t_width2 = (int) (ta07.getComments().length() * 13.125) + 1;
+				if (ta07.getWidth() < t_width2) {
+					ta07.setWidth(new Long(t_width2));
+				}
+				if (!t_name.equals("gcmc") && !t_name.equals("ghbh")
+						&& !t_name.equals("skbh") && !t_name.equals("xzqy")) {
+					ta07.setShow_flag(0L);
+				}
+
+				ta07.setIsdetail(isDetail);
+				if (ta07List == null || ta07List.size() == 0) {
 					ta07.setOrd(new Long(ord));
-					saveService.save(ta07);
-					ord++;
-				}	
-	}
-	
+				}
+				// 删掉不存在的记录
+				saveService.save(ta07);
+				ord++;
+			}
+		}
 	}
 }
