@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ghpms.dataObjects.form.Tf02_operation_log;
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.Search_Level;
@@ -277,5 +280,54 @@ public class User {
 			out.flush();
 			out.close();
 	} 
+	}
+	
+	@RequestMapping("/sysManage/operationLog.do")
+	public ModelAndView operationLog(HttpServletRequest request,HttpServletResponse response){
+		ModelMap modelMap = new ModelMap();
+		String view="/WEB-INF/jsp/sysManage/operationLog.jsp";
+		ResultObject rs = null;
+		List list=new ArrayList();
+		StringBuffer sql=new StringBuffer();
+		// 分页
+		Integer totalPages = 1;
+		Integer totalCount = 0;
+		Integer pageNum = convertUtil.toInteger(
+				request.getParameter("pageNum"), 1);
+		Integer numPerPage = convertUtil.toInteger(request
+				.getParameter("numPerPage"), 20);
+		String orderField = convertUtil.toString(request
+				.getParameter("orderField"), "start_time");
+		if (orderField.equals("")) {
+			orderField = "id";
+		}
+		String orderDirection = convertUtil.toString(request
+				.getParameter("orderDirection"), "desc");
+		if (orderDirection.equals("")) {
+			orderDirection = "asc";
+		}
+		sql.append("select t from Tf02_operation_log t where 1=1 ");
+		sql.append(" order by ");
+		sql.append(orderField);
+		sql.append(" ");
+		sql.append(orderDirection);
+		rs=queryService.searchByPage(sql.toString(), pageNum, numPerPage);
+		if (rs!=null) {
+			totalCount=rs.getTotalRows();
+			totalPages=rs.getTotalPages();
+			while (rs.next()) {
+				Tf02_operation_log log=(Tf02_operation_log) rs.get("t");
+				list.add(log);
+			}
+		}
+		modelMap.put("totalPages", totalPages);
+		modelMap.put("totalCount", totalCount);
+		modelMap.put("pageNum", pageNum);
+		modelMap.put("numPerPage", numPerPage);
+		modelMap.put("orderField", orderField);
+		modelMap.put("orderDirection", orderDirection);
+		modelMap.put("list", list);
+		
+		return new ModelAndView(view,modelMap);
 	}
 }

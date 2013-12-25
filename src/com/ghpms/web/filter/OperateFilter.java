@@ -67,7 +67,7 @@ public class OperateFilter implements Filter{
 				.getServletContext());
 		this.queryService=(QueryService) ctx.getBean("queryService");
 		this.saveService=(SaveService) ctx.getBean("saveService");
-		this.notFilter=new String[] {"login.do","download.do","batchAutoCreateJavaXml.do" };
+		this.notFilter=new String[] {"login.do","download.do","batchAutoCreateJavaXml.do","operationLog.do" };
 	}
 	
 	/**

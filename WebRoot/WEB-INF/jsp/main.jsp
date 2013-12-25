@@ -278,6 +278,7 @@ function getCookie(name)
 									<!--<li><a href="other/wdList.do?limit=0" target="navTab" rel="wdckList" title="公司内部文档查阅">文档查阅</a></li> -->
 									<c:if test="${user.login_id=='admin'}">
 										<li><a href="dispath.do?url=sysManage/auxTools.jsp" target="dialog" rel="auxTools" width="510" height="480" title="辅助开发">辅助开发</a></li>
+										<li><a href="sysManage/operationLog.do" target="navTab" rel="operationLog"  title="操作日志">操作日志</a></li>
 									</c:if>
 								</ul>
 							</li>
