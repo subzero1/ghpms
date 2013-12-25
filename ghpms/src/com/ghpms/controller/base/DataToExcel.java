@@ -223,8 +223,6 @@ public class DataToExcel {
 				message = "Excel格式非法,请参考导入模板或联系系统管理员";
 			}
 			e.printStackTrace();
-
-			e.printStackTrace();
 		} finally {
 
 			session.close();
