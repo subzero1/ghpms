@@ -27,6 +27,27 @@ var keyword=$("#keyword",$.pdialog.getCurrent()).val();
 navTab.reload("form/gcsjList.do?module_id=${param.module_id}&keyword="+keyword, $(form).serializeArray());
 return false;
 }
+//处理全选问题
+function selectAll(_this){
+	if(_this.checked){
+		$("input[name='gcsj']").attr("checked",true);
+	}else{
+		$("input[name='gcsj']").attr("checked",false);
+	}
+}
+//删除
+function multiple(_this){
+	var ids="";
+	var item = $("input[name!='checkall']:checkbox:checked");
+	item.each(function(k,v){
+		if(ids==""){
+			ids=ids+v.value;
+			}else{
+				ids=ids+","+v.value;
+				}
+		});
+	$(_this).attr("href","gcsj/ajaxGcsjDel.do?module_id=${param.module_id }&ids="+ids);
+}
 </script>
 <form id="pagerForm" method="post" action="form/gcsjList.do?module_id=${param.module_id}" onsubmit="return navTabSearch(this)">
 	<input type="hidden" name="module_id" value="${param.module_id}" />
@@ -95,9 +116,9 @@ return false;
 					<li class="line">
 						line
 					</li>
-					<li>
-						<a class="delete" href="gcsj/ajaxGcsjDel.do?id={project_id}&module_id=${param.module_id }"
-							target="ajaxTodo" title="确认删除吗？"><span>删除</span>
+					<li><!--class="delete"target="ajaxTodo" gcsj/ajaxGcsjDel.do?module_id=${param.module_id }&ids= -->
+						<a  class="delete" target="ajaxTodo" href="gcsj/ajaxGcsjDel.do?module_id=${param.module_id }&ids="
+							 title="确认删除吗？" onclick="multiple(this)"><span>删除</span>
 						</a>
 					</li>
 					<li class="line">
@@ -124,7 +145,8 @@ return false;
 		<table class="table" layouth="138" style="width: ${docTabWitdh }px;">
 			<thead>
 				<tr> 
-					<th style="width:20px;"></th>
+					<th style="width:32px;text-align: center;"><input name="checkall" type="checkbox" title="全选" onclick="selectAll(this)"/></th>
+					<th style="width:32px;"></th>
 					<!-- 初始化标题名称 -->
 					<c:forEach var="col" items="${docColsList}">
 						<th   style="width:${col.width}px;" orderField="${col.object_name}.${col.name}">${col.comments}</th>
@@ -135,7 +157,8 @@ return false;
 				<c:set var="offset" value="0"/>			
 				<c:forEach var="doc" items="${docs}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr target="project_id" rel="${doc[cols].id}">
+					<tr >
+					<td style="width:32px;text-align: center;"><input name="gcsj" type="checkbox"  value="${doc[cols].id}"/></td>
 						<td>
 						<c:if test="${doc[cols] != null }">
 							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].gcmc}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>

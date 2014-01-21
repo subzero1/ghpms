@@ -2,8 +2,6 @@ package com.ghpms.controller.form;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -26,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
+import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
@@ -58,7 +57,9 @@ public class Gcsj {
 
 	@Autowired
 	private GcsjDataService gcsjDataService;
-
+	
+	@Autowired
+	Dao dao;
 	/**
 	 * 表单列表
 	 * 
@@ -280,7 +281,8 @@ public class Gcsj {
 	public void ajaxGcsjDel(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF-8");
-		Long id = convertUtil.toLong(request.getParameter("id"));
+		StringBuffer hql=new StringBuffer();
+		String ids = convertUtil.toString(request.getParameter("ids"));
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
 
 		Ta06_module module = (Ta06_module) queryService.searchById(
@@ -293,8 +295,13 @@ public class Gcsj {
 		try {
 
 			c = Class.forName(module.getProject_table());
-			saveService.removeObject(c, id);
-
+			hql.append("delete from ");
+			hql.append(c.getName());
+			hql.append(" t where 1=1 ");
+			hql.append(" and t.id in(");
+			hql.append(ids);
+			hql.append(")");
+			dao.update(hql.toString());
 			out
 					.print("{\"statusCode\":\"200\", \"message\":\"删除成功!\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 
