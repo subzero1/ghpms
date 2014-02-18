@@ -80,7 +80,7 @@
 				    <c:set var="offset" scope="page" value="${offset + 1}"/>
 					<td class="t-center">&nbsp;</td>
 					<td><a href="message/messageReaderList.do?msg_id=${message_list['te04.id']}" target="dialog" rel="messageReaderList" width="600" height="300" title="收件人">收件人...</a></td>
-					<td title="${message_list["te04.title"]}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="371">${message_list["te04.title"]}</a></td>
+					<td title="${message_list['te04.title']}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="371">${message_list["te04.title"]}</a></td>
 					<td><c:if test="${message_list['te04.fujian_flag']>0}"><img src='Images/message/icon09.gif' title="有${message_list['te04.fujian_flag']}个附件"></img></c:if></td>
 					<td><fmt:formatDate value="${message_list['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
 				</tr>

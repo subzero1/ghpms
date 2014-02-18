@@ -35,6 +35,62 @@
   />
 
   <property
+  name="lrgisrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="lrgisrq"
+  />
+
+  <property
+  name="sckcrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="sckcrq"
+  />
+
+  <property
+  name="kccs"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="kccs"
+  />
+
+  <property
+  name="kcrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="kcrq"
+  />
+
+  <property
+  name="ghsgrwbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghsgrwbh"
+  />
+
+  <property
+  name="lch"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="lch"
+  />
+
+  <property
+  name="rjl"
+  type="java.lang.Double"
+  update="true"
+  insert="true"
+  column="rjl"
+  />
+
+  <property
   name="ghxyjsrq"
   type="java.util.Date"
   update="true"

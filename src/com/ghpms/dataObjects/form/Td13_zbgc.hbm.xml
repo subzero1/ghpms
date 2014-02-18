@@ -59,6 +59,62 @@
   />
 
   <property
+  name="yjwccgsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="yjwccgsj"
+  />
+
+  <property
+  name="jycqrkrkdzdr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jycqrkrkdzdr"
+  />
+
+  <property
+  name="jycqrkrkdzdsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jycqrkrkdzdsj"
+  />
+
+  <property
+  name="jycqckckdzdr"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="jycqckckdzdr"
+  />
+
+  <property
+  name="jycqckckdzdsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jycqckckdzdsj"
+  />
+
+  <property
+  name="sfyjycl"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sfyjycl"
+  />
+
+  <property
+  name="jlsj"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="jlsj"
+  />
+
+  <property
   name="jhwcsj"
   type="java.util.Date"
   update="true"

@@ -1134,6 +1134,13 @@ public class DevelopHelpController {
 				if (t_datatype.equals("DATE")) {
 					ta07.setAlign("center");
 					ta07.setWidth(100L);
+					//日期+时间
+					if (t_comment.contains("[yyyy-MM-dd")||t_comment.contains("[HH:mm")) {
+						RegExp regExp=new RegExp();
+						ta07.setData_type(5L);
+						ta07.setFormat(regExp.pickup(".*\\[(.*)\\].*", t_comment));
+						ta07.setComments(regExp.pickup("(.*)\\[.*", t_comment));
+					}
 				} else if (t_datatype.equals("NUMBER") && t_datalength % 1 == 0) {
 					ta07.setAlign("center");
 					ta07.setWidth(100L);

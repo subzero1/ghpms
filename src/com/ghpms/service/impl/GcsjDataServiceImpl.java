@@ -207,7 +207,12 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 			hsql.append(" and d.flow_id=");
 			hsql.append(ta06_module.getId());
 			hsql.append(")");
-			List inOutDateList = queryService.searchList(hsql.toString());
+			List inOutDateList=new ArrayList();
+			try {
+				inOutDateList = queryService.searchList(hsql.toString());
+			} catch (Exception e) {
+				continue;
+			}
 			for (Object object : inOutDateList) {
 				Map tableMap = new HashMap();
 				tableMap.put("module_name", ta06_module.getName());

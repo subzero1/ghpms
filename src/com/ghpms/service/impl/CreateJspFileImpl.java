@@ -264,7 +264,15 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 				// 如果是日期
 				if (formfield.getDatatype().equals("DATE")) {
-					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+					hsql.append(" pattern=\"");
+					if (formfield.getFormat() != null
+							&& formfield.getData_type() == 5) {
+						hsql.append(formfield.getFormat());
+					}else {
+						hsql.append("yyyy-MM-dd");
+					}
+					
+					hsql.append(" \"/>\" ");
 				}
 				// 长文本框
 				if (formfield.getDatalength() > 200
@@ -312,7 +320,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" and a.id=");
 		hsql.append(user.getId());
 		hsql.append(" and d.flow_id=");
-		hsql.append(module_id );
+		hsql.append(module_id);
 		List recordButtons = queryService.searchList(hsql.toString());
 		List nodeMaps = new ArrayList();
 		for (Object object : recordButtons) {
@@ -629,7 +637,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 			hsql.append("<label> " + formfield.getComments() + "：</label> \n");
 			// 下拉框的情況
 			if (formfield.getData_type() != null
-					&& (formfield.getData_type() == 1||formfield.getData_type() == 4)) {
+					&& (formfield.getData_type() == 1 || formfield
+							.getData_type() == 4)) {
 				hsql.append("<netsky:htmlSelect name=\"" + packTableName);
 				hsql.append(".");
 				hsql.append(formfield.getName().toUpperCase());
@@ -684,17 +693,31 @@ public class CreateJspFileImpl implements CreateJspFile {
 				hsql.append("." + formfield.getName() + "}\" ");
 				// 如果是日期
 				if (formfield.getDatatype().equals("DATE")) {
-					hsql.append(" pattern=\"yyyy-MM-dd \"/>\" ");
+					hsql.append(" pattern=\"");
+					if (formfield.getFormat() != null
+							&& formfield.getData_type() == 5) {
+						hsql.append(formfield.getFormat());
+					} else {
+						hsql.append("yyyy-MM-dd ");
+					}
+
+					hsql.append("\"/>\" ");
 				}
 				// 判断类型
 				if (formfield.getDatatype().equals("DATE")) {
-					hsql
-							.append("class=\"date\" format=\"yyyy-MM-dd \" yearstart=\"-50\" yearend=\"50\"");
+					hsql.append("class=\"date\" format=\"");
+					if (formfield.getFormat() != null
+							&& formfield.getData_type() == 5) {
+						hsql.append(formfield.getFormat());
+					} else {
+						hsql.append("yyyy-MM-dd ");
+					}
+					hsql.append("\" yearstart=\"-50\" yearend=\"50\"");
 				} else if (formfield.getDatatype().equals("NUMBER")) {
 					if (convertUtil.toString(formfield.getDatalength())
 							.lastIndexOf(".0") != -1) {
 						hsql.append("class=\"number\" ");
-					}else {
+					} else {
 						hsql.append("class=\"digits\" ");
 					}
 

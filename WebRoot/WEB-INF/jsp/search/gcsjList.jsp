@@ -183,6 +183,7 @@ function multiple(_this){
 					<c:forEach var="j" begin="1" end ="${cols-1>0?cols-1:0}">
 						<td></td>
 					</c:forEach>
+					<td></td>
 					</tr>
 				</c:forEach>
 				</c:if>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-11
+ * @author cmp_auto 2014-02-14
  * @hibernate.class table="Td12_dlgc"
  */
 
@@ -13,7 +13,7 @@ public class Td12_dlgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 185387894940408512L;
+	private static final long serialVersionUID = 404645272725181888L;
 
 	/**
 	 * 标识
@@ -37,6 +37,125 @@ public class Td12_dlgc implements Serializable{
 	}
 
 	 /**
+ * 预计完成采购时间
+ */
+ private Date yjwccgsj;
+
+ /**
+ * @hibernate.property column="yjwccgsj"
+ * @return Returns the yjwccgsj.
+ */
+ public Date getYjwccgsj() {
+    return yjwccgsj;
+ }
+
+ public void setYjwccgsj(Date yjwccgsj) {
+    this.yjwccgsj = yjwccgsj;
+  }
+
+ /**
+ * 借用器材入库入库单制单人
+ */
+ private String jycqrkrkdzdr;
+
+ /**
+ * @hibernate.property column="jycqrkrkdzdr"
+ * @return Returns the jycqrkrkdzdr.
+ */
+ public String getJycqrkrkdzdr() {
+    return jycqrkrkdzdr;
+ }
+
+ public void setJycqrkrkdzdr(String jycqrkrkdzdr) {
+    this.jycqrkrkdzdr = jycqrkrkdzdr;
+  }
+
+ /**
+ * 借用器材入库入库单制单时间
+ */
+ private Date jycqrkrkdzdsj;
+
+ /**
+ * @hibernate.property column="jycqrkrkdzdsj"
+ * @return Returns the jycqrkrkdzdsj.
+ */
+ public Date getJycqrkrkdzdsj() {
+    return jycqrkrkdzdsj;
+ }
+
+ public void setJycqrkrkdzdsj(Date jycqrkrkdzdsj) {
+    this.jycqrkrkdzdsj = jycqrkrkdzdsj;
+  }
+
+ /**
+ * 借用器材出库出库单制单人
+ */
+ private String jycqckckdzdr;
+
+ /**
+ * @hibernate.property column="jycqckckdzdr"
+ * @return Returns the jycqckckdzdr.
+ */
+ public String getJycqckckdzdr() {
+    return jycqckckdzdr;
+ }
+
+ public void setJycqckckdzdr(String jycqckckdzdr) {
+    this.jycqckckdzdr = jycqckckdzdr;
+  }
+
+ /**
+ * 借用器材出库出库单制单时间
+ */
+ private Date jycqckckdzdsj;
+
+ /**
+ * @hibernate.property column="jycqckckdzdsj"
+ * @return Returns the jycqckckdzdsj.
+ */
+ public Date getJycqckckdzdsj() {
+    return jycqckckdzdsj;
+ }
+
+ public void setJycqckckdzdsj(Date jycqckckdzdsj) {
+    this.jycqckckdzdsj = jycqckckdzdsj;
+  }
+
+ /**
+ * 是否有借用材料
+ */
+ private String sfyjycl;
+
+ /**
+ * @hibernate.property column="sfyjycl"
+ * @return Returns the sfyjycl.
+ */
+ public String getSfyjycl() {
+    return sfyjycl;
+ }
+
+ public void setSfyjycl(String sfyjycl) {
+    this.sfyjycl = sfyjycl;
+  }
+
+ /**
+ * 借料时间
+ */
+ private Date jlsj;
+
+ /**
+ * @hibernate.property column="jlsj"
+ * @return Returns the jlsj.
+ */
+ public Date getJlsj() {
+    return jlsj;
+ }
+
+ public void setJlsj(Date jlsj) {
+    this.jlsj = jlsj;
+  }
+
+ /**
  * 歌华协议接受日期
  */
  private Date ghxyjsrq;
