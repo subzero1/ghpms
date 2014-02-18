@@ -61,6 +61,7 @@ public class JspBuildServlet implements Servlet {
 		} 
 		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
 		List nodeList = queryService.searchList(hql.toString());
+		//生成录入界面
 		for (Object object : nodeList) {
 			Tb02_node node=(Tb02_node) object;
 			createJspFile.createJspFileToRecord(path, node.getId());

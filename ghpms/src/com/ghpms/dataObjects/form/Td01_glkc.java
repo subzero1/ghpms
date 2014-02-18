@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-11
+ * @author cmp_auto 2014-02-14
  * @hibernate.class table="Td01_glkc"
  */
 
@@ -13,7 +13,7 @@ public class Td01_glkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 177092802739713504L;
+	private static final long serialVersionUID = 899459589116097408L;
 
 	/**
 	 * 标识
@@ -68,6 +68,132 @@ public class Td01_glkc implements Serializable{
 
  public void setSkxyje(Double skxyje) {
     this.skxyje = skxyje;
+  }
+
+ /**
+ * 录入GIS日期
+
+ */
+ private Date lrgisrq;
+
+ /**
+ * @hibernate.property column="lrgisrq"
+ * @return Returns the lrgisrq.
+ */
+ public Date getLrgisrq() {
+    return lrgisrq;
+ }
+
+ public void setLrgisrq(Date lrgisrq) {
+    this.lrgisrq = lrgisrq;
+  }
+
+ /**
+ * 首次勘察日期
+
+ */
+ private Date sckcrq;
+
+ /**
+ * @hibernate.property column="sckcrq"
+ * @return Returns the sckcrq.
+ */
+ public Date getSckcrq() {
+    return sckcrq;
+ }
+
+ public void setSckcrq(Date sckcrq) {
+    this.sckcrq = sckcrq;
+  }
+
+ /**
+ * 勘察次数
+
+ */
+ private Long kccs;
+
+ /**
+ * @hibernate.property column="kccs"
+ * @return Returns the kccs.
+ */
+ public Long getKccs() {
+    return kccs;
+ }
+
+ public void setKccs(Long kccs) {
+    this.kccs = kccs;
+  }
+
+ /**
+ * 勘察日期
+
+ */
+ private Date kcrq;
+
+ /**
+ * @hibernate.property column="kcrq"
+ * @return Returns the kcrq.
+ */
+ public Date getKcrq() {
+    return kcrq;
+ }
+
+ public void setKcrq(Date kcrq) {
+    this.kcrq = kcrq;
+  }
+
+ /**
+ * 歌华施工任务编号
+
+ */
+ private String ghsgrwbh;
+
+ /**
+ * @hibernate.property column="ghsgrwbh"
+ * @return Returns the ghsgrwbh.
+ */
+ public String getGhsgrwbh() {
+    return ghsgrwbh;
+ }
+
+ public void setGhsgrwbh(String ghsgrwbh) {
+    this.ghsgrwbh = ghsgrwbh;
+  }
+
+ /**
+ * 缆长和
+
+ */
+ private Double lch;
+
+ /**
+ * @hibernate.property column="lch"
+ * @return Returns the lch.
+ */
+ public Double getLch() {
+    return lch;
+ }
+
+ public void setLch(Double lch) {
+    this.lch = lch;
+  }
+
+ /**
+ * 熔接量
+
+ */
+ private Double rjl;
+
+ /**
+ * @hibernate.property column="rjl"
+ * @return Returns the rjl.
+ */
+ public Double getRjl() {
+    return rjl;
+ }
+
+ public void setRjl(Double rjl) {
+    this.rjl = rjl;
   }
 
  /**

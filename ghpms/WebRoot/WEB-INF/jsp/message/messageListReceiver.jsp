@@ -83,7 +83,7 @@
 					 ${message_list['receiver'][0][0]}
 					     	<c:if test="${message_list['receiver'][0][1]==0}"><img src="Images/online_time.gif" title="尚未读"/></c:if>
 							<c:if test="${message_list['receiver'][0][1]==1}"><img src="Images/online_ok.gif" title="已读邮件"/></c:if></c:if></td>
-					<td title="${message_list["te04.title"]}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="371">${message_list["te04.title"]}</a></td>
+					<td title="${message_list['te04.title']}"><a class="edit"	href="MessageRead.do?message_id=${message_list['te04.id']}&messageState=${param.messageState}" target="dialog" rel="messageRead" title="查看内部邮件" width="600" height="371">${message_list["te04.title"]}</a></td>
 					<td><c:if test="${message_list['te04.fujian_flag']>0}"><img src='Images/message/icon09.gif' title="有${message_list['te04.fujian_flag']}个附件"></img></c:if></td>
 					<td><fmt:formatDate value="${message_list['te04.send_date']}" pattern="yyyy-MM-dd HH:mm"/></td>
 				</tr>

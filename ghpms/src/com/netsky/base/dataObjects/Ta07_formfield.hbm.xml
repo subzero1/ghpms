@@ -137,19 +137,29 @@
   insert="true"
   column="isdetail"
   />
- <property
+
+  <property
   name="position"
   type="java.lang.Long"
   update="true"
   insert="true"
   column="position"
   />
- <property
+
+  <property
   name="data_type"
   type="java.lang.Long"
   update="true"
   insert="true"
   column="data_type"
+  />
+
+  <property
+  name="format"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="format"
   />
 
 

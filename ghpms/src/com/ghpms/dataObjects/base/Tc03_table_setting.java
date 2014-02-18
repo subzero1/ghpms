@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-07-16
+ * @author cmp_auto 2014-02-14
  * @hibernate.class table="Tc03_table_setting"
  */
 
@@ -13,7 +13,7 @@ public class Tc03_table_setting implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 659157520072448384L;
+	private static final long serialVersionUID = 512852810372202880L;
 
 	/**
 	 * 标识

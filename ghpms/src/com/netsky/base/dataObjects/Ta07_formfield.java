@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2012-06-04
+ * @author cmp_auto 2014-02-17
  * @hibernate.class table="Ta07_formfield"
  */
 
@@ -13,7 +13,7 @@ public class Ta07_formfield implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 201275335985254496L;
+	private static final long serialVersionUID = 633828526879802880L;
 
 	/**
 	 * 标识
@@ -290,35 +290,57 @@ public class Ta07_formfield implements Serializable{
  public void setIsdetail(Long isdetail) {
     this.isdetail = isdetail;
   }
- 
- /**
-  * 0:左,1:右
-  */
-  private Long position;
 
-  /**
-  * @hibernate.property column="position"
-  * @return Returns the position.
-  */
-  public Long getPosition() {
-     return position;
+ /**
+ * 0:左,1:右
+ */
+ private Long position;
+
+ /**
+ * @hibernate.property column="position"
+ * @return Returns the position.
+ */
+ public Long getPosition() {
+    return position;
+ }
+
+ public void setPosition(Long position) {
+    this.position = position;
   }
 
-  public void setPosition(Long position) {
-     this.position = position;
-   }
+ /**
+ * 数据类型,1:下拉框,2:文本域.3:复选框.4:包含 YON的下拉框,5:时间格式yyyy-mm-dd hh:MM:ss
+ */
+ private Long data_type;
 
-  private Long data_type;
+ /**
+ * @hibernate.property column="data_type"
+ * @return Returns the data_type.
+ */
+ public Long getData_type() {
+    return data_type;
+ }
 
-public Long getData_type() {
-	return data_type;
-}
+ public void setData_type(Long data_type) {
+    this.data_type = data_type;
+  }
 
-public void setData_type(Long data_type) {
-	this.data_type = data_type;
-}
-  
+ /**
+ * 格式
+ */
+ private String format;
 
- 
+ /**
+ * @hibernate.property column="format"
+ * @return Returns the format.
+ */
+ public String getFormat() {
+    return format;
+ }
+
+ public void setFormat(String format) {
+    this.format = format;
+  }
+
 
 }

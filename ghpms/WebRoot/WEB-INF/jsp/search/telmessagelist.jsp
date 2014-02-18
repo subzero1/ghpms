@@ -59,7 +59,7 @@
 					<td class="t-left">${message_list["title"]}</td>
 					<td class="t-center">${message_list["fsr"]}</td>
 					<td class="t-center"><fmt:formatDate value="${message_list['fssj']}" pattern="yyyy-MM-dd HH:mm"/></td>
-					<td class="t-left" title="${message_list["content"]}">${message_list["content"]}</td>
+					<td class="t-left" title="${message_list['content']}">${message_list["content"]}</td>
 					<td class="t-center">${message_list["state"] }</td>
 				</tr>
 			</c:forEach>
