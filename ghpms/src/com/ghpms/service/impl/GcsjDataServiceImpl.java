@@ -225,4 +225,52 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		return outDateMapList;
 	}
 
+	public List getLendOutDateList(Ta03_user user) {
+
+		StringBuffer hsql = new StringBuffer("");
+
+		String tableName;
+		String className;
+		List outDateMapList = new ArrayList();
+		List<Ta06_module> modules = (List<Ta06_module>) queryService
+				.searchList(Ta06_module.class);
+		for (Ta06_module ta06_module : modules) {
+			List outDateList=new ArrayList();
+			className = ta06_module.getForm_table();
+			tableName = className.substring(className.lastIndexOf(".") + 1,
+					className.length());
+
+			// 已经超期
+			hsql.delete(0, hsql.length());
+			hsql.append("from ");
+			hsql.append(tableName);
+			hsql.append(" t where t.sjwcsj is null and t.jhwcsj-sysdate<0 ");
+			hsql.append(" and exists(");
+			hsql.append(" select distinct(d.id),f.id,f.name ,f.comments ");
+			hsql.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e,Ta07_formfield f ,Ta16_node_field g ");
+			hsql.append(" where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id and d.id=g.node_id and g.field_id=f.id ");
+			hsql.append(" and f.name in('jhwcsj','sjwcsj') ");
+			hsql.append(" and a.id=");
+			hsql.append(user.getId());
+			hsql.append(" and d.flow_id=");
+			hsql.append(ta06_module.getId());
+			hsql.append(")");
+			List inOutDateList=new ArrayList();
+			try {
+				inOutDateList = queryService.searchList(hsql.toString());
+			} catch (Exception e) {
+				continue;
+			}
+			for (Object object : inOutDateList) {
+				Map tableMap = new HashMap();
+				tableMap.put("module_name", ta06_module.getName());
+				tableMap.put("module_id", ta06_module.getId());
+				tableMap.put("project", object);
+				outDateMapList.add(tableMap);
+			}
+		}
+		
+		return outDateMapList;
+	}
+
 }
