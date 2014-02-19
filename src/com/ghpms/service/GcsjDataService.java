@@ -19,4 +19,6 @@ public interface GcsjDataService {
 	 * @return List
 	 */
 	public List getOutDateList(Ta03_user user);
+	
+	public List getLendOutDateList(Ta03_user user);
 }
