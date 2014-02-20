@@ -45,16 +45,16 @@ import com.netsky.base.utils.StringFormatUtil;
 @Controller
 // 注释1
 public class workList {
-	
+
 	@Autowired
 	private ExceptionService exceptionService;
 
 	@Autowired
 	private QueryService queryService;
-	
+
 	@Autowired
 	private FlowService flowServiceImpl;
-	
+
 	@Autowired
 	GcsjDataService gcsjDataService;
 
@@ -68,60 +68,74 @@ public class workList {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/workList.do")
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		try {
 			ModelMap modelMap = new ModelMap();
-			Integer pageNum = convertUtil.toInteger(request.getParameter("pageNum"),1);
-			Integer numPerPage = convertUtil.toInteger(request.getParameter("numPerPage"),20);
-			String keyWord = convertUtil.toString(request.getParameter("keyWord"));
-			Integer module_id = convertUtil.toInteger(request.getParameter("module_id"));
+			Integer pageNum = convertUtil.toInteger(request
+					.getParameter("pageNum"), 1);
+			Integer numPerPage = convertUtil.toInteger(request
+					.getParameter("numPerPage"), 20);
+			String keyWord = convertUtil.toString(request
+					.getParameter("keyWord"));
+			Integer module_id = convertUtil.toInteger(request
+					.getParameter("module_id"));
 			Integer year = convertUtil.toInteger(request.getParameter("year"));
-			Integer workState = convertUtil.toInteger(request.getParameter("workState"));
-			String orderField = StringFormatUtil.format(request.getParameter("orderField"),"doc.oper_time");
-			String orderDirection = StringFormatUtil.format(request.getParameter("orderDirection"),"desc");
+			Integer workState = convertUtil.toInteger(request
+					.getParameter("workState"));
+			String orderField = StringFormatUtil.format(request
+					.getParameter("orderField"), "doc.oper_time");
+			String orderDirection = StringFormatUtil.format(request
+					.getParameter("orderDirection"), "desc");
 			StringBuffer hsql = new StringBuffer();
-			List<Ta07_formfield> docColsList = (List<Ta07_formfield>)session.getAttribute("docColsList");
-			
-			//获取用户客户端
-			String loginClient = StringFormatUtil.format((String)request.getSession().getAttribute("loginClient"),"");
-			
-			year = year < 1900 ? Calendar.getInstance().get(Calendar.YEAR) : year;
-						
+			List<Ta07_formfield> docColsList = (List<Ta07_formfield>) session
+					.getAttribute("docColsList");
+
+			// 获取用户客户端
+			String loginClient = StringFormatUtil.format((String) request
+					.getSession().getAttribute("loginClient"), "");
+
+			year = year < 1900 ? Calendar.getInstance().get(Calendar.YEAR)
+					: year;
+
 			/*
 			 * 取年度列表
 			 */
 			List yearList = new LinkedList();
-			for(int y = 2012;y < Calendar.getInstance().get(Calendar.YEAR)+1;y++){
+			for (int y = 2012; y < Calendar.getInstance().get(Calendar.YEAR) + 1; y++) {
 				yearList.add(new Integer(y));
 			}
-			//request.setAttribute("yearList", yearList);
+			// request.setAttribute("yearList", yearList);
 			modelMap.put("yearList", yearList);
 			modelMap.put("showYear", year);
-			
-			Integer docTabWitdh = convertUtil.toInteger(session.getAttribute("docTabWitdh"));
-						
+
+			Integer docTabWitdh = convertUtil.toInteger(session
+					.getAttribute("docTabWitdh"));
+
 			int totalPages = 1;
 			int totalCount = 1;
-			
+
 			modelMap.put("pageNum", pageNum);
 			modelMap.put("curYear", Calendar.getInstance().get(Calendar.YEAR));
 			modelMap.put("numPerPage", numPerPage);
 			modelMap.put("year", year);
 			modelMap.put("keyWord", keyWord);
-			
+
 			/**
 			 * 判断是否有委托工作，如果有取出所有委托人ID
 			 */
 			String user_ids = "";
-			if(session.getAttribute("trustUserMap")!= null){
-				Map<String,?> trustUserMap =(Map<String,?>)session.getAttribute("trustUserMap");
-				for(String tmpId:trustUserMap.keySet()){
-					user_ids += "," + tmpId ;
+			if (session.getAttribute("trustUserMap") != null) {
+				Map<String, ?> trustUserMap = (Map<String, ?>) session
+						.getAttribute("trustUserMap");
+				for (String tmpId : trustUserMap.keySet()) {
+					user_ids += "," + tmpId;
 				}
 				user_ids = user_ids.substring(1);
 			}
-			
-			Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
+
+			Ta03_user user = (Ta03_user) (request.getSession()
+					.getAttribute("user"));
 			// 构造hsql
 			String docView = "NeedWork";
 			String form_title = "文档";
@@ -156,20 +170,25 @@ public class workList {
 			}
 
 			modelMap.put("form_title", form_title);
-			
+
 			modelMap.put("totalRows", 0);
 			modelMap.put("totalPages", 1);
 			modelMap.put("page", 1);
-			modelMap.put("cols",docColsList.size());
-			
+			modelMap.put("cols", docColsList.size());
+
 			/**
 			 * 判断当前人工作是否委托出去
 			 */
-			List tmpList = queryService.searchList(" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",new Object[]{((Ta03_user)session.getAttribute("user")).getId()});
-			if(tmpList.size()>0){				
-				return new ModelAndView("/WEB-INF/" + loginClient+ "jsp/workList.jsp",modelMap);
+			List tmpList = queryService
+					.searchList(
+							" select 'x' from Ta28_work_trust where from_userid = ? and end_time is  null",
+							new Object[] { ((Ta03_user) session
+									.getAttribute("user")).getId() });
+			if (tmpList.size() > 0) {
+				return new ModelAndView("/WEB-INF/" + loginClient
+						+ "jsp/workList.jsp", modelMap);
 			}
-			
+
 			/**
 			 * 取文档列表
 			 */
@@ -179,23 +198,26 @@ public class workList {
 				hsql.append(" and doc.module_id = " + module_id);
 			}
 			if (!"".equals(keyWord)) {
-				hsql.append(" and ( gcxx.xmmc like '%" + keyWord + "%' or gcxx.xmbh like '%"+keyWord+"%' or gcxx.xmjl like '%"+keyWord+"%')");
+				hsql.append(" and ( gcxx.xmmc like '%" + keyWord
+						+ "%' or gcxx.xmbh like '%" + keyWord
+						+ "%' or gcxx.xmjl like '%" + keyWord + "%')");
 			}
 			if (year > 1900 && workState == 5) {
 				hsql.append(" and doc.oper_time like '" + year + "%'");
 			}
-			
-			if("".equals(user_ids)){
+
+			if ("".equals(user_ids)) {
 				hsql.append(" and doc.user_id = " + user.getId());
 			} else {
-				hsql.append(" and doc.user_id in(" + user_ids +")");
+				hsql.append(" and doc.user_id in(" + user_ids + ")");
 			}
-			
 
 			// 获得记录条数
-			totalCount = convertUtil.toInteger(queryService.searchList(" select count(*) " + hsql.toString()).get(0));
+			totalCount = convertUtil.toInteger(queryService.searchList(
+					" select count(*) " + hsql.toString()).get(0));
 			if (totalCount > 0) {
-				totalPages = totalCount % numPerPage == 0 ? totalCount / numPerPage : totalCount / numPerPage + 1;
+				totalPages = totalCount % numPerPage == 0 ? totalCount
+						/ numPerPage : totalCount / numPerPage + 1;
 			} else {
 				totalPages = 1;
 			}
@@ -205,67 +227,73 @@ public class workList {
 			modelMap.put("totalCount", totalCount);
 			modelMap.put("totalPages", totalPages);
 			modelMap.put("pageNum", pageNum);
-			
-			//设置排序
+
+			// 设置排序
 			StringBuffer order = new StringBuffer();
 			order.append(" order by ");
-			order.append(orderField+" ");
+			order.append(orderField + " ");
 			order.append(orderDirection);
-			
-			//导EXCEL取全部数据
-			if("yes".equals(request.getParameter("toExcel"))){
-				numPerPage =totalCount == 0?1:totalCount;
+
+			// 导EXCEL取全部数据
+			if ("yes".equals(request.getParameter("toExcel"))) {
+				numPerPage = totalCount == 0 ? 1 : totalCount;
 				pageNum = 1;
 			}
 			// 取列表数据
-			ResultObject rs = queryService.searchByPage("select doc,gcxx " + hsql.toString()
-					+ order.toString(), pageNum, numPerPage);
+			ResultObject rs = queryService.searchByPage("select doc,gcxx "
+					+ hsql.toString() + order.toString(), pageNum, numPerPage);
 			List<List> docList = new LinkedList<List>();
 			Object doc = null;
 			Object gcxx = null;
 			DecimalFormat df = new DecimalFormat("#0.00");
-			SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat dateformat = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm");
 			while (rs.next()) {
-				List row = new LinkedList(); //行对像，先初始化各列数据
+				List row = new LinkedList(); // 行对像，先初始化各列数据
 				doc = rs.get("doc");
 				gcxx = rs.get("gcxx");
-				//初始化各列数据
-				for(Ta07_formfield ta07:docColsList){
+				// 初始化各列数据
+				for (Ta07_formfield ta07 : docColsList) {
 					Object obj = null;
-					//取数据
-					if(ta07.getObject_name().equals("doc")){
-						 obj = PropertyInject.getProperty(doc,ta07.getName().trim());
+					// 取数据
+					if (ta07.getObject_name().equals("doc")) {
+						obj = PropertyInject.getProperty(doc, ta07.getName()
+								.trim());
 					} else {
-						 obj = PropertyInject.getProperty(gcxx,ta07.getName().trim());
+						obj = PropertyInject.getProperty(gcxx, ta07.getName()
+								.trim());
 					}
-					
-					//格式化数据
-					if("NUMBER".equals(ta07.getDatatype())&& obj != null){
+
+					// 格式化数据
+					if ("NUMBER".equals(ta07.getDatatype()) && obj != null) {
 						row.add(df.format(new BigDecimal(obj.toString())));
-					}else if(obj instanceof Date){
+					} else if (obj instanceof Date) {
 						row.add(dateformat.format(obj));
-					}else{
+					} else {
 						row.add(obj);
-					}						
+					}
 				}
-				
-				//导EXCEL不需求后面对象
-				if(!"yes".equals(request.getParameter("toExcel"))){
+
+				// 导EXCEL不需求后面对象
+				if (!"yes".equals(request.getParameter("toExcel"))) {
 					row.add(doc);
 					row.add(gcxx);
-				}	
-				
+				}
+
 				docList.add(row);
 			}
 			modelMap.put("docList", docList);
-			
+
 			// 取得当前工程的类别列表
-			List moduleList = queryService.searchList(" select distinct module_id,module_name from " + docView
-					+ " where user_id = ? order by module_id ", new Object[] { user.getId() });
+			List moduleList = queryService.searchList(
+					" select distinct module_id,module_name from " + docView
+							+ " where user_id = ? order by module_id ",
+					new Object[] { user.getId() });
 			modelMap.put("moduleList", moduleList);
-			
+
 			// 批量审批权限
-			Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request.getSession().getAttribute("rolesMap");
+			Map<String, Ta04_role> rolesMap = (Map<String, Ta04_role>) request
+					.getSession().getAttribute("rolesMap");
 			if (rolesMap != null) {
 				modelMap.put("batchAccept", rolesMap.containsKey("900101"));
 				modelMap.put("batchPrint", rolesMap.containsKey("900102"));
@@ -273,51 +301,69 @@ public class workList {
 			} else {
 				modelMap.put("loginErr", "session已失效，请重新登录");
 				return new ModelAndView("index.jsp", modelMap);
-			}			
-			
-			//导EXCEL
-			if("yes".equals(request.getParameter("toExcel"))){
-				Map<String,List> sheetMap = new HashMap<String,List>();
+			}
+
+			// 导EXCEL
+			if ("yes".equals(request.getParameter("toExcel"))) {
+				Map<String, List> sheetMap = new HashMap<String, List>();
 				List sheetList = new LinkedList();
 				List titleList = new LinkedList();
-				for(Ta07_formfield ta07:docColsList){
+				for (Ta07_formfield ta07 : docColsList) {
 					titleList.add(ta07.getComments().trim());
 				}
 				sheetList.add(titleList);
 				sheetList.add(docList);
 				sheetMap.put(form_title, sheetList);
-				request.setAttribute("ExcelName", form_title );
+				request.setAttribute("ExcelName", form_title);
 				request.setAttribute("sheetMap", sheetMap);
 				return new ModelAndView("/export/toExcelWhithList.do");
 			} else {
 
-				//新建表单的下拉菜单{}newFormList
-				Map <String,Object> paraMap = new HashMap<String,Object>();
-				MapUtil.load(paraMap,request);
-				List<Button> newFormList = flowServiceImpl.listNewFormButtons(paraMap);
+				// 新建表单的下拉菜单{}newFormList
+				Map<String, Object> paraMap = new HashMap<String, Object>();
+				MapUtil.load(paraMap, request);
+				List<Button> newFormList = flowServiceImpl
+						.listNewFormButtons(paraMap);
 				modelMap.put("newFormList", newFormList);
-				return new ModelAndView("/WEB-INF/" + loginClient+ "jsp/workList.jsp", modelMap);
+				return new ModelAndView("/WEB-INF/" + loginClient
+						+ "jsp/workList.jsp", modelMap);
 			}
 		} catch (Exception e) {
-			return exceptionService.exceptionControl(this.getClass().getName(), "表单列表错误", e);
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"表单列表错误", e);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/docListUI.do")
-	public ModelAndView docListUIhandleRequest(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public ModelAndView docListUIhandleRequest(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) {
 		ModelMap modelMap = new ModelMap();
 		try {
-			Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
-			List outDateList=gcsjDataService.getOutDateList(user);
+			Ta03_user user = (Ta03_user) (request.getSession()
+					.getAttribute("user"));
+			// 计划超期
+			List outDateList = gcsjDataService.getOutDateList(user);
+			// 是否有借用材料
+			List lendOutDateList = gcsjDataService.getLendOutDateList(user);
+			// 是否反馈调度中心列表
+			List fkddList = gcsjDataService.getFkddList(user);
+			// 是否反馈工单列表
+			List fkgdList = gcsjDataService.getFkgdList(user);
+			//是否紧急
+			List jjList=gcsjDataService.getFkjjList(user);
 			modelMap.put("outDateList", outDateList);
-			if (outDateList!=null&&outDateList.size()>0) {
+			if (outDateList != null && outDateList.size() > 0) {
 				modelMap.put("totalCount", outDateList.size());
 			}
+			modelMap.put("lendOutDateList", lendOutDateList);
+			modelMap.put("fkddList", fkddList);
+			modelMap.put("fkgdList", fkgdList);
+			modelMap.put("jjList", jjList);
 			return new ModelAndView("/WEB-INF/jsp/docListUI.jsp", modelMap);
 		} catch (Exception e) {
-			return exceptionService.exceptionControl(this.getClass().getName(), "表单列表错误", e);
+			return exceptionService.exceptionControl(this.getClass().getName(),
+					"表单列表错误", e);
 		}
 
 	}

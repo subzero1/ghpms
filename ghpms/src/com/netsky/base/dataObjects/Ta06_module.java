@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2012-06-04
+ * @author cmp_auto 2014-02-19
  * @hibernate.class table="Ta06_module"
  */
 
@@ -13,7 +13,7 @@ public class Ta06_module implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 134986322280696736L;
+	private static final long serialVersionUID = 567609913956605888L;
 
 	/**
 	 * 标识
@@ -37,6 +37,91 @@ public class Ta06_module implements Serializable{
 	}
 
 	 /**
+ * 明细表名列表:T1,T2,T3,按PARENT_ID关联
+ */
+ private String detail_table;
+
+ /**
+ * @hibernate.property column="detail_table"
+ * @return Returns the detail_table.
+ */
+ public String getDetail_table() {
+    return detail_table;
+ }
+
+ public void setDetail_table(String detail_table) {
+    this.detail_table = detail_table;
+  }
+
+ /**
+ * 排序字段
+ */
+ private Long seq;
+
+ /**
+ * @hibernate.property column="seq"
+ * @return Returns the seq.
+ */
+ public Long getSeq() {
+    return seq;
+ }
+
+ public void setSeq(Long seq) {
+    this.seq = seq;
+  }
+
+ /**
+ * 扩展字段
+ */
+ private String extflag;
+
+ /**
+ * @hibernate.property column="extflag"
+ * @return Returns the extflag.
+ */
+ public String getExtflag() {
+    return extflag;
+ }
+
+ public void setExtflag(String extflag) {
+    this.extflag = extflag;
+  }
+
+ /**
+ * 扩展字段说明
+ */
+ private String extdesc;
+
+ /**
+ * @hibernate.property column="extdesc"
+ * @return Returns the extdesc.
+ */
+ public String getExtdesc() {
+    return extdesc;
+ }
+
+ public void setExtdesc(String extdesc) {
+    this.extdesc = extdesc;
+  }
+
+ /**
+ * 超期列表
+ */
+ private String outdate;
+
+ /**
+ * @hibernate.property column="outdate"
+ * @return Returns the outdate.
+ */
+ public String getOutdate() {
+    return outdate;
+ }
+
+ public void setOutdate(String outdate) {
+    this.outdate = outdate;
+  }
+
+ /**
  * 模块名称
  */
  private String name;
@@ -188,60 +273,6 @@ public class Ta06_module implements Serializable{
  public void setAux_table(String aux_table) {
     this.aux_table = aux_table;
   }
-
- /**
- * 明细表名列表:T1,T2,T3,按PARENT_ID关联
- */
- private String detail_table;
-
- /**
- * @hibernate.property column="detail_table"
- * @return Returns the detail_table.
- */
- public String getDetail_table() {
-    return detail_table;
- }
-
- public void setDetail_table(String detail_table) {
-    this.detail_table = detail_table;
-  }
-
- /**
- * 排序字段
- */
- private Long seq;
-
- /**
- * @hibernate.property column="seq"
- * @return Returns the seq.
- */
- public Long getSeq() {
-    return seq;
- }
-
- public void setSeq(Long seq) {
-    this.seq = seq;
-  }
- 
- private String extflag;
-
-public String getExtflag() {
-	return extflag;
-}
-
-public void setExtflag(String extflag) {
-	this.extflag = extflag;
-}
- 
-private String extdesc;
-
-public String getExtdesc() {
-	return extdesc;
-}
-
-public void setExtdesc(String extdesc) {
-	this.extdesc = extdesc;
-}
 
 
 }

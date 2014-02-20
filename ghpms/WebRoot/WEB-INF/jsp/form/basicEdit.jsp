@@ -28,6 +28,7 @@ function DiffLong(datestr1, datestr2) {
   var difference;
   var thishours;
   var thisminutes;
+  var thisseconds;
   var isLater = true;
 
   if (date1.getTime() > date2.getTime()) {
@@ -45,10 +46,12 @@ function DiffLong(datestr1, datestr2) {
 
   difference = difference - thishours * (1000 * 60 * 60 );
   thisminutes = Math.floor(difference / (1000 * 60 ));
-  alert(difference);
+  
+  difference=difference-thisminutes*(1000*60);
+  thisseconds=Math.floor(difference/1000);
 
 
-  var strRet = thisdays*24 + ':' + thishours + ':'+thisminutes;
+  var strRet = (thisdays*24  + thishours) + ':'+thisminutes+':'+thisseconds;
 
   return strRet;
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2014-02-14
+ * @author cmp_auto 2014-02-20
  * @hibernate.class table="Td31_glwhgc"
  */
 
@@ -13,7 +13,7 @@ public class Td31_glwhgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 649069734029131648L;
+	private static final long serialVersionUID = 482092501277233664L;
 
 	/**
 	 * 标识
@@ -139,6 +139,57 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
+ * 反馈工单时间[yyyy-MM-dd HH:mm:ss]
+ */
+ private Date fksj2;
+
+ /**
+ * @hibernate.property column="fksj2"
+ * @return Returns the fksj2.
+ */
+ public Date getFksj2() {
+    return fksj2;
+ }
+
+ public void setFksj2(Date fksj2) {
+    this.fksj2 = fksj2;
+  }
+
+ /**
+ * 紧急反馈时间[yyyy-MM-dd HH:mm:ss]
+ */
+ private Date fksj3;
+
+ /**
+ * @hibernate.property column="fksj3"
+ * @return Returns the fksj3.
+ */
+ public Date getFksj3() {
+    return fksj3;
+ }
+
+ public void setFksj3(Date fksj3) {
+    this.fksj3 = fksj3;
+  }
+
+ /**
+ * 反馈调度时间[yyyy-MM-dd HH:mm:ss]
+ */
+ private Date fksj1;
+
+ /**
+ * @hibernate.property column="fksj1"
+ * @return Returns the fksj1.
+ */
+ public Date getFksj1() {
+    return fksj1;
+ }
+
+ public void setFksj1(Date fksj1) {
+    this.fksj1 = fksj1;
+  }
+
+ /**
  * 歌华工程编号
  */
  private String ghbh;
@@ -258,7 +309,7 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
- * 报修时间
+ * 报修时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date bxsj;
 
@@ -394,7 +445,7 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
- * 起始时间
+ * 起始时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date qssj;
 
@@ -411,7 +462,7 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
- * 终止时间
+ * 终止时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date zzsj;
 
@@ -428,7 +479,7 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
- * 到现场时间
+ * 到现场时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date dxcsj;
 
@@ -547,7 +598,7 @@ public class Td31_glwhgc implements Serializable{
   }
 
  /**
- * 信号恢复时间
+ * 信号恢复时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date xxhfsj;
 
