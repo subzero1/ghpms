@@ -11,6 +11,7 @@ $(function(){
 	if(bo){
 		//计算列表高度
 		var temp_h = navTab._panelBox.height() - 320;
+		alert(temp_h);
 		bo.height(temp_h);
 	}
 	
