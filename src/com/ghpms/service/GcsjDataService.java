@@ -20,5 +20,28 @@ public interface GcsjDataService {
 	 */
 	public List getOutDateList(Ta03_user user);
 	
+	/**
+	 * 获得借料超期提醒列表
+	 * @param user
+	 * @return List
+	 */
 	public List getLendOutDateList(Ta03_user user);
+	/**
+	 * 反馈调度中心提醒列表
+	 * @param user
+	 * @return List
+	 */
+	public List getFkddList(Ta03_user user);
+	/**
+	 * 反馈工单列表
+	 * @param user
+	 * @return List
+	 */
+	public List getFkgdList(Ta03_user user);
+	/**
+	 * 紧急反馈列表
+	 * @param user
+	 * @return List
+	 */
+	public List getFkjjList(Ta03_user user);
 }

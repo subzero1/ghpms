@@ -67,6 +67,30 @@
   />
 
   <property
+  name="fksj2"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fksj2"
+  />
+
+  <property
+  name="fksj3"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fksj3"
+  />
+
+  <property
+  name="fksj1"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="fksj1"
+  />
+
+  <property
   name="ghbh"
   type="java.lang.String"
   update="true"

@@ -19,6 +19,46 @@
         </id>
 
    <property
+  name="detail_table"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="detail_table"
+  />
+
+  <property
+  name="seq"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="seq"
+  />
+
+  <property
+  name="extflag"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="extflag"
+  />
+
+  <property
+  name="extdesc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="extdesc"
+  />
+
+  <property
+  name="outdate"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="outdate"
+  />
+
+  <property
   name="name"
   type="java.lang.String"
   update="true"
@@ -90,38 +130,7 @@
   column="aux_table"
   />
 
-  <property
-  name="detail_table"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="detail_table"
-  />
 
-  <property
-  name="seq"
-  type="java.lang.Long"
-  update="true"
-  insert="true"
-  column="seq"
-  />
-
-
-  <property
-  name="extflag"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="extflag"
-  />
-  
-  <property
-  name="extdesc"
-  type="java.lang.String"
-  update="true"
-  insert="true"
-  column="extdesc"
-  />
     </class>
 
 </hibernate-mapping>
