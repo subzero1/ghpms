@@ -11,7 +11,6 @@ $(function(){
 	if(bo){
 		//计算列表高度
 		var temp_h = navTab._panelBox.height() - 320;
-		alert(temp_h+'面板高度'+navTab._panelBox.height());
 		bo.height(temp_h);
 	}
 	
@@ -34,7 +33,7 @@ $(function(){
 			<li class="line">line</li>
 		</ul>
 	</div>
-	<div class="pageContent"  style="overflow-y:auto;overflow-x:hidden;height:300px;">
+	<div class="pageContent"  style="overflow-y:auto;overflow-x:hidden;">
 		<table class="table" width="100%">
 			<thead>
 				<tr>
@@ -144,7 +143,7 @@ $(function(){
 					</tr>
 				</c:forEach> 
 				<c:if test="${offset<15}">
-				<c:forEach begin="${offset}" end="9">
+				<c:forEach begin="${offset}" end="5">
 				<tr>
 					<c:forEach begin="1" end="6">
 				      <td></td>
