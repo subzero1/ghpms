@@ -38,11 +38,11 @@ $(function(){
 			<thead>
 				<tr>
 					<th width="25"></th>
-					<th width="100">表单类别</th>
+					<th width="160">表单类别</th>
 					<th width="">名称</th>
 					<th width="128">歌华编号</th>
-					<th width="100">视宽编号</th>
-					<th width="100">计划时间</th>
+					<th width="128">视宽编号</th>
+					<th width="128">计划时间</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -142,8 +142,8 @@ $(function(){
 						<td style="color: red;"><fmt:formatDate value="${obj.fksj3}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 					</tr>
 				</c:forEach> 
-				<c:if test="${offset<20}">
-				<c:forEach begin="${offset}" end="15">
+				<c:if test="${offset<15}">
+				<c:forEach begin="${offset}" end="9">
 				<tr>
 					<c:forEach begin="1" end="6">
 				      <td></td>
@@ -155,7 +155,7 @@ $(function(){
 		</table>
 		<div class="panelBar">
 			<div class="pages">
-				<span>共<c:if test="${empty totalCount}">0</c:if><c:if test="${!empty totalCount}">0</c:if>条 </span>
+				 <span>共${offset}条 </span>
 			</div>
 		</div>
 	</div>
