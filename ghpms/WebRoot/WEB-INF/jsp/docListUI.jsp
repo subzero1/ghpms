@@ -143,7 +143,7 @@ $(function(){
 					</tr>
 				</c:forEach> 
 				<c:if test="${offset<20}">
-				<c:forEach begin="${offset}" end="20">
+				<c:forEach begin="${offset}" end="15">
 				<tr>
 					<c:forEach begin="1" end="6">
 				      <td></td>
