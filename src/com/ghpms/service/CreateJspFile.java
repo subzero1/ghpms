@@ -20,12 +20,6 @@ public interface CreateJspFile {
 	public void AutoCreateJspFile(String path,Long module_id);
 	
 	/**
-	 * 生成表单,分左右
-	 * @param request
-	 * @param module_id void
-	 */
-	public void AutoCreateJspFileByTwo(HttpServletRequest request,Long module_id) ;
-	/**
 	 * 生成录入文件
 	 * @param request
 	 * @param paraMap void
@@ -45,4 +39,11 @@ public interface CreateJspFile {
 	 * @param paraMap void
 	 */
 	public void getNode(HttpServletRequest request,Map paraMap);
+	
+	/**
+	 * 生成大表单
+	 * @param path
+	 * @param module_id void
+	 */
+	public void createJspFileToForm(String path,Long node_id);
 }

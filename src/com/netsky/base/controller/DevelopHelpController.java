@@ -578,6 +578,14 @@ public class DevelopHelpController {
 			if (t_datatype.equals("DATE")) {
 				ta08.setAlign("center");
 				ta08.setWidth(100L);
+				//日期+时间
+				if (t_comment.contains("[yyyy-MM-dd")||t_comment.contains("[HH:mm")) {
+					RegExp regExp=new RegExp();
+//					ta08.setData_type(5L);
+//					ta07.setFormat(regExp.pickup(".*\\[(.*)\\].*", t_comment));
+					ta08.setComments(regExp.pickup("(.*)\\[.*", t_comment));
+				}
+			
 				ta08.setSearchtype(new Long(5));// 日期
 			} else if (t_datatype.equals("NUMBER") && t_datalength % 1 == 0) {
 				ta08.setAlign("center");

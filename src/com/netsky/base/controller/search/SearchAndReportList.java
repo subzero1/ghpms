@@ -96,8 +96,8 @@ public class SearchAndReportList {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("/search/report.do")
-	public ModelAndView Report(HttpServletRequest request, HttpServletResponse response)
-			throws UnsupportedEncodingException {
+	public ModelAndView Report(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		String HSqlWhere;
 		String HSqlFrom;
@@ -110,14 +110,16 @@ public class SearchAndReportList {
 		/**
 		 * 取表单列表
 		 */
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
+		List modules = queryService
+				.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
 		request.setAttribute("modules", modules);
-		
+
 		/**
 		 * 输出结果列表
 		 */
 		List<List<Td_Struct>> result = new ArrayList<List<Td_Struct>>();
-		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
+		if (request.getParameterValues("ids") == null
+				|| request.getParameterValues("ids").length == 0) {
 			/**
 			 * 默认显示行
 			 */
@@ -128,8 +130,10 @@ public class SearchAndReportList {
 			/**
 			 * 当前页，默认第一页
 			 */
-			if (request.getParameter("pageRowSize") != null && request.getParameter("pageRowSize").length() > 0) {
-				pageRowSize = Integer.parseInt(request.getParameter("pageRowSize"));
+			if (request.getParameter("pageRowSize") != null
+					&& request.getParameter("pageRowSize").length() > 0) {
+				pageRowSize = Integer.parseInt(request
+						.getParameter("pageRowSize"));
 			}
 
 			/**
@@ -173,9 +177,11 @@ public class SearchAndReportList {
 		List<String[]> searchField = new ArrayList<String[]>();
 		try {
 			HSqlWhere = this.makeSearch(request, searchStr, searchField);
-			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(request
-					.getParameter("ids")));
-			tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(
+					Ta08_reportfield.class, new Long(request
+							.getParameter("ids")));
+			tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			HSqlFrom = " from " + tableName + " " + tableName;
 			HSqlSelect = "select ";
 			HSqlGroup = " group by ";
@@ -194,7 +200,8 @@ public class SearchAndReportList {
 			if ("".equals(sum_ids)) {
 				sum_ids = "-1";
 			}
-			String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in (" + sum_ids + ")";
+			String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in ("
+					+ sum_ids + ")";
 			ResultObject sum_ro = queryService.search(HSql);
 			while (sum_ro.next()) {
 				ta08 = (Ta08_reportfield) sum_ro.get("ta08");
@@ -209,11 +216,13 @@ public class SearchAndReportList {
 			String statistic[] = request.getParameterValues("statistic");
 			String way[] = request.getParameterValues("way");
 
-			if (statistic != null && way != null && statistic.length == way.length) {
+			if (statistic != null && way != null
+					&& statistic.length == way.length) {
 				for (int i = 0; i < statistic.length; i++) {
 					if (statistic[i] != null && statistic[i].length() > 0) {
-						ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, Long
-								.valueOf(statistic[i]));
+						ta08 = (Ta08_reportfield) queryService.searchById(
+								Ta08_reportfield.class, Long
+										.valueOf(statistic[i]));
 						if ("X".equals(way[i])) {
 							XList.add(ta08);
 							XValueList.add(new ArrayList<String>());
@@ -230,7 +239,8 @@ public class SearchAndReportList {
 					if (HSqlWhere.indexOf("where") != -1) {
 						HSqlWhere += " and " + ta08.getName() + " is not null ";
 					} else {
-						HSqlWhere += " where " + ta08.getName() + " is not null ";
+						HSqlWhere += " where " + ta08.getName()
+								+ " is not null ";
 					}
 				}
 				for (int i = 0; i < XList.size(); i++) {
@@ -240,7 +250,8 @@ public class SearchAndReportList {
 					if (HSqlWhere.indexOf("where") != -1) {
 						HSqlWhere += " and " + ta08.getName() + " is not null ";
 					} else {
-						HSqlWhere += " where " + ta08.getName() + " is not null ";
+						HSqlWhere += " where " + ta08.getName()
+								+ " is not null ";
 					}
 				}
 				HSqlGroup = HSqlGroup.replaceFirst(",", "");
@@ -262,7 +273,8 @@ public class SearchAndReportList {
 			/**
 			 * 统计
 			 */
-			ResultObject ro = queryService.search(HSqlSelect + HSqlFrom + HSqlWhere + HSqlGroup + HSqlOrder);
+			ResultObject ro = queryService.search(HSqlSelect + HSqlFrom
+					+ HSqlWhere + HSqlGroup + HSqlOrder);
 			result_map = new HashMap<String, List<String>>();
 			/**
 			 * 处理结果集
@@ -274,7 +286,8 @@ public class SearchAndReportList {
 					ta08 = (Ta08_reportfield) sum_ro.get("ta08");
 					Object o = ro.get("sum(" + ta08.getName() + ")");
 					if (o != null) {
-						value.add(NumberFormatUtil.roundToString(o.toString(), 0));
+						value.add(NumberFormatUtil.roundToString(o.toString(),
+								0));
 					} else {
 						value.add("");
 					}
@@ -284,20 +297,28 @@ public class SearchAndReportList {
 				for (int i = 0; i < YList.size(); i++) {
 					ta08 = YList.get(i);
 					if (!YValueList.get(i).contains(
-							(ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""))) {
-						YValueList.get(i)
-								.add((ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""));
+							(ro.get(ta08.getName()) != null ? ro.get(
+									ta08.getName()).toString() : ""))) {
+						YValueList.get(i).add(
+								(ro.get(ta08.getName()) != null ? ro.get(
+										ta08.getName()).toString() : ""));
 					}
-					key += "," + (ro.get(ta08.getName()) != null ? ro.get(ta08.getName()) : "");
+					key += ","
+							+ (ro.get(ta08.getName()) != null ? ro.get(ta08
+									.getName()) : "");
 				}
 				for (int i = 0; i < XList.size(); i++) {
 					ta08 = XList.get(i);
 					if (!XValueList.get(i).contains(
-							(ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""))) {
-						XValueList.get(i)
-								.add((ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""));
+							(ro.get(ta08.getName()) != null ? ro.get(
+									ta08.getName()).toString() : ""))) {
+						XValueList.get(i).add(
+								(ro.get(ta08.getName()) != null ? ro.get(
+										ta08.getName()).toString() : ""));
 					}
-					key += "," + (ro.get(ta08.getName()) != null ? ro.get(ta08.getName()) : "");
+					key += ","
+							+ (ro.get(ta08.getName()) != null ? ro.get(ta08
+									.getName()) : "");
 				}
 				key = key.replaceFirst(",", "");
 				value.add("" + ro.get("count(" + tableName + ".id)"));
@@ -328,7 +349,8 @@ public class SearchAndReportList {
 				}
 				if (i < XValueList.size()) {
 					for (int j = 0; j < XResult.size(); j++) {
-						String xTitle[] = XResult.get(j).replaceAll(",", " , ").split(",");
+						String xTitle[] = XResult.get(j).replaceAll(",", " , ")
+								.split(",");
 						for (int k = 0; k < sum_ro.getLength(); k++) {
 							Td_Struct t = new Td_Struct();
 							t.value = xTitle[i];
@@ -383,7 +405,8 @@ public class SearchAndReportList {
 					/**
 					 * 添加y坐标标题
 					 */
-					String yTitle[] = YResult.get(i).replaceAll(",", " , ").split(",");
+					String yTitle[] = YResult.get(i).replaceAll(",", " , ")
+							.split(",");
 					for (int l = 0; l < yTitle.length; l++) {
 						Td_Struct t = new Td_Struct();
 						t.value = yTitle[l].trim();
@@ -395,12 +418,14 @@ public class SearchAndReportList {
 					 */
 					if (XResult.size() > 0) {
 						for (int j = 0; j < XResult.size(); j++) {
-							List<String> tds = result_map.get(YResult.get(i) + "," + XResult.get(j));
+							List<String> tds = result_map.get(YResult.get(i)
+									+ "," + XResult.get(j));
 							if (tds == null || tds.size() < sum_ro.getLength()) {
 								for (int k = 0; k <= sum_ro.getLength(); k++) {
 									Td_Struct t = new Td_Struct();
 									t.title = false;
-									t.param = this.setParam(YList, XList, YResult.get(i), XResult.get(j));
+									t.param = this.setParam(YList, XList,
+											YResult.get(i), XResult.get(j));
 									tdList.add(t);
 								}
 							} else {
@@ -408,7 +433,8 @@ public class SearchAndReportList {
 									Td_Struct t = new Td_Struct();
 									t.value = tds.get(k);
 									t.title = false;
-									t.param = this.setParam(YList, XList, YResult.get(i), XResult.get(j));
+									t.param = this.setParam(YList, XList,
+											YResult.get(i), XResult.get(j));
 									tdList.add(t);
 								}
 							}
@@ -426,7 +452,8 @@ public class SearchAndReportList {
 								Td_Struct t = new Td_Struct();
 								t.value = tds.get(k);
 								t.title = false;
-								t.param = this.setParam(YList, XList, YResult.get(i), null);
+								t.param = this.setParam(YList, XList, YResult
+										.get(i), null);
 								tdList.add(t);
 							}
 						}
@@ -452,7 +479,8 @@ public class SearchAndReportList {
 								Td_Struct t = new Td_Struct();
 								t.value = tds.get(k);
 								t.title = false;
-								t.param = this.setParam(YList, XList, null, XResult.get(j));
+								t.param = this.setParam(YList, XList, null,
+										XResult.get(j));
 								tdList.add(t);
 							}
 						}
@@ -497,7 +525,8 @@ public class SearchAndReportList {
 						Td_Struct t1 = result.get(k).get(j);
 						if (!t1.show) {
 							continue;
-						} else if ((t1.value == null && t2.value == null) || t1.value.equals(t2.value)) {
+						} else if ((t1.value == null && t2.value == null)
+								|| t1.value.equals(t2.value)) {
 							if (t1.rowspan != null)
 								t1.rowspan++;
 							else
@@ -521,7 +550,8 @@ public class SearchAndReportList {
 						Td_Struct t1 = result.get(i).get(k);
 						if (!t1.show) {
 							continue;
-						} else if ((t1.value == null && t2.value == null) || t1.value.equals(t2.value)) {
+						} else if ((t1.value == null && t2.value == null)
+								|| t1.value.equals(t2.value)) {
 							if (t1.colspan != null)
 								t1.colspan++;
 							else
@@ -557,11 +587,15 @@ public class SearchAndReportList {
 						sumList.add(result.get(j).get(i).value);
 					} else {
 						String str = sumList.get(i - YList.size()) != null
-								&& sumList.get(i - YList.size()).length() > 0 ? sumList.get(i - YList.size()) : "0";
-						String str2 = result.get(j).get(i).value != null && result.get(j).get(i).value.length() > 0 ? result
+								&& sumList.get(i - YList.size()).length() > 0 ? sumList
+								.get(i - YList.size())
+								: "0";
+						String str2 = result.get(j).get(i).value != null
+								&& result.get(j).get(i).value.length() > 0 ? result
 								.get(j).get(i).value
 								: "0";
-						sumList.set(i - YList.size(), NumberFormatUtil.addToString(str, str2));
+						sumList.set(i - YList.size(), NumberFormatUtil
+								.addToString(str, str2));
 					}
 				}
 			}
@@ -575,14 +609,16 @@ public class SearchAndReportList {
 
 			result.add(row);
 
-			request.setAttribute("searchStr", searchStr.toString());
+			request.setAttribute("", searchStr.toString());
 			request.setAttribute("sum", request.getParameterValues("sum"));
 			request.setAttribute("YList", YList);
 			request.setAttribute("XList", XList);
-			request.setAttribute("sqlWhere", HSqlWhere.replaceAll("\"", "&quot;"));
+			request.setAttribute("sqlWhere", HSqlWhere.replaceAll("\"",
+					"&quot;"));
 			request.setAttribute("resultList", result);
 		} catch (Exception ex) {
-			return exceptionService.exceptionControl("ProjectReportList", "工程报表统计错误", ex);
+			return exceptionService.exceptionControl("ProjectReportList",
+					"工程报表统计错误", ex);
 		}
 		return new ModelAndView("/WEB-INF/jsp/search/report.jsp");
 	}
@@ -597,54 +633,68 @@ public class SearchAndReportList {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("/search/reportDetail.do")
-	public ModelAndView ReportDetail(HttpServletRequest request, HttpServletResponse response)
-			throws UnsupportedEncodingException {
+	public ModelAndView ReportDetail(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		ResultObject ro;
 		QueryBuilder queryBuilder;
 		List<?> fieldList = null;
 		List<List<Td_Struct>> resultList = null;
 		Long module_id;
-		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+		if (request.getParameter("module_id") != null
+				&& !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
 			module_id = new Long(100);
 		}
-		if (request.getParameter("ids") == null || request.getParameter("ids").length() == 0) {
+		if (request.getParameter("ids") == null
+				|| request.getParameter("ids").length() == 0) {
 			return null;
 		}
 		List<String> idList;
 		try {
 			String HSqlWhere = request.getParameter("sqlWhere");
 			if (HSqlWhere == null || HSqlWhere.length() == 0) {
-				HSqlWhere = request.getParameter("str").replaceFirst("and", "where");
+				HSqlWhere = request.getParameter("str").replaceFirst("and",
+						"where");
 			} else {
 				HSqlWhere += request.getParameter("str");
 			}
 			Ta08_reportfield ta08;
-			if (module_id.longValue() == 100 && request.getParameter("gcstr") != null
+			if (module_id.longValue() == 100
+					&& request.getParameter("gcstr") != null
 					&& request.getParameter("gcstr").length() > 0) {
 				if (HSqlWhere == null || HSqlWhere.length() == 0) {
-					HSqlWhere = " where Td00_gcxx.gcmc like '%" + request.getParameter("gcstr")
-							+ "%' or Td00_gcxx.gcbh like '%" + request.getParameter("gcstr") + "%'";
+					HSqlWhere = " where Td00_gcxx.gcmc like '%"
+							+ request.getParameter("gcstr")
+							+ "%' or Td00_gcxx.gcbh like '%"
+							+ request.getParameter("gcstr") + "%'";
 				} else {
-					HSqlWhere += " and (Td00_gcxx.gcmc like '%" + request.getParameter("gcstr")
-							+ "%' or Td00_gcxx.gcbh like '%" + request.getParameter("gcstr") + "%')";
+					HSqlWhere += " and (Td00_gcxx.gcmc like '%"
+							+ request.getParameter("gcstr")
+							+ "%' or Td00_gcxx.gcbh like '%"
+							+ request.getParameter("gcstr") + "%')";
 				}
 			}
-			ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(request
-					.getParameter("ids")));
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			ta08 = (Ta08_reportfield) queryService.searchById(
+					Ta08_reportfield.class, new Long(request
+							.getParameter("ids")));
+			String tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			String HSqlFrom = " from " + tableName + " " + tableName;
 			String HSqlSelect = "select " + tableName;
 			String ids = "";
 			idList = new ArrayList<String>();
-			for (int i = 0; request.getParameterValues("ids") != null && i < request.getParameterValues("ids").length; i++) {
+			for (int i = 0; request.getParameterValues("ids") != null
+					&& i < request.getParameterValues("ids").length; i++) {
 				ids += "," + request.getParameterValues("ids")[i];
 				idList.add(request.getParameterValues("ids")[i]);
 			}
-			String HSql = " from Ta08_reportfield where (comments in ('表单名称','表单编号','项目名称','机房名称','计划完成时间') and module_id =" + module_id
-					+ ") or id in(" + ids.replaceFirst(",", "") + ") order by ord";
+			String HSql = " from Ta08_reportfield where (comments in ('表单名称','表单编号','项目名称','机房名称','计划完成时间') and module_id ="
+					+ module_id
+					+ ") or id in("
+					+ ids.replaceFirst(",", "")
+					+ ") order by ord";
 			fieldList = queryService.searchList(HSql);
 
 			ro = queryService.search(HSqlSelect + HSqlFrom + HSqlWhere);
@@ -661,12 +711,15 @@ public class SearchAndReportList {
 					result = PropertyInject.getProperty(o, ta08.getName());
 					field = new Td_Struct();
 					if (result instanceof Double) {
-						field.value = NumberFormatUtil.roundToString((Double) result);
+						field.value = NumberFormatUtil
+								.roundToString((Double) result);
 					} else if (result instanceof java.util.Date) {
-						field.value = DateFormatUtil.FormatDate((java.util.Date) result);
+						field.value = DateFormatUtil
+								.FormatDate((java.util.Date) result);
 					} else {
 						if (result != null)
-							field.value = StringFormatUtil.format(result.toString());
+							field.value = StringFormatUtil.format(result
+									.toString());
 						else
 							field.value = "";
 					}
@@ -677,12 +730,13 @@ public class SearchAndReportList {
 				resultList.add(rowList);
 			}
 		} catch (Exception ex) {
-			return exceptionService.exceptionControl("ProjectReportList", "报表明细错误", ex);
+			return exceptionService.exceptionControl("ProjectReportList",
+					"报表明细错误", ex);
 		}
 		/**
 		 * 处理表格宽度
 		 */
-		//Integer tablewidth = new Integer(0);
+		// Integer tablewidth = new Integer(0);
 		Long tablewidth = new Long(0L);
 		for (int i = 0; i < fieldList.size(); i++) {
 			Ta08_reportfield ta08 = (Ta08_reportfield) fieldList.get(i);
@@ -713,56 +767,70 @@ public class SearchAndReportList {
 	 * @throws WriteException
 	 */
 	@RequestMapping("/search/detailExport.do")
-	public void detailExport(HttpServletRequest request, HttpServletResponse response) throws Exception,
-			WriteException {
+	public void detailExport(HttpServletRequest request,
+			HttpServletResponse response) throws Exception, WriteException {
 		request.setCharacterEncoding("utf-8");
 		ResultObject ro;
 		List<?> fieldList = null;
 		Long module_id;
-		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+		if (request.getParameter("module_id") != null
+				&& !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
 			module_id = new Long(100);
 		}
-		if (request.getParameter("ids") == null || request.getParameter("ids").length() == 0) {
+		if (request.getParameter("ids") == null
+				|| request.getParameter("ids").length() == 0) {
 			return;
 		}
 		List<String> idList;
 
 		String HSqlWhere = request.getParameter("sqlWhere");
 		if (HSqlWhere == null || HSqlWhere.length() == 0) {
-			HSqlWhere = request.getParameter("str").replaceFirst("and", "where");
+			HSqlWhere = request.getParameter("str")
+					.replaceFirst("and", "where");
 		} else {
 			HSqlWhere += request.getParameter("str");
 		}
 		Ta08_reportfield ta08;
-		if (module_id.longValue() == 100 && request.getParameter("gcstr") != null
+		if (module_id.longValue() == 100
+				&& request.getParameter("gcstr") != null
 				&& request.getParameter("gcstr").length() > 0) {
 			if (HSqlWhere == null || HSqlWhere.length() == 0) {
-				HSqlWhere = " where Td00_gcxx.gcmc like '%" + request.getParameter("gcstr")
-						+ "%' or Td00_gcxx.gcbh like '%" + request.getParameter("gcstr") + "%'";
+				HSqlWhere = " where Td00_gcxx.gcmc like '%"
+						+ request.getParameter("gcstr")
+						+ "%' or Td00_gcxx.gcbh like '%"
+						+ request.getParameter("gcstr") + "%'";
 			} else {
-				HSqlWhere += " and (Td00_gcxx.gcmc like '%" + request.getParameter("gcstr")
-						+ "%' or Td00_gcxx.gcbh like '%" + request.getParameter("gcstr") + "%')";
+				HSqlWhere += " and (Td00_gcxx.gcmc like '%"
+						+ request.getParameter("gcstr")
+						+ "%' or Td00_gcxx.gcbh like '%"
+						+ request.getParameter("gcstr") + "%')";
 			}
 		}
-		ta08 = (Ta08_reportfield) queryService
-				.searchById(Ta08_reportfield.class, new Long(request.getParameter("ids")));
-		String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+		ta08 = (Ta08_reportfield) queryService.searchById(
+				Ta08_reportfield.class, new Long(request.getParameter("ids")));
+		String tableName = ta08.getObject_name().substring(
+				ta08.getObject_name().lastIndexOf(".") + 1);
 		String HSqlFrom = " from " + tableName + " " + tableName;
 		String HSqlSelect = "select ";
 		String ids = "";
 		idList = new ArrayList<String>();
-		for (int i = 0; request.getParameterValues("ids") != null && i < request.getParameterValues("ids").length; i++) {
+		for (int i = 0; request.getParameterValues("ids") != null
+				&& i < request.getParameterValues("ids").length; i++) {
 			ids += "," + request.getParameterValues("ids")[i];
 			idList.add(request.getParameterValues("ids")[i]);
 		}
-		String HSql = " from Ta08_reportfield where (comments in ('工程编号','工程名称') and module_id =" + module_id
-				+ ") or id in(" + ids.replaceFirst(",", "") + ") order by ord";
+		String HSql = " from Ta08_reportfield where (comments in ('工程编号','工程名称') and module_id ="
+				+ module_id
+				+ ") or id in("
+				+ ids.replaceFirst(",", "")
+				+ ") order by ord";
 		fieldList = queryService.searchList(HSql);
 		for (int i = 0; i < fieldList.size(); i++) {
 			ta08 = (Ta08_reportfield) fieldList.get(i);
-			HSqlSelect += "," + tableName + "." + ta08.getName() + " as " + ta08.getComments();
+			HSqlSelect += "," + tableName + "." + ta08.getName() + " as "
+					+ ta08.getComments();
 		}
 
 		HSqlSelect = HSqlSelect.replaceFirst(",", "");
@@ -770,9 +838,11 @@ public class SearchAndReportList {
 
 		String file_name = "查询结果导出.xls";
 		response.reset();
-		response.setContentType("application/vnd.ms-excel;charset=GBK;filename="
-				+ new String(file_name.getBytes("GBK"), "iso8859-1"));
-		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
+		response
+				.setContentType("application/vnd.ms-excel;charset=GBK;filename="
+						+ new String(file_name.getBytes("GBK"), "iso8859-1"));
+		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response
+				.getOutputStream());
 		jxl.write.WritableSheet ws = wwb.createSheet("统计表", 0);
 		ExportExcel.Ro2Excel(ro, ws);
 		wwb.write();
@@ -840,8 +910,8 @@ public class SearchAndReportList {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("/search/searchList.do")
-	public ModelAndView SearchList(HttpServletRequest request, HttpServletResponse response)
-			throws UnsupportedEncodingException {
+	public ModelAndView SearchList(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		String[] columns = request.getParameterValues("fields_select");
 		StringBuffer searchStr = new StringBuffer();
@@ -857,52 +927,59 @@ public class SearchAndReportList {
 		int pageRowSize = 20;
 		int totalPages = 1;
 		int totalRows = 0;
-		Integer page = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer page = convertUtil
+				.toInteger(request.getParameter("pageNum"), 1);
 		/**
 		 * 处理分页数据
 		 */
 
-		if (request.getParameter("numPerPage") != null && request.getParameter("numPerPage").length() > 0) {
+		if (request.getParameter("numPerPage") != null
+				&& request.getParameter("numPerPage").length() > 0) {
 			pageRowSize = Integer.parseInt(request.getParameter("numPerPage"));
 		}
 
-		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+		if (request.getParameter("module_id") != null
+				&& !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
 			module_id = new Long(100);
 		}
-		
+
 		/**
 		 * 取表单列表
 		 */
 		request.setAttribute("module_name", module_name);
 		request.setAttribute("module_id", module_id);
-		
-		List modules=queryService.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
+
+		List modules = queryService
+				.searchList("select ta06 from Ta06_module ta06 order by ta06.id ");
 		request.setAttribute("modules", modules);
 
 		List<String[]> searchField = new ArrayList<String[]>();
 
 		List<List<Td_Struct>> resultList = null;
-		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
+		if (request.getParameterValues("ids") == null
+				|| request.getParameterValues("ids").length == 0) {
 			request.setAttribute("pageRowSize", pageRowSize);
 			request.setAttribute("totalRows", totalRows);
 			request.setAttribute("totalPages", totalPages);
 			request.setAttribute("page", page);
 			return new ModelAndView("/WEB-INF/jsp/search/searchList.jsp");
 		}
-		if (request.getParameter("flow_id") != null && request.getParameter("flow_id").length() > 0) {
+		if (request.getParameter("flow_id") != null
+				&& request.getParameter("flow_id").length() > 0) {
 			try {
 				flow_id = new Long(request.getParameter("flow_id"));
 			} catch (NumberFormatException e) {
-				return exceptionService.exceptionControl("searchList", "错误的flow_id格式", e);
+				return exceptionService.exceptionControl("searchList",
+						"错误的flow_id格式", e);
 			}
 		} else {
 			flow_id = null;
 		}
 
 		try {
-			
+
 			Ta08_reportfield ta08 = null;
 			if (columns == null || columns.length == 0) {
 				/**
@@ -912,29 +989,32 @@ public class SearchAndReportList {
 				queryBuilder.eq("showflag", new Long(1));
 				queryBuilder.eq("module_id", module_id);
 				queryBuilder.addOrderBy(Order.asc("ord"));
-				fieldList = (List<Ta08_reportfield>) queryService.searchList(queryBuilder);
+				fieldList = (List<Ta08_reportfield>) queryService
+						.searchList(queryBuilder);
 			} else {
 				/**
 				 * 获取选中查询字段
 				 */
 				fieldList = new ArrayList<Ta08_reportfield>();
 				for (int i = 0; i < columns.length; i++) {
-					Ta08_reportfield o = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, Long
-							.valueOf(columns[i]));
+					Ta08_reportfield o = (Ta08_reportfield) queryService
+							.searchById(Ta08_reportfield.class, Long
+									.valueOf(columns[i]));
 					fieldList.add(o);
 				}
 
 			}
-			
-			//create select data sql
+
+			// create select data sql
 			String HSqlWhere = this.makeSearch(request, searchStr, searchField);
 			ta08 = fieldList.get(0);
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			String tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			String HSqlFrom = " from " + tableName + " " + tableName;
 			String HSqlSelect = "select " + tableName;
-			
-			
-			ro = queryService.searchByPage(HSqlSelect + HSqlFrom + HSqlWhere, page, pageRowSize);
+
+			ro = queryService.searchByPage(HSqlSelect + HSqlFrom + HSqlWhere,
+					page, pageRowSize);
 			totalRows = ro.getTotalRows();
 			totalPages = ro.getTotalPages();
 			request.setAttribute("totalRows", totalRows);
@@ -955,12 +1035,15 @@ public class SearchAndReportList {
 					result = PropertyInject.getProperty(o, ta08.getName());
 					field = new Td_Struct();
 					if (result instanceof Double) {
-						field.value = NumberFormatUtil.roundToString((Double) result);
+						field.value = NumberFormatUtil
+								.roundToString((Double) result);
 					} else if (result instanceof java.util.Date) {
-						field.value = DateFormatUtil.FormatDate((java.util.Date) result);
+						field.value = DateFormatUtil
+								.FormatDate((java.util.Date) result);
 					} else {
 						if (result != null)
-							field.value = StringFormatUtil.format(result.toString());
+							field.value = StringFormatUtil.format(result
+									.toString());
 						else
 							field.value = "";
 					}
@@ -971,7 +1054,8 @@ public class SearchAndReportList {
 				resultList.add(rowList);
 			}
 		} catch (Exception ex) {
-			return exceptionService.exceptionControl("SearchList", "查询列表错误", ex);
+			return exceptionService
+					.exceptionControl("SearchList", "查询列表错误", ex);
 		}
 
 		/**
@@ -1008,8 +1092,8 @@ public class SearchAndReportList {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("/search/searchListExport.do")
-	public void searchListExport(HttpServletRequest request, HttpServletResponse response)
-			throws UnsupportedEncodingException {
+	public void searchListExport(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		String[] columns = request.getParameterValues("fields_select");
 		StringBuffer searchStr = new StringBuffer();
@@ -1017,19 +1101,23 @@ public class SearchAndReportList {
 		QueryBuilder queryBuilder;
 		Long module_id;
 		List<Ta08_reportfield> fieldList = null;
-		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
+		if (request.getParameterValues("ids") == null
+				|| request.getParameterValues("ids").length == 0) {
 			return;
 		}
-		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+		if (request.getParameter("module_id") != null
+				&& !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
 			module_id = new Long(101);
 		}
 		try {
 			String HSqlWhere = this.makeSearch(request, searchStr, null);
-			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(request
-					.getParameter("ids")));
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(
+					Ta08_reportfield.class, new Long(request
+							.getParameter("ids")));
+			String tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			String HSqlFrom = " from " + tableName + " " + tableName;
 			String HSqlSelect = "select ";
 			if (columns == null || columns.length == 0) {
@@ -1040,15 +1128,17 @@ public class SearchAndReportList {
 				queryBuilder.eq("showflag", new Long(1));
 				queryBuilder.eq("module_id", module_id);
 				queryBuilder.addOrderBy(Order.asc("ord"));
-				fieldList = (List<Ta08_reportfield>) queryService.searchList(queryBuilder);
+				fieldList = (List<Ta08_reportfield>) queryService
+						.searchList(queryBuilder);
 			} else {
 				/**
 				 * 获取选中查询字段
 				 */
 				fieldList = new ArrayList<Ta08_reportfield>();
 				for (int i = 0; i < columns.length; i++) {
-					Ta08_reportfield o = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, Long
-							.valueOf(columns[i]));
+					Ta08_reportfield o = (Ta08_reportfield) queryService
+							.searchById(Ta08_reportfield.class, Long
+									.valueOf(columns[i]));
 					fieldList.add(o);
 				}
 
@@ -1056,18 +1146,21 @@ public class SearchAndReportList {
 			List titlesList = new LinkedList();
 			for (int i = 0; i < fieldList.size(); i++) {
 				ta08 = fieldList.get(i);
-				HSqlSelect += "," + tableName + "." + ta08.getName() ;
+				HSqlSelect += "," + tableName + "." + ta08.getName();
 				titlesList.add(ta08.getComments());
 			}
 
 			HSqlSelect = HSqlSelect.replaceFirst(",", "");
-			List resultList = queryService.searchList(HSqlSelect + HSqlFrom + HSqlWhere);
+			List resultList = queryService.searchList(HSqlSelect + HSqlFrom
+					+ HSqlWhere);
 
 			String file_name = "查询结果导出.xls";
 			response.reset();
-			response.setContentType("application/vnd.ms-excel;charset=GBK;filename="
-					+ new String(file_name.getBytes("GBK"), "iso8859-1"));
-			jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
+			response
+					.setContentType("application/vnd.ms-excel;charset=GBK;filename="
+							+ new String(file_name.getBytes("GBK"), "iso8859-1"));
+			jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response
+					.getOutputStream());
 			jxl.write.WritableSheet ws0 = wwb.createSheet("查询列表", 0);
 			ExportExcel.List2Excel(titlesList, resultList, ws0);
 			wwb.write();
@@ -1087,34 +1180,53 @@ public class SearchAndReportList {
 	 * @return HSql where 部分
 	 * @throws Exception
 	 */
-	private String makeSearch(HttpServletRequest request, StringBuffer searchStr, List<String[]> searchField)
+	private String makeSearch(HttpServletRequest request,
+			StringBuffer searchStr, List<String[]> searchField)
 			throws Exception {
 		String result = "";
 		String ids[] = request.getParameterValues("ids");
 		String id = "";
 		if (ids == null || ids.length == 0) {
-			ids=(String[]) request.getAttribute("ids");
-			if(ids == null || ids.length == 0)
+			ids = (String[]) request.getAttribute("ids");
+			if (ids == null || ids.length == 0)
 				throw new Exception("未找到查询关键字");
 		}
 		for (int i = 0; i < ids.length; i++) {
 			id += "," + ids[i];
 		}
 		id = id.replaceFirst(",", "");
-		String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in (" + id + ")";
+		String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in ("
+				+ id + ")";
 		ResultObject ro = queryService.search(HSql);
 		while (ro.next()) {
 			Ta08_reportfield ta08 = (Ta08_reportfield) ro.get("ta08");
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			String tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			if (ta08.getSearchtype().intValue() == 1) {
 				/**
 				 * 关键字类型
 				 */
 				if (request.getParameter(ta08.getId() + "") != null
 						&& request.getParameter(ta08.getId() + "").length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " like '%"
-							+ request.getParameter(ta08.getId() + "") + "%'";
-					searchStr.append(ta08.getComments() + "like：" + request.getParameter(ta08.getId() + "") + "；　");
+					if (request.getParameter(ta08.getId() + "").trim()
+							.toLowerCase().equals("null")
+							|| request.getParameter(ta08.getId() + "").trim()
+									.toLowerCase().equals("空")) {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " is null ";
+						searchStr.append(ta08.getComments() + "like："
+								+ request.getParameter(ta08.getId() + "")
+								+ "；　");
+					} else {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " like '%"
+								+ request.getParameter(ta08.getId() + "")
+								+ "%'";
+						searchStr.append(ta08.getComments() + "like："
+								+ request.getParameter(ta08.getId() + "")
+								+ "；　");
+					}
+
 					if (searchField != null) {
 						String field[] = new String[3];
 						field[0] = ta08.getId() + "";
@@ -1123,15 +1235,36 @@ public class SearchAndReportList {
 						searchField.add(field);
 					}
 				}
-			} else if (ta08.getSearchtype().intValue() == 2 || ta08.getSearchtype().intValue() == 4) {
+			} else if (ta08.getSearchtype().intValue() == 2
+					|| ta08.getSearchtype().intValue() == 4) {
 				/**
 				 * 多选类型与人员类型
 				 */
 				if (request.getParameter(ta08.getId() + "") != null
 						&& request.getParameter(ta08.getId() + "").length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " in ('"
-							+ request.getParameter(ta08.getId() + "").replaceAll(",", "','") + "')";
-					searchStr.append(ta08.getComments() + "in：" + request.getParameter(ta08.getId() + "") + "；　");
+					if (request.getParameter(ta08.getId() + "").trim()
+							.toLowerCase().equals("null")
+							|| request.getParameter(ta08.getId() + "").trim()
+									.toLowerCase().equals("空")) {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " is null ";
+						searchStr.append(ta08.getComments() + "in："
+								+ request.getParameter(ta08.getId() + "")
+								+ "；　");
+
+					} else {
+						result += " and "
+								+ tableName
+								+ "."
+								+ ta08.getName()
+								+ " in ('"
+								+ request.getParameter(ta08.getId() + "")
+										.replaceAll(",", "','") + "')";
+						searchStr.append(ta08.getComments() + "in："
+								+ request.getParameter(ta08.getId() + "")
+								+ "；　");
+					}
+
 				}
 				if (searchField != null) {
 					String field[] = new String[3];
@@ -1146,9 +1279,25 @@ public class SearchAndReportList {
 				 */
 				if (request.getParameter(ta08.getId() + "_low") != null
 						&& request.getParameter(ta08.getId() + "_low").length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " >= "
-							+ request.getParameter(ta08.getId() + "_low");
-					searchStr.append(ta08.getComments() + "≥" + request.getParameter(ta08.getId() + "_low") + "；　");
+					if (request.getParameter(ta08.getId() + "_low")
+							.toLowerCase().trim().equals("null")
+							|| request.getParameter(ta08.getId() + "_low")
+									.trim().equals("空")) {
+
+						result += " and " + tableName + "." + ta08.getName()
+								+ " is null ";
+						searchStr.append(ta08.getComments() + "≥"
+								+ request.getParameter(ta08.getId() + "_low")
+								+ "；　");
+					} else {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " >= "
+								+ request.getParameter(ta08.getId() + "_low");
+						searchStr.append(ta08.getComments() + "≥"
+								+ request.getParameter(ta08.getId() + "_low")
+								+ "；　");
+					}
+					
 					if (searchField != null) {
 						String field[] = new String[3];
 						field[0] = ta08.getId() + "";
@@ -1158,10 +1307,14 @@ public class SearchAndReportList {
 					}
 				}
 				if (request.getParameter(ta08.getId() + "_high") != null
-						&& request.getParameter(ta08.getId() + "_high").length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " <= "
+						&& request.getParameter(ta08.getId() + "_high")
+								.length() > 0) {
+					result += " and " + tableName + "." + ta08.getName()
+							+ " <= "
 							+ request.getParameter(ta08.getId() + "_high");
-					searchStr.append(ta08.getComments() + "≤" + request.getParameter(ta08.getId() + "_high") + "；　");
+					searchStr.append(ta08.getComments() + "≤"
+							+ request.getParameter(ta08.getId() + "_high")
+							+ "；　");
 					if (searchField != null) {
 						String field[] = new String[3];
 						field[0] = ta08.getId() + "";
@@ -1176,26 +1329,39 @@ public class SearchAndReportList {
 				 */
 				String low_date = request.getParameter(ta08.getId() + "_low");
 				String high_date = request.getParameter(ta08.getId() + "_high");
-				
+
 				/*
-				 *支持几种觉的时间格式 （modified by lixiangyu）
+				 * 支持几种觉的时间格式 （modified by lixiangyu）
 				 */
 				String date_pattern = null;
-				RegExp regExp = new RegExp(); 
-				if(regExp.match("\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{1,2}:\\d{1,2}", low_date)){
+				RegExp regExp = new RegExp();
+				if (regExp
+						.match(
+								"\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{1,2}:\\d{1,2}",
+								low_date)) {
 					date_pattern = "yyyy-mm-dd hh24:mi:ss";
-				}
-				else if(regExp.match("\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{1,2}", low_date)){
+				} else if (regExp.match(
+						"\\d{4}-\\d{1,2}-\\d{1,2}\\s+\\d{1,2}:\\d{1,2}",
+						low_date)) {
 					date_pattern = "yyyy-mm-dd hh24:mi";
-				}
-				else{
+				} else {
 					date_pattern = "yyyy-mm-dd";
 				}
-				
+
 				if (low_date != null && low_date.length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " >= to_date('"
-							+ low_date + "','"+date_pattern+"')";
-					searchStr.append(ta08.getComments() + "≥" + low_date + "；　");
+					if (low_date.toLowerCase().equals("null") || low_date.toLowerCase().equals("空")) {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " is null ";
+						searchStr.append(ta08.getComments() + "≥" + low_date
+								+ "；　");
+					} else {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " >= to_date('" + low_date + "','"
+								+ date_pattern + "')";
+						searchStr.append(ta08.getComments() + "≥" + low_date
+								+ "；　");
+					}
+					
 					if (searchField != null) {
 						String field[] = new String[3];
 						field[0] = ta08.getId() + "";
@@ -1204,11 +1370,21 @@ public class SearchAndReportList {
 						searchField.add(field);
 					}
 				}
-				if (high_date != null
-						&& high_date.length() > 0) {
-					result += " and " + tableName + "." + ta08.getName() + " <= to_date('"
-							+ high_date + "','"+date_pattern+"')";
-					searchStr.append(ta08.getComments() + "≤" + high_date + "；　");
+				if (high_date != null && high_date.length() > 0) {
+					if (high_date.toLowerCase().equals("null")
+							|| high_date.toLowerCase().equals("空")) {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " is null ";
+						searchStr.append(ta08.getComments() + "≤" + high_date
+								+ "；　");
+					} else {
+						result += " and " + tableName + "." + ta08.getName()
+								+ " <= to_date('" + high_date + "','"
+								+ date_pattern + "')";
+						searchStr.append(ta08.getComments() + "≤" + high_date
+								+ "；　");
+					}
+					
 					if (searchField != null) {
 						String field[] = new String[3];
 						field[0] = ta08.getId() + "";
@@ -1228,22 +1404,27 @@ public class SearchAndReportList {
 	 * 
 	 * @return
 	 */
-	private String setParam(List<Ta08_reportfield> Y, List<Ta08_reportfield> X, String YResult, String XResult) {
+	private String setParam(List<Ta08_reportfield> Y, List<Ta08_reportfield> X,
+			String YResult, String XResult) {
 		String result = "";
 		if (Y.size() > 0 && Y.size() == YResult.split(",").length) {
 			String Yvalue[] = YResult.split(",");
 			for (int i = 0; i < Y.size(); i++) {
 				Ta08_reportfield ta08 = Y.get(i);
-				String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
-				result += " and " + tableName + "." + ta08.getName() + "=\\\'" + Yvalue[i] + "\\\'";
+				String tableName = ta08.getObject_name().substring(
+						ta08.getObject_name().lastIndexOf(".") + 1);
+				result += " and " + tableName + "." + ta08.getName() + "=\\\'"
+						+ Yvalue[i] + "\\\'";
 			}
 		}
 		if (X.size() > 0 && X.size() == XResult.split(",").length) {
 			String Xvalue[] = XResult.split(",");
 			for (int i = 0; i < X.size(); i++) {
 				Ta08_reportfield ta08 = X.get(i);
-				String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
-				result += " and " + tableName + "." + ta08.getName() + "=\\\'" + Xvalue[i] + "\\\'";
+				String tableName = ta08.getObject_name().substring(
+						ta08.getObject_name().lastIndexOf(".") + 1);
+				result += " and " + tableName + "." + ta08.getName() + "=\\\'"
+						+ Xvalue[i] + "\\\'";
 			}
 		}
 		return result;
@@ -1395,7 +1576,8 @@ public class SearchAndReportList {
 	 * @throws Exception
 	 */
 	@RequestMapping("/search/reportExport.do")
-	public void reportExport(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void reportExport(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String HSqlWhere;
 		String HSqlFrom;
@@ -1408,7 +1590,8 @@ public class SearchAndReportList {
 		 * 输出结果列表
 		 */
 		List<List<Td_Struct>> result = new ArrayList<List<Td_Struct>>();
-		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
+		if (request.getParameterValues("ids") == null
+				|| request.getParameterValues("ids").length == 0) {
 			return;
 		}
 		Map<String, List<String>> result_map;
@@ -1428,9 +1611,10 @@ public class SearchAndReportList {
 		List<String> YResult;
 		List<String> XResult;
 		HSqlWhere = this.makeSearch(request, searchStr, null);
-		Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(request
-				.getParameter("ids")));
-		tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+		Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(
+				Ta08_reportfield.class, new Long(request.getParameter("ids")));
+		tableName = ta08.getObject_name().substring(
+				ta08.getObject_name().lastIndexOf(".") + 1);
 		HSqlFrom = " from " + tableName + " " + tableName;
 		HSqlSelect = "select ";
 		HSqlGroup = " group by ";
@@ -1449,7 +1633,8 @@ public class SearchAndReportList {
 		if ("".equals(sum_ids)) {
 			sum_ids = "-1";
 		}
-		String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in (" + sum_ids + ")";
+		String HSql = "select ta08 from Ta08_reportfield ta08 where ta08.id in ("
+				+ sum_ids + ")";
 		ResultObject sum_ro = queryService.search(HSql);
 		while (sum_ro.next()) {
 			ta08 = (Ta08_reportfield) sum_ro.get("ta08");
@@ -1467,8 +1652,8 @@ public class SearchAndReportList {
 		if (statistic != null && way != null && statistic.length == way.length) {
 			for (int i = 0; i < statistic.length; i++) {
 				if (statistic[i] != null && statistic[i].length() > 0) {
-					ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, Long
-							.valueOf(statistic[i]));
+					ta08 = (Ta08_reportfield) queryService.searchById(
+							Ta08_reportfield.class, Long.valueOf(statistic[i]));
 					if ("X".equals(way[i])) {
 						XList.add(ta08);
 						XValueList.add(new ArrayList<String>());
@@ -1517,7 +1702,8 @@ public class SearchAndReportList {
 		/**
 		 * 统计
 		 */
-		ResultObject ro = queryService.search(HSqlSelect + HSqlFrom + HSqlWhere + HSqlGroup + HSqlOrder);
+		ResultObject ro = queryService.search(HSqlSelect + HSqlFrom + HSqlWhere
+				+ HSqlGroup + HSqlOrder);
 		result_map = new HashMap<String, List<String>>();
 		/**
 		 * 处理结果集
@@ -1539,18 +1725,28 @@ public class SearchAndReportList {
 			for (int i = 0; i < YList.size(); i++) {
 				ta08 = YList.get(i);
 				if (!YValueList.get(i).contains(
-						(ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""))) {
-					YValueList.get(i).add((ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""));
+						(ro.get(ta08.getName()) != null ? ro
+								.get(ta08.getName()).toString() : ""))) {
+					YValueList.get(i).add(
+							(ro.get(ta08.getName()) != null ? ro.get(
+									ta08.getName()).toString() : ""));
 				}
-				key += "," + (ro.get(ta08.getName()) != null ? ro.get(ta08.getName()) : "");
+				key += ","
+						+ (ro.get(ta08.getName()) != null ? ro.get(ta08
+								.getName()) : "");
 			}
 			for (int i = 0; i < XList.size(); i++) {
 				ta08 = XList.get(i);
 				if (!XValueList.get(i).contains(
-						(ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""))) {
-					XValueList.get(i).add((ro.get(ta08.getName()) != null ? ro.get(ta08.getName()).toString() : ""));
+						(ro.get(ta08.getName()) != null ? ro
+								.get(ta08.getName()).toString() : ""))) {
+					XValueList.get(i).add(
+							(ro.get(ta08.getName()) != null ? ro.get(
+									ta08.getName()).toString() : ""));
 				}
-				key += "," + (ro.get(ta08.getName()) != null ? ro.get(ta08.getName()) : "");
+				key += ","
+						+ (ro.get(ta08.getName()) != null ? ro.get(ta08
+								.getName()) : "");
 			}
 			key = key.replaceFirst(",", "");
 			value.add("" + ro.get("count(" + tableName + ".id)"));
@@ -1581,7 +1777,8 @@ public class SearchAndReportList {
 			}
 			if (i < XValueList.size()) {
 				for (int j = 0; j < XResult.size(); j++) {
-					String xTitle[] = XResult.get(j).replaceAll(",", " , ").split(",");
+					String xTitle[] = XResult.get(j).replaceAll(",", " , ")
+							.split(",");
 					for (int k = 0; k < sum_ro.getLength(); k++) {
 						Td_Struct t = new Td_Struct();
 						t.value = xTitle[i];
@@ -1636,7 +1833,8 @@ public class SearchAndReportList {
 				/**
 				 * 添加y坐标标题
 				 */
-				String yTitle[] = YResult.get(i).replaceAll(",", " , ").split(",");
+				String yTitle[] = YResult.get(i).replaceAll(",", " , ").split(
+						",");
 				for (int l = 0; l < yTitle.length; l++) {
 					Td_Struct t = new Td_Struct();
 					t.value = yTitle[l].trim();
@@ -1648,12 +1846,14 @@ public class SearchAndReportList {
 				 */
 				if (XResult.size() > 0) {
 					for (int j = 0; j < XResult.size(); j++) {
-						List<String> tds = result_map.get(YResult.get(i) + "," + XResult.get(j));
+						List<String> tds = result_map.get(YResult.get(i) + ","
+								+ XResult.get(j));
 						if (tds == null || tds.size() < sum_ro.getLength()) {
 							for (int k = 0; k <= sum_ro.getLength(); k++) {
 								Td_Struct t = new Td_Struct();
 								t.title = false;
-								t.param = this.setParam(YList, XList, YResult.get(i), XResult.get(j));
+								t.param = this.setParam(YList, XList, YResult
+										.get(i), XResult.get(j));
 								tdList.add(t);
 							}
 						} else {
@@ -1661,7 +1861,8 @@ public class SearchAndReportList {
 								Td_Struct t = new Td_Struct();
 								t.value = tds.get(k);
 								t.title = false;
-								t.param = this.setParam(YList, XList, YResult.get(i), XResult.get(j));
+								t.param = this.setParam(YList, XList, YResult
+										.get(i), XResult.get(j));
 								tdList.add(t);
 							}
 						}
@@ -1679,7 +1880,8 @@ public class SearchAndReportList {
 							Td_Struct t = new Td_Struct();
 							t.value = tds.get(k);
 							t.title = false;
-							t.param = this.setParam(YList, XList, YResult.get(i), null);
+							t.param = this.setParam(YList, XList, YResult
+									.get(i), null);
 							tdList.add(t);
 						}
 					}
@@ -1705,7 +1907,8 @@ public class SearchAndReportList {
 							Td_Struct t = new Td_Struct();
 							t.value = tds.get(k);
 							t.title = false;
-							t.param = this.setParam(YList, XList, null, XResult.get(j));
+							t.param = this.setParam(YList, XList, null, XResult
+									.get(j));
 							tdList.add(t);
 						}
 					}
@@ -1750,7 +1953,8 @@ public class SearchAndReportList {
 					Td_Struct t1 = result.get(k).get(j);
 					if (!t1.show) {
 						continue;
-					} else if ((t1.value == null && t2.value == null) || t1.value.equals(t2.value)) {
+					} else if ((t1.value == null && t2.value == null)
+							|| t1.value.equals(t2.value)) {
 						if (t1.rowspan != null)
 							t1.rowspan++;
 						else
@@ -1774,7 +1978,8 @@ public class SearchAndReportList {
 					Td_Struct t1 = result.get(i).get(k);
 					if (!t1.show) {
 						continue;
-					} else if ((t1.value == null && t2.value == null) || t1.value.equals(t2.value)) {
+					} else if ((t1.value == null && t2.value == null)
+							|| t1.value.equals(t2.value)) {
 						if (t1.colspan != null)
 							t1.colspan++;
 						else
@@ -1809,13 +2014,15 @@ public class SearchAndReportList {
 				if (i - YList.size() >= sumList.size()) {
 					sumList.add(result.get(j).get(i).value);
 				} else {
-					String str = sumList.get(i - YList.size()) != null && sumList.get(i - YList.size()).length() > 0 ? sumList
+					String str = sumList.get(i - YList.size()) != null
+							&& sumList.get(i - YList.size()).length() > 0 ? sumList
 							.get(i - YList.size())
 							: "0";
-					String str2 = result.get(j).get(i).value != null && result.get(j).get(i).value.length() > 0 ? result
-							.get(j).get(i).value
-							: "0";
-					sumList.set(i - YList.size(), NumberFormatUtil.addToString(str, str2));
+					String str2 = result.get(j).get(i).value != null
+							&& result.get(j).get(i).value.length() > 0 ? result
+							.get(j).get(i).value : "0";
+					sumList.set(i - YList.size(), NumberFormatUtil.addToString(
+							str, str2));
 				}
 			}
 		}
@@ -1834,9 +2041,11 @@ public class SearchAndReportList {
 		 */
 		String file_name = "统计结果导出.xls";
 		response.reset();
-		response.setContentType("application/vnd.ms-excel;charset=GBK;filename="
-				+ new String(file_name.getBytes("GBK"), "iso8859-1"));
-		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response.getOutputStream());
+		response
+				.setContentType("application/vnd.ms-excel;charset=GBK;filename="
+						+ new String(file_name.getBytes("GBK"), "iso8859-1"));
+		jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(response
+				.getOutputStream());
 		jxl.write.WritableSheet ws = wwb.createSheet("统计表", 0);
 		for (int i = 0; i < result.size(); i++) {
 			List<Td_Struct> list = result.get(i);
@@ -1845,21 +2054,27 @@ public class SearchAndReportList {
 				Label label;
 				Number number;
 				if (td.title) {
-					label = new Label(j, i, td.value, getTextCellAlignCenterFormat());
+					label = new Label(j, i, td.value,
+							getTextCellAlignCenterFormat());
 					ws.addCell(label);
 				} else {
 					// label = new Label(j, i, td.value,
 					// getTextCellAlignRightFormat());
-					if (td.value != null && td.value.matches("^[-]{0,1}[0-9]+[\\.]{0,1}[0-9]+$")) {
-						number = new Number(j, i, Double.parseDouble(td.value), getTextCellAlignRightFormat());
+					if (td.value != null
+							&& td.value
+									.matches("^[-]{0,1}[0-9]+[\\.]{0,1}[0-9]+$")) {
+						number = new Number(j, i, Double.parseDouble(td.value),
+								getTextCellAlignRightFormat());
 						ws.addCell(number);
 					} else {
-						label = new Label(j, i, td.value, getTextCellAlignLeftFormat());
+						label = new Label(j, i, td.value,
+								getTextCellAlignLeftFormat());
 						ws.addCell(label);
 					}
 				}
 
-				ws.mergeCells(j, i, j + (td.colspan != null ? td.colspan - 1 : 0), i
+				ws.mergeCells(j, i, j
+						+ (td.colspan != null ? td.colspan - 1 : 0), i
 						+ (td.rowspan != null ? td.rowspan - 1 : 0));
 				if (td.value != null) {
 					if (ws.getColumnWidth(i) < td.value.getBytes().length) {
@@ -1879,8 +2094,10 @@ public class SearchAndReportList {
 	/**
 	 * 设定文本域格式wcf_Text，有边框，居中对齐
 	 */
-	private static WritableCellFormat getTextCellAlignLeftFormat() throws WriteException {
-		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9, WritableFont.NO_BOLD, false);
+	private static WritableCellFormat getTextCellAlignLeftFormat()
+			throws WriteException {
+		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9,
+				WritableFont.NO_BOLD, false);
 		WritableCellFormat wcf_Text = new WritableCellFormat(wf);
 		wcf_Text.setAlignment(Alignment.LEFT);
 		wcf_Text.setVerticalAlignment(VerticalAlignment.CENTRE);
@@ -1891,8 +2108,10 @@ public class SearchAndReportList {
 	/**
 	 * 设定文本域格式wcf_Number，有边框，右对齐
 	 */
-	private static WritableCellFormat getTextCellAlignRightFormat() throws WriteException {
-		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9, WritableFont.NO_BOLD, false);
+	private static WritableCellFormat getTextCellAlignRightFormat()
+			throws WriteException {
+		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9,
+				WritableFont.NO_BOLD, false);
 		WritableCellFormat wcf_Text = new WritableCellFormat(wf);
 		wcf_Text.setAlignment(Alignment.RIGHT);
 		wcf_Text.setVerticalAlignment(VerticalAlignment.CENTRE);
@@ -1903,25 +2122,29 @@ public class SearchAndReportList {
 	/**
 	 * 设定文本域格式wcf_Text，有边框，居中对齐
 	 */
-	private static WritableCellFormat getTextCellAlignCenterFormat() throws WriteException {
-		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9, WritableFont.NO_BOLD, false);
+	private static WritableCellFormat getTextCellAlignCenterFormat()
+			throws WriteException {
+		WritableFont wf = new WritableFont(WritableFont.createFont("宋体"), 9,
+				WritableFont.NO_BOLD, false);
 		WritableCellFormat wcf_Text = new WritableCellFormat(wf);
 		wcf_Text.setAlignment(Alignment.CENTRE);
 		wcf_Text.setVerticalAlignment(VerticalAlignment.CENTRE);
 		wcf_Text.setBorder(Border.ALL, BorderLineStyle.THIN);
 		return wcf_Text;
 	}
-	
+
 	/**
 	 * 
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws UnsupportedEncodingException ModelAndView
+	 * @throws UnsupportedEncodingException
+	 *             ModelAndView
 	 */
 	@RequestMapping("/search/searchListX.do")
-	public ModelAndView searchListX(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{
-		long x=new Date().getTime();
+	public ModelAndView searchListX(HttpServletRequest request,
+			HttpServletResponse response) throws UnsupportedEncodingException {
+		long x = new Date().getTime();
 		request.setCharacterEncoding("utf-8");
 		String[] columns = request.getParameterValues("fields_select");
 		StringBuffer searchStr = new StringBuffer();
@@ -1931,24 +2154,28 @@ public class SearchAndReportList {
 		Long flow_id;
 		Long module_id;
 		String module_name = "";
-		
-		String queryStr=convertUtil.toString(new String(request.getParameter("queryStr").getBytes("iso-8859-1"),"gbk"),"");
+
+		String queryStr = convertUtil.toString(new String(request.getParameter(
+				"queryStr").getBytes("iso-8859-1"), "gbk"), "");
 		/**
 		 * 每页记录数，默认20行
 		 */
 		int pageRowSize = 20;
 		int totalPages = 1;
 		int totalRows = 0;
-		Integer page = convertUtil.toInteger(request.getParameter("pageNum"), 1);
+		Integer page = convertUtil
+				.toInteger(request.getParameter("pageNum"), 1);
 		/**
 		 * 处理分页数据
 		 */
 
-		if (request.getParameter("numPerPage") != null && request.getParameter("numPerPage").length() > 0) {
+		if (request.getParameter("numPerPage") != null
+				&& request.getParameter("numPerPage").length() > 0) {
 			pageRowSize = Integer.parseInt(request.getParameter("numPerPage"));
 		}
 
-		if (request.getParameter("module_id") != null && !request.getParameter("module_id").equals("")) {
+		if (request.getParameter("module_id") != null
+				&& !request.getParameter("module_id").equals("")) {
 			module_id = Long.valueOf(request.getParameter("module_id"));
 		} else {
 			module_id = new Long(100);
@@ -1959,24 +2186,23 @@ public class SearchAndReportList {
 
 		List<String[]> searchField = new ArrayList<String[]>();
 
-		
-		
-		
 		List<List<Td_Struct>> resultList = null;
 		/**
-		if (request.getParameterValues("ids") == null || request.getParameterValues("ids").length == 0) {
-			request.setAttribute("pageRowSize", pageRowSize);
-			request.setAttribute("totalRows", totalRows);
-			request.setAttribute("totalPages", totalPages);
-			request.setAttribute("page", page);
-			return new ModelAndView("/WEB-INF/jsp/search/searchList.jsp");
-		}
-		*/
-		if (request.getParameter("flow_id") != null && request.getParameter("flow_id").length() > 0) {
+		 * if (request.getParameterValues("ids") == null ||
+		 * request.getParameterValues("ids").length == 0) {
+		 * request.setAttribute("pageRowSize", pageRowSize);
+		 * request.setAttribute("totalRows", totalRows);
+		 * request.setAttribute("totalPages", totalPages);
+		 * request.setAttribute("page", page); return new
+		 * ModelAndView("/WEB-INF/jsp/search/searchList.jsp"); }
+		 */
+		if (request.getParameter("flow_id") != null
+				&& request.getParameter("flow_id").length() > 0) {
 			try {
 				flow_id = new Long(request.getParameter("flow_id"));
 			} catch (NumberFormatException e) {
-				return exceptionService.exceptionControl("searchList", "错误的flow_id格式", e);
+				return exceptionService.exceptionControl("searchList",
+						"错误的flow_id格式", e);
 			}
 		} else {
 			flow_id = null;
@@ -1990,31 +2216,39 @@ public class SearchAndReportList {
 			queryBuilder.eq("showflag", new Long(1));
 			queryBuilder.eq("module_id", module_id);
 			queryBuilder.addOrderBy(Order.asc("ord"));
-			fieldList = (List<Ta08_reportfield>) queryService.searchList(queryBuilder);
-			
-			String ids[]=new String [fieldList.size()];
-			Ta08_reportfield report=null;
-			for(int k=0;k<ids.length;k++){
-				ids[k]=String.valueOf(fieldList.get(k).getId());
+			fieldList = (List<Ta08_reportfield>) queryService
+					.searchList(queryBuilder);
+
+			String ids[] = new String[fieldList.size()];
+			Ta08_reportfield report = null;
+			for (int k = 0; k < ids.length; k++) {
+				ids[k] = String.valueOf(fieldList.get(k).getId());
 			}
 			request.setAttribute("ids", ids);
-			
-			
+
 			String HSqlWhere = this.makeSearch(request, searchStr, searchField);
-			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(Ta08_reportfield.class, new Long(ids[0]));
-			String tableName = ta08.getObject_name().substring(ta08.getObject_name().lastIndexOf(".") + 1);
+			Ta08_reportfield ta08 = (Ta08_reportfield) queryService.searchById(
+					Ta08_reportfield.class, new Long(ids[0]));
+			String tableName = ta08.getObject_name().substring(
+					ta08.getObject_name().lastIndexOf(".") + 1);
 			String HSqlFrom = " from " + tableName + " " + tableName;
 			String HSqlSelect = "select " + tableName;
-			
-			String HqlStr=HSqlSelect+HSqlWhere+HSqlFrom;
-			if(!queryStr.equals("")){
-			if(module_id==90){//目标库
-				HqlStr+=" where "+tableName+".zybh like '%"+queryStr+"%' or "+tableName+".zymc like '%"+queryStr+"%'" ;
-			}else if(module_id==101){//项目信息查询
-				HqlStr+=" where "+tableName+".xmbh like '%"+queryStr+"%' or "+tableName+".xmmc like '%"+queryStr+"%'" ;
-			}else if(module_id==102){//工程信息查询
-				HqlStr+=" where "+tableName+".gcbh like '%"+queryStr+"%' or "+tableName+".gcmc like '%"+queryStr+"%'" ;
-			}
+
+			String HqlStr = HSqlSelect + HSqlWhere + HSqlFrom;
+			if (!queryStr.equals("")) {
+				if (module_id == 90) {// 目标库
+					HqlStr += " where " + tableName + ".zybh like '%"
+							+ queryStr + "%' or " + tableName + ".zymc like '%"
+							+ queryStr + "%'";
+				} else if (module_id == 101) {// 项目信息查询
+					HqlStr += " where " + tableName + ".xmbh like '%"
+							+ queryStr + "%' or " + tableName + ".xmmc like '%"
+							+ queryStr + "%'";
+				} else if (module_id == 102) {// 工程信息查询
+					HqlStr += " where " + tableName + ".gcbh like '%"
+							+ queryStr + "%' or " + tableName + ".gcmc like '%"
+							+ queryStr + "%'";
+				}
 			}
 			ro = queryService.searchByPage(HqlStr, page, pageRowSize);
 			totalRows = ro.getTotalRows();
@@ -2037,12 +2271,15 @@ public class SearchAndReportList {
 					result = PropertyInject.getProperty(o, ta08.getName());
 					field = new Td_Struct();
 					if (result instanceof Double) {
-						field.value = NumberFormatUtil.roundToString((Double) result);
+						field.value = NumberFormatUtil
+								.roundToString((Double) result);
 					} else if (result instanceof java.util.Date) {
-						field.value = DateFormatUtil.FormatDate((java.util.Date) result);
+						field.value = DateFormatUtil
+								.FormatDate((java.util.Date) result);
 					} else {
 						if (result != null)
-							field.value = StringFormatUtil.format(result.toString());
+							field.value = StringFormatUtil.format(result
+									.toString());
 						else
 							field.value = "";
 					}
@@ -2053,7 +2290,8 @@ public class SearchAndReportList {
 				resultList.add(rowList);
 			}
 		} catch (Exception ex) {
-			return exceptionService.exceptionControl("SearchList", "查询列表错误", ex);
+			return exceptionService
+					.exceptionControl("SearchList", "查询列表错误", ex);
 		}
 
 		/**
@@ -2080,6 +2318,6 @@ public class SearchAndReportList {
 		request.setAttribute("tablewidth", tablewidth);
 		request.setAttribute("resultList", resultList);
 		return new ModelAndView("/WEB-INF/jsp/search/searchList.jsp");
-	
+
 	}
 }

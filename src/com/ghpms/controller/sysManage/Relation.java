@@ -826,6 +826,8 @@ public class Relation {
 				gcsjDataService.setSelectValue(request, id);
 				createJspFile.createJspFileToRecord(request.getSession().getServletContext().getRealPath(
 				"/WEB-INF"), id);
+				createJspFile.createJspFileToForm(request.getSession().getServletContext().getRealPath(
+				"/WEB-INF"), id);
 			}
 			response
 					.getWriter()

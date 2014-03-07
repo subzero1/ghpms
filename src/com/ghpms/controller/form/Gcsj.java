@@ -112,16 +112,20 @@ public class Gcsj {
 		hsql.append("select a from ");
 		hsql.append(module.getProject_table());
 		hsql.append(" a where 1=1 ");
+			System.out.println("编码"+request.getCharacterEncoding());
 
-		if (!keyword.equals("")) {
+		String keyword0 = new String(keyword.getBytes("ISO-8859-1"), "gbk");
+		if (keyword0.indexOf("?")==-1&&keyword0.indexOf("？")==-1){
 			keyword = new String(keyword.getBytes("ISO-8859-1"), "gbk");
-			hsql.append(" and a.skbh like'%");
-			hsql.append(keyword);
-			hsql.append("%' ");
-			hsql.append(" or a.gcmc like'%");
-			hsql.append(keyword);
-			hsql.append("%') ");
 		}
+		
+		hsql.append(" and a.skbh like'%");
+		hsql.append(keyword);
+		hsql.append("%' ");
+		hsql.append(" or a.gcmc like'%");
+		hsql.append(keyword);
+		hsql.append("%') ");
+		
 
 		hsql.append(" order by " + orderField);
 		hsql.append(" " + orderDirection);
