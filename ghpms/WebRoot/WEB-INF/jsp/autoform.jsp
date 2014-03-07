@@ -30,7 +30,7 @@
 	<div class="pageHeader">
 		<div class="searchBar">
 			<!-- 表单名称 -->
-			<h3>${module.name}<c:if test="${not empty param.project_id}">【${param.project_id}】</c:if><c:if test="${not empty node}">(${node.name})</c:if></h3>
+			<h3>&nbsp;</h3>
 			<span id="gcmc" style="font-size:15;font-weight:bold;"></span>
 			<!-- 辅助操作 -->
 			<p style="float: right;text-align:right;">
@@ -84,46 +84,6 @@
 			<jsp:include page="${module.form_url}" flush="true"></jsp:include>
 			</form>
 				<div class="divider"></div>
-	<!-- 
-	<div style="text-align:left;color:blue;"><h3>&nbsp;&nbsp;表单附件列表[${fn:length(formslave)+fn:length(extslave)+fn:length(uploadslave)}]</h3></div><div class="divider" style="height:1px;"></div>
-	<div style="width:780px;">
-		<table class="table" width="100%">
-			<thead>
-				<tr>
-					<th style="width: 30px;"></th>
-					<th style="width: 120px;">附件名称</th>
-					<th ></th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:set var="offset" value="0"/>
-				 				<div id="slaveDiv" defH="150" style="background-color:#fff;">
-					<c:set var="slaves" scope="page" value="0"/>
-					<c:forEach var="obj" items="${formslave}">
-						<p class="slaveList"><a href="${obj.formurl}">${obj.slave_name}</a></p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-					
-					<c:forEach var="obj" items="${extslave}">
-						<p class="slaveList"><a href="javascript:return false;" onclick="${obj.formurl}">${obj.slave_name}</a></p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-					
-					<c:forEach var="obj" items="${uploadslave}">
-						<p class="slaveList">
-							<a href="download.do?slave_id=${obj.slave_id}">${obj.slave_name}</a>
-							<c:if test="${fn:contains(obj.slave_name, 'xls') || fn:contains(obj.slave_name, 'doc') || fn:contains(obj.slave_name, 'pdf')}">
-							<a href="show_slave.do?slave_id=${obj.slave_id}" target="dialog" width="1000" height="600" title="在线预览"><b>在线预览</b></a>
-							</c:if>
-							<c:if test="${obj.rw == 'w'}"><a href="javascript:del_slave('${obj.slave_id}','${slaves }');"> <img src="Images/icon10.gif" alt="删除" align="absmiddle"/></a></c:if>
-						</p>
-						<c:set var="slaves" scope="page" value="${slaves+1 }"/>
-					</c:forEach>
-				</div>
-			</tbody>
-		</table>
-	</div>
-	-->
 		</div>		
 	</div>
 </div>
@@ -158,11 +118,14 @@
 	}
 	$(function(){
 	var gcmc =$("input[name$='GCMC']",navTab.getCurrentPanel());
+	var ghbh =$("input[name$='GHBH']",navTab.getCurrentPanel());
 	var skbh =$("input[name$='SKBH']",navTab.getCurrentPanel());
 	var gcmc_span=$("#gcmc",navTab.getCurrentPanel());
-	if(gcmc.val()!="")
+	if(gcmc.val()!=""&&gcmc.size()>0)
 	gcmc_span.append("工程名称：【"+gcmc.val()+"】      ");
-	if(skbh.val()!="")
+	if(ghbh.val()!=""&&ghbh.size()>0)
+	gcmc_span.append("歌华工程编号：【"+ghbh.val()+"】      ");
+	if(skbh.val()!=""&&skbh.size()>0)
 	gcmc_span.append("视宽编号：【"+skbh.val()+"】");
 });
 </script>

@@ -11,7 +11,6 @@
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/nodeList.do?node_id=${tb02_node.id}" keep="true"/>
 			<input type="hidden" name="_navTabId" value="propertySetting" keep="true"/>
-			<input type="hidden" name="Tb02_node.NODE_TYPE" value="${!empty tb02_node.node_type?tb02_node.node_type:1 }" />
 			<div class="pageFormContent" style="height:200px">
 				<p>
 					<label>节点名称：</label>
@@ -19,12 +18,19 @@
 				</p> 
 				<p>
 					<label>属性分类：</label>
-					<dms:htmlSelect name="Tb02_node.FLOW_ID" objectForOption="flowList" showForOption="name" valueForOption="id"  value="${!empty tb02_node.flow_id?tb02_node.flow_id:param.flow_id}" />
+					<dms:htmlSelect name="Tb02_node.FLOW_ID" objectForOption="flowList" showForOption="name" valueForOption="id"  value="${!empty tb02_node.flow_id?tb02_node.flow_id:param.flow_id}" style="width:128px;"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>节点注释：</label>
 					<input type="text" name="Tb02_node.REMARK" value="${tb02_node.remark}"  style="width:146px;"/>
+				</p>
+				<p>
+					<label>节点类型：</label>
+					<select name="Tb02_node.NODE_TYPE"  style="width:128px;">
+						<option value="1" <c:if test="${tb02_node.node_type==1}">selected</c:if>>录入节点</option>
+						<option value="2" <c:if test="${tb02_node.node_type==2}">selected</c:if>>表单节点</option>
+					</select>
 				</p>
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">

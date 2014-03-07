@@ -44,4 +44,12 @@ public interface GcsjDataService {
 	 * @return List
 	 */
 	public List getFkjjList(Ta03_user user);
+	/**
+	 * 大表单节点列表
+	 * 
+	 * @param user
+	 * @param module_id
+	 * @return List
+	 */
+	public List getTableNodeList(Ta03_user user,Long module_id);
 }

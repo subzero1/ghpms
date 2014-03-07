@@ -48,6 +48,9 @@ function changeTemp(obj){
 	}
 	}
 }
+function setNull(_this){
+	$(_this).val("null")//
+}
 </script>
 
 <div class="page">
@@ -57,20 +60,20 @@ function changeTemp(obj){
 			<input type="hidden" id="module_id" name="module_id" value="${param.module_id}"/>
 		  
 			<div class="pageFormContent" layoutH="56">
-				<div style="width:340px;position:absolute;top:0px;left:10px;">
+				<div style="width:370px;position:absolute;top:0px;left:10px;">
 					<div class="title01">
 						<h3>字段选择：</h3>
 					</div>
 					<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc">
-						<table width="320" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+						<table width="350" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
 							<tr>
 								<td colspan="4">
 								</td>
 							</tr>
 							<tr>
-								<td align="right" valign="top" width="130">
-									<select name="fields" id="fields" style="width:130px;height:218px;" ondblclick="moveAct('fields', 'fields_select')" multiple>
+								<td align="right" valign="top" width="145">
+									<select name="fields" id="fields" style="width:145px;height:218px;" ondblclick="moveAct('fields', 'fields_select')" multiple>
 										<c:forEach var="obj" items="${fieldList}">
 											<option value="${obj.id }">${obj.comments }</option>
 										</c:forEach>
@@ -82,8 +85,8 @@ function changeTemp(obj){
 									<br/><br/>
 									<input type="button" class="button-td" style="width:20px;height:20px;" onclick="javascript:moveAct('fields_select', 'fields');" value="&lt;=" /><br/>
 								<br /><br /><br /></td>
-								<td valign="top" width="140">
-									<select id="fields_select" name="fields_select" style="width:130px;height:218px;" multiple ondblclick="moveAct('fields_select','fields')"></select>
+								<td valign="top" width="155">
+									<select id="fields_select" name="fields_select" style="width:145px;height:218px;" multiple ondblclick="moveAct('fields_select','fields')"></select>
 								</td>
 								<td width="40">
 									 <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('fields_select', 'top');" value="行首" /><br/>
@@ -100,14 +103,14 @@ function changeTemp(obj){
 				<div style="float:left;width:10px;">&nbsp;
 				</div>
 				<!-- 右侧条件选择 -->
-				<div style="width:420px;position:absolute;top:0px;left:370px;">
+				<div style="width:390px;position:absolute;top:0px;left:390px;">
 			   				
 					<div class="title01">
 						<h3>查询条件：</h3>
 					</div>
 			   		<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 					<div class="contentc" style="height:158px;">
-						<table width="400" border="0" cellspacing="0" cellpadding="0">
+						<table width="390" border="0" cellspacing="0" cellpadding="0">
 		 		        	<tr>
 		 		          	  <td>
 		 		          		<table id="tab_table">	
@@ -179,9 +182,9 @@ function changeTemp(obj){
 										<table width="400" border="0" cellspacing="2" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 											<c:forEach var="obj" items="${dateList}">
 												<tr><td style="width:140px" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }" /></td>
-													<td style="width:120px;text-align:center;"><input name="${obj.id }_low" value="" style="width:100px;" class="date"/></td>			
+													<td style="width:120px;text-align:center;"><input name="${obj.id }_low" value="" style="width:100px;" class="date" ondblclick="javascript:setNull(this);"/></td>			
 													<td style="width:20px;">--</td>			
-													<td style="width:120px;"><input name="${obj.id }_high" value="" style="width:100px;" class="date"/></td>			
+													<td style="width:120px;"><input name="${obj.id }_high" value="" style="width:100px;" class="date" ondblclick="javascript:setNull(this);"/></td>			
 												</tr>
 											</c:forEach>
 										</table>

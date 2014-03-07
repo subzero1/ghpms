@@ -77,7 +77,7 @@ function changeTemp(obj){
 			<div class="pageFormContent" layoutH="56">
 				<div style="width:100%;">
 					<!-- 左侧统计项设置 -->
-					<div style="width:390px;position:absolute;top:0px;left:10px;">
+					<div style="width:460px;position:absolute;top:0px;left:10px;">
 						<div class="title01">
 							<h3>坐标设置：</h3>
 						</div>
@@ -85,12 +85,12 @@ function changeTemp(obj){
 						<div class="contentc">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 								<tr>
-									<td width="100">
+									<td width="120">
 										<!-- 坐标项 -->
-										<table border="0" style="width:100px;border-collapse:collapse;display:inline;" border="0" cellspacing="0" cellpadding="0" >
+										<table border="0" style="width:120px;border-collapse:collapse;display:inline;" border="0" cellspacing="0" cellpadding="0" >
 											<tr>
-												<td valign="top" width="100">
-													<select multiple name="statisticList" id="statisticList" style="width:95px;height:150px;" size="${fn:length(statisticList)}" ondblclick="selectStatistic(this,'y_way')">
+												<td valign="top" width="120">
+													<select multiple name="statisticList" id="statisticList" style="width:115px;height:150px;" size="${fn:length(statisticList)}" ondblclick="selectStatistic(this,'y_way')">
 														<c:forEach var="obj" items="${statisticList}">
 															<option value="${obj.id }">${obj.comments }</option>
 														</c:forEach>
@@ -99,18 +99,18 @@ function changeTemp(obj){
 											</tr>
 										</table>
 									</td>
-									<td width="360" valign="top" align="center">
-										<div style="scroll-body" style="width:360px;height:90px;">
+									<td width="400" valign="top" align="center">
+										<div style="scroll-body" style="width:400px;height:90px;">
 										<table width="100%" border="0"  cellspacing="0" cellpadding="0">
 											<tr>
-												<td style="width:140px;vertical-align:top;">
+												<td style="width:170px;vertical-align:top;">
 												<!-- Y坐标 -->
-												<table id="y_way" style="width:140px;border-collapse:collapse;display:inline;" border="0" cellspacing="0" cellpadding="0" >
+												<table id="y_way" style="width:170px;border-collapse:collapse;display:inline;" border="0" cellspacing="0" cellpadding="0" >
 													<tr>
 														<th colspan="3" class="t-center">Y坐标</th>
 													</tr>
 													<tr style="display:none;" id="model_tr">
-														<td width="60"></td>
+														<td width="90"></td>
 														<td width="35">
 															<input type="hidden" name="statistic"/>
 															<select style="width:35px;" name="way" onchange="javascript:changeWay(this);">
@@ -128,7 +128,7 @@ function changeTemp(obj){
 												</td>
 												<td style="vertical-align:top;">
 												<!-- X坐标 -->
-												<table id="x_way" style="width:140px;border-collapse:collapse;display:inline" border="0" cellspacing="0" cellpadding="0" >
+												<table id="x_way" style="width:170px;border-collapse:collapse;display:inline" border="0" cellspacing="0" cellpadding="0" >
 													<tr>
 														<th colspan="3" class="t-center">X坐标</th>
 													</tr>
@@ -148,7 +148,7 @@ function changeTemp(obj){
 						</div>
 						<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 						<div class="contentc">
-							<div style="height:30px;">
+							<div style="height:60px;">
 							<c:forEach var="obj" items="${numberList}">
 								<input type="checkbox" name="sum" value="${obj.id }" checked/>${obj.comments }
 							</c:forEach>
@@ -159,7 +159,7 @@ function changeTemp(obj){
 					</div>
 					
 					<!-- 右侧条件选择 -->
-					<div style="width:350px;position:absolute;top:0px;left:410px;">
+					<div style="width:350px;position:absolute;top:0px;left:480px;">
 				   				
 						<div class="title01">
 							<h3>统计条件：</h3>
@@ -257,7 +257,7 @@ function changeTemp(obj){
 						</div>
 						<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 						<div class="contentc">
-							<div style="height:30px;;">
+							<div style="height:60px;">
 								<table>
 									<tr>
 										<td>

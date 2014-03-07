@@ -18,6 +18,8 @@ import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.utils.StringFormatUtil;
+import com.netsky.base.utils.convertUtil;
 
 @Service("gcsjDataService")
 public class GcsjDataServiceImpl implements GcsjDataService {
@@ -365,6 +367,24 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		}
 
 		return inOutDateList;
+	}
+
+	public List getTableNodeList(Ta03_user user, Long module_id) {
+		StringBuffer hsql = new StringBuffer();
+		hsql
+				.append("select d ");
+		hsql
+				.append(" from Ta03_user a,Ta02_station b,Ta11_sta_user c,Tb02_node d,Ta13_sta_node e ");
+		hsql
+				.append("where a.id=c.user_id and b.id=c.station_id and d.id=e.node_id and e.station_id=b.id ");
+		hsql.append(" and a.id=");
+		hsql.append(user.getId());
+		hsql.append(" and d.flow_id=");
+		hsql.append(module_id);
+		//
+		hsql.append(" and d.node_type=2");
+		List  list = queryService.searchList(hsql.toString());
+		return list;
 	}
 
 }

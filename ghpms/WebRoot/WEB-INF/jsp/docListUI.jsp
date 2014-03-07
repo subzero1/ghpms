@@ -85,7 +85,7 @@ $(function(){
 						<td style="color: red;"><fmt:formatDate value="${obj.project.jlsj}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 					</tr>
 				</c:forEach> 
-				<c:if test="${!empty lendOutDateList }">
+				<c:if test="${!empty fkddList }">
 				<tr><td></td><td></td><td colspan="3"></td><td>反馈时间</td></tr>
 				</c:if>
 				<!-- 反馈调度中心超期 -->

@@ -121,7 +121,9 @@ $(document).ready(function(){
 			<c:forEach var="node" items="${nodes}">
 				<li>
 					<a href="sysManage/nodeFields.do?id=${node.id }" target="dialog"
-				width="450" height="340" title="节点字段配置[${node.remark}]">${node.name}<c:if test="${!empty node.remark}">[${node.remark}]</c:if></a>
+				width="450" height="340" title="节点字段配置[${node.remark}]">
+				<c:if test="${node.node_type==2}"><font color="#3498e4">${node.name}</font></c:if> <c:if test="${node.node_type==1}">${node.name}</c:if> 
+				<c:if test="${!empty node.remark}">[${node.remark}]</c:if></a>
 				</li>
 			</c:forEach>
 			</ul>

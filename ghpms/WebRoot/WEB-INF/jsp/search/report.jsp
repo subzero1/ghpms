@@ -26,7 +26,7 @@ function mainReportExport(){
 function searchList(){
 	var module_name=$("select[name='module_name']",navTab.getCurrentPanel()).val();
 	var url="search/condition.do?type=report&module_id="+module_name
-	$.pdialog.open(url, '', '设置统计条件', {mask:true,width:815,height:350});
+	$.pdialog.open(url, '', '设置统计条件', {mask:true,width:855,height:370});
 	
 }
 

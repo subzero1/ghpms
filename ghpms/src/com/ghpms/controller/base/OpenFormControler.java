@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ghpms.service.CreateJspFile;
+import com.ghpms.service.GcsjDataService;
 import com.netsky.base.baseObject.HibernateQueryBuilder;
 import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.baseObject.QueryBuilder;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
+import com.netsky.base.dataObjects.Ta06_module;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.LoadFormListService;
@@ -49,6 +52,9 @@ public class OpenFormControler {
 
 	@Autowired
 	CreateJspFile createJspFile;
+	
+	@Autowired
+	GcsjDataService gcsjDataService;
 
 	/**
 	 * @return the queryService
@@ -138,7 +144,14 @@ public class OpenFormControler {
 			 * 读Ta06_module表,得到表名信息
 			 */
 			clazz = Class.forName("com.netsky.base.dataObjects.Ta06_module");
-			Object o_module = queryService.searchById(clazz, module_id);
+			Ta06_module o_module = (Ta06_module) queryService.searchById(clazz, module_id);
+			
+			//给表单附加权限过滤
+			List tableNodeList=gcsjDataService.getTableNodeList(user, module_id);
+			if (tableNodeList!=null&&tableNodeList.size()>0) {
+				Tb02_node node=(Tb02_node) tableNodeList.get(0);
+				o_module.setForm_url("form/"+o_module.getForm_name().toLowerCase()+"_"+node.getId()+".jsp");
+			}
 			request.setAttribute("module", o_module);
 
 			/**
