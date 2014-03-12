@@ -19,6 +19,30 @@
         </id>
 
    <property
+  name="dw1"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw1"
+  />
+
+  <property
+  name="dw2"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw2"
+  />
+
+  <property
+  name="dw3"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="dw3"
+  />
+
+  <property
   name="gllx4_sl"
   type="java.lang.Long"
   update="true"

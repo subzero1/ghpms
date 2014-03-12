@@ -25,7 +25,7 @@ $(function(){
 
 </script>
 
-<div class="panel sysmanage_max" defH="230" style="width: 96%; float: left; margin: 10px; overflow-y: hidden">
+<div class="panel sysmanage_max" defH="256" style="width: 96%; float: left; margin: 10px; overflow-y: hidden">
 	<h1>
 		用户信息
 	</h1>
@@ -37,7 +37,7 @@ $(function(){
 			<input type="hidden" name="_callbackType" value="forward" />
 			<input type="hidden" name="_forwardUrl" value="sysManage/userList.do" />
 			<input type="hidden" name="_navTabId" value="userList" />
-			<div class="pageFormContent" style="height: 172px;">
+			<div class="pageFormContent" style="height: 192px;">
 				<p>
 					<label>登录名：</label>
 					<input  type="text" name="Ta03_user.LOGIN_ID" value="${userObj.login_id }" style="width:90px;" class="required" />
@@ -100,6 +100,11 @@ $(function(){
 				<p>
 					<label>电子邮件：</label>
 					<input  type="text" name="Ta03_user.EMAIL" value="${userObj.email }"  style="width:495px;"/>
+				</p>
+				<div style="height:0px;"></div>
+				<p>
+					<label>所属单位：</label>
+					<input  type="text" name="Ta03_user.WXDW" value="${userObj.wxdw }"  style="width:495px;"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>

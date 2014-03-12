@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2014-02-14
+ * @author cmp_auto 2014-03-12
  * @hibernate.class table="Td15_gdgc"
  */
 
@@ -13,7 +13,7 @@ public class Td15_gdgc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 928188504872151168L;
+	private static final long serialVersionUID = 616855938429112064L;
 
 	/**
 	 * 标识
@@ -37,6 +37,57 @@ public class Td15_gdgc implements Serializable{
 	}
 
 	 /**
+ * 施工单位1
+ */
+ private String dw1;
+
+ /**
+ * @hibernate.property column="dw1"
+ * @return Returns the dw1.
+ */
+ public String getDw1() {
+    return dw1;
+ }
+
+ public void setDw1(String dw1) {
+    this.dw1 = dw1;
+  }
+
+ /**
+ * 施工单位2
+ */
+ private String dw2;
+
+ /**
+ * @hibernate.property column="dw2"
+ * @return Returns the dw2.
+ */
+ public String getDw2() {
+    return dw2;
+ }
+
+ public void setDw2(String dw2) {
+    this.dw2 = dw2;
+  }
+
+ /**
+ * 施工单位3
+ */
+ private String dw3;
+
+ /**
+ * @hibernate.property column="dw3"
+ * @return Returns the dw3.
+ */
+ public String getDw3() {
+    return dw3;
+ }
+
+ public void setDw3(String dw3) {
+    this.dw3 = dw3;
+  }
+
+ /**
  * N编号
  */
  private String n_bh;
@@ -887,7 +938,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 借用器材入库入库单制单时间
+ * 借用器材入库入库单制单时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date jycqrkrkdzdsj;
 
@@ -921,7 +972,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 借用器材出库出库单制单时间
+ * 借用器材出库出库单制单时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date jycqckckdzdsj;
 
@@ -938,7 +989,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 是否有借用材料
+ * 是否有借用材料[选项][XOR]
  */
  private String sfyjycl;
 
@@ -955,7 +1006,7 @@ public class Td15_gdgc implements Serializable{
   }
 
  /**
- * 借料时间
+ * 借料时间[yyyy-MM-dd HH:mm:ss]
  */
  private Date jlsj;
 

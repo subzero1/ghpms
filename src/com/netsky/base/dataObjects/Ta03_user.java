@@ -323,4 +323,16 @@ public class Ta03_user implements Serializable{
 	public void setSend_htgly(Long send_htgly) {
 		this.send_htgly = send_htgly;
 	}
+	
+	private String wxdw;
+
+	public String getWxdw() {
+		return wxdw;
+	}
+
+	public void setWxdw(String wxdw) {
+		this.wxdw = wxdw;
+	}
+
+
 }

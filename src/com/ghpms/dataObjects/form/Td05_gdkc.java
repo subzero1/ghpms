@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-11
+ * @author cmp_auto 2014-03-12
  * @hibernate.class table="Td05_gdkc"
  */
 
@@ -13,7 +13,7 @@ public class Td05_gdkc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 130702638983532064L;
+	private static final long serialVersionUID = 337633924549757632L;
 
 	/**
 	 * 标识
@@ -37,122 +37,20 @@ public class Td05_gdkc implements Serializable{
 	}
 
 	 /**
- * 计划完成时间
+ * 勘察单位3
  */
- private Date jhwcsj;
+ private String dw3;
 
  /**
- * @hibernate.property column="jhwcsj"
- * @return Returns the jhwcsj.
+ * @hibernate.property column="dw3"
+ * @return Returns the dw3.
  */
- public Date getJhwcsj() {
-    return jhwcsj;
+ public String getDw3() {
+    return dw3;
  }
 
- public void setJhwcsj(Date jhwcsj) {
-    this.jhwcsj = jhwcsj;
-  }
-
- /**
- * 实际完成时间
- */
- private Date sjwcsj;
-
- /**
- * @hibernate.property column="sjwcsj"
- * @return Returns the sjwcsj.
- */
- public Date getSjwcsj() {
-    return sjwcsj;
- }
-
- public void setSjwcsj(Date sjwcsj) {
-    this.sjwcsj = sjwcsj;
-  }
-
- /**
- * N编号
- */
- private String n_bh;
-
- /**
- * @hibernate.property column="n_bh"
- * @return Returns the n_bh.
- */
- public String getN_bh() {
-    return n_bh;
- }
-
- public void setN_bh(String n_bh) {
-    this.n_bh = n_bh;
-  }
-
- /**
- * 歌华协议接受日期
- */
- private Date ghxyjsrq;
-
- /**
- * @hibernate.property column="ghxyjsrq"
- * @return Returns the ghxyjsrq.
- */
- public Date getGhxyjsrq() {
-    return ghxyjsrq;
- }
-
- public void setGhxyjsrq(Date ghxyjsrq) {
-    this.ghxyjsrq = ghxyjsrq;
-  }
-
- /**
- * 协议盖章返回视宽日期
- */
- private Date xygzfhskrq;
-
- /**
- * @hibernate.property column="xygzfhskrq"
- * @return Returns the xygzfhskrq.
- */
- public Date getXygzfhskrq() {
-    return xygzfhskrq;
- }
-
- public void setXygzfhskrq(Date xygzfhskrq) {
-    this.xygzfhskrq = xygzfhskrq;
-  }
-
- /**
- * 添加视宽协议签订日期
- */
- private Date tjskxyqdrq;
-
- /**
- * @hibernate.property column="tjskxyqdrq"
- * @return Returns the tjskxyqdrq.
- */
- public Date getTjskxyqdrq() {
-    return tjskxyqdrq;
- }
-
- public void setTjskxyqdrq(Date tjskxyqdrq) {
-    this.tjskxyqdrq = tjskxyqdrq;
-  }
-
- /**
- * 视宽协议金额
- */
- private Double skxyje;
-
- /**
- * @hibernate.property column="skxyje"
- * @return Returns the skxyje.
- */
- public Double getSkxyje() {
-    return skxyje;
- }
-
- public void setSkxyje(Double skxyje) {
-    this.skxyje = skxyje;
+ public void setDw3(String dw3) {
+    this.dw3 = dw3;
   }
 
  /**
@@ -187,6 +85,23 @@ public class Td05_gdkc implements Serializable{
 
  public void setGhbh(String ghbh) {
     this.ghbh = ghbh;
+  }
+
+ /**
+ * 勘察单位1
+ */
+ private String dw1;
+
+ /**
+ * @hibernate.property column="dw1"
+ * @return Returns the dw1.
+ */
+ public String getDw1() {
+    return dw1;
+ }
+
+ public void setDw1(String dw1) {
+    this.dw1 = dw1;
   }
 
  /**
@@ -527,6 +442,23 @@ public class Td05_gdkc implements Serializable{
 
  public void setGhrwsbh(Date ghrwsbh) {
     this.ghrwsbh = ghrwsbh;
+  }
+
+ /**
+ * 勘察单位2
+ */
+ private String dw2;
+
+ /**
+ * @hibernate.property column="dw2"
+ * @return Returns the dw2.
+ */
+ public String getDw2() {
+    return dw2;
+ }
+
+ public void setDw2(String dw2) {
+    this.dw2 = dw2;
   }
 
  /**
@@ -1173,6 +1105,125 @@ public class Td05_gdkc implements Serializable{
 
  public void setDxhtyjzfcwbsj(Date dxhtyjzfcwbsj) {
     this.dxhtyjzfcwbsj = dxhtyjzfcwbsj;
+  }
+
+ /**
+ * 计划完成时间
+ */
+ private Date jhwcsj;
+
+ /**
+ * @hibernate.property column="jhwcsj"
+ * @return Returns the jhwcsj.
+ */
+ public Date getJhwcsj() {
+    return jhwcsj;
+ }
+
+ public void setJhwcsj(Date jhwcsj) {
+    this.jhwcsj = jhwcsj;
+  }
+
+ /**
+ * 实际完成时间
+ */
+ private Date sjwcsj;
+
+ /**
+ * @hibernate.property column="sjwcsj"
+ * @return Returns the sjwcsj.
+ */
+ public Date getSjwcsj() {
+    return sjwcsj;
+ }
+
+ public void setSjwcsj(Date sjwcsj) {
+    this.sjwcsj = sjwcsj;
+  }
+
+ /**
+ * N编号
+ */
+ private String n_bh;
+
+ /**
+ * @hibernate.property column="n_bh"
+ * @return Returns the n_bh.
+ */
+ public String getN_bh() {
+    return n_bh;
+ }
+
+ public void setN_bh(String n_bh) {
+    this.n_bh = n_bh;
+  }
+
+ /**
+ * 歌华协议接受日期
+ */
+ private Date ghxyjsrq;
+
+ /**
+ * @hibernate.property column="ghxyjsrq"
+ * @return Returns the ghxyjsrq.
+ */
+ public Date getGhxyjsrq() {
+    return ghxyjsrq;
+ }
+
+ public void setGhxyjsrq(Date ghxyjsrq) {
+    this.ghxyjsrq = ghxyjsrq;
+  }
+
+ /**
+ * 协议盖章返回视宽日期
+ */
+ private Date xygzfhskrq;
+
+ /**
+ * @hibernate.property column="xygzfhskrq"
+ * @return Returns the xygzfhskrq.
+ */
+ public Date getXygzfhskrq() {
+    return xygzfhskrq;
+ }
+
+ public void setXygzfhskrq(Date xygzfhskrq) {
+    this.xygzfhskrq = xygzfhskrq;
+  }
+
+ /**
+ * 添加视宽协议签订日期
+ */
+ private Date tjskxyqdrq;
+
+ /**
+ * @hibernate.property column="tjskxyqdrq"
+ * @return Returns the tjskxyqdrq.
+ */
+ public Date getTjskxyqdrq() {
+    return tjskxyqdrq;
+ }
+
+ public void setTjskxyqdrq(Date tjskxyqdrq) {
+    this.tjskxyqdrq = tjskxyqdrq;
+  }
+
+ /**
+ * 视宽协议金额
+ */
+ private Double skxyje;
+
+ /**
+ * @hibernate.property column="skxyje"
+ * @return Returns the skxyje.
+ */
+ public Double getSkxyje() {
+    return skxyje;
+ }
+
+ public void setSkxyje(Double skxyje) {
+    this.skxyje = skxyje;
   }
 
 

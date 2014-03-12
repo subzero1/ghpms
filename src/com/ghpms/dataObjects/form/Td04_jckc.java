@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author cmp_auto 2013-12-11
+ * @author cmp_auto 2014-03-12
  * @hibernate.class table="Td04_jckc"
  */
 
@@ -13,7 +13,7 @@ public class Td04_jckc implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 279784925367836736L;
+	private static final long serialVersionUID = 201424559500859680L;
 
 	/**
 	 * 标识
@@ -37,6 +37,57 @@ public class Td04_jckc implements Serializable{
 	}
 
 	 /**
+ * 勘察单位1
+ */
+ private String dw1;
+
+ /**
+ * @hibernate.property column="dw1"
+ * @return Returns the dw1.
+ */
+ public String getDw1() {
+    return dw1;
+ }
+
+ public void setDw1(String dw1) {
+    this.dw1 = dw1;
+  }
+
+ /**
+ * 勘察单位2
+ */
+ private String dw2;
+
+ /**
+ * @hibernate.property column="dw2"
+ * @return Returns the dw2.
+ */
+ public String getDw2() {
+    return dw2;
+ }
+
+ public void setDw2(String dw2) {
+    this.dw2 = dw2;
+  }
+
+ /**
+ * 勘察单位3
+ */
+ private String dw3;
+
+ /**
+ * @hibernate.property column="dw3"
+ * @return Returns the dw3.
+ */
+ public String getDw3() {
+    return dw3;
+ }
+
+ public void setDw3(String dw3) {
+    this.dw3 = dw3;
+  }
+
+ /**
  * 计划完成时间
  */
  private Date jhwcsj;
