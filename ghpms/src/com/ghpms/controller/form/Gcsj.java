@@ -112,19 +112,40 @@ public class Gcsj {
 		hsql.append("select a from ");
 		hsql.append(module.getProject_table());
 		hsql.append(" a where 1=1 ");
-			System.out.println("编码"+request.getCharacterEncoding());
+		hsql.append(" ");
+		
+		if (user.getDept_name().equals("施工单位")||user.getDept_name().equals("勘察单位")) {
+			String wxdw=user.getWxdw();
+			hsql.append(" and (a.dw1='");
+			hsql.append(wxdw);
+			hsql.append("' ");
+			hsql.append(" or a.dw2='");
+			hsql.append(wxdw);
+			hsql.append("' ");
+			hsql.append(" or a.dw3='");
+			hsql.append(wxdw);
+			hsql.append("') ");
+			
+		}
+		hsql.append("");
+		
+
+		System.out.println("编码"+request.getCharacterEncoding());
 
 		String keyword0 = new String(keyword.getBytes("ISO-8859-1"), "gbk");
 		if (keyword0.indexOf("?")==-1&&keyword0.indexOf("？")==-1){
 			keyword = new String(keyword.getBytes("ISO-8859-1"), "gbk");
 		}
 		
-		hsql.append(" and a.skbh like'%");
-		hsql.append(keyword);
-		hsql.append("%' ");
-		hsql.append(" or a.gcmc like'%");
-		hsql.append(keyword);
-		hsql.append("%') ");
+		if (keyword!=null&&!keyword.equals("")) {
+			hsql.append(" and (a.skbh like'%");
+			hsql.append(keyword);
+			hsql.append("%' ");
+			hsql.append(" or a.gcmc like'%");
+			hsql.append(keyword);
+			hsql.append("%') ");
+		}
+		
 		
 
 		hsql.append(" order by " + orderField);
