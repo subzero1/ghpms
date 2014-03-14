@@ -195,14 +195,14 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 				queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
 				queryBuilder.eq("statisticflag", new Long(1));
 				queryBuilder.eq("module_id", module_id);
-				queryBuilder.addOrderBy(Order.asc("ord"));
+				queryBuilder.addOrderBy(Order.asc("comments"));
 				statisticList = queryService.searchList(queryBuilder);
 			} else {
 				queryBuilder = new HibernateQueryBuilder(Ta08_reportfield.class);
 				queryBuilder.eq(type, new Long(1));
 				queryBuilder.addOrderBy(Order.asc("searchtype"));
 				queryBuilder.eq("module_id", module_id);
-				queryBuilder.addOrderBy(Order.asc("ord"));
+				queryBuilder.addOrderBy(Order.asc("comments"));
 				fieldList = queryService.searchList(queryBuilder);
 			}
 			
