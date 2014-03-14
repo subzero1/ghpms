@@ -528,7 +528,7 @@ public class Relation {
 				+ tb02_node.getFlow_id() + "' ");
 		unfield_rsql.append(" and ta07.name <>'");
 		unfield_rsql.append("id' ");
-		unfield_rsql.append(" order by ta07.ord,ta07.name");
+		unfield_rsql.append(" order by ta07.name,ta07.ord");
 		List unfields = dao.search(unfield_rsql.toString());
 		modelMap.put("unselect_fields", unfields);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/nodeFields.jsp",

@@ -127,6 +127,20 @@ public class Gcsj {
 			hsql.append("') ");
 			
 		}
+		if (module_id==201) {
+			String wxdw=user.getWxdw();
+			if (user.getDept_name().equals("敷设单位")) {
+				hsql.append(" and fsdw='");
+				hsql.append(wxdw);
+				hsql.append("' ");
+			}
+			if (user.getDept_name().equals("熔接单位")) {
+				hsql.append(" and rjdw='");
+				hsql.append(wxdw);
+				hsql.append("' ");
+			}
+
+		}
 		hsql.append("");
 		
 

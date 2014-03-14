@@ -93,6 +93,11 @@
 				</p>
 				<div style="height:0px;"></div>
 				<p>
+					<label>所属单位：</label>
+					<input type="text" name="Ta03_user.EMAIL" style="width:350px;" value="${user.wxdw }" />
+				</p>
+				<div style="height:0px;"></div>
+				<p>
 					<label>备&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
 					<textarea name="Ta03_user.REMARK" style="width:350px; height:40px;">${user.remark }</textarea>
 				</p>
