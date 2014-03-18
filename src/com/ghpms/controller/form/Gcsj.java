@@ -124,6 +124,11 @@ public class Gcsj {
 		
 		if (user.getDept_name().equals("施工单位")||user.getDept_name().equals("勘察单位")) {
 			String wxdw=user.getWxdw();
+			if (wxdw!=null&&!wxdw.equals("")) {
+				wxdw=wxdw.trim();
+			}else {
+				wxdw="";
+			}
 			hsql.append(" and (a.dw1='");
 			hsql.append(wxdw);
 			hsql.append("' ");
@@ -136,8 +141,13 @@ public class Gcsj {
 			
 		}
 		if (module_id==201) {
-			String wxdw=user.getWxdw().trim();
 			if (user.getDept_name().equals("敷设单位")||user.getDept_name().equals("熔接单位")) {
+				String wxdw=user.getWxdw().trim();
+				if (wxdw!=null&&!wxdw.equals("")) {
+					wxdw=wxdw.trim();
+				}else {
+					wxdw="";
+				}
 				hsql.append(" and (fsdw='");
 				hsql.append(wxdw);
 				hsql.append("' ");
