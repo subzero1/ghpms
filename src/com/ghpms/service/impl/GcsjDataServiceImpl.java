@@ -1,11 +1,13 @@
 package com.ghpms.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,14 @@ import org.springframework.stereotype.Service;
 import com.ghpms.dataObjects.base.Tc01_property;
 import com.ghpms.dataObjects.form.Td31_glwhgc;
 import com.ghpms.service.GcsjDataService;
+import com.netsky.base.baseDao.Dao;
 import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
+import com.netsky.base.dataObjects.Tz02_oper_log;
 import com.netsky.base.service.QueryService;
-import com.netsky.base.utils.StringFormatUtil;
+import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.convertUtil;
 
 @Service("gcsjDataService")
@@ -26,6 +30,9 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 
 	@Autowired
 	private QueryService queryService;
+	
+	@Autowired
+	SaveService saveService;
 
 	public Map getFormTitleMap(Ta03_user user, Long module_id) {
 		// TODO Auto-generated method stub
@@ -396,6 +403,31 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		hsql.append(" and d.node_type=2");
 		List  list = queryService.searchList(hsql.toString());
 		return list;
+	}
+
+	public void saveDelLog(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException {
+		StringBuffer hql=new StringBuffer();
+		Ta03_user user=(Ta03_user) request.getSession().getAttribute("user");
+		String ids = convertUtil.toString(request.getParameter("ids"));
+		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
+
+		Ta06_module module = (Ta06_module) queryService.searchById(
+				Ta06_module.class, module_id);
+		Tz02_oper_log operLog=new Tz02_oper_log();
+		Class c = Class.forName(module.getProject_table());
+
+		operLog.setLogin_id(user.getLogin_id());
+		operLog.setOpuser(user.getName());
+		if (ids!=null&&!ids.equals("")) {
+			operLog.setOpdesc("所属表："+module.getName()+"  删除ID["+ids+"]"+"  影响行数:"+ids.split(",").length);
+		}
+		
+		operLog.setOptype("Delete");
+		operLog.setOld_data(ids);
+		operLog.setOptable(module.getProject_table());
+		operLog.setOptime(new Date());
+		saveService.save(operLog);
+		
 	}
 
 }

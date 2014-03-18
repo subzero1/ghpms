@@ -27,7 +27,7 @@ function openOnLineList(){
         <div id="col-l">
        	<div class="title01">
            	<div id="jnkc"></div><h1>系统桌面</h1>
-               <script>setInterval("$('#jnkc').html('当前时间：' + new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay()) + '，在线人数：<a href='+'javascript:openOnLineList();'+'><font>${zxrs}</font></a>人');",1000);</script>
+               <script>setInterval("$('#jnkc').html('当前时间：' + new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay()) + '，在线人数：<a href='+'javascript:openOnLineList();'+'></a><font>${zxrs}</font>人');",1000);</script>
         </div>
            <div id="win-boxdes">
          	<!-- 个人信息  -->              

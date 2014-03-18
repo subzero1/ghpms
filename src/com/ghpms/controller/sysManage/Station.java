@@ -2,6 +2,8 @@ package com.ghpms.controller.sysManage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netsky.base.dataObjects.Ta02_station;
+import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta12_sta_role;
+import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
+import com.netsky.base.tree.controller.SpmxController.Result;
 import com.netsky.base.utils.convertUtil;
 
 /**
@@ -104,11 +110,20 @@ public class Station {
 
 		//获取岗位节点对象
 		StringBuffer node_rsql = new StringBuffer();
-		node_rsql.append(" select tb02 from Ta13_sta_node ta13,Tb02_node tb02 ");
-		node_rsql.append(" where ta13.node_id = tb02.id  and ta13.station_id = ");
+		ResultObject ro=null;
+		List nodeMaps=new ArrayList();
+		node_rsql.append(" select tb02,ta06 from Ta13_sta_node ta13,Tb02_node tb02,Ta06_module ta06 ");
+		node_rsql.append(" where ta13.node_id = tb02.id  and tb02.flow_id=ta06.id and ta13.station_id = ");
 		node_rsql.append(id);
-		List nodes = dao.search(node_rsql.toString());
-		modelMap.put("nodes", nodes);
+		node_rsql.append(" order by tb02.flow_id,tb02.node_type,tb02.name ");
+		ro=queryService.search(node_rsql.toString());
+		while (ro.next()) {
+			Map nodeMap=new HashMap();
+			nodeMap.put("node", ro.get("tb02"));
+			nodeMap.put("module", ro.get("ta06"));
+			nodeMaps.add(nodeMap);
+		}
+		modelMap.put("nodeMaps", nodeMaps);
 		
 		return new ModelAndView("/WEB-INF/jsp/sysManage/staEdit.jsp",modelMap);
 	}	

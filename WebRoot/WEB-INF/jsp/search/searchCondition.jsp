@@ -51,6 +51,40 @@ function changeTemp(obj){
 function setNull(_this){
 	$(_this).val("null")//
 }
+	/*
+	 *点击搜索框的时候将‘录入后按回车进行搜索’去掉。
+	 */
+	$("#_keyWord").click(function(){
+		var keyWord = $(this).val();
+		if(keyWord != '' && keyWord != null && keyWord.indexOf('回车') != -1){
+			$(this).val('');
+		}
+	})
+	/* 
+	 *回车按关键字进行搜索。
+	 */
+	$("#_keyWord").keypress(function(e){
+	    
+	    var counter = 0;
+		var key = e.keyCode; //获取回车键
+		
+        if(key.toString() == "13"){
+            var s_var = $(this).val(); //获取搜索关键字
+        	$("#fields").children().each(function(k,v){ //k,v 隐含参数 k:当前OPTION位置序号 v:当前OPTION对象。 
+        		var gcmc = $(v).html();  
+        		$(v).removeAttr('selected');             //将选中的OPTION取消选中。
+        		if(gcmc.indexOf(s_var) != -1){
+        			$(v).attr('selected','true');        //将符合条件的OPTION选中。
+        			counter ++;
+        		}
+        	});
+        	move('fields', 'bottom'); 
+        	if(counter == 0){ 
+        		alertMsg.warn('未找到符合条件的选项');
+        	}
+            return false;
+        }
+	})
 </script>
 
 <div class="page">
@@ -73,7 +107,7 @@ function setNull(_this){
 							</tr>
 							<tr>
 								<td align="right" valign="top" width="145">
-									<select name="fields" id="fields" style="width:145px;height:218px;" ondblclick="moveAct('fields', 'fields_select')" multiple>
+									<select name="fields" id="fields" style="width:145px;height:218px;" ondblclick="moveAct('fields', 'fields_select')" multiple=1 type=select-multiple>
 										<c:forEach var="obj" items="${fieldList}">
 											<option value="${obj.id }">${obj.comments }</option>
 										</c:forEach>
@@ -96,6 +130,11 @@ function setNull(_this){
 																
 								</td>
 							</tr>
+							<tr>
+						<td colspan="2"><input type="text" id="_keyWord" style="width:200" value="录入后按回车进行搜索" />
+						<input type="text" name="" style="display:none;"/>
+						</td>
+					</tr>
 						</table>
 					</div>
 					<b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>

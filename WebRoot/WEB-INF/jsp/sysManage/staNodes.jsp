@@ -28,7 +28,9 @@ function changeFlow(obj){
 							<select id="s_node" name="s_node" multiple=1 type=select-multiple  ondblclick="javascript:moveAct('s_node','t_node');" style="width:195px;height:210px;">
 							<option style="background-color:#ccc;" disabled>----------未选项----------</option>
 							<c:forEach var="obj" items="${unselect_nodes}">
-								<option value="${obj.id}">${obj.name}[${obj.remark}]</option>
+								<option value="${obj.node.id}" 
+								title="<c:if test="${obj.node.node_type==2 }">表单</c:if><c:if test="${obj.node.node_type==1 }">录入</c:if>节点[${obj.node.remark }]" 
+								<c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if>>${obj.node.name}</option>
 							</c:forEach>
 							</select>
 						</td>
@@ -40,7 +42,8 @@ function changeFlow(obj){
 							<select id="t_node" name="t_node" multiple=1 type=select-multiple   ondblclick="javascript:moveAct('t_node','s_node');" style="width:195px;height:210px;">
 							<option style="background-color:#ccc;" disabled >----------已选项----------</option>
 							<c:forEach var="obj" items="${select_nodes}">
-								<option value="${obj.id}">${obj.name}[${obj.remark}]</option>
+								<option value="${obj.node.id}" title="<c:if test="${obj.node.node_type==2 }">表单</c:if><c:if test="${obj.node.node_type==1 }">录入</c:if>节点[${obj.node.remark }]"
+								 <c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if>>${obj.node.name}&nbsp;[${obj.module.name}]</option>
 							</c:forEach>
 							</select>
 							<input type="hidden" id="nodes" name="nodes"/>
