@@ -118,12 +118,12 @@ $(document).ready(function(){
 		</h1>
 		<div>
 			<ul>
-			<c:forEach var="node" items="${nodes}">
+			<c:forEach var="nodeMap" items="${nodeMaps}">
 				<li>
-					<a href="sysManage/nodeFields.do?id=${node.id }" target="dialog"
-				width="450" height="340" title="节点字段配置[${node.remark}]">
-				<c:if test="${node.node_type==2}"><font color="#3498e4">${node.name}</font></c:if> <c:if test="${node.node_type==1}">${node.name}</c:if> 
-				<c:if test="${!empty node.remark}">[${node.remark}]</c:if></a>
+					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }" target="dialog"
+				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
+				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
+				[${nodeMap.module.name}]</a>
 				</li>
 			</c:forEach>
 			</ul>

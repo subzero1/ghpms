@@ -216,14 +216,15 @@ public class DataToExcel {
 			tx.rollback();
 			statusCode = "300";
 			message = e.getMessage();
+			log.error("导入出错："+e.getMessage());
 			if (message != null
 					&& message.indexOf("recognize OLE stream") != -1) {
 				message = "Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再导入";
 			} else {
 				message = "Excel格式非法,请参考导入模板或联系系统管理员";
 			}
-			e.printStackTrace();
-		} finally {
+		} 
+		finally {
 
 			session.close();
 

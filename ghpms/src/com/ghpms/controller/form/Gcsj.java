@@ -16,11 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import sun.util.logging.resources.logging;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
@@ -60,6 +63,11 @@ public class Gcsj {
 	
 	@Autowired
 	Dao dao;
+	
+	/**
+	 * 日志处理类
+	 */
+	private Logger log = Logger.getLogger(this.getClass());
 	/**
 	 * 表单列表
 	 * 
@@ -128,18 +136,15 @@ public class Gcsj {
 			
 		}
 		if (module_id==201) {
-			String wxdw=user.getWxdw();
-			if (user.getDept_name().equals("敷设单位")) {
-				hsql.append(" and fsdw='");
+			String wxdw=user.getWxdw().trim();
+			if (user.getDept_name().equals("敷设单位")||user.getDept_name().equals("熔接单位")) {
+				hsql.append(" and (fsdw='");
 				hsql.append(wxdw);
 				hsql.append("' ");
-			}
-			if (user.getDept_name().equals("熔接单位")) {
-				hsql.append(" and rjdw='");
+				hsql.append(" or rjdw='");
 				hsql.append(wxdw);
-				hsql.append("' ");
+				hsql.append("') ");
 			}
-
 		}
 		hsql.append("");
 		
@@ -345,9 +350,14 @@ public class Gcsj {
 					.print("{\"statusCode\":\"200\", \"message\":\"删除成功!\", \"callbackType\":\"\",\"navTabId\":\"\"}");
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("出错信息 ,出错位置 :/gcsj/ajaxGcsjDel.do"+e.getMessage());
 			out
 					.print("{\"statusCode\":\"300\", \"message\":\" 删除失败!\"}");
+		}
+		try {
+			gcsjDataService.saveDelLog(request, response);
+		} catch (ClassNotFoundException e) {
+			log.error("保存删除日志出错 :gcsjDataService.saveDelLog "+e.getMessage());
 		}
 	}
 

@@ -13,7 +13,7 @@
 					<c:forEach var="nodeElement" items="${nodeMap[flow.name]}">
 						<li>
 							<a href="sysManage/nodeEdit.do?id=${nodeElement.id}"
-								target="loadFileArea" rel="nodeEdit" title="${nodeElement.remark}">${nodeElement.name}</a>
+								target="loadFileArea" rel="nodeEdit" title="${nodeElement.remark}<c:if test="${nodeElement.node_type==2}">&nbsp;[表单]</c:if>"><font <c:if test="${nodeElement.node_type==2}"> color="#3498e4" </c:if>>${nodeElement.name}</font></a>
 						</li>
 					</c:forEach>
 				</ul>

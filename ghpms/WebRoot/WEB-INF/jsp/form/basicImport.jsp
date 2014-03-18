@@ -30,6 +30,7 @@
 		$("#tempdownload").click(function(){
 			var moudle_id=$("#moudle_id",$.pdialog.getCurrent()).val();
 			window.location.href="dataToExcelTemplate.do?moudle_id="+moudle_id; 
+			$.pdialog.closeCurrent();
 		});
 		
 	});
@@ -66,7 +67,7 @@
 					<li>
 						<div class="buttonActive"> 
 							<div class="buttonContent">
-							<button class="importbutton" id="tempdownload">
+							<button type="button" id="tempdownload">
 								模板下载
 							</button>
 							</div>

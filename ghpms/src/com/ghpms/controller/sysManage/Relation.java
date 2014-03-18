@@ -2,6 +2,8 @@ package com.ghpms.controller.sysManage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ import com.netsky.base.dataObjects.Ta15_group_node;
 import com.netsky.base.dataObjects.Ta16_node_field;
 import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.ResultObject;
 import com.netsky.base.service.ExceptionService;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.utils.convertUtil;
@@ -273,6 +276,7 @@ public class Relation {
 		String flow_id = convertUtil.toString(request.getParameter("flow_id"),
 				"101");
 		ModelMap modelMap = new ModelMap();
+		ResultObject ro=null;
 
 		// 获取流程列表
 		StringBuffer sql = new StringBuffer();
@@ -282,21 +286,38 @@ public class Relation {
 		modelMap.put("flow_id", flow_id);
 
 		// 获取岗位相关的角色对象
+		List nodes=new ArrayList();
 		sql.delete(0, sql.length());
-		sql.append(" select tb02 from Ta13_sta_node ta13,Tb02_node tb02 ");
-		sql.append(" where ta13.node_id = tb02.id  and ta13.station_id = ");
+		sql.append(" select tb02,ta06 from Ta13_sta_node ta13,Tb02_node tb02,Ta06_module ta06 ");
+		sql.append(" where ta13.node_id = tb02.id and tb02.flow_id=ta06.id and ta13.station_id = ");
 		sql.append(id);
-		List nodes = dao.search(sql.toString() + " order by tb02.name");
+		ro=queryService.search(sql.toString()+" order by  tb02.node_type, tb02.flow_id, tb02.name");
+		while (ro.next()) {
+			Map nodeMap=new HashMap();
+			nodeMap.put("node", ro.get("tb02"));
+			nodeMap.put("module", ro.get("ta06"));
+			nodes.add(nodeMap);
+		}
 		modelMap.put("select_nodes", nodes);
 
 		// 获取岗位非相关的角色对象
+		List unnodes=new ArrayList();
 		StringBuffer unrole_rsql = new StringBuffer();
 		unrole_rsql
-				.append(" select tb02 from Tb02_node tb02 where tb02 not in(");
-		unrole_rsql.append(sql + ")");
+				.append(" select tb02,ta06 from Tb02_node tb02,Ta06_module ta06 where tb02.flow_id=ta06.id and tb02 not in(");
+		unrole_rsql.append(" select tb02 from Ta13_sta_node ta13,Tb02_node tb02 ");
+		unrole_rsql.append(" where ta13.node_id = tb02.id and ta13.station_id = ");
+		unrole_rsql.append(id);
+		unrole_rsql.append(")");
 		unrole_rsql.append(" and tb02.flow_id = " + flow_id);
-		unrole_rsql.append(" order by tb02.name");
-		List unnodes = dao.search(unrole_rsql.toString());
+		unrole_rsql.append(" order by tb02.node_type, tb02.name");
+		ro=queryService.search(unrole_rsql.toString());
+		while (ro.next()) {
+			Map nodeMap=new HashMap();
+			nodeMap.put("node", ro.get("tb02"));
+			nodeMap.put("module", ro.get("ta06"));
+			unnodes.add(nodeMap);
+		}
 		modelMap.put("unselect_nodes", unnodes);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/staNodes.jsp", modelMap);
 	}
