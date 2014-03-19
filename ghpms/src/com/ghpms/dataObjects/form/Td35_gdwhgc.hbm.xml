@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class name="com.ghpms.dataObjects.form.Td35_gdwhgc"  table="Td35_gdwhgc">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="sequence">
+                <param name="sequence">td35_num</param>
+            </generator>
+        </id>
+
+   <property
+  name="skbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="skbh"
+  />
+
+  <property
+  name="ghbh"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ghbh"
+  />
+
+  <property
+  name="gdwhlx"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gdwhlx"
+  />
+
+  <property
+  name="sl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sl"
+  />
+
+  <property
+  name="sysl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="sysl"
+  />
+
+  <property
+  name="shysl"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="shysl"
+  />
+
+  <property
+  name="syrq"
+  type="java.util.Date"
+  update="true"
+  insert="true"
+  column="syrq"
+  />
+
+  <property
+  name="sydz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="sydz"
+  />
+
+  <property
+  name="syyy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="syyy"
+  />
+
+  <property
+  name="ldwhyxm"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="ldwhyxm"
+  />
+
+  <property
+  name="xxly"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xxly"
+  />
+
+  <property
+  name="bz"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="bz"
+  />
+
+  <property
+  name="gcmc"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="gcmc"
+  />
+
+  <property
+  name="xzqy"
+  type="java.lang.String"
+  update="true"
+  insert="true"
+  column="xzqy"
+  />
+
+
+    </class>
+
+</hibernate-mapping>
