@@ -143,16 +143,21 @@ public class DataToExcel {
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) HttpRequest;
 		String statusCode = "200";
 		String message = "";
+		int excelRow=0;
+		boolean isSave=true;//是否保存
 		ModelMap modelMap = new ModelMap();
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
 		List<Ta07_formfield> docColsList = gcsjDataService.getExcelTitleList(
 				user, module_id);
+		if (docColsList==null||docColsList.size()==0) {
+			isSave=false;
+		}
 		Ta06_module module = (Ta06_module) queryService.searchById(
 				Ta06_module.class, module_id);
 		// 权限之外添加ID校验
 		docColsList.addAll(gcsjDataService.getUpdateProperty(module_id));
-
+		if (isSave) {
 		// 取session
 		Session session = null;
 		Transaction tx = null;
@@ -205,9 +210,19 @@ public class DataToExcel {
 					 */
 					injectFromExcel(o, columnMap, st, startRow, request);
 					o = request.getAttribute("obj");
-
+                    
+					//处理空白记录
+					Cell cell2[]=st.getRow(startRow);
+					int nullCount=0;
+					for (int i = 0; i < cell2.length; i++) {
+						if (cell2[i].getContents()==null||cell2[i].getContents().equals("")) {
+							nullCount++;
+						}
+					}
+					if (nullCount<cell.length)  
 					session.saveOrUpdate(o);
 					startRow++;
+					excelRow=startRow;
 				}
 			}
 			session.flush();
@@ -219,9 +234,13 @@ public class DataToExcel {
 			log.error("导入出错："+e.getMessage());
 			if (message != null
 					&& message.indexOf("recognize OLE stream") != -1) {
-				message = "Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再导入";
+				message = "Excel格式非法，请将Excel另存为<font color=red>2003版</font>的<font color=red>标准</font>的Excel后再尝试";
+			}else if (message!=null&&message.indexOf("could not insert")!=-1) {
+				message="编号重复，请您仔细校对";
+			}else if (message!=null&&message.indexOf("same identifier value")!=-1) {
+				message="关键字段重复， 请您仔细校对";
 			} else {
-				message = "Excel格式非法,请参考导入模板或联系系统管理员";
+				message = "请参考导入模板";
 			}
 		} 
 		finally {
@@ -240,6 +259,28 @@ public class DataToExcel {
 					dispathMap.put(perprotys[i], request
 							.getParameter(perprotys[i]));
 				}
+				printJson(request, response, statusCode, dispathMap, message);
+
+			}
+
+		}
+
+		
+		}else {//无相关权限的情况
+			/**
+			 * 处理返回路径
+			 */
+			Map<String, String> dispathMap = new HashMap<String, String>();
+			if (request.getParameter("perproty") != null
+					&& request.getParameter("perproty").length() > 0) {
+				String perprotys[] = request.getParameter("perproty")
+						.split("/");
+				for (int i = 0; i < perprotys.length; i++) {
+					dispathMap.put(perprotys[i], request
+							.getParameter(perprotys[i]));
+				}
+				statusCode="300";
+				message="无相关权限！";
 				printJson(request, response, statusCode, dispathMap, message);
 
 			}
