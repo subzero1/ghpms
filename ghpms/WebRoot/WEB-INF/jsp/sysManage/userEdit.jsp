@@ -18,10 +18,28 @@ $(function(){
 		}
 	);
 	$("#AREA_NAME").change(function(){
-		jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name','name');
+		//jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name','name');
 	})
 	
 });
+
+function userEditValidateCallback(form,callback){
+	var $form=$(form);
+	if(!$form.valid()){
+	return false;}
+	$.ajax({
+		type:form.method||'POST',
+		url:$form.attr("action"),
+		data:$form.serializeArray(),
+		dataType:"json",
+		cache:false,
+		success:callback||DWZ.ajaxDone,
+		error:function(json){
+			alertMsg.info("保存失败，请检查是否登录名重复或者登陆ID重复!");
+		}
+	});
+	return false;
+}
 
 </script>
 
@@ -30,7 +48,7 @@ $(function(){
 		用户信息
 	</h1>
 	<div style="overflow-y: hidden">
-		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return userEditValidateCallback(this, navTabAjaxDone);">
 			<input type="hidden" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Ta03_user" />
 			<input type="hidden" name="Ta03_user.ID" value="${userObj.id}" />
 			<input type="hidden" name="perproty" value="user_id,Ta03_user,id">

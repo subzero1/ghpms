@@ -12,7 +12,7 @@
 	$(function(){
 		//var originalpwd = '${user.passwd}';
 		$("#AREA_NAME").change(function(){
-				jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name','name');
+				//jilian('DEPT_ID','Ta01_dept.area_name',$("#AREA_NAME").val(),'id','name','name');
 			})
 			/*
 		$("#submitbutton").click(function(){
@@ -82,19 +82,19 @@
 					<netsky:htmlSelect style="width:125" id="AREA_NAME"
 						name="Ta03_user.AREA_NAME" objectForOption="areaList"
 						valueForOption="name" showForOption="name"
-						value="${user.area_name}" extend="" extendPrefix="true" />
+						value="${user.area_name}" extend="" extendPrefix="true" isDisabled="true"/>
 				</p>
 				<p>
 					<label>所属部门：</label>
 					<netsky:htmlSelect style="width:125" id="DEPT_ID"
 						name="Ta03_user.DEPT_ID" objectForOption="deptList"
 						valueForOption="id" showForOption="name"
-						value="${user.dept_id}" extend="" extendPrefix="true" htmlClass="required"/>
+						value="${user.dept_id}" extend="" extendPrefix="true" htmlClass="required" isDisabled="true"/>
 				</p>
 				<div style="height:0px;"></div>
 				<p>
 					<label>所属单位：</label>
-					<input type="text" name="Ta03_user.EMAIL" style="width:350px;" value="${user.wxdw }" />
+					<input type="text" name="Ta03_user.EMAIL" style="width:350px;" value="${user.wxdw }" readonly="readonly" />
 				</p>
 				<div style="height:0px;"></div>
 				<p>

@@ -23,7 +23,7 @@ function searchListExport(param1){
 }
 function navTabSearch(form){
 //alert( $(form).serializeArray()[0].name);
-var keyword=$("#keyword",$.pdialog.getCurrent()).val();
+var keyword=$("#keyword",navTab.getCurrentPanel()).val();
 navTab.reload("form/gcsjList.do?module_id=${param.module_id}&keyword="+keyword, $(form).serializeArray());
 return false;
 }
