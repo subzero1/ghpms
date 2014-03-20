@@ -97,6 +97,7 @@ public class Station {
 		role_rsql.append(" select ta04 from Ta12_sta_role ta12,Ta04_role ta04 ");
 		role_rsql.append(" where ta12.role_id = ta04.id  and ta12.station_id = ");
 		role_rsql.append(id);
+		role_rsql.append(" order by ta04.name ");
 		List roles = dao.search(role_rsql.toString());
 		modelMap.put("role", roles);
 		

@@ -69,7 +69,7 @@ public class Dept {
 		
 		ModelMap modelMap = new ModelMap();
 		Map deptListMap = new HashMap();
-		List<Ta01_dept> depList = (List<Ta01_dept>)dao.search("from Ta01_dept where area_name in (select area.name from Tc02_area area) order by area_name,id");//所有部门（树）
+		List<Ta01_dept> depList = (List<Ta01_dept>)dao.search("from Ta01_dept where area_name in (select area.name from Tc02_area area) order by area_name,name");//所有部门（树）
 		List tmpList = null;//前序遍历结果节点列表
 		String area_name = "部门表";
 		for(Ta01_dept ta01:depList){
@@ -86,7 +86,7 @@ public class Dept {
 		
 		deptListMap.put( area_name , tmpList);
 		modelMap.put("deptListMap",deptListMap);
-		modelMap.put("areaList", dao.search("  from Tc02_area where type like '%[3]%' order by id "));
+		modelMap.put("areaList", dao.search("  from Tc02_area where type like '%[3]%' order by name "));
 		return new ModelAndView("/WEB-INF/jsp/sysManage/deptList.jsp",modelMap);
 	}
 	
@@ -97,7 +97,7 @@ public class Dept {
 		
 		Ta01_dept dept = null;
 		//获取所属地区列表
-		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by id"));
+		modelMap.put("areaList", dao.search("from Tc02_area where type like '%[3]%' order by name"));
 		
 		//获取部门对象
 		dept = (Ta01_dept) dao.getObject(Ta01_dept.class, id);

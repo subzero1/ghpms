@@ -145,7 +145,7 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder.eq(type, new Long(1));
 			queryBuilder.eq("searchtype", new Long(1));
 			queryBuilder.eq("module_id", module_id);
-			queryBuilder.addOrderBy(Order.asc("ord"));
+			queryBuilder.addOrderBy(Order.asc("comments"));
 			keyList = queryService.searchList(queryBuilder);
 
 			/**
@@ -155,7 +155,7 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder.eq(type, new Long(1));
 			queryBuilder.eq("searchtype", new Long(2));
 			queryBuilder.eq("module_id", module_id);
-			queryBuilder.addOrderBy(Order.asc("ord"));
+			queryBuilder.addOrderBy(Order.asc("comments"));
 			selectList = queryService.searchList(queryBuilder);
 
 			/**
@@ -165,7 +165,7 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder.eq(type, new Long(1));
 			queryBuilder.eq("searchtype", new Long(3));
 			queryBuilder.eq("module_id", module_id);
-			queryBuilder.addOrderBy(Order.asc("ord"));
+			queryBuilder.addOrderBy(Order.asc("comments"));
 			numberList = queryService.searchList(queryBuilder);
 
 			/**
@@ -175,7 +175,7 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder.eq(type, new Long(1));
 			queryBuilder.eq("searchtype", new Long(4));
 			queryBuilder.eq("module_id", module_id);
-			queryBuilder.addOrderBy(Order.asc("ord"));
+			queryBuilder.addOrderBy(Order.asc("comments"));
 			userList = queryService.searchList(queryBuilder);
 
 			/**
@@ -185,7 +185,7 @@ public class Condition implements org.springframework.web.servlet.mvc.Controller
 			queryBuilder.eq(type, new Long(1));
 			queryBuilder.eq("searchtype", new Long(5));
 			queryBuilder.eq("module_id", module_id);
-			queryBuilder.addOrderBy(Order.asc("ord"));
+			queryBuilder.addOrderBy(Order.asc("comments"));
 			dateList = queryService.searchList(queryBuilder);
 
 			/**
