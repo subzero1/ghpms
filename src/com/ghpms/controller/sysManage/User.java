@@ -149,10 +149,10 @@ public class User {
 		user = (Ta03_user) dao.getObject(Ta03_user.class, id);
 		// 获取部门列表
 		modelMap
-				.put("deptList", dao.search("from Ta01_dept dept where 1=1"));
+				.put("deptList", dao.search("from Ta01_dept dept where 1=1 order by name"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
-				.search("from Tc02_area where type like '%[3]%' order by id"));
+				.search("from Tc02_area where type like '%[3]%' order by name"));
 		modelMap.put("userObj", user);
 		StringBuffer group_rsql = new StringBuffer();
 		group_rsql

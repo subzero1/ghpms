@@ -536,7 +536,7 @@ public class Relation {
 				.append(" select ta07 from Ta16_node_field ta16,Ta07_formfield ta07 ");
 		field_rsql.append(" where ta07.id = ta16.field_id and ta16.node_id = ");
 		field_rsql.append(id);
-		List fields = dao.search(field_rsql.toString() + " order by ta07.name");
+		List fields = dao.search(field_rsql.toString() + " order by ta07.comments ,ta07.ord");
 		modelMap.put("select_fields", fields);
 		// 获取节点
 		Tb02_node tb02_node=(Tb02_node) queryService.searchById(Tb02_node.class, convertUtil.toLong(id));
@@ -549,7 +549,7 @@ public class Relation {
 				+ tb02_node.getFlow_id() + "' ");
 		unfield_rsql.append(" and ta07.name <>'");
 		unfield_rsql.append("id' ");
-		unfield_rsql.append(" order by ta07.name,ta07.ord");
+		unfield_rsql.append(" order by ta07.comments,ta07.ord");
 		List unfields = dao.search(unfield_rsql.toString());
 		modelMap.put("unselect_fields", unfields);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/nodeFields.jsp",

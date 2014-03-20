@@ -113,7 +113,7 @@ public class GcsjListConfig {
 						+ "order by ord");
 			}
 			String field_hsql = "select ta07 from Ta07_formfield ta07 where module_id="+module_id+" and ta07 not in("
-					+ config_hsql + ") order by ord";
+					+ config_hsql + ") order by comments";
 			fieldList = queryService.searchList(field_hsql);
 
 		} catch (Exception e) {
