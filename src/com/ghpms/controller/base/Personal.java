@@ -70,18 +70,17 @@ public class Personal {
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 		user = (Ta03_user) queryService.searchById(Ta03_user.class, user
 				.getId());
+		setUserDept(user);
 		request.getSession().setAttribute("user", user);
 		ModelMap modelMap = new ModelMap();
 		modelMap
 				.put(
 						"deptList",
 						dao
-								.search("from Ta01_dept dept where dept.area_name="
-										+ "(select area_name from Ta03_user user where user.id="
-										+ user.getId() + ")"));
+								.search("from Ta01_dept dept order by dept.name"));
 		// 获取地区列表
 		modelMap.put("areaList", dao
-				.search("from Tc02_area  order by id"));
+				.search("from Tc02_area  order by name"));
 		return new ModelAndView("/WEB-INF/jsp/personalization/userInfo.jsp", modelMap);
 	}
 	
@@ -183,6 +182,7 @@ public class Personal {
 		user.setMobile_tel(mobile_tel);
 		try{
 			dao.saveObject(user);
+			setUserDept(user);
 			session.setAttribute("user", user);	
 			out.print("{\"statusCode\":\"200\",\"message\":\"信息更改成功！\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}");
 		}catch(Exception e){
@@ -223,6 +223,7 @@ public class Personal {
 				user.setPasswd(newpwd);
 				user.setLast_pwd_date(new Date());
 				dao.saveObject(user);
+				setUserDept(user);
 				session.setAttribute("user", user);	
 				out.print("{\"statusCode\":\"200\",\"message\":\"密码修改成功！\", \"navTabId\":\"desktop\", \"forwardUrl\":\"\", \"callbackType\":\"closeCurrentDialog\"}");
 			}else if(!passwd.equals(user.getPasswd())){
@@ -234,4 +235,26 @@ public class Personal {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @param user void
+	 */
+	private void setUserDept(Ta03_user user){
+		StringBuffer hsql=new StringBuffer();
+		Ta03_user t_user =(Ta03_user) queryService.searchById(Ta03_user.class, user
+				.getId());
+		if (t_user!=null) {
+			Long dept_id = convertUtil.toLong(user.getDept_id(),-1l);
+			hsql.delete(0, hsql.length());
+			hsql.append("from Ta01_dept where id = ");
+			hsql.append(dept_id);
+			List tmpList = queryService.searchList(hsql.toString());
+			if (tmpList!=null&&tmpList.size() > 0) {
+				Ta01_dept dept = (Ta01_dept) tmpList.get(0);
+				user.setDept_name(dept.getName());
+			}
+		}
+	}
+	
 }

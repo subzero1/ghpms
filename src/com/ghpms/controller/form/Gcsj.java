@@ -23,7 +23,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import sun.util.logging.resources.logging;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
@@ -83,6 +82,7 @@ public class Gcsj {
 		ModelMap modelMap = new ModelMap();
 		Map docMap = null;
 		ResultObject rs = null;
+		String dept_name="";//部门
 
 		// 条件
 		Long module_id = convertUtil.toLong(request.getParameter("module_id"));
@@ -121,8 +121,9 @@ public class Gcsj {
 		hsql.append(module.getProject_table());
 		hsql.append(" a where 1=1 ");
 		hsql.append(" ");
-		
-		if (user.getDept_name().equals("施工单位")||user.getDept_name().equals("勘察单位")) {
+		//部门控制
+		dept_name=user.getDept_name();
+		if (module_id!=405&&(dept_name.equals("施工单位")||dept_name.equals("勘察单位")||dept_name.equals("敷设单位")||dept_name.equals("熔接单位"))) {
 			String wxdw=user.getWxdw();
 			if (wxdw!=null&&!wxdw.equals("")) {
 				wxdw=wxdw.trim();
@@ -137,26 +138,35 @@ public class Gcsj {
 			hsql.append("' ");
 			hsql.append(" or a.dw3='");
 			hsql.append(wxdw);
-			hsql.append("') ");
-			
-		}
-		if (module_id==201) {
-			if (user.getDept_name().equals("敷设单位")||user.getDept_name().equals("熔接单位")) {
-				String wxdw=user.getWxdw().trim();
-				if (wxdw!=null&&!wxdw.equals("")) {
-					wxdw=wxdw.trim();
-				}else {
-					wxdw="";
-				}
-				hsql.append(" and (fsdw='");
+			hsql.append("' ");
+			if (module_id==201) {
+				hsql.append(" or a.fsdw='");
 				hsql.append(wxdw);
 				hsql.append("' ");
 				hsql.append(" or rjdw='");
 				hsql.append(wxdw);
-				hsql.append("') ");
+				hsql.append("' ");
 			}
+			hsql.append(") ");
+			
 		}
-		hsql.append("");
+//		if (module_id==201) {
+//			if (dept_name.equals("敷设单位")||dept_name.equals("熔接单位")) {
+//				String wxdw=user.getWxdw().trim();
+//				if (wxdw!=null&&!wxdw.equals("")) {
+//					wxdw=wxdw.trim();
+//				}else {
+//					wxdw="";
+//				}
+//				hsql.append(" and (fsdw='");
+//				hsql.append(wxdw);
+//				hsql.append("' ");
+//				hsql.append(" or rjdw='");
+//				hsql.append(wxdw);
+//				hsql.append("') ");
+//			}
+//		}
+//		hsql.append("");
 		
 
 		System.out.println("编码"+request.getCharacterEncoding());

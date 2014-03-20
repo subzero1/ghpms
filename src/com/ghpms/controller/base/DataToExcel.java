@@ -239,8 +239,10 @@ public class DataToExcel {
 				message="编号重复，请您仔细校对";
 			}else if (message!=null&&message.indexOf("same identifier value")!=-1) {
 				message="关键字段重复， 请您仔细校对";
-			} else {
-				message = "请参考导入模板";
+			} else if (message!=null&&message.indexOf("Could not execute JDBC batch update")!=-1) {
+				message="数据不规范， 请您仔细校对";
+			}else {
+				message = "请参考导入模板或者用户手册的数据导入规范";
 			}
 		} 
 		finally {
