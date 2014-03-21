@@ -2,16 +2,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="dms"%>
+<script type="text/javascript">
+ function recordCallBack(json){
+	DWZ.ajaxDone(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		var $node_id=$("#node_id",navTab.getCurrentPanel());
+		var $node_type=$("#node_type",navTab.getCurrentPanel());
+		if($node_id.val()==""){ 
+		//回调函数,取得表的最大ID
+		 $.ajax({
+			type: 'POST',
+			url:'gcsj/getMaxNodeID.do',
+			data:{tableName:'Tb02_node'},
+			dataType:"html",
+			cache: false,
+			success: function openNavTab(data){
+				navTab.openTab('nodeList', 'sysManage/nodeList.do?node_id='+data+'&node_type='+$node_type.val(), {title:'节点维护信息'});
+				},
+			error: DWZ.ajaxError
+		});
+		}
+		
+	}
+}
+
+
+</script>
+
 <div class="panel"  style="width:96%;float:left;margin:10px">
 		<h1>基本属性</h1>
 		<div>
-		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, recordCallBack);">
 			<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Tb02_node" keep="true"/>
-			<input type="hidden" name="Tb02_node.ID" value="${tb02_node.id}" keep="true"/>
+			<input type="hidden" id="node_id" name="Tb02_node.ID" value="${tb02_node.id}" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/nodeList.do?node_id=${tb02_node.id}&node_type=<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>" keep="true"/>
 			<input type="hidden" name="_navTabId" value="propertySetting" keep="true"/>
-			<input type="hidden" name="Tb02_node.NODE_TYPE" value="<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>" />
+			<input type="hidden" id="node_type" name="Tb02_node.NODE_TYPE" value="<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>" />
 			<div class="pageFormContent" style="height:200px">
 				<p>
 					<label>节点名称：</label>
