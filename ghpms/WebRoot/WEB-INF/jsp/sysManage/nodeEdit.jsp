@@ -9,8 +9,9 @@
 			<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.netsky.base.dataObjects.Tb02_node" keep="true"/>
 			<input type="hidden" name="Tb02_node.ID" value="${tb02_node.id}" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
-			<input type="hidden" name="_forwardUrl" value="sysManage/nodeList.do?node_id=${tb02_node.id}" keep="true"/>
+			<input type="hidden" name="_forwardUrl" value="sysManage/nodeList.do?node_id=${tb02_node.id}&node_type=<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>" keep="true"/>
 			<input type="hidden" name="_navTabId" value="propertySetting" keep="true"/>
+			<input type="hidden" name="Tb02_node.NODE_TYPE" value="<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>" />
 			<div class="pageFormContent" style="height:200px">
 				<p>
 					<label>节点名称：</label>
@@ -25,13 +26,6 @@
 					<label>节点注释：</label>
 					<input type="text" name="Tb02_node.REMARK" value="${tb02_node.remark}"  style="width:146px;"/>
 				</p>
-				<p>
-					<label>节点类型：</label>
-					<select name="Tb02_node.NODE_TYPE"  style="width:128px;">
-						<option value="1" <c:if test="${tb02_node.node_type==1}">selected</c:if>>录入节点</option>
-						<option value="2" <c:if test="${tb02_node.node_type==2}">selected</c:if>>表单节点</option>
-					</select>
-				</p>
 				<div class="divider"></div>
 				<div class="remark" style="color:#888;height:80px;">
 				【注】：节点属性说明；<br>
@@ -40,7 +34,7 @@
 				<ul>
 				   <c:if test="${empty property_type.flag || fn:indexOf(property_type.flag,'[r]') == -1}">
 					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保 存</button></div></div></li>
-					<li><div class="button"><div class="buttonContent"><button class="divFileReload" type="Button" loadfile="sysManage/nodeEdit.do?flow_id=${!empty tb02_node.flow_id?tb02_node.flow_id:param.flow_id}">添 加</button></div></div></li>
+					<li><div class="button"><div class="buttonContent"><button class="divFileReload" type="Button" loadfile="sysManage/nodeEdit.do?flow_id=${!empty tb02_node.flow_id?tb02_node.flow_id:param.flow_id}&node_type=<c:out value='${tb02_node.node_type }' default="${param.node_type }"></c:out>">添 加</button></div></div></li>
 					<c:if test="${not empty tb02_node.id}">
 						<li><div class="button"><div class="buttonContent"><button class="formDataClear" type="Button">删 除</button></div></div></li>
 					</c:if>

@@ -274,7 +274,8 @@ public class Relation {
 			HttpServletResponse response, HttpSession session) {
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
 		String flow_id = convertUtil.toString(request.getParameter("flow_id"),
-				"101");
+		"101");
+		Long node_type = convertUtil.toLong(request.getParameter("node_type"),1L);
 		ModelMap modelMap = new ModelMap();
 		ResultObject ro=null;
 
@@ -319,6 +320,7 @@ public class Relation {
 			unnodes.add(nodeMap);
 		}
 		modelMap.put("unselect_nodes", unnodes);
+		modelMap.put("node_type", node_type);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/staNodes.jsp", modelMap);
 	}
 
@@ -336,15 +338,18 @@ public class Relation {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		String[] nodes = request.getParameterValues("t_node");
 		Long id = convertUtil.toLong(request.getParameter("station_id"), -1L);
-
+		Long node_type=convertUtil.toLong(request.getParameter("node_type"),1L);
 		String forwardUrl = "sysManage/staList.do?sta_id="
-				+ convertUtil.toString(request.getParameter("station_id"), "");
+				+ convertUtil.toString(request.getParameter("station_id"), "")+"&node_type="+node_type;
+		
 
 		// 获取岗位的对象
 		StringBuffer checkRole = new StringBuffer();
 		checkRole
-				.append("select ta13 from Ta13_sta_node ta13 where station_id=");
+				.append("select ta13 from Ta13_sta_node ta13,Tb02_node tb02 where ta13.node_id=tb02.id and station_id=");
 		checkRole.append(id);
+		checkRole.append(" and tb02.node_type=");
+		checkRole.append(node_type);
 		try {
 			// 把数据库所有岗位相关的角色放到集合里面
 			List allRoleList = (dao.search(checkRole.toString()));

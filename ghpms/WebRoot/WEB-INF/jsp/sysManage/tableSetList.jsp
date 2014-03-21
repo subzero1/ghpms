@@ -20,20 +20,7 @@
 	<div class="pageHeader">
 		<form action="sysManage/tableSetList.do" method="post"onsubmit="return navTabSearch(this);">
 			<div class="searchBar">
-				<table class="searchContent">
-					<tr>
-						<td>
-						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${param.keyword}" type="text" size="25" />
-						<input type="hidden" value="${param.searchFlag }" name="searchFlag" id="searchFalg"/>
-						</td>
-					</tr>
-				</table>
-				<div class="subBar">
-					<ul>
-						<li><div class="buttonActive"><div class="buttonContent"><button type="button" onClick="javascript:searchOrExcelExport(this,'search/queryTemplate.do',navTabSearch);">检 索</button></div></div></li>
-					</ul>
-				</div>
+				<h1>表单维护<h1/>
 			</div>
 		</form>
 	</div>

@@ -9,11 +9,19 @@ function changeFlow(obj){
 	$.pdialog.reload("sysManage/staNodes.do",{data:{"flow_id":flow_id, "id":station_id}});
 }
 </script>
-
+<script language="javascript">
+function changeFlow(obj){
+	var station_id = "${param.id}";
+	var flow_id = $(obj).val();
+	var node_type=$("#node_type",$.pdialog.getCurrent()).val();
+	$.pdialog.reload("sysManage/staNodes.do",{data:{"flow_id":flow_id, "id":station_id,"node_type":node_type}});
+}
+</script>
 <div class="page">
 	<div class="pageContent">
 		<form action="sysManage/saveStaNodes.do" method="post" class="pageForm"  onSubmit="return selectSubmit(this,dialogAjaxDone,'t_node');"> 
-			<input type="hidden" name="station_id" value="${param.id}">
+			<input type="hidden" name="station_id" value="${param.id}"> 
+			<input type="hidden" id="node_type" name="node_type" value="${node_type}">
 			<div class="pageFormContent" layoutH="56">
 				<table>
 					<tr>
@@ -28,9 +36,11 @@ function changeFlow(obj){
 							<select id="s_node" name="s_node" multiple=1 type=select-multiple  ondblclick="javascript:moveAct('s_node','t_node');" style="width:195px;height:210px;">
 							<option style="background-color:#ccc;" disabled>----------未选项----------</option>
 							<c:forEach var="obj" items="${unselect_nodes}">
+							 <c:if test="${obj.node.node_type==node_type }">
 								<option value="${obj.node.id}" 
 								title="<c:if test="${obj.node.node_type==2 }">表单</c:if><c:if test="${obj.node.node_type==1 }">录入</c:if>节点[${obj.node.remark }]" 
-								<c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if>>${obj.node.name}</option>
+								<c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if> >${obj.node.name}</option>
+								</c:if>
 							</c:forEach>
 							</select>
 						</td>
@@ -42,8 +52,10 @@ function changeFlow(obj){
 							<select id="t_node" name="t_node" multiple=1 type=select-multiple   ondblclick="javascript:moveAct('t_node','s_node');" style="width:195px;height:210px;">
 							<option style="background-color:#ccc;" disabled >----------已选项----------</option>
 							<c:forEach var="obj" items="${select_nodes}">
+							 <c:if test="${obj.node.node_type==node_type }">
 								<option value="${obj.node.id}" title="<c:if test="${obj.node.node_type==2 }">表单</c:if><c:if test="${obj.node.node_type==1 }">录入</c:if>节点[${obj.node.remark }]"
-								 <c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if>>${obj.node.name}&nbsp;[${obj.module.name}]</option>
+								 <c:if test="${obj.node.node_type==2 }"> style="color:#3498e4;"</c:if> >${obj.node.name}&nbsp;[${obj.module.name}]</option>
+								 </c:if>
 							</c:forEach>
 							</select>
 							<input type="hidden" id="nodes" name="nodes"/>

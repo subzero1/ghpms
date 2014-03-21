@@ -13,5 +13,5 @@
 	</li>
 </ul>
 </div>
-<div id="staEdit" class="loadFileArea sysmanage_right" loadfile="sysManage/staEdit.do?id=<c:out value="${param.sta_id}" default="1"/>" style=" float:left; display:block; margin:10px; overflow:hidden; width:75%; height:390px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
+<div id="staEdit" class="loadFileArea sysmanage_right" loadfile="sysManage/staEdit.do?id=<c:out value="${param.sta_id}" default="1"/>&node_type=<c:out value="${param.node_type}" default="1"/>" style=" float:left; display:block; margin:10px; overflow:hidden; width:75%; height:390px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 </div>
