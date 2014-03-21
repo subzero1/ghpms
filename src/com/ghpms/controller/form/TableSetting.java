@@ -170,11 +170,15 @@ public class TableSetting {
 		List<Tb02_node> nodeList=null;
 		Map nodeMap=new HashMap();
 		StringBuffer hql=new StringBuffer();
+		Long node_type=convertUtil.toLong(request.getParameter("node_type"),1L);//节点类型
 		hql.append("select tb01 from Tb01_flow tb01 order by tb01.id");
 		flowList=(List<Tb01_flow>) queryService.searchList(hql.toString());
 		
 		hql.delete(0, hql.length());
-		hql.append("select tb02 from Tb02_node tb02 order by tb02.node_type, tb02.flow_id,tb02.name");
+		hql.append("select tb02 from Tb02_node tb02 where 1=1 ");
+		hql.append(" and tb02.node_type=");
+		hql.append(node_type);
+		hql.append(" order by tb02.node_type, tb02.flow_id,tb02.name");
 		nodeList=(List<Tb02_node>) queryService.searchList(hql.toString());
 		
 		for (Tb01_flow flow : flowList) {

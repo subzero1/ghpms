@@ -20,6 +20,6 @@
 		</c:forEach>
 </ul>
 </div>
-<div id="nodeEdit" class="loadFileArea" loadfile="sysManage/nodeEdit.do?id=${param.node_id}" style=" float:left; display:block; margin:10px; overflow:auto; width:65%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
+<div id="nodeEdit" class="loadFileArea" loadfile="sysManage/nodeEdit.do?id=${param.node_id}&node_type=${param.node_type}" style=" float:left; display:block; margin:10px; overflow:auto; width:65%; height:430px; border:solid 1px #CCC; line-height:21px; background:#FFF;">
 	
 </div>

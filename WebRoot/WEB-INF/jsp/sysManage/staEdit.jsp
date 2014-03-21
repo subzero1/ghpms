@@ -112,21 +112,64 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div class="panel sysmanage_min" defH="110" style="width: 32%; float: left; margin: 5px">
-		<h1>
-			相关节点&nbsp;
-			<a href="sysManage/staNodes.do?id=${sta.id}" target="dialog" width="450" height="340" title="岗位节点配置">[配置]</a>
-		</h1>
+		
+		
+		<div class="tabs"  currentIndex="<c:if test="${param.node_type==2 }">1</c:if><c:if test="${param.node_type!=2 }">0</c:if>" eventType="click">
+		<div class="tabsHeader">
+			<div class="tabsHeaderContent">
+				<ul>
+					<li><a href="javascript:;"><span>录入节点</span></a></li>
+					<li><a href="javascript:;"><span>表单节点</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tabsContent" style="height:512px;">
+		
+		<div style="overflow-y: hidden"> 
+		<h3>
+			&nbsp;节点名称&nbsp;&nbsp;&nbsp;所属类别
+			<a href="sysManage/staNodes.do?id=${sta.id}&node_type=1" target="dialog" width="450" height="340" title="岗位节点配置">[配置]</a>
+		</h3>
 		<div>
 			<ul>
 			<c:forEach var="nodeMap" items="${nodeMaps}">
+				<c:if test="${nodeMap.node.node_type==1}">
 				<li>
 					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }" target="dialog"
 				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
 				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
+				</c:if>
 			</c:forEach>
 			</ul>
 		</div>
+		</div>
+		
+		<div style="overflow-y: hidden"> 
+		<h3>
+			&nbsp;节点名称&nbsp;&nbsp;&nbsp;所属类别
+			<a href="sysManage/staNodes.do?id=${sta.id}&node_type=2" target="dialog" width="450" height="340" title="岗位节点配置">[配置]</a>
+		</h3>
+		<div>
+			<ul>
+			<c:forEach var="nodeMap" items="${nodeMaps}">
+			<c:if test="${nodeMap.node.node_type==2}">
+				<li>
+					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }" target="dialog"
+				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
+				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
+				[${nodeMap.module.name}]</a>
+				</li>
+				</c:if>
+			</c:forEach>
+			</ul>
+		</div>
+		</div>
+		</div>
+		
+		</div>
+		
+		
 	</div>
 	</c:if>
