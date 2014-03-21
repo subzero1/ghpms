@@ -425,8 +425,8 @@ public class Gcsj {
 	 * @throws IOException
 	 *             void
 	 */
-	@RequestMapping("/gcsj/getMaxNodeID.do")
-	public void getMaxNodeID(HttpServletRequest request,
+	@RequestMapping("/gcsj/getMaxTableID.do")
+	public void getMaxTableID(HttpServletRequest request,
 			HttpServletResponse response) throws ClassNotFoundException,
 			IOException {
 		StringBuffer hql = new StringBuffer();
