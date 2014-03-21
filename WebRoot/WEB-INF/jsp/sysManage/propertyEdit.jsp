@@ -2,12 +2,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="NetSkyTagLibs" prefix="dms"%>
+
+<script type="text/javascript">
+ function propertyCallBack(json){
+	DWZ.ajaxDone(json);
+	if (json.statusCode == DWZ.statusCode.ok){
+		var $property_id=$("#property_id",navTab.getCurrentPanel());
+		if($property_id.val()!=""){
+			docReload();
+		}else{ 
+		//回调函数,取得表的最大ID
+		 $.ajax({
+			type: 'POST',
+			url:'gcsj/getMaxTableID.do',
+			data:{tableName:'Tc01_property'},
+			dataType:"html",
+			cache: false,
+			success: function openNavTab(data){
+				navTab.openTab('propertySetting', 'sysManage/propertySettingList.do?property_id='+data, {title:'节点维护信息'});
+				},
+			error: DWZ.ajaxError
+		});
+		}
+		
+	}
+}
+
+
+</script>
+
 <div class="panel"  style="width:96%;float:left;margin:10px">
 		<h1>基本属性</h1>
 		<div>
-		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<form method="post" action="save.do" class="pageForm required-validate" onsubmit="return validateCallback(this, propertyCallBack);">
 			<input type="hidden" id="tableInfomation" name="tableInfomation" value="noFatherTable:com.ghpms.dataObjects.base.Tc01_property" keep="true"/>
-			<input type="hidden" name="Tc01_property.ID" value="${property_type.id}" keep="true"/>
+			<input type="hidden" id="property_id" name="Tc01_property.ID" value="${property_type.id}" keep="true"/>
 			<input type="hidden" name="_callbackType" value="forward" keep="true"/>
 			<input type="hidden" name="_forwardUrl" value="sysManage/propertySettingList.do?property_id=${property_type.id}" keep="true"/>
 			<input type="hidden" name="_navTabId" value="propertySetting" keep="true"/>

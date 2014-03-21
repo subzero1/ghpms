@@ -8,11 +8,13 @@
 	if (json.statusCode == DWZ.statusCode.ok){
 		var $node_id=$("#node_id",navTab.getCurrentPanel());
 		var $node_type=$("#node_type",navTab.getCurrentPanel());
-		if($node_id.val()==""){ 
+		if($node_id.val()!=""){
+			docReload();
+		}else{ 
 		//回调函数,取得表的最大ID
 		 $.ajax({
 			type: 'POST',
-			url:'gcsj/getMaxNodeID.do',
+			url:'gcsj/getMaxTableID.do',
 			data:{tableName:'Tb02_node'},
 			dataType:"html",
 			cache: false,
