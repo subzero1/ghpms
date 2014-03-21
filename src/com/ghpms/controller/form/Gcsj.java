@@ -415,6 +415,33 @@ public class Gcsj {
 			out.print(obj.toString());
 		}
 	}
+	
+	/**
+	 * 取最大表ID的记录
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 *             void
+	 */
+	@RequestMapping("/gcsj/getMaxNodeID.do")
+	public void getMaxNodeID(HttpServletRequest request,
+			HttpServletResponse response) throws ClassNotFoundException,
+			IOException {
+		StringBuffer hql = new StringBuffer();
+		PrintWriter out = response.getWriter();
+		String tableName=convertUtil.toString(request.getParameter("tableName"));
+		hql.append("select max(id) from  ");
+		hql.append(tableName);
+		List list = queryService.searchList(hql.toString());
+		Object obj = null;
+		if (list != null && list.size() > 0) {
+			obj = list.get(0);
+			System.out.println(obj.toString());
+		}
+		out.print(obj.toString());
+	}
 
 	@RequestMapping("/gcsj/outDateList.do")
 	public ModelAndView outDateList(HttpServletRequest request,
