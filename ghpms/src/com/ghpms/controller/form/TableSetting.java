@@ -176,8 +176,6 @@ public class TableSetting {
 		
 		hql.delete(0, hql.length());
 		hql.append("select tb02 from Tb02_node tb02 where 1=1 ");
-		hql.append(" and tb02.node_type=");
-		hql.append(node_type);
 		hql.append(" order by tb02.node_type, tb02.flow_id,tb02.name");
 		nodeList=(List<Tb02_node>) queryService.searchList(hql.toString());
 		

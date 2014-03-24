@@ -69,6 +69,16 @@ public class Ta16_node_field implements Serializable{
  public void setField_id(Long field_id) {
     this.field_id = field_id;
   }
+ 
+ private Long node_type;
+
+public Long getNode_type() {
+	return node_type;
+}
+
+public void setNode_type(Long nodeType) {
+	node_type = nodeType;
+}
 
 
 }

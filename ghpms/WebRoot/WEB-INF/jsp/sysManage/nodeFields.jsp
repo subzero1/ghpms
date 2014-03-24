@@ -4,6 +4,7 @@
 	<div class="pageContent">
 		<form action="sysManage/saveNodeFields.do" method="post" class="pageForm"  onSubmit="return selectSubmit(this,dialogAjaxDone,'t_field');"> 
 			<input type="hidden" name="node_id" value="${param.id}">
+			<input type="hidden" name="node_type" value="${param.node_type}">
 			<div class="pageFormContent" layoutH="56">
 				<table>
 					<tr>
