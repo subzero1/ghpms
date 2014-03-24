@@ -59,6 +59,8 @@ public class JspBuildServlet implements Servlet {
 		if (modules != null && modules.size() > 0) {
 			for (Ta06_module ta06_module : modules) {
 				createJspFile.AutoCreateJspFile(path, ta06_module.getId());
+//				createJspFile.createJspFileToForm(path, ta06_module.getId());
+				
 			}
 		}
 		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
@@ -68,14 +70,14 @@ public class JspBuildServlet implements Servlet {
 			Tb02_node node = (Tb02_node) object;
 			createJspFile.createJspFileToRecord(path, node.getId());
 		}
-		// 生成表单界面
-		hql.delete(0, hql.length());
-		hql.append("select t from Tb02_node t where 1=1 and t.node_type=2 order by t.id ");
-		nodeList = queryService.searchList(hql.toString());
-		for (Object object : nodeList) {
-			Tb02_node node = (Tb02_node) object;
-			createJspFile.createJspFileToForm(path, node.getId());
-		}
+//		// 生成表单界面
+//		hql.delete(0, hql.length());
+//		hql.append("select t from Tb02_node t where 1=1 and t.node_type=2 order by t.id ");
+//		nodeList = queryService.searchList(hql.toString());
+//		for (Object object : nodeList) {
+//			Tb02_node node = (Tb02_node) object;
+//			createJspFile.createJspFileToForm(path, node.getId());
+//		}
 
 	}
 
