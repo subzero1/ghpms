@@ -2,6 +2,7 @@ package com.ghpms.controller.base;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -144,6 +145,8 @@ public class DataToExcel {
 		String statusCode = "200";
 		String message = "";
 		int excelRow=0;
+		int success=0;//保存成功记录数
+		int error=0;//保存出错记录数
 		boolean isSave=true;//是否保存
 		ModelMap modelMap = new ModelMap();
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
@@ -159,11 +162,11 @@ public class DataToExcel {
 		docColsList.addAll(gcsjDataService.getUpdateProperty(module_id));
 		if (isSave) {
 		// 取session
-		Session session = null;
-		Transaction tx = null;
-		session = saveService.getHiberbateSession();
-		tx = session.beginTransaction();
-		tx.begin();
+//		Session session = null;
+//		Transaction tx = null;
+//		session = saveService.getHiberbateSession();
+//		tx = session.beginTransaction();
+//		tx.begin();
 		/**
 		 * 处理上传文件
 		 */
@@ -199,36 +202,48 @@ public class DataToExcel {
 				int startRow = 1;
 				int totalRows = st.getRows();
 				while (startRow < totalRows) {
-					Object o = Class.forName(module.getProject_table())
-							.newInstance();
-					/**
-					 * 注入request中于表格相关内容
-					 */
-					PropertyInject.inject(request, o, 0, "iso-8859-1", "GBK");
-					/**
-					 * 从excel注入信息
-					 */
-					injectFromExcel(o, columnMap, st, startRow, request);
-					o = request.getAttribute("obj");
-                    
-					//处理空白记录
-					Cell cell2[]=st.getRow(startRow);
-					int nullCount=0;
-					for (int i = 0; i < cell2.length; i++) {
-						if (cell2[i].getContents()==null||cell2[i].getContents().equals("")) {
-							nullCount++;
+					try {
+						Object o = Class.forName(module.getProject_table())
+								.newInstance();
+						/**
+						 * 注入request中于表格相关内容
+						 */
+						PropertyInject.inject(request, o, 0, "iso-8859-1", "GBK");
+						/**
+						 * 从excel注入信息
+						 */
+						injectFromExcel(o, columnMap, st, startRow, request);
+						o = request.getAttribute("obj");
+						
+						//处理空白记录
+						Cell cell2[]=st.getRow(startRow);
+						int nullCount=0;
+						for (int i = 0; i < cell2.length; i++) {
+							if (cell2[i].getContents()==null||cell2[i].getContents().equals("")) {
+								nullCount++;
+							}
 						}
+						startRow++;
+						excelRow=startRow;
+						if (nullCount<cell.length) {
+							saveService.save(o);
+							success++;
+						}
+							
+//					session.saveOrUpdate(o);
+					} catch (Exception e) {
+						error++;
+						log.error(e.getMessage());
+						log.error("导入出错：文件名"+file.getName()+" 路径:"+fileDispath+"出错行数："+excelRow);
+						System.out.println("出错行数===================="+excelRow);
+						continue;
 					}
-					if (nullCount<cell.length)  
-					session.saveOrUpdate(o);
-					startRow++;
-					excelRow=startRow;
 				}
 			}
-			session.flush();
-			tx.commit();
+//			session.flush();
+//			tx.commit();
 		} catch (RuntimeException e) {
-			tx.rollback();
+//			tx.rollback();
 			statusCode = "300";
 			message = e.getMessage();
 			log.error("导入出错："+e.getMessage());
@@ -247,11 +262,12 @@ public class DataToExcel {
 		} 
 		finally {
 
-			session.close();
+//			session.close();
 
 			/**
 			 * 处理返回路径
 			 */
+			message="有效保存："+success+",失效记录："+error;
 			Map<String, String> dispathMap = new HashMap<String, String>();
 			if (request.getParameter("perproty") != null
 					&& request.getParameter("perproty").length() > 0) {
@@ -261,6 +277,7 @@ public class DataToExcel {
 					dispathMap.put(perprotys[i], request
 							.getParameter(perprotys[i]));
 				}
+//				statusCode="300";
 				printJson(request, response, statusCode, dispathMap, message);
 
 			}
@@ -455,7 +472,7 @@ public class DataToExcel {
 		response.setContentType("text/html;charset=UTF-8");
 		String message = convertUtil.toString(request.getParameter("_message"));
 		if ("200".equals(statusCode)) {
-			message = message + "成功";
+			message = message + "成功"+originalMessage;
 		} else if ("301".equals(statusCode)) {
 			message = message + "超时失败";
 		} else {
