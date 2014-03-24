@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ghpms.controller.sysManage.Station;
+
 public interface CreateJspFile {
 	/**
 	 * 生成表单
@@ -46,4 +48,10 @@ public interface CreateJspFile {
 	 * @param module_id void
 	 */
 	public void createJspFileToForm(String path,Long node_id);
+	
+	/**
+	 * 
+	 * @param request void
+	 */
+	public void createJspFileToFormUser(HttpServletRequest request);
 }

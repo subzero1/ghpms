@@ -38,7 +38,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	@Autowired
 	private GcsjDataService gcsjDataService;
-	
+
 	public void getNode(HttpServletRequest request, Map paraMap) {
 		StringBuffer hsql = new StringBuffer();
 		String t_module_id = StringFormatUtil.format((String) paraMap
@@ -339,7 +339,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
-
 	public void createJspFileToRecord(HttpServletRequest request, Long node_id) {
 		StringBuffer hsql = new StringBuffer();
 		String filePath = "";
@@ -472,7 +471,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
-
 	public void createJspFileToRecord(String path, Long node_id) {
 		StringBuffer hsql = new StringBuffer();
 
@@ -483,7 +481,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
 		hsql.append(" and b.id=");
 		hsql.append(node_id);
-		hsql.append(" and b.node_type=1 ");
+		hsql.append(" and (c.node_type=1 or c.node_type is null) ");
 		hsql.append(" order by  a.ord");
 		List fields = queryService.searchList(hsql.toString());
 
@@ -632,30 +630,211 @@ public class CreateJspFileImpl implements CreateJspFile {
 	 * @see com.ghpms.service.CreateJspFile#createJspFileToForm(java.lang.String,
 	 *      java.lang.Long)
 	 */
-	public void createJspFileToForm(String path, Long node_id) {
+	public void createJspFileToForm(String path, Long module_id) {
+		StringBuffer hsql = new StringBuffer();
+		Ta06_module module = null;
+		List userList = queryService
+				.searchList("select ta03 from Ta03_user ta03 order by ta03.name");
+		for (Object object : userList) {
+			hsql.delete(0, hsql.length());
+			Ta03_user user = (Ta03_user) object;
+			module = (Ta06_module) queryService.searchById(Ta06_module.class,
+					module_id);
+//			path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
+//					+ user.getId() + ".jsp";
+
+			hsql
+					.append(" select ta07 from  Ta07_formfield ta07 where ta07.id in");
+			hsql
+					.append("(select ta16.field_id from Ta16_node_field ta16,Tb02_node tb02,Ta13_sta_node ta13, Ta02_station ta02 ,Ta03_user ta03,Ta11_sta_user ta11 where 1=1  and  ta16.node_id=tb02.id and tb02.id=ta13.node_id and ta13.station_id=ta02.id and ta03.id=ta11.user_id and ta02.id=ta11.station_id and ta16.node_type=2 ");
+			hsql.append(" and ta03.id=");
+			hsql.append(user.getId());
+			hsql.append(")");
+			hsql.append(" and ta07.name <> 'id' ");
+			hsql.append(" and ta07.module_id=");
+			hsql.append(module.getId());
+			hsql.append(" order by ta07.ord");
+			List fields = queryService.searchList(hsql.toString());
+			if (fields == null || fields.size() == 0) {
+				hsql.delete(0, hsql.length());
+				hsql.append("select a from Ta07_formfield a where 1=1 ");
+				hsql.append(" and a.module_id=");
+				hsql.append(module.getId());
+				hsql.append(" and a.name <> 'id' ");
+				hsql.append(" order by a.ord");
+				fields = queryService.searchList(hsql.toString());
+			}
+
+			hsql.delete(0, hsql.length());
+			hsql
+					.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
+			hsql.append(" \n ");
+			hsql
+					.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+			hsql.append(" \n ");
+			hsql
+					.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
+			hsql.append(" \n ");
+			Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
+			Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
+			for (int i = 0; i < fields.size(); i++) {
+				Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+
+				// 如果文本框沒湊夠兩個一排,進入队列1
+				if (fieldQueue1.size() % 2 == 1) {
+					if (formfield.getDatalength() > 200) {
+						fieldQueue2.offer(formfield);
+						continue;
+					} else {
+						fieldQueue1.offer(formfield);
+					}
+				} // 如果是偶数
+				else {
+					if (fieldQueue2.size() > 0) {
+						formfield = fieldQueue2.poll();
+					} else {
+						if (formfield.getDatalength() < 200) {
+							fieldQueue1.offer(formfield);
+						}
+					}
+				}
+
+				// 文本域
+				if (formfield.getData_type() != null
+						&& (formfield.getData_type() == 2 || formfield
+								.getDatalength() > 1000)) {
+					// 文本域换行
+					hsql.append("<div style=\"height:0px;\"></div>");
+					hsql.append(" <p> \n");
+					hsql.append("<label> " + formfield.getComments()
+							+ "：</label> \n");
+					hsql.append("<textarea ");
+					hsql.append(" name=\"");
+					hsql.append(formfield.getObject_name().substring(
+							formfield.getObject_name().lastIndexOf(".") + 1,
+							formfield.getObject_name().length()));
+					hsql.append("." + formfield.getName().toUpperCase());
+					hsql.append("\"");
+					hsql
+							.append(" style=\"width:619px;height:70px;\" readonly>");
+					hsql.append("${");
+					hsql.append(formfield.getObject_name().substring(
+							formfield.getObject_name().lastIndexOf(".") + 1,
+							formfield.getObject_name().length()).toLowerCase());
+					hsql.append("." + formfield.getName() + "} ");
+					hsql.append("</textarea>");
+					hsql.append("\n </p> \n");
+					hsql.append("<div style=\"height:0px;\"></div> \n");
+				} else {
+					if (formfield.getDatalength() > 250) {
+						hsql.append("<div style=\"height:0px;\"></div>");
+					}
+					hsql.append(" <p> \n");
+					hsql.append("<label> " + formfield.getComments()
+							+ "：</label> \n");
+
+					hsql.append("<input type=\"text\" ");
+					hsql.append(" name=\"");
+					hsql.append(formfield.getObject_name().substring(
+							formfield.getObject_name().lastIndexOf(".") + 1,
+							formfield.getObject_name().length()));
+					hsql.append("." + formfield.getName().toUpperCase());
+					hsql.append("\"");
+					hsql.append(" value=\"");
+					// 如果是日期
+					if (formfield.getDatatype().equals("DATE")) {
+						hsql.append("<fmt:formatDate value=\"");
+					}
+					hsql.append("${");
+					hsql.append(formfield.getObject_name().substring(
+							formfield.getObject_name().lastIndexOf(".") + 1,
+							formfield.getObject_name().length()).toLowerCase());
+					hsql.append("." + formfield.getName() + "}\" ");
+
+					// 如果是日期
+					if (formfield.getDatatype().equals("DATE")) {
+						hsql.append(" pattern=\"");
+						if (formfield.getFormat() != null
+								&& formfield.getData_type() == 5) {
+							hsql.append(formfield.getFormat());
+						} else {
+							hsql.append("yyyy-MM-dd");
+						}
+
+						hsql.append(" \"/>\" ");
+					}
+					// 长文本框
+					if (formfield.getDatalength() > 200
+							&& formfield.getDatalength() < 500) {
+						hsql.append("style=\"width:619px;\" readonly/>");
+					}
+					// 短文本框
+					else {
+						hsql.append("style=\"width:256px;\" readonly/>");
+					}
+
+					hsql.append("\n </p> \n");
+					if (fieldQueue1.size() % 2 == 0) {
+						hsql.append("<div style=\"height:0px;\"></div> \n");
+					}
+				}
+			}
+			try {
+				FileOutputStream fos = new FileOutputStream(path+"\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
+						+ user.getId() + ".jsp");
+				Writer out = new OutputStreamWriter(fos, "utf-8");
+				out.write(hsql.toString());
+				// out.write(hsql.toString());
+				out.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
+	public void createJspFileToFormUser(HttpServletRequest request) {
 		StringBuffer hsql = new StringBuffer();
 		Tb02_node node;
 		Ta06_module module = null;
+		String path = request.getSession().getServletContext().getRealPath(
+				"/WEB-INF");
+		Long node_id = convertUtil.toLong(request.getParameter("node_id"), -1L);
+		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
 
 		node = (Tb02_node) queryService.searchById(Tb02_node.class, node_id);
 		if (node != null) {
 			module = (Ta06_module) queryService.searchById(Ta06_module.class,
 					node.getFlow_id());
 			path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
-					+ node_id + ".jsp";
+					+ user.getId() + ".jsp";
 		}
 
+		hsql.append(" select ta07 from  Ta07_formfield ta07 where ta07.id in");
 		hsql
-				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where 1=1 ");
-		hsql.append(" and a.id=c.field_id and b.id=c.node_id  ");
-		hsql.append(" and b.id=");
-		hsql.append(node_id);
-//		hsql.append(" and a.module_id=");
-//		hsql.append(node.getFlow_id());
-		hsql.append(" and a.name <> 'id' ");
-		hsql.append(" and b.node_type=2 ");
-		hsql.append(" order by a.ord");
+				.append("(select ta16.field_id from Ta16_node_field ta16,Tb02_node tb02,Ta13_sta_node ta13, Ta02_station ta02 ,Ta03_user ta03,Ta11_sta_user ta11 where 1=1  and  ta16.node_id=tb02.id and tb02.id=ta13.node_id and ta13.station_id=ta02.id and ta03.id=ta11.user_id and ta02.id=ta11.station_id and ta16.node_type=2 ");
+		hsql.append(" and ta03.id=");
+		hsql.append(user.getId());
+		hsql.append(")");
+		hsql.append(" and ta07.name <> 'id' ");
+		hsql.append(" and ta07.module_id=");
+		hsql.append(module.getId());
+		hsql.append(" order by ta07.ord");
 		List fields = queryService.searchList(hsql.toString());
+		if (fields == null || fields.size() == 0) {
+			hsql.delete(0, hsql.length());
+			hsql.append("select a from Ta07_formfield a where 1=1 ");
+			hsql.append(" and a.module_id=");
+			hsql.append(module.getId());
+			hsql.append(" and a.name <> 'id' ");
+			hsql.append(" order by a.ord");
+			fields = queryService.searchList(hsql.toString());
+		}
 
 		hsql.delete(0, hsql.length());
 		hsql

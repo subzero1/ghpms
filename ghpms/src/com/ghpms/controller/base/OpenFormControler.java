@@ -147,11 +147,11 @@ public class OpenFormControler {
 			Ta06_module o_module = (Ta06_module) queryService.searchById(clazz, module_id);
 			
 			//给表单附加权限过滤
-			List tableNodeList=gcsjDataService.getTableNodeList(user, module_id);
-			if (tableNodeList!=null&&tableNodeList.size()>0) {
-				Tb02_node node=(Tb02_node) tableNodeList.get(0);
-				o_module.setForm_url("form/"+o_module.getForm_name().toLowerCase()+"_"+node.getId()+".jsp");
-			}
+//			List tableNodeList=gcsjDataService.getTableNodeList(user, module_id);
+//			if (tableNodeList!=null&&tableNodeList.size()>0) {
+//				Tb02_node node=(Tb02_node) tableNodeList.get(0);
+				o_module.setForm_url("form/"+o_module.getForm_name().toLowerCase()+"_"+user_id+".jsp");
+//			}
 			request.setAttribute("module", o_module);
 
 			/**
