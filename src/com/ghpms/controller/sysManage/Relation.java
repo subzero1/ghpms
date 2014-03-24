@@ -275,7 +275,7 @@ public class Relation {
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
 		String flow_id = convertUtil.toString(request.getParameter("flow_id"),
 		"101");
-		Long node_type = convertUtil.toLong(request.getParameter("node_type"),1L);
+//		Long node_type = convertUtil.toLong(request.getParameter("node_type"),1L);
 		ModelMap modelMap = new ModelMap();
 		ResultObject ro=null;
 
@@ -320,7 +320,7 @@ public class Relation {
 			unnodes.add(nodeMap);
 		}
 		modelMap.put("unselect_nodes", unnodes);
-		modelMap.put("node_type", node_type);
+//		modelMap.put("node_type", node_type);
 		return new ModelAndView("/WEB-INF/jsp/sysManage/staNodes.jsp", modelMap);
 	}
 
@@ -338,9 +338,9 @@ public class Relation {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		String[] nodes = request.getParameterValues("t_node");
 		Long id = convertUtil.toLong(request.getParameter("station_id"), -1L);
-		Long node_type=convertUtil.toLong(request.getParameter("node_type"),1L);
+//		Long node_type=convertUtil.toLong(request.getParameter("node_type"),1L);
 		String forwardUrl = "sysManage/staList.do?sta_id="
-				+ convertUtil.toString(request.getParameter("station_id"), "")+"&node_type="+node_type;
+				+ convertUtil.toString(request.getParameter("station_id"), "");//+"&node_type="+node_type;
 		
 
 		// 获取岗位的对象
@@ -348,8 +348,8 @@ public class Relation {
 		checkRole
 				.append("select ta13 from Ta13_sta_node ta13,Tb02_node tb02 where ta13.node_id=tb02.id and station_id=");
 		checkRole.append(id);
-		checkRole.append(" and tb02.node_type=");
-		checkRole.append(node_type);
+//		checkRole.append(" and tb02.node_type=");
+//		checkRole.append(node_type);
 		try {
 			// 把数据库所有岗位相关的角色放到集合里面
 			List allRoleList = (dao.search(checkRole.toString()));
@@ -534,6 +534,7 @@ public class Relation {
 	public ModelAndView nodeFields(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) {
 		Long id = convertUtil.toLong(request.getParameter("id"), -1L);
+		Long node_type=convertUtil.toLong(request.getParameter("node_type"),1L);
 		ModelMap modelMap = new ModelMap();
 		// 获取岗位相关的角色对象
 		StringBuffer field_rsql = new StringBuffer();
@@ -541,6 +542,14 @@ public class Relation {
 				.append(" select ta07 from Ta16_node_field ta16,Ta07_formfield ta07 ");
 		field_rsql.append(" where ta07.id = ta16.field_id and ta16.node_id = ");
 		field_rsql.append(id);
+		if (node_type==2) {
+			field_rsql.append(" and ta16.node_type=");
+			field_rsql.append(node_type);
+		}else if(node_type==1){
+			field_rsql.append(" and (ta16.node_type=");
+			field_rsql.append(node_type);
+			field_rsql.append(" or ta16.node_type is null)");
+		}
 		List fields = dao.search(field_rsql.toString() + " order by ta07.comments ,ta07.ord");
 		modelMap.put("select_fields", fields);
 		// 获取节点
@@ -816,6 +825,7 @@ public class Relation {
 		response.setCharacterEncoding(request.getCharacterEncoding());
 		String[] fields = request.getParameterValues("t_field");
 		Long id = convertUtil.toLong(request.getParameter("node_id"), -1L);
+		Long node_type = convertUtil.toLong(request.getParameter("node_type"), 1L);
 
 		
 		// 获取岗位的对象
@@ -823,6 +833,8 @@ public class Relation {
 		checkfield
 				.append("select ta16 from Ta16_node_field ta16 where node_id=");
 		checkfield.append(id);
+		checkfield.append(" and ta16.node_type=");
+		checkfield.append(node_type);
 		try {
 			// 把数据库所有岗位相关的角色放到集合里面
 			List allfieldList = (dao.search(checkfield.toString()));
@@ -845,16 +857,17 @@ public class Relation {
 					Ta16_node_field ta16_node_field = new Ta16_node_field();
 					ta16_node_field.setField_id(new Long(fields[i]));
 					ta16_node_field.setNode_id(id);
+					ta16_node_field.setNode_type(node_type);
 					if (id != -1) {
 						dao.saveObject(ta16_node_field);
 					}
 				}
-				gcsjDataService.setSelectValue(request, id);
-				createJspFile.createJspFileToRecord(request.getSession().getServletContext().getRealPath(
-				"/WEB-INF"), id);
-				createJspFile.createJspFileToForm(request.getSession().getServletContext().getRealPath(
-				"/WEB-INF"), id);
 			}
+			gcsjDataService.setSelectValue(request, id);
+			createJspFile.createJspFileToRecord(request.getSession().getServletContext().getRealPath(
+			"/WEB-INF"), id);
+			createJspFile.createJspFileToForm(request.getSession().getServletContext().getRealPath(
+			"/WEB-INF"), id);
 			response
 					.getWriter()
 					.print(

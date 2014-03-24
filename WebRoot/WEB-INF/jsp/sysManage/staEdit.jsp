@@ -118,8 +118,8 @@ $(document).ready(function(){
 		<div class="tabsHeader">
 			<div class="tabsHeaderContent">
 				<ul>
-					<li><a href="javascript:;"><span>录入节点</span></a></li>
-					<li><a href="javascript:;"><span>表单节点</span></a></li>
+					<li><a href="javascript:;"><span>录入</span></a></li>
+					<li><a href="javascript:;"><span>查看</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -133,14 +133,12 @@ $(document).ready(function(){
 		<div>
 			<ul>
 			<c:forEach var="nodeMap" items="${nodeMaps}">
-				<c:if test="${nodeMap.node.node_type==1}">
 				<li>
-					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }" target="dialog"
+					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=1" target="dialog"
 				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
 				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
-				</c:if>
 			</c:forEach>
 			</ul>
 		</div>
@@ -154,14 +152,12 @@ $(document).ready(function(){
 		<div>
 			<ul>
 			<c:forEach var="nodeMap" items="${nodeMaps}">
-			<c:if test="${nodeMap.node.node_type==2}">
 				<li>
-					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }" target="dialog"
+					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=2" target="dialog"
 				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
 				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
-				</c:if>
 			</c:forEach>
 			</ul>
 		</div>

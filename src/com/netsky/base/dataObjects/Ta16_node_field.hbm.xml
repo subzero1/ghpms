@@ -35,6 +35,15 @@
   />
 
 
+  <property
+  name="node_type"
+  type="java.lang.Long"
+  update="true"
+  insert="true"
+  column="node_type"
+  />
+
+
     </class>
 
 </hibernate-mapping>
