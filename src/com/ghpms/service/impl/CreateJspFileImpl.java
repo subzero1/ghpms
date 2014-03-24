@@ -56,7 +56,16 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" and d.flow_id=");
 		hsql.append(module_id);
 		//
-		hsql.append(" and d.node_type=1");
+		hsql.append(" and d.node_type=1 ");
+		String wxdw=user.getWxdw();
+		if (wxdw != null
+				&& !wxdw.equals("")
+				&& (wxdw.equals("施工单位") || wxdw.equals("勘察单位")
+						|| wxdw.equals("敷设单位") || wxdw.equals("熔接单位"))) {
+			hsql.append(" and and a.wxdw='");
+			hsql.append(wxdw);
+			hsql.append("'");
+		}
 		List recordButtons = queryService.searchList(hsql.toString());
 		List nodeMaps = new ArrayList();
 		for (Object object : recordButtons) {
