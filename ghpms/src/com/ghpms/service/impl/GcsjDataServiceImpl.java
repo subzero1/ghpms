@@ -400,7 +400,6 @@ public class GcsjDataServiceImpl implements GcsjDataService {
 		hsql.append(" and d.flow_id=");
 		hsql.append(module_id);
 		//
-		hsql.append(" and d.node_type=2");
 		List  list = queryService.searchList(hsql.toString());
 		return list;
 	}
