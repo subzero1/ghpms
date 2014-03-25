@@ -833,8 +833,15 @@ public class Relation {
 		checkfield
 				.append("select ta16 from Ta16_node_field ta16 where node_id=");
 		checkfield.append(id);
-		checkfield.append(" and ta16.node_type=");
-		checkfield.append(node_type);
+		if (node_type==1) {
+			checkfield.append(" and (ta16.node_type=");
+			checkfield.append(node_type);
+			checkfield.append(" or ta16.node_type is null)");
+		}else {
+			checkfield.append(" and ta16.node_type=");
+			checkfield.append(node_type);
+		}
+
 		try {
 			// 把数据库所有岗位相关的角色放到集合里面
 			List allfieldList = (dao.search(checkfield.toString()));

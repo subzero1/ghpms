@@ -84,7 +84,7 @@ $(document).ready(function(){
 	<div class="panel sysmanage_min" defH="110" style="width: 32%; float: left; margin: 5px">
 		<h1>
 			相关角色&nbsp;
-			<a href="sysManage/staRoles.do?id=${sta.id}" target="dialog" width="450" height="340" title="岗位角色配置">[配置]</a>
+			<a href="sysManage/staRoles.do?id=${sta.id}" target="dialog" width="480" height="360" title="岗位角色配置">[配置]</a>
 		</h1>
 		<div>
 			<ul>
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	<div class="panel sysmanage_min" defH="110" style="width: 31%; float: left; margin: 5px">
 		<h1>
 			相关人员&nbsp;
-			<a href="sysManage/staUsers.do?id=${sta.id}" target="dialog" width="450" height="340" title="岗位人员配置">[配置]</a>
+			<a href="sysManage/staUsers.do?id=${sta.id}" target="dialog" width="480" height="360" title="岗位人员配置">[配置]</a>
 		</h1>
 		<div>
 			<ul>
@@ -135,7 +135,7 @@ $(document).ready(function(){
 			<c:forEach var="nodeMap" items="${nodeMaps}">
 				<li>
 					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=1" target="dialog"
-				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
+				width="480" height="360" title="节点字段配置[${nodeMap.node.remark}]">
 				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
@@ -154,7 +154,7 @@ $(document).ready(function(){
 			<c:forEach var="nodeMap" items="${nodeMaps}">
 				<li>
 					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=2" target="dialog"
-				width="450" height="340" title="节点字段配置[${nodeMap.node.remark}]">
+				width="480" height="360" title="节点字段配置[${nodeMap.node.remark}]">
 				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
