@@ -53,6 +53,41 @@ function changeWidth(obj,obj1){
 	$("#configW").val(width);
 	moveAct(obj,obj1);
 }
+
+	/*
+	 *点击搜索框的时候将‘录入后按回车进行搜索’去掉。
+	 */
+	$("#_keyWord").click(function(){
+		var keyWord = $(this).val();
+		if(keyWord != '' && keyWord != null && keyWord.indexOf('回车') != -1){
+			$(this).val('');
+		}
+	})
+	/* 
+	 *回车按关键字进行搜索。
+	 */
+	$("#_keyWord").keypress(function(e){
+	    
+	    var counter = 0;
+		var key = e.keyCode; //获取回车键
+		
+        if(key.toString() == "13"){
+            var s_var = $(this).val(); //获取搜索关键字
+        	$("#s_sta").children().each(function(k,v){ //k,v 隐含参数 k:当前OPTION位置序号 v:当前OPTION对象。 
+        		var gcmc = $(v).html();  
+        		$(v).removeAttr('selected');             //将选中的OPTION取消选中。
+        		if(gcmc.indexOf(s_var) != -1){
+        			$(v).attr('selected','true');        //将符合条件的OPTION选中。
+        			counter ++;
+        		}
+        	});
+        	move('s_sta', 'bottom'); 
+        	if(counter == 0){ 
+        		alertMsg.warn('未找到符合条件的选项');
+        	}
+            return false;
+        }
+	})
 </script>
 <div class="page">
 	<div class="pageContent">
@@ -91,6 +126,12 @@ function changeWidth(obj,obj1){
 					<tr>
 						<td colspan="2"><label>屏幕允许宽度：</label><input type="text" style="width:40px;text-align:center;" id="screenW" readonly value=""/> &nbsp;px</td>
 						<td colspan="2"><label>配置列表宽度：</label><input type="text" style="width:40px;text-align:center;" id="configW" readonly value=""/> &nbsp;px</td>
+					</tr>
+					
+												<tr>
+						<td colspan="2"><input type="text" id="_keyWord" style="width:200" value="录入后按回车进行搜索" />
+						<input type="text" name="" style="display:none;"/>
+						</td>
 					</tr>
 				</table>
 			</div>

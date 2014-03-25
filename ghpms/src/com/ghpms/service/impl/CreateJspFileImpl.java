@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -20,10 +21,13 @@ import org.springframework.stereotype.Service;
 
 import com.ghpms.service.CreateJspFile;
 import com.ghpms.service.GcsjDataService;
+import com.netsky.base.baseDao.Dao;
+import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
 import com.netsky.base.dataObjects.Tb02_node;
+import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.service.QueryService;
 import com.netsky.base.service.SaveService;
 import com.netsky.base.utils.StringFormatUtil;
@@ -39,11 +43,16 @@ public class CreateJspFileImpl implements CreateJspFile {
 	@Autowired
 	private GcsjDataService gcsjDataService;
 
-	public void getNode(HttpServletRequest request, Map paraMap) {
+	public void getNode(HttpServletRequest request, Map paraMap) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException  {
 		StringBuffer hsql = new StringBuffer();
 		String t_module_id = StringFormatUtil.format((String) paraMap
 				.get("module_id"), "-1");
+		
+		
 		Long module_id = convertUtil.toLong(t_module_id);
+		Ta06_module module_obj = ((Ta06_module)queryService.searchById(Ta06_module.class, module_id));
+		Object dataObject = queryService.searchById(Class.forName(module_obj.getForm_table()), MapUtil.getLong(paraMap, "id"));
+		
 		Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
 		hsql
 				.append("select distinct(d.id),d.name,d.flow_id,d.node_type,d.remark ");
@@ -58,18 +67,23 @@ public class CreateJspFileImpl implements CreateJspFile {
 		//
 		hsql.append(" and d.node_type=1 ");
 		String wxdw=user.getWxdw();
-		if (wxdw != null
-				&& !wxdw.equals("")
-				&& (wxdw.equals("施工单位") || wxdw.equals("勘察单位")
-						|| wxdw.equals("敷设单位") || wxdw.equals("熔接单位"))) {
-			hsql.append(" and and a.wxdw='");
-			hsql.append(wxdw);
-			hsql.append("'");
-		}
+		
 		List recordButtons = queryService.searchList(hsql.toString());
 		List nodeMaps = new ArrayList();
 		for (Object object : recordButtons) {
 			Object[] node = (Object[]) object;
+			String file_name ="";
+			if(node[1].toString().indexOf("单位")> 1){
+				List list=queryService.searchList( "select name from Ta07_formfield where comments ='" +node[1].toString() + "' "+"and module_id="+module_id);
+				if (list!=null&&list.size()>0) {
+					file_name =(String) list.get(0);
+				}
+				
+				if(!PropertyInject.getProperty(dataObject, file_name).equals(wxdw)){
+					continue;
+				}
+				
+			}
 			Map nodeMap = new HashMap();
 			nodeMap.put("editURL", "gcsj/gcsjEdit.do?node_id=" + node[0]
 					+ "&module_id=" + module_id);
@@ -480,6 +494,12 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
+	/**
+	 * 录入界面
+	 *　重载方法：createJspFileToRecord
+	 * (non-Javadoc)
+	 * @see com.ghpms.service.CreateJspFile#createJspFileToRecord(java.lang.String, java.lang.Long)
+	 */
 	public void createJspFileToRecord(String path, Long node_id) {
 		StringBuffer hsql = new StringBuffer();
 
@@ -487,8 +507,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 		String packTableName = "";
 
 		hsql
-				.append("select a from Ta07_formfield a,Tb02_node b,Ta16_node_field c where a.id=c.field_id and b.id=c.node_id ");
-		hsql.append(" and b.id=");
+				.append("select a from Ta07_formfield a,Ta16_node_field c where a.id=c.field_id");
+		hsql.append(" and c.node_id=");
 		hsql.append(node_id);
 		hsql.append(" and (c.node_type=1 or c.node_type is null) ");
 		hsql.append(" order by  a.ord");
@@ -807,6 +827,12 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
+	/**
+	 * 
+	 *　重载方法：createJspFileToFormUser
+	 * (non-Javadoc)
+	 * @see com.ghpms.service.CreateJspFile#createJspFileToFormUser(javax.servlet.http.HttpServletRequest)
+	 */
 	public void createJspFileToFormUser(HttpServletRequest request) {
 		StringBuffer hsql = new StringBuffer();
 		Tb02_node node;
@@ -824,13 +850,11 @@ public class CreateJspFileImpl implements CreateJspFile {
 					+ user.getId() + ".jsp";
 		}
 
-		hsql.append(" select ta07 from  Ta07_formfield ta07 where ta07.id in");
-		hsql
-				.append("(select ta16.field_id from Ta16_node_field ta16,Tb02_node tb02,Ta13_sta_node ta13, Ta02_station ta02 ,Ta03_user ta03,Ta11_sta_user ta11 where 1=1  and  ta16.node_id=tb02.id and tb02.id=ta13.node_id and ta13.station_id=ta02.id and ta03.id=ta11.user_id and ta02.id=ta11.station_id and ta16.node_type=2 ");
-		hsql.append(" and ta03.id=");
-		hsql.append(user.getId());
-		hsql.append(")");
+		hsql.append(" select distinct ta07 from Ta07_formfield ta07,Ta16_node_field ta16,Ta13_sta_node ta13,Ta11_sta_user ta11 where 1=1 ");
+		hsql.append(" and ta07.id=ta16.field_id and ta16.node_id=ta13.node_id and ta16.node_type =2 ");
 		hsql.append(" and ta07.name <> 'id' ");
+		hsql.append(" and ta11.user_id=");
+		hsql.append(user.getId());
 		hsql.append(" and ta07.module_id=");
 		hsql.append(module.getId());
 		hsql.append(" order by ta07.ord");
@@ -972,5 +996,8 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void createTableFile(HttpServletRequest request, Long moduleId) {
 	}
 }

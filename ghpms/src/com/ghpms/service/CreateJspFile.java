@@ -1,5 +1,6 @@
 package com.ghpms.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public interface CreateJspFile {
 	 * @param request
 	 * @param paraMap void
 	 */
-	public void getNode(HttpServletRequest request,Map paraMap);
+	public void getNode(HttpServletRequest request,Map paraMap) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException , ClassNotFoundException;
 	
 	/**
 	 * 生成大表单
