@@ -54,4 +54,10 @@ public interface CreateJspFile {
 	 * @param request void
 	 */
 	public void createJspFileToFormUser(HttpServletRequest request);
+	
+	/**
+	 * 根据module生成大表单
+	 * @param request void
+	 */
+	public void createTableFile(HttpServletRequest request, Long module_id);
 }
