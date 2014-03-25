@@ -1,5 +1,6 @@
 package com.ghpms.controller.base;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -150,8 +151,21 @@ public class OpenFormControler {
 //			List tableNodeList=gcsjDataService.getTableNodeList(user, module_id);
 //			if (tableNodeList!=null&&tableNodeList.size()>0) {
 //				Tb02_node node=(Tb02_node) tableNodeList.get(0);
-				o_module.setForm_url("form/"+o_module.getForm_name().toLowerCase()+"_"+user_id+".jsp");
+			o_module.setForm_url("form/"
+					+ o_module.getForm_name().toLowerCase() + "_" + user_id
+					+ ".jsp");
 //			}
+			String path = request.getSession().getServletContext().getRealPath(
+					"/WEB-INF")
+					+ "\\jsp\\form\\"
+					+ o_module.getForm_name().toLowerCase()
+					+ "_" + user.getId() + ".jsp";
+			//检测表单jsp是否存在，如果不存在则重新生成
+			File file = new File(path);
+			if (!file.exists()) {
+				createJspFile.createTableFile(request, o_module.getId());
+			}
+				System.out.println("文件是否存在"+file.exists()+"文件名"+file.getName());
 			request.setAttribute("module", o_module);
 
 			/**
