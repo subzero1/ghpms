@@ -63,13 +63,13 @@ public class JspBuildServlet implements Servlet {
 				
 			}
 		}
-		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
-		List nodeList = queryService.searchList(hql.toString());
-		// 生成录入界面
-		for (Object object : nodeList) {
-			Tb02_node node = (Tb02_node) object;
-			createJspFile.createJspFileToRecord(path, node.getId());
-		}
+//		hql.append("select tb02 from Tb02_node tb02 where 1=1 order by id ");
+//		List nodeList = queryService.searchList(hql.toString());
+//		// 生成录入界面
+//		for (Object object : nodeList) {
+//			Tb02_node node = (Tb02_node) object;
+//			createJspFile.createJspFileToRecord(path, node.getId());
+//		}
 //		// 生成表单界面
 //		hql.delete(0, hql.length());
 //		hql.append("select t from Tb02_node t where 1=1 and t.node_type=2 order by t.id ");

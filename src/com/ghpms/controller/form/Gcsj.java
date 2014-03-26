@@ -121,15 +121,15 @@ public class Gcsj {
 		hsql.append(module.getProject_table());
 		hsql.append(" a where 1=1 ");
 		hsql.append(" ");
-		//部门控制
-		dept_name=user.getDept_name();
-		if (module_id!=405&&(dept_name.equals("施工单位")||dept_name.equals("勘察单位")||dept_name.equals("敷设单位")||dept_name.equals("熔接单位"))) {
-			String wxdw=user.getWxdw();
-			if (wxdw!=null&&!wxdw.equals("")) {
-				wxdw=wxdw.trim();
-			}else {
-				wxdw="";
-			}
+		//部门控制\
+		String wxdw=user.getWxdw();
+		if (wxdw!=null&&!wxdw.equals("")) {
+			wxdw=wxdw.trim();
+		}else {
+			wxdw="";
+		}
+//		dept_name=user.getDept_name();
+		if (module_id!=405&&(wxdw!=null&&!wxdw.equals(""))) {
 			hsql.append(" and (a.dw1='");
 			hsql.append(wxdw);
 			hsql.append("' ");

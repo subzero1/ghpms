@@ -43,6 +43,13 @@ public class CreateJspFileImpl implements CreateJspFile {
 	@Autowired
 	private GcsjDataService gcsjDataService;
 
+	/**
+	 * 获取本人对应的节点列表
+	 * 外协单位涉及节点,录入字段列示时,先判断是否为本单做的. 如施工单位,判断本工程是否为本单,如果是本单位才列示,否则不列示.
+	 *　重载方法：getNode
+	 * (non-Javadoc)
+	 * @see com.ghpms.service.CreateJspFile#getNode(javax.servlet.http.HttpServletRequest, java.util.Map)
+	 */
 	public void getNode(HttpServletRequest request, Map paraMap) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException  {
 		StringBuffer hsql = new StringBuffer();
 		String t_module_id = StringFormatUtil.format((String) paraMap
@@ -51,7 +58,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		
 		Long module_id = convertUtil.toLong(t_module_id);
 		Ta06_module module_obj = ((Ta06_module)queryService.searchById(Ta06_module.class, module_id));
-		Object dataObject = queryService.searchById(Class.forName(module_obj.getForm_table()), MapUtil.getLong(paraMap, "id"));
+		Object dataObject = queryService.searchById(Class.forName(module_obj.getForm_table()), MapUtil.getLong(paraMap, "project_id"));
 		
 		Ta03_user user = (Ta03_user) (request.getSession().getAttribute("user"));
 		hsql
@@ -72,15 +79,21 @@ public class CreateJspFileImpl implements CreateJspFile {
 		List nodeMaps = new ArrayList();
 		for (Object object : recordButtons) {
 			Object[] node = (Object[]) object;
-			String file_name ="";
+			String field_name ="";
 			if(node[1].toString().indexOf("单位")> 1){
-				List list=queryService.searchList( "select name from Ta07_formfield where comments ='" +node[1].toString() + "' "+"and module_id="+module_id);
-				if (list!=null&&list.size()>0) {
-					file_name =(String) list.get(0);
+				String node_name=node[1].toString();
+				List list=queryService.searchList( "select name from Ta07_formfield where comments like '" +node_name + "%' "+" and module_id="+module_id);
+				if (list!=null&&list.size()==1) {
+					field_name =(String) list.get(0);
+					if(!PropertyInject.getProperty(dataObject, field_name).equals(wxdw)){
+						continue;
+					}
+					
 				}
-				
-				if(!PropertyInject.getProperty(dataObject, file_name).equals(wxdw)){
-					continue;
+				if (list!=null&&list.size()>0) {
+					if(!PropertyInject.getProperty(dataObject, field_name).equals(wxdw)){
+						continue;
+					}
 				}
 				
 			}
@@ -220,6 +233,12 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
+	/**
+	 * 生成表单查看文件
+	 *　重载方法：AutoCreateJspFile
+	 * (non-Javadoc)
+	 * @see com.ghpms.service.CreateJspFile#AutoCreateJspFile(java.lang.String, java.lang.Long)
+	 */
 	public void AutoCreateJspFile(String path, Long module_id) {
 		StringBuffer hsql = new StringBuffer();
 
@@ -827,13 +846,14 @@ public class CreateJspFileImpl implements CreateJspFile {
 
 	}
 
+
 	/**
-	 * 
-	 *　重载方法：createJspFileToFormUser
+	 * 生成表单文件
+	 *　重载方法：createTableFile
 	 * (non-Javadoc)
-	 * @see com.ghpms.service.CreateJspFile#createJspFileToFormUser(javax.servlet.http.HttpServletRequest)
+	 * @see com.ghpms.service.CreateJspFile#createTableFile(javax.servlet.http.HttpServletRequest, java.lang.Long)
 	 */
-	public void createJspFileToFormUser(HttpServletRequest request) {
+	public void createTableFile(HttpServletRequest request, Long module_id) {
 		StringBuffer hsql = new StringBuffer();
 		Tb02_node node;
 		Ta06_module module = null;
@@ -841,14 +861,14 @@ public class CreateJspFileImpl implements CreateJspFile {
 				"/WEB-INF");
 		Long node_id = convertUtil.toLong(request.getParameter("node_id"), -1L);
 		Ta03_user user = (Ta03_user) request.getSession().getAttribute("user");
-
 		node = (Tb02_node) queryService.searchById(Tb02_node.class, node_id);
-		if (node != null) {
-			module = (Ta06_module) queryService.searchById(Ta06_module.class,
-					node.getFlow_id());
-			path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
-					+ user.getId() + ".jsp";
+		if (module_id == -1&&node!=null) {
+			module_id=node.getFlow_id();
 		}
+		module = (Ta06_module) queryService.searchById(Ta06_module.class,
+				module_id);
+		path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
+				+ user.getId() + ".jsp";
 
 		hsql.append(" select distinct ta07 from Ta07_formfield ta07,Ta16_node_field ta16,Ta13_sta_node ta13,Ta11_sta_user ta11 where 1=1 ");
 		hsql.append(" and ta07.id=ta16.field_id and ta16.node_id=ta13.node_id and ta16.node_type =2 ");
@@ -996,8 +1016,6 @@ public class CreateJspFileImpl implements CreateJspFile {
 			e.printStackTrace();
 		}
 
-	}
-
-	public void createTableFile(HttpServletRequest request, Long moduleId) {
+	
 	}
 }
