@@ -148,9 +148,9 @@ function changeTemp(obj){
 						</div>
 						<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 						<div class="contentc">
-							<div style="height:60px;">
+							<div style="height:95px;overflow:auto;">
 							<c:forEach var="obj" items="${numberList}">
-								<input type="checkbox" name="sum" value="${obj.id }" checked/>${obj.comments }
+								<p style="line-height:140%;"><input type="checkbox" name="sum" value="${obj.id }" checked/ style="vertical-align:middle;  "><span style="vertical-align:middle; ">${obj.comments }</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 							</c:forEach>
 							</div>
 						</div>
@@ -196,8 +196,8 @@ function changeTemp(obj){
 												<table width="300" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 													<c:forEach var="obj" items="${keyList}">
 													<tr>
-														<td width="100" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-														<td width="200"><input name="${obj.id }" class="td-input" value="" style="width:100%"/></td>			
+														<td width="115" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
+														<td width="185"><input name="${obj.id }" class="td-input" value="" style="width:100%"/></td>			
 													</tr>
 													</c:forEach>
 												</table>
@@ -206,8 +206,8 @@ function changeTemp(obj){
 												<table width="300" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 													<c:forEach var="obj" items="${selectList}">
 													<tr>
-														<td	width="90" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-														<td width="210"><input name="${obj.id }" class="td-input"   style="width:220px;"  title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name+'&module_id='+${obj.module_id }, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});"/></td>			
+														<td	width="150" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
+														<td width="150"><input name="${obj.id }" class="td-input"   style="width:150px;"  title="双击选择${obj.comments }" ondblclick="javascript:$.pdialog.open('${obj.selecturl }&name='+this.name+'&module_id='+${obj.module_id }, 'sel_key', '选择${obj.comments }', {mask:true,width:500,height:400});"/></td>			
 													</tr>
 													</c:forEach>
 												</table>
@@ -216,20 +216,20 @@ function changeTemp(obj){
 												<table width="300" border="0" cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 													<c:forEach var="obj" items="${numberList}">
 														<tr>
-															<td class="t-right" style="width:90px">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-															<td style="width:90px"><input name="${obj.id }_low" class="td-input" value="" style="width:100px;"/></td>
-															<td class="t-center" style="width:10px">≤</td>
-															<td style="width:90px"><input name="${obj.id }_high" class="td-input" value="" style="width:100px;"/></td>			
+															<td class="t-right" style="width:140px">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
+															<td style="width:70px"><input name="${obj.id }_low" class="td-input" value="" style="width:70px;"/></td>
+															<td class="t-center" style="width:20px">≤</td>
+															<td style="width:70px"><input name="${obj.id }_high" class="td-input" value="" style="width:70px;"/></td>			
 														</tr>
 													</c:forEach>
 												</table>
 											</div>
-											<div style="display:none;">
+											<div style="display:none;padding-top:10px;">
 												<table width="300" border="0"  cellspacing="0" cellpadding="0" class="data-table2" style="border-collapse:collapse;">
 													<c:forEach var="obj" items="${userList}">
 														<tr>
 															<td width="100" class="t-right">${obj.comments }：<input type="hidden" name="ids" value="${obj.id }"/></td>
-															<td width="190"><input name="${obj.id }" class="td-input" value="" style="width:210px;"/></td>			
+															<td width="190"><input name="${obj.id }" class="td-input" value="" style="width:190px;"/></td>			
 														</tr>
 													</c:forEach>
 												</table>
@@ -257,7 +257,7 @@ function changeTemp(obj){
 						</div>
 						<b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
 						<div class="contentc">
-							<div style="height:60px;">
+							<div style="height:95px;">
 								<table>
 									<tr>
 										<td>

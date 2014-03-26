@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.IdClass;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -131,7 +132,10 @@ public class DataToExcel {
 
 	/**
 	 * Excel导入到数据库
-	 * 
+	 * 1.
+	 * 2.
+	 * 3.
+	 * 4.
 	 * @param HttpRequest
 	 * @param response
 	 * @return
@@ -194,8 +198,8 @@ public class DataToExcel {
 								&& cell[i].getContents().equals(title)) {
 							rightExcel = true;
 							Map col = new HashMap();
-							col.put("$index", new Integer(cell[i].getColumn()));
-							columnMap.put(name.toUpperCase(), col);
+							col.put("$index", new Integer(cell[i].getColumn()));//列标
+							columnMap.put(name.toUpperCase(), col);//列键值  属性名--属性注释
 						}
 					}
 				}
@@ -232,6 +236,7 @@ public class DataToExcel {
 							
 //					session.saveOrUpdate(o);
 					} catch (Exception e) {
+						startRow++;
 						error++;
 						log.error(e.getMessage());
 						log.error("导入出错：文件名"+file.getName()+" 路径:"+fileDispath+"出错行数："+excelRow);
@@ -359,43 +364,39 @@ public class DataToExcel {
 		Map<?, ?> t_colMap = (Map<?, ?>) columnIndex.get("ID"); 
 		Map<?, ?> t_colMap1 = (Map<?, ?>) columnIndex.get("GHBH");
 		Map<?, ?> t_colMap2 = (Map<?, ?>) columnIndex.get("SKBH");
-		String t_value = null;
-		if (t_colMap != null) {
-			int index = ((Integer) t_colMap.get("$index")).intValue();
-			Cell cell = sheet.getCell(index, row);
-			if (cell.getContents() != null && cell.getContents().length() > 0) {
-				t_value = cell.getContents();
-			}
-			if (t_value != null && !t_value.equals("")) {
-				o = queryService.searchById(o.getClass(), convertUtil
-						.toLong(t_value));
-			}
-		}else if (t_colMap1 != null) {
-			int index = ((Integer) t_colMap1.get("$index")).intValue();
-			Cell cell = sheet.getCell(index, row);
-			if (cell.getContents() != null && cell.getContents().length() > 0) {
-				t_value = cell.getContents();
-			}
-			if (t_value != null && !t_value.equals("")) {
-				List objList=new ArrayList();
-				objList = queryService.searchList("select t from "+className+" t where t.ghbh='"+t_value+"'");
-				if (objList.size()>0) {
-					o=objList.get(0);
-				}
-			} 
-		}else if (t_colMap2 != null) {
-			int index = ((Integer) t_colMap2.get("$index")).intValue();
-			Cell cell = sheet.getCell(index, row);
-			if (cell.getContents() != null && cell.getContents().length() > 0) {
-				t_value = cell.getContents();
-			}
-			if (t_value != null && !t_value.equals("")) {
-				List objList=new ArrayList();
-				objList = queryService.searchList("select t from "+className+" t where t.skbh='"+t_value+"'");
-				if (objList.size()>0) {
-					o=objList.get(0);
-				}
-			} 
+		Long id=-1L;
+		String skbh="";
+		String ghbh="";
+		//判断标识,编号列存在，但值为空的情况
+		if (t_colMap!=null) {
+			int id_index = ((Integer) t_colMap.get("$index")).intValue();
+			Cell id_cell = sheet.getCell(id_index, row);
+			id=convertUtil.toLong(id_cell.getContents());
+		}
+		if (t_colMap1!=null) {
+			int ghbh_index = ((Integer) t_colMap1.get("$index")).intValue();
+			Cell ghbh_cell = sheet.getCell(ghbh_index, row);
+			ghbh=convertUtil.toString(ghbh_cell.getContents());
+		} 
+		if (t_colMap2!=null) {
+			int skbh_index = ((Integer) t_colMap2.get("$index")).intValue();
+			Cell skbh_cell = sheet.getCell(skbh_index, row);
+			skbh=convertUtil.toString(skbh_cell.getContents());
+		}
+		
+		 StringBuffer hql=new StringBuffer();
+		 hql.append("select t from "+className+" t where 1=1 ");
+		 hql.append(" and (t.id=");
+		 hql.append(id);
+		 hql.append(" or t.skbh='");
+		 hql.append(skbh);
+		 hql.append("' or t.ghbh='");
+		 hql.append(ghbh);
+		 hql.append("')");
+		 List objList=new ArrayList();
+		 objList = queryService.searchList(hql.toString());
+		 if (objList!=null&&objList.size()==1) {
+			o=objList.get(0);
 		}
 
 		for (int i = 0; i < method.length; i++) {

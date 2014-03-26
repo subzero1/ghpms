@@ -875,7 +875,7 @@ public class Relation {
 			"/WEB-INF"), id);
 //			createJspFile.createJspFileToForm(request.getSession().getServletContext().getRealPath(
 //			"/WEB-INF"), id);
-			createJspFile.createJspFileToFormUser(request);
+			createJspFile.createTableFile(request, -1L);
 			response
 					.getWriter()
 					.print(
