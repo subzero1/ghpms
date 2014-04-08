@@ -113,6 +113,7 @@ function multiple(_this){
 							target="navTab" rel="gcsj" title=""><span>添加</span>
 						</a>
 					</li>
+					<c:if test="${not empty rolesMap['101001']}">	
 					<li class="line">
 						line
 					</li>
@@ -121,6 +122,7 @@ function multiple(_this){
 							 title="确认删除吗？" onclick="multiple(this)"><span>删除</span>
 						</a>
 					</li>
+					</c:if>
 					<li class="line">
 						line
 					</li>
@@ -145,7 +147,9 @@ function multiple(_this){
 		<table class="table" layouth="138" style="width: ${docTabWitdh }px;">
 			<thead>
 				<tr> 
+					<c:if test="${not empty rolesMap['101001']}">	
 					<th style="width:32px;text-align: center;"><input name="checkall" type="checkbox" title="全选" onclick="selectAll(this)"/></th>
+					</c:if>
 					<th style="width:32px;"></th>
 					<!-- 初始化标题名称 -->
 					<c:forEach var="col" items="${docColsList}">
@@ -157,8 +161,10 @@ function multiple(_this){
 				<c:set var="offset" value="0"/>			
 				<c:forEach var="doc" items="${docs}">
 				<c:set var="offset" value="${offset+1}"/>
-					<tr >
+					<tr >				
+						<c:if test="${not empty rolesMap['101001']}">	
 					<td style="width:32px;text-align: center;"><input name="gcsj" type="checkbox"  value="${doc[cols].id}"/></td>
+					</c:if>
 						<td>
 						<c:if test="${doc[cols] != null }">
 							<a href="gh/openForm.do?project_id=${doc[cols].id}&module_id=${param.module_id }&user_id=${user.id }&node_id=${node_id }" target="navTab" rel="gcsj" title="表单[${doc[cols].gcmc}]"><img border="0" src="Images/form.gif" style="cursor:pointer;margin:4px 1px;"/></a>
