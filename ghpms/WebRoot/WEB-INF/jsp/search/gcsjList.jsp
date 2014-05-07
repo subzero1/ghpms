@@ -68,7 +68,7 @@ function multiple(_this){
 					<tr>
 						<td>
 						<input type="text" style="display:none"/>
-						关键字：<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" title="工程名或者视宽编号"/>
+						关键字：<input id="keyword" name="keyword" value="${keyword}" type="text" size="25" title="工程名称,视宽编号,歌华编号,行政区域"/>
 						<input type="hidden" name="module_id" value="${param.module_id}"></td>
 						<td>
 							<c:if test="${param.workState == 5}">
