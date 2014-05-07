@@ -182,6 +182,12 @@ public class Gcsj {
 			hsql.append("%' ");
 			hsql.append(" or a.gcmc like'%");
 			hsql.append(keyword);
+			hsql.append("%' ");
+			hsql.append(" or a.ghbh like'%");
+			hsql.append(keyword);
+			hsql.append("%' ");
+			hsql.append(" or a.xzqy like'%");
+			hsql.append(keyword);
 			hsql.append("%') ");
 		}
 		

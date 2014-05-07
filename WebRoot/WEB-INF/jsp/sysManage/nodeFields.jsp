@@ -42,22 +42,22 @@
 			<input type="hidden" name="node_id" value="${param.id}">
 			<input type="hidden" name="node_type" value="${param.node_type}">
 			<div class="pageFormContent" layoutH="56">
-				<table>
+				<table style="width:100%;height:100%;min-height:270px;">
 					<tr>
-						<td>
-							<select id="s_field" name="s_field" multiple=1 type=select-multiple  ondblclick="javascript:moveAct('s_field','t_field');" style="width:195px;height:240px;">
+						<td style="width:40%;height:90%;">
+							<select id="s_field" name="s_field" multiple=1 type=select-multiple  ondblclick="javascript:moveAct('s_field','t_field');" style="width:100%;height:100%;">
 							<option style="background-color:#ccc;" disabled>----------未选项----------</option>
 							<c:forEach var="obj" items="${unselect_fields}">
 								<option title="${obj.comments}"  value="${obj.id}">${obj.comments}</option>
 							</c:forEach>
 							</select>
 						</td>
-						<td style="width:30px;text-align:center;">
-							<input type="button" value="&gt;" onclick="javascript:moveAct('s_field','t_field');"><br/>
+						<td style="width:7%;max-width:50px;text-align:center;">
+							<input type="button" value="&gt;" onclick="javascript:moveAct('s_field','t_field');"><br/><br/>
 							<input type="button" value="&lt;" onclick="javascript:moveAct('t_field','s_field');">
 						</td>
-						<td>
-							<select id="t_field" name="t_field" multiple=1 type=select-multiple   ondblclick="javascript:moveAct('t_field','s_field');" style="width:195px;height:240px;">
+						<td style="width:40%;height:90%;"">
+							<select id="t_field" name="t_field" multiple=1 type=select-multiple   ondblclick="javascript:moveAct('t_field','s_field');" style="width:100%;height:100%;">
 							<option style="background-color:#ccc;" disabled >----------已选项----------</option>
 							<c:forEach var="obj" items="${select_fields}">
 								<option title="${obj.comments}"  value="${obj.id}">${obj.comments}</option>
@@ -65,9 +65,10 @@
 							</select>
 							<input type="hidden" id="fields" name="fields"/>
 						</td>
+						<td></td>
 					</tr>
-												<tr>
-						<td colspan="2"><input type="text" id="_keyWord" style="width:200" value="录入后按回车进行搜索" />
+					<tr>
+						<td colspan="2" valign="top" style="padding-top:5px;"><input type="text" id="_keyWord" style="width:200" value="录入后按回车进行搜索" />
 						<input type="text" name="" style="display:none;"/>
 						</td>
 					</tr>

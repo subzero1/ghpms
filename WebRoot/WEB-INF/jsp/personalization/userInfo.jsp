@@ -48,19 +48,9 @@
 					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
 					<input type="text" name="Ta03_user.NAME" style="width:120px;" value="${user.name }" class="required" />
 				</p>
-				<!-- 
-				<p>
-					<label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-					<input type="password" id="pwd" name="Ta03_user.PASSWD" style="width:120px;" value="" />
-				</p>
-				<p>
-					<label>确认密码：</label>
-					<input type="password" id="repwd" style="width:120px;" value="" />
-				</p>
-				 -->
 				<p>
 					<label>移动电话：</label>
-					<input type="text" name="Ta03_user.MOBILE_TEL" style="width:120px;" value="${user.mobile_tel }" class="required" />
+					<input type="text" name="Ta03_user.MOBILE_TEL" style="width:120px;" value="${user.mobile_tel }" class="required phone" />
 				</p>				
 				<p>
 					<label>性&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
@@ -71,11 +61,11 @@
 				</p>
 				<p>
 					<label>固定电话：</label>
-					<input type="text" name="Ta03_user.FIX_TEL" style="width:120px;" value="${user.fix_tel }" />
+					<input type="text" name="Ta03_user.FIX_TEL" style="width:120px;" value="${user.fix_tel }"  />
 				</p>
 				<p>
 					<label>电子邮件：</label>
-					<input type="text" name="Ta03_user.EMAIL" style="width:120px;" value="${user.email }" />
+					<input type="text" name="Ta03_user.EMAIL" style="width:120px;" value="${user.email }" class="email" />
 				</p>
 				<p>
 					<label>所属地区：</label>
