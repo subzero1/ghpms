@@ -25,6 +25,7 @@ import com.netsky.base.baseObject.PropertyInject;
 import com.netsky.base.dataObjects.Ta03_user;
 import com.netsky.base.dataObjects.Ta06_module;
 import com.netsky.base.dataObjects.Ta07_formfield;
+import com.netsky.base.dataObjects.Ta11_sta_user;
 import com.netsky.base.dataObjects.Tb02_node;
 import com.netsky.base.flow.utils.MapUtil;
 import com.netsky.base.service.QueryService;
@@ -529,7 +530,7 @@ public class CreateJspFileImpl implements CreateJspFile {
 		hsql.append(" and c.node_id=");
 		hsql.append(node_id);
 		hsql.append(" and (c.node_type=1 or c.node_type is null) ");
-		hsql.append(" order by  a.ord");
+		hsql.append(" order by c.id,  a.ord");
 		List fields = queryService.searchList(hsql.toString());
 
 		if (fields.size() > 0) {
@@ -864,157 +865,175 @@ public class CreateJspFileImpl implements CreateJspFile {
 		if (module_id == -1&&node!=null) {
 			module_id=node.getFlow_id();
 		}
-		module = (Ta06_module) queryService.searchById(Ta06_module.class,
-				module_id);
-		path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
-				+ user.getId() + ".jsp";
-
-		hsql.append(" select distinct ta07 from Ta07_formfield ta07,Ta16_node_field ta16,Ta13_sta_node ta13,Ta11_sta_user ta11 where 1=1 ");
-		hsql.append(" and ta07.id=ta16.field_id and ta16.node_id=ta13.node_id and ta16.node_type =2 ");
-		hsql.append(" and ta07.name <> 'id' ");
-		hsql.append(" and ta11.user_id=");
-		hsql.append(user.getId());
-		hsql.append(" and ta07.module_id=");
-		hsql.append(module.getId());
-		hsql.append(" order by ta07.ord");
-		List fields = queryService.searchList(hsql.toString());
-		if (fields == null || fields.size() == 0) {
-			hsql.delete(0, hsql.length());
-			hsql.append("select a from Ta07_formfield a where 1=1 ");
-			hsql.append(" and a.module_id=");
-			hsql.append(module.getId());
-			hsql.append(" and a.name <> 'id' ");
-			hsql.append(" order by a.ord");
-			fields = queryService.searchList(hsql.toString());
-		}
-
-		hsql.delete(0, hsql.length());
-		hsql
-				.append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
-		hsql.append(" \n ");
-		hsql
-				.append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
-		hsql.append(" \n ");
-		hsql
-				.append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
-		hsql.append(" \n ");
-		Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
-		Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
-		for (int i = 0; i < fields.size(); i++) {
-			Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
-
-			// 如果文本框沒湊夠兩個一排,進入队列1
-			if (fieldQueue1.size() % 2 == 1) {
-				if (formfield.getDatalength() > 200) {
-					fieldQueue2.offer(formfield);
-					continue;
-				} else {
-					fieldQueue1.offer(formfield);
-				}
-			} // 如果是偶数
-			else {
-				if (fieldQueue2.size() > 0) {
-					formfield = fieldQueue2.poll();
-				} else {
-					if (formfield.getDatalength() < 200) {
-						fieldQueue1.offer(formfield);
-					}
-				}
-			}
-
-			// 文本域
-			if (formfield.getData_type() != null
-					&& (formfield.getData_type() == 2 || formfield
-							.getDatalength() > 1000)) {
-				// 文本域换行
-				hsql.append("<div style=\"height:0px;\"></div>");
-				hsql.append(" <p> \n");
-				hsql.append("<label> " + formfield.getComments()
-						+ "：</label> \n");
-				hsql.append("<textarea ");
-				hsql.append(" name=\"");
-				hsql.append(formfield.getObject_name().substring(
-						formfield.getObject_name().lastIndexOf(".") + 1,
-						formfield.getObject_name().length()));
-				hsql.append("." + formfield.getName().toUpperCase());
-				hsql.append("\"");
-				hsql.append(" style=\"width:619px;height:70px;\" readonly>");
-				hsql.append("${");
-				hsql.append(formfield.getObject_name().substring(
-						formfield.getObject_name().lastIndexOf(".") + 1,
-						formfield.getObject_name().length()).toLowerCase());
-				hsql.append("." + formfield.getName() + "} ");
-				hsql.append("</textarea>");
-				hsql.append("\n </p> \n");
-				hsql.append("<div style=\"height:0px;\"></div> \n");
-			} else {
-				if (formfield.getDatalength() > 250) {
-					hsql.append("<div style=\"height:0px;\"></div>");
-				}
-				hsql.append(" <p> \n");
-				hsql.append("<label> " + formfield.getComments()
-						+ "：</label> \n");
-
-				hsql.append("<input type=\"text\" ");
-				hsql.append(" name=\"");
-				hsql.append(formfield.getObject_name().substring(
-						formfield.getObject_name().lastIndexOf(".") + 1,
-						formfield.getObject_name().length()));
-				hsql.append("." + formfield.getName().toUpperCase());
-				hsql.append("\"");
-				hsql.append(" value=\"");
-				// 如果是日期
-				if (formfield.getDatatype().equals("DATE")) {
-					hsql.append("<fmt:formatDate value=\"");
-				}
-				hsql.append("${");
-				hsql.append(formfield.getObject_name().substring(
-						formfield.getObject_name().lastIndexOf(".") + 1,
-						formfield.getObject_name().length()).toLowerCase());
-				hsql.append("." + formfield.getName() + "}\" ");
-
-				// 如果是日期
-				if (formfield.getDatatype().equals("DATE")) {
-					hsql.append(" pattern=\"");
-					if (formfield.getFormat() != null
-							&& formfield.getData_type() == 5) {
-						hsql.append(formfield.getFormat());
-					} else {
-						hsql.append("yyyy-MM-dd");
-					}
-
-					hsql.append(" \"/>\" ");
-				}
-				// 长文本框
-				if (formfield.getDatalength() > 200
-						&& formfield.getDatalength() < 500) {
-					hsql.append("style=\"width:619px;\" readonly/>");
-				}
-				// 短文本框
-				else {
-					hsql.append("style=\"width:256px;\" readonly/>");
-				}
-
-				hsql.append("\n </p> \n");
-				if (fieldQueue1.size() % 2 == 0) {
-					hsql.append("<div style=\"height:0px;\"></div> \n");
-				}
-			}
-		}
-		try {
-			FileOutputStream fos = new FileOutputStream(path);
-			Writer out = new OutputStreamWriter(fos, "utf-8");
-			out.write(hsql.toString());
-			// out.write(hsql.toString());
-			out.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	
+		/*
+		 * 得到用户列表
+		 */
+		Integer station_id=convertUtil.toInteger(request.getParameter("station_id"));
+		List userList=  queryService.searchList("select distinct(ta11.user_id) from Ta11_sta_user ta11 where  ta11.station_id="+station_id);
+		for (Object object : userList) {
+		    this.createTableField(module_id, convertUtil.toLong(object.toString()), path);
+        }
+		
+		
 	}
+	
+	/**
+	 * 
+	 * @param module_id
+	 * @param user_id
+	 * @param path void
+	 */
+	public void   createTableField(Long module_id,Long user_id,String path) {
+	    StringBuffer hsql = new StringBuffer();
+	    Ta06_module   module = (Ta06_module) queryService.searchById(Ta06_module.class,
+                module_id);
+        path += "\\jsp\\form\\" + module.getForm_name().toLowerCase() + "_"
+                + user_id + ".jsp";
+
+        hsql.append(" select distinct ta07 from Ta07_formfield ta07,Ta16_node_field ta16,Ta13_sta_node ta13,Ta11_sta_user ta11 where 1=1 ");
+        hsql.append(" and ta07.id=ta16.field_id and ta16.node_id=ta13.node_id and ta13.station_id=ta11.station_id  and ta16.node_type =2 ");
+        hsql.append(" and ta07.name <> 'id' ");
+        hsql.append(" and ta11.user_id=");
+        hsql.append(user_id);
+        hsql.append(" and ta07.module_id=");
+        hsql.append(module.getId());
+        hsql.append(" order by ta07.ord");
+        List fields = queryService.searchList(hsql.toString());
+        if (fields == null || fields.size() == 0) {
+            hsql.delete(0, hsql.length());
+            hsql.append("select a from Ta07_formfield a where 1=1 ");
+            hsql.append(" and a.module_id=");
+            hsql.append(module.getId());
+            hsql.append(" and a.name <> 'id' ");
+            hsql.append(" order by a.ord");
+            fields = queryService.searchList(hsql.toString());
+        }
+
+        hsql.delete(0, hsql.length());
+        hsql
+                .append("<%@ page language=\"java\" import=\"java.util.*\" pageEncoding=\"UTF-8\"%>");
+        hsql.append(" \n ");
+        hsql
+                .append("<%@ taglib prefix=\"fmt\" uri=\"http://java.sun.com/jsp/jstl/fmt\"%>");
+        hsql.append(" \n ");
+        hsql
+                .append("<jsp:include page=\"basicForm.jsp\"  flush=\"true\"></jsp:include>");
+        hsql.append(" \n ");
+        Queue<Ta07_formfield> fieldQueue1 = new LinkedList<Ta07_formfield>();
+        Queue<Ta07_formfield> fieldQueue2 = new LinkedList<Ta07_formfield>();
+        for (int i = 0; i < fields.size(); i++) {
+            Ta07_formfield formfield = (Ta07_formfield) fields.get(i);
+
+            // 如果文本框沒湊夠兩個一排,進入队列1
+            if (fieldQueue1.size() % 2 == 1) {
+                if (formfield.getDatalength() > 200) {
+                    fieldQueue2.offer(formfield);
+                    continue;
+                } else {
+                    fieldQueue1.offer(formfield);
+                }
+            } // 如果是偶数
+            else {
+                if (fieldQueue2.size() > 0) {
+                    formfield = fieldQueue2.poll();
+                } else {
+                    if (formfield.getDatalength() < 200) {
+                        fieldQueue1.offer(formfield);
+                    }
+                }
+            }
+
+            // 文本域
+            if (formfield.getData_type() != null
+                    && (formfield.getData_type() == 2 || formfield
+                            .getDatalength() > 1000)) {
+                // 文本域换行
+                hsql.append("<div style=\"height:0px;\"></div>");
+                hsql.append(" <p> \n");
+                hsql.append("<label> " + formfield.getComments()
+                        + "：</label> \n");
+                hsql.append("<textarea ");
+                hsql.append(" name=\"");
+                hsql.append(formfield.getObject_name().substring(
+                        formfield.getObject_name().lastIndexOf(".") + 1,
+                        formfield.getObject_name().length()));
+                hsql.append("." + formfield.getName().toUpperCase());
+                hsql.append("\"");
+                hsql.append(" style=\"width:619px;height:70px;\" readonly>");
+                hsql.append("${");
+                hsql.append(formfield.getObject_name().substring(
+                        formfield.getObject_name().lastIndexOf(".") + 1,
+                        formfield.getObject_name().length()).toLowerCase());
+                hsql.append("." + formfield.getName() + "} ");
+                hsql.append("</textarea>");
+                hsql.append("\n </p> \n");
+                hsql.append("<div style=\"height:0px;\"></div> \n");
+            } else {
+                if (formfield.getDatalength() > 250) {
+                    hsql.append("<div style=\"height:0px;\"></div>");
+                }
+                hsql.append(" <p> \n");
+                hsql.append("<label> " + formfield.getComments()
+                        + "：</label> \n");
+
+                hsql.append("<input type=\"text\" ");
+                hsql.append(" name=\"");
+                hsql.append(formfield.getObject_name().substring(
+                        formfield.getObject_name().lastIndexOf(".") + 1,
+                        formfield.getObject_name().length()));
+                hsql.append("." + formfield.getName().toUpperCase());
+                hsql.append("\"");
+                hsql.append(" value=\"");
+                // 如果是日期
+                if (formfield.getDatatype().equals("DATE")) {
+                    hsql.append("<fmt:formatDate value=\"");
+                }
+                hsql.append("${");
+                hsql.append(formfield.getObject_name().substring(
+                        formfield.getObject_name().lastIndexOf(".") + 1,
+                        formfield.getObject_name().length()).toLowerCase());
+                hsql.append("." + formfield.getName() + "}\" ");
+
+                // 如果是日期
+                if (formfield.getDatatype().equals("DATE")) {
+                    hsql.append(" pattern=\"");
+                    if (formfield.getFormat() != null
+                            && formfield.getData_type() == 5) {
+                        hsql.append(formfield.getFormat());
+                    } else {
+                        hsql.append("yyyy-MM-dd");
+                    }
+
+                    hsql.append(" \"/>\" ");
+                }
+                // 长文本框
+                if (formfield.getDatalength() > 200
+                        && formfield.getDatalength() < 500) {
+                    hsql.append("style=\"width:619px;\" readonly/>");
+                }
+                // 短文本框
+                else {
+                    hsql.append("style=\"width:256px;\" readonly/>");
+                }
+
+                hsql.append("\n </p> \n");
+                if (fieldQueue1.size() % 2 == 0) {
+                    hsql.append("<div style=\"height:0px;\"></div> \n");
+                }
+            }
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            Writer out = new OutputStreamWriter(fos, "utf-8");
+            out.write(hsql.toString());
+            // out.write(hsql.toString());
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
