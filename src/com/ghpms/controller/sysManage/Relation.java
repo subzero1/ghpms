@@ -550,7 +550,7 @@ public class Relation {
 			field_rsql.append(node_type);
 			field_rsql.append(" or ta16.node_type is null)");
 		}
-		List fields = dao.search(field_rsql.toString() + " order by ta07.comments ,ta07.ord");
+		List fields = dao.search(field_rsql.toString() + " order by ta16.id, ta07.ord,ta07.comments");
 		modelMap.put("select_fields", fields);
 		// 获取节点
 		Tb02_node tb02_node=(Tb02_node) queryService.searchById(Tb02_node.class, convertUtil.toLong(id));

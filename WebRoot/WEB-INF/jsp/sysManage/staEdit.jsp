@@ -153,9 +153,9 @@ $(document).ready(function(){
 			<ul>
 			<c:forEach var="nodeMap" items="${nodeMaps}">
 				<li>
-					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=2" target="dialog"
+					<a href="sysManage/nodeFields.do?id=${nodeMap.node.id }&node_type=2&station_id=${sta.id}" target="dialog"
 				width="480" height="360" title="节点字段配置[${nodeMap.node.remark}]">
-				<c:if test="${nodeMap.node.node_type==2}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> <c:if test="${nodeMap.node.node_type==1}">${nodeMap.node.name}</c:if> 
+				<c:if test="${nodeMap.node.node_type==2}">${nodeMap.node.name}</c:if> <c:if test="${nodeMap.node.node_type==1}"><font color="#3498e4">${nodeMap.node.name}</font></c:if> 
 				[${nodeMap.module.name}]</a>
 				</li>
 			</c:forEach>

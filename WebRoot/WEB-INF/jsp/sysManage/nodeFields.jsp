@@ -41,6 +41,7 @@
 		<form action="sysManage/saveNodeFields.do" method="post" class="pageForm"  onSubmit="return selectSubmit(this,dialogAjaxDone,'t_field');"> 
 			<input type="hidden" name="node_id" value="${param.id}">
 			<input type="hidden" name="node_type" value="${param.node_type}">
+			<input type="hidden" name="station_id" value="${param.station_id}">
 			<div class="pageFormContent" layoutH="56">
 				<table style="width:100%;height:100%;min-height:270px;">
 					<tr>
@@ -65,7 +66,14 @@
 							</select>
 							<input type="hidden" id="fields" name="fields"/>
 						</td>
-						<td></td>
+														<td width="40">
+														<c:if test="${param.node_type==1}">
+									 <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('t_field', 'top');" value="行首" /><br/>
+								    <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('t_field', 'up');" value="上移" /><br/>
+								    <input type="button" class="button-td" style="height:20px;" onclick="javascript:move('t_field', 'down');" value="下移" /><br/>
+									<input type="button" class="button-td" style="height:20px;" onclick="javascript:move('t_field', 'bottom');" value="行尾" />
+											</c:if>					
+								</td>
 					</tr>
 					<tr>
 						<td colspan="2" valign="top" style="padding-top:5px;"><input type="text" id="_keyWord" style="width:200" value="录入后按回车进行搜索" />
